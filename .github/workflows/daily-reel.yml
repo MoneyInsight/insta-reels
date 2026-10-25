@@ -1,0 +1,92 @@
+name: 매일 릴스 자동 게시
+
+on:
+  push:                     # 대본이 저장소에 들어오면 바로 게시
+    branches: [main]
+    paths: ["queue/*.json"]
+  schedule:
+    - cron: "52 9 * * *"   # 안전장치: 혹시 못 올린 대본이 남아 있으면 한국시간 18:52에 게시 + 토큰 연장
+  workflow_dispatch:        # 수동 실행 버튼
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-reel
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 오늘 대본 찾기
+        id: pick
+        run: |
+          D=$(TZ=Asia/Seoul date +%F)
+          F="queue/$D.json"
+          if [ ! -f "$F" ]; then F=$(ls queue/*.json 2>/dev/null | sort | head -1); fi
+          if [ -z "$F" ] || [ ! -f "$F" ]; then
+            echo "게시할 대본이 없습니다"; echo "skip=true" >> $GITHUB_OUTPUT; exit 0
+          fi
+          D=$(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['date'])" "$F")
+          echo "file=$F" >> $GITHUB_OUTPUT
+          echo "date=$D" >> $GITHUB_OUTPUT
+
+      - name: 도구 설치
+        if: steps.pick.outputs.skip != 'true'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fonts-noto-cjk-extra
+          pip install -q pillow numpy requests
+
+      - name: 영상 만들기
+        if: steps.pick.outputs.skip != 'true'
+        run: python make_reel.py "${{ steps.pick.outputs.file }}" site
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.pick.outputs.skip != 'true'
+        with:
+          path: site
+
+      - name: 영상 공개 주소 만들기
+        id: deploy
+        if: steps.pick.outputs.skip != 'true'
+        uses: actions/deploy-pages@v4
+
+      - name: 인스타그램에 게시
+        if: steps.pick.outputs.skip != 'true'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          URL="${{ steps.deploy.outputs.page_url }}reel-${{ steps.pick.outputs.date }}.mp4"
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10
+          done
+          echo "영상 주소: $URL"
+          python post_instagram.py "$URL" site/caption.txt
+
+      - name: 게시 완료 기록
+        if: steps.pick.outputs.skip != 'true'
+        run: |
+          git config user.name "reel-bot"
+          git config user.email "reel-bot@users.noreply.github.com"
+          git mv "${{ steps.pick.outputs.file }}" posted/
+          git commit -m "게시 완료: ${{ steps.pick.outputs.date }}"
+          git push
+
+      - name: 인스타 토큰 자동 연장 (매주 일요일)
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        if: always()
+        run: |
+          if [ -z "$GH_TOKEN" ] || [ "$(TZ=Asia/Seoul date +%u)" != "7" ]; then echo "건너뜀"; exit 0; fi
+          NEW=$(curl -s "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=$IG_ACCESS_TOKEN" | python3 -c "import json,sys;print(json.load(sys.stdin).get('access_token',''))")
+          if [ -n "$NEW" ]; then gh secret set IG_ACCESS_TOKEN --body "$NEW" --repo "$GITHUB_REPOSITORY"; echo "토큰 연장 완료"; else echo "토큰 연장 실패"; exit 1; fi
