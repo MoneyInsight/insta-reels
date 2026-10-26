@@ -32,28 +32,97 @@ def fit(d, text, path, size, maxw=980):
         size -= 4; f = font(path, size)
     return f
 
+# ---------- 배경 (그라데이션 + 빛 번짐 + 점 격자) ----------
+from PIL import ImageFilter
+GOLD = (255, 200, 60); GOLD2 = (255, 160, 40)
+def make_background(seed):
+    yy, xx = np.mgrid[0:H, 0:W]
+    t = (yy / H * 0.75 + xx / W * 0.25)[..., None]
+    top, bot = np.array([10, 14, 34]), np.array([28, 12, 44])
+    base = Image.fromarray((top * (1 - t) + bot * t).astype(np.uint8), "RGB").convert("RGBA")
+    glow = Image.new("RGBA", (W, H), (0, 0, 0, 0)); g = ImageDraw.Draw(glow)
+    r = np.random.default_rng(seed)
+    gx = 780 + int(r.integers(-120, 120)); vx = 260 + int(r.integers(-120, 120))
+    g.ellipse([gx - 420, 380 - 420, gx + 420, 380 + 420], fill=(255, 176, 40, 70))
+    g.ellipse([vx - 480, 1550 - 480, vx + 480, 1550 + 480], fill=(90, 70, 255, 60))
+    g.ellipse([W / 2 - 360, 900 - 260, W / 2 + 360, 900 + 260], fill=(255, 210, 120, 22))
+    base = Image.alpha_composite(base, glow.filter(ImageFilter.GaussianBlur(160)))
+    dots = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dd = ImageDraw.Draw(dots)
+    for x in range(24, W, 48):
+        for y in range(24, H, 48):
+            dd.ellipse([x - 2, y - 2, x + 2, y + 2], fill=(255, 255, 255, 16))
+    return Image.alpha_composite(base, dots)
+
+def glow_text(layer, xy, text, f, fill, blur=18, alpha=150):
+    g = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(g).text(xy, text, font=f, fill=fill[:3] + (alpha,))
+    layer.alpha_composite(g.filter(ImageFilter.GaussianBlur(blur)))
+    ImageDraw.Draw(layer).text(xy, text, font=f, fill=fill)
+
+BRAND = data.get("brand", "MONEY INSIGHT")
+TOTAL = len(data["scenes"])
+
 # ---------- 장면 이미지 ----------
 clips = []
 for i, s in enumerate(data["scenes"]):
-    im = Image.new("RGB", (W, H), BG); d = ImageDraw.Draw(im)
-    d.rectangle([0, 0, W, 14], fill=Y); d.rectangle([0, H - 14, W, H], fill=Y)
+    im = make_background(i)
+    d = ImageDraw.Draw(im, "RGBA")
+    # 상단 브랜드 + 진행 막대
+    bf_small = font(FBold, 30)
+    d.text((64, 104), " ".join(BRAND), font=bf_small, fill=(255, 255, 255, 170))
+    cnt = f"{i + 1:02d} / {TOTAL:02d}"
+    d.text((W - 64 - d.textlength(cnt, font=bf_small), 104), cnt, font=bf_small, fill=(255, 255, 255, 140))
+    seg = (W - 128 - 10 * (TOTAL - 1)) / TOTAL
+    for k in range(TOTAL):
+        x0 = 64 + k * (seg + 10)
+        d.rounded_rectangle([x0, 168, x0 + seg, 176], 4, fill=GOLD + (255,) if k <= i else (255, 255, 255, 26))
+
+    # 배지
     badge = s.get("badge", "")
     if badge:
         if len(badge) > 2:
-            bf = font(FB, 64); bw = d.textlength(badge, font=bf)
-            d.rounded_rectangle([(W - bw) / 2 - 36, 470, (W + bw) / 2 + 36, 580], 55, fill=Y)
-            d.text(((W - bw) / 2, 478), badge, font=bf, fill=BG)
+            bfont = font(FB, 58); bw = d.textlength(badge, font=bfont)
+            x0, x1 = (W - bw) / 2 - 40, (W + bw) / 2 + 40
+            pill = Image.new("RGBA", (W, H), (0, 0, 0, 0)); pd = ImageDraw.Draw(pill)
+            pd.rounded_rectangle([x0, 470, x1, 576], 53, fill=GOLD + (255,))
+            gl = pill.filter(ImageFilter.GaussianBlur(28))
+            im.alpha_composite(gl); im.alpha_composite(pill)
+            d = ImageDraw.Draw(im, "RGBA")
+            d.text(((W - bw) / 2, 480), badge, font=bfont, fill=(20, 16, 30))
         else:
-            center(d, 420, badge, font(FB, 120), Y)
+            nf = font(FB, 150); nw = d.textlength(badge, font=nf)
+            glow_text(im, ((W - nw) / 2, 380), badge, nf, GOLD + (255,), blur=30, alpha=170)
+            d = ImageDraw.Draw(im, "RGBA")
+
+    # 제목 (둘째 줄은 골드로 강조)
     y = 660
-    for t in s["title"]:
-        center(d, y, t, fit(d, t, FB, 104), WH); y += 140
-    d.rectangle([W / 2 - 60, y + 30, W / 2 + 60, y + 38], fill=Y); y += 100
-    for b in s.get("body", []):
-        center(d, y, b, fit(d, b, FBold, 52), GR); y += 80
+    for k, t in enumerate(s["title"]):
+        f = fit(d, t, FB, 108)
+        col = GOLD + (255,) if (k == len(s["title"]) - 1 and len(s["title"]) > 1) else (255, 255, 255, 255)
+        x = (W - d.textlength(t, font=f)) / 2
+        d.text((x + 4, y + 6), t, font=f, fill=(0, 0, 0, 110))
+        glow_text(im, (x, y), t, f, col, blur=22, alpha=90 if col[0] == 255 and col[1] == 255 else 140)
+        d = ImageDraw.Draw(im, "RGBA"); y += 146
+
+    # 설명: 유리 카드
+    body = s.get("body", [])
+    if body:
+        y += 50
+        bh = 80 * len(body) + 70
+        card = Image.new("RGBA", (W, H), (0, 0, 0, 0)); cd = ImageDraw.Draw(card)
+        cd.rounded_rectangle([90, y, W - 90, y + bh], 40, fill=(255, 255, 255, 18), outline=(255, 255, 255, 48), width=2)
+        cd.rounded_rectangle([90, y + 30, 98, y + bh - 30], 4, fill=GOLD + (230,))
+        im.alpha_composite(card); d = ImageDraw.Draw(im, "RGBA")
+        ty = y + 35
+        for b in body:
+            f = fit(d, b, FBold, 50, maxw=820)
+            d.text(((W - d.textlength(b, font=f)) / 2, ty), b, font=f, fill=(222, 226, 238, 255)); ty += 80
+
+    # 하단 출처
     if data.get("source"):
-        center(d, H - 230, data["source"], fit(d, data["source"], FM, 36), (110, 116, 130))
-    p = f"{tmp}/s{i}.png"; im.save(p)
+        sf = fit(d, data["source"], FM, 32)
+        d.text(((W - d.textlength(data["source"], font=sf)) / 2, H - 210), data["source"], font=sf, fill=(255, 255, 255, 110))
+    p = f"{tmp}/s{i}.png"; im.convert("RGB").save(p)
     sec = float(s.get("sec", 4.0)); frames = int(sec * 30); c = f"{tmp}/c{i}.mp4"
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", p, "-t", str(sec), "-vf",
         f"scale=1188:2112,zoompan=z='min(zoom+0.0006,1.06)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps=30,format=yuv420p",
@@ -113,5 +182,5 @@ final = os.path.join(outdir, f"reel-{date}.mp4")
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", video, "-i", bgm, "-map", "0:v", "-map", "1:a",
     "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", final], check=True)
 open(os.path.join(outdir, "caption.txt"), "w", encoding="utf-8").write(data["caption"])
-subprocess.run(["rm", "-rf", tmp])
+import shutil; shutil.rmtree(tmp) if not os.environ.get("KEEP_TMP") else None
 print(final)
