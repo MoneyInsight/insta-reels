@@ -69,7 +69,7 @@ jobs:
           for i in $(seq 1 30); do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10
           done
-          echo "영상 주소: $URL"
+          echo "::notice::영상 주소 $URL (응답 $code)"
           python post_instagram.py "$URL" site/caption.txt
 
       - name: 게시 완료 기록

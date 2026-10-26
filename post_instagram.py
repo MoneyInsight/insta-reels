@@ -4,7 +4,9 @@
 import os, sys, time, requests
 
 G = "https://graph.instagram.com/v21.0"
-TOKEN = os.environ["IG_ACCESS_TOKEN"]
+TOKEN = os.environ.get("IG_ACCESS_TOKEN", "").strip()
+if not TOKEN:
+    print("::error::IG_ACCESS_TOKEN 비밀값이 비어 있습니다"); raise SystemExit(1)
 video_url, caption_file = sys.argv[1], sys.argv[2]
 caption = open(caption_file, encoding="utf-8").read()[:2200]
 
@@ -14,11 +16,11 @@ def call(method, path, **params):
                          data=params if method == "POST" else None, timeout=60)
     j = r.json()
     if "error" in j:
-        raise SystemExit(f"인스타 API 오류: {j['error'].get('message')}")
+        e = j["error"]; print(f"::error::인스타 API 오류 [{path.split('/')[-1]}] code={e.get('code')} sub={e.get('error_subcode')}: {e.get('message')}"); raise SystemExit(1)
     return j
 
 me = call("GET", "me", fields="user_id,username")
-ig = me["user_id"]
+ig = me.get("user_id") or me.get("id")
 print("계정:", me.get("username"))
 
 cid = call("POST", f"{ig}/media", media_type="REELS", video_url=video_url,
@@ -29,10 +31,10 @@ for _ in range(60):  # 최대 10분 대기
     st = call("GET", cid, fields="status_code,status").get("status_code")
     if st == "FINISHED": break
     if st in ("ERROR", "EXPIRED"):
-        raise SystemExit(f"영상 처리 실패: {st}")
+        print(f"::error::영상 처리 실패: {st} {call('GET', cid, fields='status').get('status')}"); raise SystemExit(1)
     time.sleep(10)
 else:
-    raise SystemExit("영상 처리 시간 초과")
+    print("::error::영상 처리 시간 초과"); raise SystemExit(1)
 
 pub = call("POST", f"{ig}/media_publish", creation_id=cid)
 print("게시 완료! 미디어 ID:", pub["id"])
