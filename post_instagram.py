@@ -7,6 +7,11 @@ G = "https://graph.instagram.com/v21.0"
 TOKEN = os.environ.get("IG_ACCESS_TOKEN", "").strip()
 if not TOKEN:
     print("::error::IG_ACCESS_TOKEN 비밀값이 비어 있습니다"); raise SystemExit(1)
+# 토큰 값은 절대 출력하지 않고, 어떤 종류의 토큰인지만 알려준다 (잘못 넣었을 때 원인 확인용)
+KIND = ("인스타그램 토큰" if TOKEN.startswith("IG") else "스레드 토큰" if TOKEN.startswith("TH")
+        else "페이스북 토큰" if TOKEN.startswith("EA") else "토큰 형식이 아님")
+if KIND != "인스타그램 토큰":
+    print(f"::error::IG_ACCESS_TOKEN에 들어 있는 값이 인스타그램 토큰이 아닙니다 → {KIND} (길이 {len(TOKEN)}자, 공백 포함 여부: {' ' in TOKEN or chr(10) in TOKEN})")
 video_url, caption_file = sys.argv[1], sys.argv[2]
 caption = open(caption_file, encoding="utf-8").read()[:2200]
  
