@@ -1,0 +1,103 @@
+name: 제휴 숏폼 자동 게시 (인스타그램 + 스레드)
+
+on:
+  push:                     # shorts/ 폴더에 영상이 들어오면 바로 게시
+    branches: [main]
+    paths: ["shorts/*.mp4"]
+  workflow_dispatch:        # 수동 실행 버튼
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:                # 매일 릴스와 같은 줄에 세워서 서로 겹치지 않게 한다
+  group: daily-reel
+  cancel-in-progress: false
+
+jobs:
+  short:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: 게시할 영상 찾기
+        id: pick
+        run: |
+          F=$(ls shorts/*.mp4 2>/dev/null | sort | head -1)
+          if [ -z "$F" ]; then
+            echo "게시할 영상이 없습니다"; echo "skip=true" >> $GITHUB_OUTPUT; exit 0
+          fi
+          NAME=$(basename "$F" .mp4)
+          if [ ! -f "shorts/$NAME.txt" ]; then
+            echo "::error::캡션 파일 shorts/$NAME.txt 이 없습니다"; exit 1
+          fi
+          mkdir -p site
+          cp "$F" "site/short-$NAME.mp4"
+          cp "shorts/$NAME.txt" site/caption.txt
+          if [ -f "shorts/$NAME.threads.txt" ]; then cp "shorts/$NAME.threads.txt" site/threads.txt; else cp "shorts/$NAME.txt" site/threads.txt; fi
+          # shorts/이름.skip-insta 파일이 있으면 인스타는 건너뛰고 스레드에만 올린다
+          if [ -f "shorts/$NAME.skip-insta" ]; then echo "insta=false" >> $GITHUB_OUTPUT; else echo "insta=true" >> $GITHUB_OUTPUT; fi
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.pick.outputs.skip != 'true'
+        with:
+          path: site
+
+      - name: 영상 공개 주소 만들기
+        id: deploy
+        if: steps.pick.outputs.skip != 'true'
+        uses: actions/deploy-pages@v4
+
+      - name: 영상 주소 확인
+        id: url
+        if: steps.pick.outputs.skip != 'true'
+        run: |
+          URL="${{ steps.deploy.outputs.page_url }}short-${{ steps.pick.outputs.name }}.mp4"
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10
+          done
+          echo "::notice::영상 주소 $URL (응답 $code)"
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          pip install -q requests
+
+      - name: 인스타그램에 게시
+        id: insta
+        if: steps.pick.outputs.skip != 'true' && steps.pick.outputs.insta == 'true'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python post_instagram.py "${{ steps.url.outputs.url }}" site/caption.txt
+
+      - name: 스레드에 게시
+        if: steps.pick.outputs.skip != 'true' && (steps.insta.outcome == 'success' || steps.pick.outputs.insta == 'false')
+        continue-on-error: true   # 스레드가 실패해도 인스타 중복 게시가 생기지 않게 완료 기록은 남긴다
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: python post_threads.py "${{ steps.url.outputs.url }}" site/threads.txt
+
+      - name: 게시 완료 기록
+        if: steps.pick.outputs.skip != 'true' && (steps.insta.outcome == 'success' || steps.pick.outputs.insta == 'false')
+        run: |
+          git config user.name "reel-bot"
+          git config user.email "reel-bot@users.noreply.github.com"
+          mkdir -p shorts/posted
+          git mv shorts/${{ steps.pick.outputs.name }}.* shorts/posted/
+          git commit -m "제휴 숏폼 게시 완료: ${{ steps.pick.outputs.name }}"
+          git pull --rebase
+          git push
+
+      - name: 스레드 토큰 자동 연장 (매주 일요일)
+        if: always()
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ] || [ -z "$THREADS_ACCESS_TOKEN" ] || [ "$(TZ=Asia/Seoul date +%u)" != "7" ]; then echo "건너뜀"; exit 0; fi
+          NEW=$(curl -s "https://graph.threads.net/refresh_access_token?grant_type=th_refresh_token&access_token=$THREADS_ACCESS_TOKEN" | python3 -c "import json,sys;print(json.load(sys.stdin).get('access_token',''))")
+          if [ -n "$NEW" ]; then gh secret set THREADS_ACCESS_TOKEN --body "$NEW" --repo "$GITHUB_REPOSITORY"; echo "스레드 토큰 연장 완료"; else echo "::warning::스레드 토큰 연장 실패"; fi
