@@ -43,6 +43,8 @@ jobs:
           if [ -f "shorts/$NAME.threads.txt" ]; then cp "shorts/$NAME.threads.txt" site/threads.txt; else cp "shorts/$NAME.txt" site/threads.txt; fi
           # shorts/이름.skip-insta 파일이 있으면 인스타는 건너뛰고 스레드에만 올린다
           if [ -f "shorts/$NAME.skip-insta" ]; then echo "insta=false" >> $GITHUB_OUTPUT; else echo "insta=true" >> $GITHUB_OUTPUT; fi
+          # shorts/이름.skip-threads 파일이 있으면 스레드는 건너뛰고 인스타에만 올린다
+          if [ -f "shorts/$NAME.skip-threads" ]; then echo "threads=false" >> $GITHUB_OUTPUT; else echo "threads=true" >> $GITHUB_OUTPUT; fi
           echo "name=$NAME" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-pages-artifact@v3
@@ -75,7 +77,7 @@ jobs:
         run: python post_instagram.py "${{ steps.url.outputs.url }}" site/caption.txt
 
       - name: 스레드에 게시
-        if: steps.pick.outputs.skip != 'true' && (steps.insta.outcome == 'success' || steps.pick.outputs.insta == 'false')
+        if: steps.pick.outputs.skip != 'true' && (steps.insta.outcome == 'success' || steps.pick.outputs.insta == 'false') && steps.pick.outputs.threads == 'true'
         continue-on-error: true   # 스레드가 실패해도 인스타 중복 게시가 생기지 않게 완료 기록은 남긴다
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
