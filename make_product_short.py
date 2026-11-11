@@ -203,8 +203,9 @@ def gemini_tts(text, path):
             return wav
         except Exception as e:
             err = str(r.get("error", {}).get("code")) if isinstance(r, dict) and "error" in r else type(e).__name__
+            last = f"{model}: " + (json.dumps(r.get("error", {}), ensure_ascii=False)[:160] if isinstance(r, dict) and r.get("error") else repr(e)[:160])
             if err in ("429", "403"): continue
-    print("::notice::Gemini 음성 사용 불가 → 기본 음성으로 대체"); _gtts_off = True
+    print("::notice::Gemini 음성 사용 불가 → 기본 음성으로 대체 / " + locals().get("last", "")); _gtts_off = True
     return None
 
 def tts(text, path):

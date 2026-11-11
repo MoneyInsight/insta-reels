@@ -57,14 +57,18 @@ def gemini_check(js, th, mp4):
     body = {"contents": [{"parts": [{"inline_data": {"mime_type": "video/mp4", "data": base64.b64encode(open(mp4, "rb").read()).decode()}},
                                     {"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json"}}
-    for model in ["gemini-flash-latest", "gemini-2.5-flash"]:
+    last = ""
+    for model in ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]:
+        r = {}
         try:
             r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
                               json=body, timeout=180).json()
             t = r["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(t[t.find("{"): t.rfind("}") + 1])
-        except Exception:
+        except Exception as e:
+            last = f"{model}: " + (json.dumps(r.get("error", {}), ensure_ascii=False)[:200] if isinstance(r, dict) and r.get("error") else repr(e)[:200])
             continue
+    print("::notice::AI 검수 오류 " + last)
     return None
 
 

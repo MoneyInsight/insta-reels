@@ -20,4 +20,13 @@ jobs:
         run: |
           pip install -q requests
           python auto_coupang.py gemtest
+          python -c "
+          import review, json, os
+          js={'product':'테스트','scenes':[{'say':'테스트'}],'intro':{'say':''}}
+          f=sorted(x for x in os.listdir('naver-clip') if x.endswith('.mp4'))[-1]
+          print('AI 검수 테스트:', json.dumps(review.gemini_check(js,'', 'naver-clip/'+f), ensure_ascii=False)[:600])
+          import requests; k=os.environ['GEMINI_API_KEY']
+          r=requests.post(f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key={k}',json={'contents':[{'parts':[{'text':'안녕하세요'}]}],'generationConfig':{'responseModalities':['AUDIO'],'speechConfig':{'voiceConfig':{'prebuiltVoiceConfig':{'voiceName':'Kore'}}}}}).json()
+          print('TTS 테스트:', json.dumps(r.get('error','OK'), ensure_ascii=False)[:400])
+          "
           if [ -n "$GEMINI_API_KEY" ]; then echo "Gemini 키: 있음"; else echo "Gemini 키: 없음"; fi
