@@ -8,6 +8,16 @@ H = {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) Apple
 s = requests.Session(); r = s.get(url, headers=H, timeout=30, allow_redirects=True)
 print("최종 주소:", r.url.split("?")[0], "응답:", r.status_code, "길이:", len(r.text))
 html = r.text
+for _ in range(3):  # 중간 페이지(자바스크립트·메타 리다이렉트)를 따라간다
+    if len(html) > 5000: break
+    print("중간 페이지 내용:", re.sub(r"\s+", " ", html)[:1200])
+    m = (re.search(r'(?:location(?:\.href)?\s*=|location\.replace\()\s*["\']([^"\']+)', html)
+         or re.search(r'http-equiv="refresh"[^>]*url=([^"\'>]+)', html, re.I)
+         or re.search(r'(https://(?:smartstore|brand|m\.smartstore|shopping)\.naver\.com/[^"\'\s<]+)', html))
+    if not m: break
+    nxt = requests.compat.urljoin(r.url, m.group(1).replace("\\/", "/").replace("&amp;", "&"))
+    r = s.get(nxt, headers=H, timeout=30, allow_redirects=True); html = r.text
+    print("다음 주소:", r.url.split("?")[0], "응답:", r.status_code, "길이:", len(html))
 def meta(p):
     m = re.search(rf'<meta[^>]+property="{p}"[^>]+content="([^"]*)"', html) or re.search(rf'<meta[^>]+content="([^"]*)"[^>]+property="{p}"', html)
     return m.group(1) if m else ""
