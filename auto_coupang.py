@@ -235,7 +235,7 @@ def prepare_threads():
     d = cp.call("POST", cp.BASE + "/deeplink", body={"coupangUrls": [f"https://www.coupang.com/vp/products/{p['productId']}"], "subId": sub}) or []
     link = (d[0].get("shortenUrl") if d else None) or p.get("short_url") or p["url"]
     name = NOW.strftime("%Y%m%d-%H%M") + "-" + hashlib.md5(str(p["productId"]).encode()).hexdigest()[:6]
-    g = gemini_copy(p) or template_copy(p, name)
+    g = gemini_copy(p) or gemini_copy(p) or template_copy(p, name)  # 실패하면 Gemini 1번 더
     crops = [None, [0.1, 0.05, 0.9, 0.95], None, [0.15, 0.1, 0.85, 0.8], None]
     scenes = []
     for i, s in enumerate(g["scenes"][:5]):
