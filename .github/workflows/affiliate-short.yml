@@ -3,7 +3,7 @@ name: 제휴 숏폼 자동 게시 (인스타그램 + 스레드)
 on:
   push:                     # shorts/ 폴더에 영상이 들어오면 바로 게시
     branches: [main]
-    paths: ["shorts/*.mp4"]
+    paths: ["shorts/*.mp4", "shorts/src/*.json"]   # 영상 또는 숏츠 대본이 들어오면
   workflow_dispatch:        # 수동 실행 버튼
 
 permissions:
@@ -25,6 +25,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+
+      - name: 숏츠 대본이 있으면 영상 만들기 (자체 생성기)
+        id: build
+        run: |
+          J=$(ls shorts/src/*.json 2>/dev/null | sort | head -1)
+          if [ -z "$J" ]; then echo "새 대본 없음"; exit 0; fi
+          NAME=$(basename "$J" .json)
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install -q pillow numpy requests edge-tts
+          python make_product_short.py "$J" "shorts/$NAME.mp4"
+          echo "src=$NAME" >> $GITHUB_OUTPUT
+
+      - name: 만든 영상 보관 (네이버 클립용 다운로드)
+        if: steps.build.outputs.src != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: short-${{ steps.build.outputs.src }}
+          path: shorts/${{ steps.build.outputs.src }}.mp4
+          retention-days: 30
 
       - name: 게시할 영상 찾기
         id: pick
@@ -88,8 +108,12 @@ jobs:
         run: |
           git config user.name "reel-bot"
           git config user.email "reel-bot@users.noreply.github.com"
-          mkdir -p shorts/posted
-          git mv shorts/${{ steps.pick.outputs.name }}.* shorts/posted/
+          N=${{ steps.pick.outputs.name }}
+          mkdir -p shorts/posted/src
+          mv shorts/$N.* shorts/posted/
+          if [ -f "shorts/src/$N.json" ]; then mv "shorts/src/$N.json" shorts/posted/src/; fi
+          if [ -d "shorts/src/$N" ]; then mv "shorts/src/$N" shorts/posted/src/; fi
+          git add -A shorts
           git commit -m "제휴 숏폼 게시 완료: ${{ steps.pick.outputs.name }}"
           git pull --rebase
           git push

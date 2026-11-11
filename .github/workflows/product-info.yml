@@ -1,0 +1,21 @@
+name: 상품 정보 가져오기 (쇼핑 커넥트 링크)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "쇼핑 커넥트 링크 (naver.me/...)"
+        required: true
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests
+      - run: python product_info.py "${{ inputs.url }}" product.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: product-info
+          path: product.json
+          retention-days: 3

@@ -1,0 +1,236 @@
+"""상품 대본 JSON 하나로 세로 숏츠(1080x1920, 30fps)를 만든다. 판다랭크 없이 자체 생성.
+사용법: python make_product_short.py shorts/src/<이름>.json shorts/<이름>.mp4
+
+대본 JSON 형식
+{
+  "name": "2026-11-11-soomn-pillow",       # 파일 이름
+  "product": "숨엔 실리콘폼 경추베개",        # 위쪽에 계속 보이는 상품명
+  "images": ["https://...jpg", "local.jpg"],  # 상품 사진 (URL 또는 shorts/src/<이름>/ 안의 파일)
+  "voice": "female" | "male",              # AI 내레이션 목소리 (기본 female)
+  "scenes": [
+    {"img": 0, "say": "읽어줄 문장", "cap": ["자막 첫 줄", "[강조] 둘째 줄"], "badge": "선택"}
+  ],
+  "cta": ["구매 링크는", "[프로필]에 있어요"]   # 마지막 화면 문구
+}
+- cap 안의 [대괄호] 부분은 강조색으로 칠해진다.
+- 장면 길이는 내레이션 길이에 맞춰 자동으로 정해진다.
+- 대가성 문구는 마지막 화면 아래에 항상 들어간다.
+"""
+import asyncio, glob, hashlib, json, os, re, shutil, subprocess, sys, wave
+import numpy as np
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
+
+src, final = sys.argv[1], sys.argv[2]
+data = json.load(open(src, encoding="utf-8"))
+NAME = data["name"]
+SRC_DIR = os.path.join(os.path.dirname(src), NAME)
+tmp = os.path.join(os.path.dirname(os.path.abspath(final)) or ".", f"_tmp_{NAME}")
+os.makedirs(tmp, exist_ok=True)
+W, H, FPS = 1080, 1920, 30
+SALT = int(hashlib.md5(NAME.encode()).hexdigest()[:8], 16)
+rng = np.random.default_rng(SALT)
+DISCLOSURE = "이 콘텐츠는 네이버 쇼핑 커넥트 활동의 일환으로, 판매 시 수수료를 제공받습니다."
+
+# ---------- 폰트 ----------
+def find_font(weights):
+    for w in weights:
+        hits = glob.glob(f"/usr/share/fonts/**/NotoSansCJK-{w}.ttc", recursive=True)
+        if hits: return hits[0]
+    raise SystemExit("Noto Sans CJK 폰트를 찾을 수 없습니다")
+FB = find_font(["Black", "Bold"]); FBold = find_font(["Bold"]); FM = find_font(["Medium", "Regular"])
+def font(path, size): return ImageFont.truetype(path, size, index=1)  # index=1: 한국어
+
+# ---------- 강조색 (상품마다 다르게, 모두 밝은 색) ----------
+ACCENTS = [(255, 214, 0), (0, 230, 180), (255, 120, 150), (110, 200, 255), (255, 160, 60), (190, 150, 255)]
+ACC = ACCENTS[SALT % len(ACCENTS)]
+STROKE = (0, 0, 0)
+
+# ---------- 상품 사진 준비 ----------
+def load_images():
+    out = []
+    for k, ref in enumerate(data["images"]):
+        p = os.path.join(tmp, f"img{k}")
+        if re.match(r"https?://", ref):
+            import requests
+            r = requests.get(ref, timeout=30, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://smartstore.naver.com/"})
+            r.raise_for_status(); open(p, "wb").write(r.content)
+        else:
+            shutil.copy(ref if os.path.exists(ref) else os.path.join(SRC_DIR, ref), p)
+        im = ImageOps.exif_transpose(Image.open(p)).convert("RGB")
+        out.append(im)
+    if not out: raise SystemExit("상품 사진이 하나도 없습니다")
+    return out
+IMGS = load_images()
+
+def cover(im, w, h):
+    return ImageOps.fit(im, (w, h), Image.LANCZOS)
+
+def make_plate(im, scale=1.12):
+    """배경: 같은 사진을 크게 흐리고 어둡게 + 가운데에 상품 사진(둥근 카드, 그림자). 줌을 위해 크게 만든다."""
+    w, h = int(W * scale), int(H * scale)
+    bg = cover(im, w, h).filter(ImageFilter.GaussianBlur(40))
+    bg = Image.blend(bg, Image.new("RGB", (w, h), (0, 0, 0)), 0.55).convert("RGBA")
+    box_w, box_h = int(w * 0.84), int(h * 0.44)
+    ph = im.copy(); ph.thumbnail((box_w, box_h), Image.LANCZOS)
+    x, y = (w - ph.width) // 2, int(h * 0.15) + (box_h - ph.height) // 2
+    sh = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    ImageDraw.Draw(sh).rounded_rectangle([x - 6, y + 18, x + ph.width + 6, y + ph.height + 30], 40, fill=(0, 0, 0, 170))
+    bg.alpha_composite(sh.filter(ImageFilter.GaussianBlur(28)))
+    mask = Image.new("L", ph.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, ph.width, ph.height], 36, fill=255)
+    bg.paste(ph, (x, y), mask)
+    return bg.convert("RGB")
+
+# ---------- 자막 ----------
+def parse(line):  # "[강조] 문장" → [(텍스트, 강조여부)]
+    parts = re.split(r"(\[[^\]]+\])", line)
+    return [(p[1:-1], True) if p.startswith("[") else (p, False) for p in parts if p]
+
+def draw_rich(d, y, line, size, maxw=980):
+    segs = parse(line)
+    while True:
+        f = font(FB, size); tw = sum(d.textlength(t, font=f) for t, _ in segs)
+        if tw <= maxw or size <= 56: break
+        size -= 4
+    x = (W - tw) / 2
+    for t, hi in segs:
+        d.text((x, y), t, font=f, fill=ACC if hi else (255, 255, 255), stroke_width=9, stroke_fill=STROKE)
+        x += d.textlength(t, font=f)
+    return size
+
+def overlay(scene, idx, total, last=False):
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    # 위: 상품명 띠 + 진행 막대
+    pf = font(FBold, 40); prod = data["product"]
+    while d.textlength(prod, font=pf) > 900: pf = font(FBold, pf.size - 2)
+    pw = d.textlength(prod, font=pf)
+    d.rounded_rectangle([(W - pw) / 2 - 34, 120, (W + pw) / 2 + 34, 196], 38, fill=(0, 0, 0, 170))
+    d.text(((W - pw) / 2, 132), prod, font=pf, fill=(255, 255, 255))
+    seg = (W - 160 - 8 * (total - 1)) / total
+    for k in range(total):
+        x0 = 80 + k * (seg + 8)
+        d.rounded_rectangle([x0, 70, x0 + seg, 80], 5, fill=ACC + (255,) if k <= idx else (255, 255, 255, 70))
+    # 배지
+    badge = scene.get("badge")
+    if badge:
+        bf = font(FB, 54); bw = d.textlength(badge, font=bf)
+        d.rounded_rectangle([(W - bw) / 2 - 36, 1150, (W + bw) / 2 + 36, 1242], 46, fill=ACC + (255,))
+        d.text(((W - bw) / 2, 1160), badge, font=bf, fill=(15, 15, 20))
+    # 아래: 큰 자막 (어두운 막 위)
+    caps = scene.get("cap", [])
+    if caps:
+        y0 = 1300 if not last else 1180
+        sc = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(sc).rectangle([0, y0 - 80, W, y0 + 150 * len(caps) + 60], fill=(0, 0, 0, 150))
+        im.alpha_composite(sc.filter(ImageFilter.GaussianBlur(40))); d = ImageDraw.Draw(im)
+        for k, line in enumerate(caps):
+            draw_rich(d, y0 + 150 * k, line, 104)
+    if last:
+        df = font(FM, 30); txt = DISCLOSURE
+        lines = [txt]
+        if d.textlength(txt, font=df) >= 980:  # 띄어쓰기 기준으로 두 줄
+            ws = txt.split(" "); k = len(ws) // 2
+            lines = [" ".join(ws[:k]), " ".join(ws[k:])]
+        for k, t in enumerate(lines):
+            d.text(((W - d.textlength(t, font=df)) / 2, 1730 + 44 * k), t, font=df, fill=(235, 235, 235), stroke_width=3, stroke_fill=STROKE)
+    return im
+
+# ---------- AI 내레이션 (edge-tts, 실패하면 무음) ----------
+VOICES = {"female": "ko-KR-SunHiNeural", "male": "ko-KR-InJoonNeural"}
+def tts(text, path):
+    try:
+        import edge_tts
+        async def run():
+            await edge_tts.Communicate(text, VOICES.get(data.get("voice", "female"), "ko-KR-SunHiNeural"), rate="+12%").save(path)
+        asyncio.run(run())
+        wav = path.replace(".mp3", ".wav")
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", path, "-ar", "44100", "-ac", "2", wav], check=True)
+        return wav
+    except Exception as e:
+        print(f"::warning::내레이션 생성 실패({e.__class__.__name__}) - 무음으로 진행")
+        return None
+def dur(wav):
+    with wave.open(wav) as w: return w.getnframes() / w.getframerate()
+
+# ---------- 장면 만들기 ----------
+scenes = list(data["scenes"])
+cta = {"img": scenes[0].get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."),
+       "cap": data.get("cta", ["구매 링크는", "[프로필]에서 확인!"]), "last": True}
+scenes.append(cta)
+T = 0.3  # 장면 전환 겹침
+clips, voices = [], []
+for i, s in enumerate(scenes):
+    v = tts(s["say"], f"{tmp}/v{i}.mp3") if s.get("say") else None
+    sec = max(1.8, (dur(v) + 0.45) if v else len(s.get("say", "")) * 0.13 + 0.8)
+    sec = min(sec, 6.5) + T
+    voices.append((v, sec))
+    plate = make_plate(IMGS[s.get("img", i) % len(IMGS)]); pp = f"{tmp}/p{i}.png"; plate.save(pp)
+    op = f"{tmp}/o{i}.png"; overlay(s, i, len(scenes), last=s.get("last", False)).save(op)
+    frames = int(sec * FPS)
+    mode = (SALT + i) % 3
+    z = ["min(zoom+0.0009,1.12)", "if(eq(on,0),1.12,max(zoom-0.0009,1.0))", "1.06"][mode]
+    xexpr = "iw/2-(iw/zoom/2)" if mode != 2 else f"(iw-iw/zoom)*on/{frames}"
+    c = f"{tmp}/c{i}.mp4"
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", pp, "-loop", "1", "-i", op, "-t", f"{sec:.2f}",
+        "-filter_complex",
+        f"[0:v]zoompan=z='{z}':d={frames}:x='{xexpr}':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}[bg];[bg][1:v]overlay=0:0,format=yuv420p",
+        "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-r", str(FPS), c], check=True)
+    clips.append((c, sec))
+
+TRANS = ["slideleft", "smoothleft", "slideup", "fade", "wipeleft"]
+tr = TRANS[SALT % len(TRANS)]
+inputs, filt, last, off = [], [], "0:v", 0.0
+for c, _ in clips: inputs += ["-i", c]
+starts = [0.0]
+for i in range(1, len(clips)):
+    off += clips[i - 1][1] - T; starts.append(off)
+    filt.append(f"[{last}][{i}:v]xfade=transition={tr}:duration={T}:offset={off:.2f}[v{i}]"); last = f"v{i}"
+video = f"{tmp}/video.mp4"
+subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", ";".join(filt), "-map", f"[{last}]",
+    "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", video], check=True)
+DUR = sum(s for _, s in clips) - T * (len(clips) - 1)
+
+# ---------- 배경음악 (직접 합성, 저작권 없음) + 내레이션 섞기 ----------
+SR = 44100; N = int(SR * DUR); out = np.zeros(N)
+def add(sig, start, buf):
+    st = int(start * SR)
+    if 0 <= st < N: n = min(len(sig), N - st); buf[st:st + n] += sig[:n]
+def hz(m): return 440 * 2 ** ((m - 69) / 12)
+def tone(f, length, vol, decay, attack=0.01):
+    t = np.arange(int(length * SR)) / SR
+    env = np.minimum(1, t / attack) * np.exp(-t * decay)
+    return vol * np.sin(2 * np.pi * f * t) * env
+bpm = [96, 100, 104, 108][SALT % 4]; beat = 60 / bpm
+scale = [0, 2, 4, 5, 7, 9, 11]; root = 48 + int(rng.integers(0, 8))
+prog = [[0, 4, 5, 3], [0, 5, 3, 4], [5, 3, 0, 4]][SALT % 3]
+t, i = 0.0, 0
+while t < DUR:
+    deg = prog[i % 4]; ch = [root + 12 + scale[(deg + k) % 7] + 12 * ((deg + k) // 7) for k in (0, 2, 4)]
+    for k in range(8): add(tone(hz(ch[k % 3] + 12), beat * 0.6, 0.05, 6), t + k * beat / 2, out)
+    for m in ch: add(tone(hz(m), beat * 4.2, 0.03, 0.5, attack=0.3), t, out)
+    add(tone(hz(root - 12 + scale[deg]), beat * 3.8, 0.10, 0.9, attack=0.03), t, out)
+    for b in range(4):
+        tt = np.arange(int(0.25 * SR)) / SR
+        add(0.2 * np.sin(2 * np.pi * (100 * np.exp(-tt * 25) + 45) * tt) * np.exp(-tt * 12), t + b * beat, out)
+    t += beat * 4; i += 1
+out = np.convolve(out, np.ones(8) / 8, mode="same"); out = out / (np.max(np.abs(out)) + 1e-9)
+voice = np.zeros(N)
+for (v, _), st in zip(voices, starts):
+    if v:
+        with wave.open(v) as w:
+            a = np.frombuffer(w.readframes(w.getnframes()), np.int16).reshape(-1, 2).mean(axis=1) / 32768
+        add(a, st + 0.15, voice)
+has_voice = np.max(np.abs(voice)) > 0
+mix = out * (0.12 if has_voice else 0.4) + voice * 0.95
+fi, fo = int(0.1 * SR), int(0.8 * SR)
+mix[:fi] *= np.linspace(0, 1, fi); mix[-fo:] *= np.linspace(1, 0, fo)
+mix = np.clip(mix / max(1.0, np.max(np.abs(mix)) / 0.95), -1, 1)
+pcm = (mix * 32767).astype(np.int16); audio = f"{tmp}/audio.wav"
+with wave.open(audio, "wb") as w:
+    w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(np.repeat(pcm[:, None], 2, axis=1).tobytes())
+
+os.makedirs(os.path.dirname(os.path.abspath(final)), exist_ok=True)
+subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", video, "-i", audio, "-map", "0:v", "-map", "1:a",
+    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", final], check=True)
+if not os.environ.get("KEEP_TMP"): shutil.rmtree(tmp)
+print(f"완성: {final} ({DUR:.1f}초, 장면 {len(scenes)}개, 내레이션 {'있음' if has_voice else '없음'})")
