@@ -11,3 +11,13 @@ jobs:
         run: |
           curl -s "https://graph.instagram.com/v21.0/me?fields=username&access_token=$IG" | python3 -c "import json,sys;d=json.load(sys.stdin);print('인스타:', d.get('username') or d.get('error',{}).get('message'))"
           curl -s "https://graph.threads.net/v1.0/me?fields=username&access_token=$TH" | python3 -c "import json,sys;d=json.load(sys.stdin);print('스레드:', d.get('username') or d.get('error',{}).get('message'))"
+      - uses: actions/checkout@v4
+      - name: 쿠팡 클릭 리포트 확인
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          pip install -q requests
+          python auto_coupang.py clicks
+          if [ -n "$GEMINI_API_KEY" ]; then echo "Gemini 키: 있음"; else echo "Gemini 키: 없음"; fi
