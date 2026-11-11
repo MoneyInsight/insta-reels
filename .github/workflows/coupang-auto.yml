@@ -1,0 +1,89 @@
+name: 쿠팡 숏츠 완전 자동 (스레드 30분·인스타 3시간)
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # 스레드: 30분마다 새 상품
+    - cron: "20 */3 * * *"   # 인스타: 3시간마다 클릭 1위 영상
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "threads 또는 insta"
+        required: true
+        default: "threads"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:                 # 영상 공개 주소(Pages)를 같이 쓰는 작업과 겹치지 않게
+  group: daily-reel
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+
+      - name: 모드 정하기
+        id: mode
+        run: |
+          M="${{ inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "20 */3 * * *" ]; then M=insta; else M=threads; fi
+          fi
+          echo "mode=${M:-threads}" >> $GITHUB_OUTPUT; echo "모드: ${M:-threads}"
+
+      - name: 도구 설치
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk > /dev/null
+          pip install -q pillow numpy requests edge-tts
+
+      - name: 상품·대본·영상 준비
+        id: prep
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python auto_coupang.py prepare ${{ steps.mode.outputs.mode }}
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.prep.outputs.skip != 'true'
+        with: { path: site }
+
+      - name: 영상 공개 주소 만들기
+        id: deploy
+        if: steps.prep.outputs.skip != 'true'
+        uses: actions/deploy-pages@v4
+
+      - name: 게시
+        id: post
+        if: steps.prep.outputs.skip != 'true'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          URL="${{ steps.deploy.outputs.page_url }}short-${{ steps.prep.outputs.name }}.mp4"
+          for i in $(seq 1 30); do code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10; done
+          echo "영상 주소 $URL ($code)"
+          if [ "${{ steps.mode.outputs.mode }}" = "insta" ]; then
+            python post_instagram.py "$URL" "${{ steps.prep.outputs.caption }}"
+          else
+            python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}"
+          fi
+
+      - name: 기록 저장
+        if: always() && steps.prep.outputs.skip != 'true' && steps.prep.outcome == 'success'
+        run: |
+          if [ "${{ steps.post.outcome }}" = "success" ]; then python auto_coupang.py mark ${{ steps.mode.outputs.mode }} ${{ steps.prep.outputs.name }}; fi
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add -A coupang naver-clip 2>/dev/null || git add -A coupang
+          git commit -qm "쿠팡 자동 ${{ steps.mode.outputs.mode }}: ${{ steps.prep.outputs.name }} (${{ steps.post.outcome }})" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done

@@ -1,13 +1,8 @@
 name: 매일 릴스 자동 게시
  
-on:
-  push:                     # 대본이 저장소에 들어오면 바로 게시
-    branches: [main]
-    paths: ["queue/*.json"]
-  schedule:
-    - cron: "52 9 * * *"   # 안전장치: 혹시 못 올린 대본이 남아 있으면 한국시간 18:52에 게시 + 토큰 연장
-  workflow_dispatch:        # 수동 실행 버튼
- 
+on:                        # 2026-11-11 사용자 지시로 경제 릴스 중단 (인스타는 쿠팡 숏츠 전용). 수동 실행만 가능
+  workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
