@@ -204,6 +204,15 @@ def write_caps(name, p, g, link):
 
 
 def prepare_threads():
+    since = (NOW - timedelta(hours=6)).strftime("%Y-%m-%d %H:%M")
+    retry = [e for e in jload(LOG, []) if not e.get("threads") and e.get("tries", 0) < 3 and e["time"] >= since
+             and os.path.exists(f"{SCRIPTS}/{e['name']}.json")]
+    if retry:
+        e = retry[-1]; name = e["name"]
+        print("지난번 실패한 글 재게시:", e["product"], "시도", e.get("tries", 0) + 1)
+        os.makedirs("site", exist_ok=True)
+        build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
+        out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); return
     items = candidates()
     p = choose(items)
     if not p:
@@ -280,6 +289,14 @@ def prepare_insta():
     print("인스타 선택:", best["product"], "클릭", best["clicks"])
 
 
+def fail(kind, name, reason):
+    log = jload(LOG, [])
+    for e in log:
+        if e["name"] == name:
+            e["tries"] = e.get("tries", 0) + 1; e["last_error"] = reason[:200]
+    jsave(LOG, log)
+
+
 def mark(kind, name, post_id=""):
     if kind == "insta" and os.path.exists(f"site/short-{name}.mp4"):  # 인스타에 올린 영상은 네이버 클립용으로 보관
         os.makedirs("naver-clip", exist_ok=True)
@@ -314,5 +331,7 @@ if __name__ == "__main__":
         d = cp.call("GET", cp.BASE + "/reports/clicks", f"startDate={start}&endDate={end}")
         print("원본:", json.dumps(d, ensure_ascii=False)[:800])
         print(clicks_by_subid())
+    elif cmd == "fail":
+        fail(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else "")
     elif cmd == "mark":
         mark(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else "")

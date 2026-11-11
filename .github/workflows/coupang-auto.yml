@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pages: write
   id-token: write
 
@@ -75,17 +76,36 @@ jobs:
           URL="${{ steps.deploy.outputs.page_url }}short-${{ steps.prep.outputs.name }}.mp4"
           for i in $(seq 1 30); do code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10; done
           echo "영상 주소 $URL ($code)"
-          if [ "${{ steps.mode.outputs.mode }}" = "insta" ]; then
-            python post_instagram.py "$URL" "${{ steps.prep.outputs.caption }}" | tee post.log
-          else
-            python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" | tee post.log
-          fi
+          # 실패하면 원인별로 기다렸다가 최대 3번 다시 올린다
+          for t in 1 2 3; do
+            if [ "${{ steps.mode.outputs.mode }}" = "insta" ]; then
+              python post_instagram.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee post.log && exit 0
+            else
+              python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee post.log && exit 0
+            fi
+            if grep -qiE "parse access token|expired|session has|OAuthException|토큰" post.log; then echo "TOKEN_ERROR" >> post.log; exit 1; fi
+            if grep -qiE "maximum number of posts|2207042|rate limit" post.log; then exit 1; fi
+            echo "재시도 $t: $(grep -m1 '::error::' post.log)"; sleep $((t * 60))
+            curl -s -o /dev/null "$URL"
+          done
+          exit 1
 
       - name: 기록 저장
         if: always() && steps.prep.outputs.skip != 'true' && steps.prep.outcome == 'success'
         run: |
-          if [ "${{ steps.post.outcome }}" = "success" ]; then python auto_coupang.py mark ${{ steps.mode.outputs.mode }} ${{ steps.prep.outputs.name }} "$(grep -o 'ID: [0-9]*' post.log | tail -1 | cut -c5-)"; fi
+          if [ "${{ steps.post.outcome }}" = "success" ]; then python auto_coupang.py mark ${{ steps.mode.outputs.mode }} ${{ steps.prep.outputs.name }} "$(grep -o 'ID: [0-9]*' post.log | tail -1 | cut -c5-)"
+          else python auto_coupang.py fail ${{ steps.mode.outputs.mode }} ${{ steps.prep.outputs.name }} "$(grep -m1 '::error::' post.log)"; fi
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
           git add -A coupang naver-clip 2>/dev/null || git add -A coupang
           git commit -qm "쿠팡 자동 ${{ steps.mode.outputs.mode }}: ${{ steps.prep.outputs.name }} (${{ steps.post.outcome }})" || exit 0
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done
+
+      - name: 토큰 만료면 알림 (깃허브 이슈)
+        if: failure() && hashFiles('post.log') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          grep -q TOKEN_ERROR post.log || exit 0
+          M="${{ steps.mode.outputs.mode }}"; T=$([ "$M" = insta ] && echo IG_ACCESS_TOKEN || echo THREADS_ACCESS_TOKEN)
+          gh issue list --state open --search "토큰 만료 $T" --json number -q '.[0].number' | grep -q . && exit 0
+          gh issue create --title "⚠️ 토큰 만료: $T 다시 발급 필요" --body "쿠팡 자동 게시($M)가 토큰 오류로 멈췄습니다. Meta에서 토큰을 재발급해 Secrets의 $T 를 갱신하세요. 갱신 후 이 이슈를 닫으면 됩니다."
