@@ -19,5 +19,5 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           pip install -q requests
-          python auto_coupang.py clicks
+          python auto_coupang.py gemtest
           if [ -n "$GEMINI_API_KEY" ]; then echo "Gemini 키: 있음"; else echo "Gemini 키: 없음"; fi

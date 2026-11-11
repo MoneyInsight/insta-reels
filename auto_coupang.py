@@ -148,7 +148,10 @@ JSON 형식: {{"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text"
         r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=60,
                           json={"contents": [{"parts": [{"text": prompt}]}],
                                 "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9}})
-        txt = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+        rj = r.json()
+        if "candidates" not in rj:
+            raise RuntimeError(f"{model} 응답 오류: {json.dumps(rj, ensure_ascii=False)[:300]}")
+        txt = rj["candidates"][0]["content"]["parts"][0]["text"]
         g = json.loads(txt)
         assert len(g["scenes"]) >= 4 and all(len(s["cap"]) == 2 for s in g["scenes"])
         assert "{LINK}" in g["threads_text"] and len(g["threads_text"]) < 480
@@ -328,6 +331,8 @@ if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "prepare":
         prepare_threads() if sys.argv[2] == "threads" else prepare_insta()
+    elif cmd == "gemtest":
+        d = jload("coupang/candidates.json", {}); g = gemini_copy(d["items"][0]); print(json.dumps(g, ensure_ascii=False)[:1500])
     elif cmd == "clicks":
         start = (NOW - timedelta(days=1)).strftime("%Y%m%d"); end = NOW.strftime("%Y%m%d")
         d = cp.call("GET", cp.BASE + "/reports/clicks", f"startDate={start}&endDate={end}")
