@@ -1,0 +1,22 @@
+name: 영상별 조회수 리포트 (매일)
+on:
+  schedule:
+    - cron: "43 13 * * *"   # 매일 22:43 (한국)
+  workflow_dispatch:
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+        run: |
+          pip install -q requests
+          python views_report.py
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add coupang/views.md; git commit -qm "영상별 조회수 리포트" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin main && break; sleep 5; done
