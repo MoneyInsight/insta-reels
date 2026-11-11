@@ -12,10 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -q requests
+      - run: pip install -q playwright && python -m playwright install --with-deps chromium > /dev/null
       - run: python product_info.py "${{ inputs.url }}" product.json
       - uses: actions/upload-artifact@v4
         with:
           name: product-info
-          path: product.json
+          path: |
+            product.json
+            page.png
           retention-days: 3

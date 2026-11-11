@@ -1,32 +1,32 @@
-"""쇼핑 커넥트 링크(naver.me/...)에서 상품명·가격·사진 주소를 뽑는다.
+"""쇼핑 커넥트 링크(naver.me/...)에서 상품명·가격·특징·사진 주소를 뽑는다.
+깃허브 서버의 헤드리스 크롬으로 브랜드 커넥트 중간 페이지를 지나 실제 상품 페이지까지 따라간다.
 사용법: python product_info.py <링크> <저장할 json>
 """
-import json, re, sys, requests
+import json, re, sys
+from playwright.sync_api import sync_playwright
 url, out = sys.argv[1], sys.argv[2]
-H = {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
-     "Accept-Language": "ko-KR,ko;q=0.9"}
-s = requests.Session(); r = s.get(url, headers=H, timeout=30, allow_redirects=True)
-print("최종 주소:", r.url.split("?")[0], "응답:", r.status_code, "길이:", len(r.text))
-html = r.text
-for _ in range(3):  # 중간 페이지(자바스크립트·메타 리다이렉트)를 따라간다
-    if len(html) > 5000: break
-    print("중간 페이지 내용:", re.sub(r"\s+", " ", html)[:1200])
-    m = (re.search(r'(?:location(?:\.href)?\s*=|location\.replace\()\s*["\']([^"\']+)', html)
-         or re.search(r'http-equiv="refresh"[^>]*url=([^"\'>]+)', html, re.I)
-         or re.search(r'(https://(?:smartstore|brand|m\.smartstore|shopping)\.naver\.com/[^"\'\s<]+)', html))
-    if not m: break
-    nxt = requests.compat.urljoin(r.url, m.group(1).replace("\\/", "/").replace("&amp;", "&"))
-    r = s.get(nxt, headers=H, timeout=30, allow_redirects=True); html = r.text
-    print("다음 주소:", r.url.split("?")[0], "응답:", r.status_code, "길이:", len(html))
-def meta(p):
-    m = re.search(rf'<meta[^>]+property="{p}"[^>]+content="([^"]*)"', html) or re.search(rf'<meta[^>]+content="([^"]*)"[^>]+property="{p}"', html)
-    return m.group(1) if m else ""
-imgs = []
-for u in re.findall(r'https://shop-phinf\.pstatic\.net/[^"\'\\\s?]+\.(?:jpg|jpeg|png|webp|gif)', html, re.I):
-    if u not in imgs: imgs.append(u)
-info = {"final_url": r.url.split("?")[0], "status": r.status_code, "title": meta("og:title"), "desc": meta("og:description"),
-        "og_image": meta("og:image"), "images": imgs[:20]}
-m = re.search(r'"salePrice"\s*:\s*(\d+)', html); info["price"] = int(m.group(1)) if m else None
-m = re.search(r'"discountedSalePrice"\s*:\s*(\d+)', html); info["discounted_price"] = int(m.group(1)) if m else None
+UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    pg = b.new_page(user_agent=UA, locale="ko-KR", viewport={"width": 430, "height": 932})
+    pg.goto(url, wait_until="domcontentloaded", timeout=60000)
+    for _ in range(30):  # 상품 페이지에 도착할 때까지 기다린다
+        if re.search(r"smartstore|brand\.naver|shopping\.naver|/products/", pg.url) and "brandconnect" not in pg.url: break
+        pg.wait_for_timeout(1000)
+    pg.wait_for_timeout(4000)
+    for _ in range(6): pg.mouse.wheel(0, 1500); pg.wait_for_timeout(700)  # 상세 이미지 불러오기
+    print("최종 주소:", pg.url.split("?")[0])
+    info = pg.evaluate("""() => {
+      const m = p => (document.querySelector(`meta[property="${p}"]`)||{}).content || "";
+      const imgs = [...new Set([...document.images].map(i => (i.currentSrc||i.src||"").split("?")[0])
+                   .filter(s => /shop-phinf|shopping-phinf|shopping\\.pstatic/.test(s)))];
+      return {title: m("og:title") || document.title, desc: m("og:description"), og_image: m("og:image"),
+              images: imgs, text: document.body.innerText.slice(0, 4000)};
+    }""")
+    if not info["images"] and not info["title"]:
+        pg.screenshot(path="page.png", full_page=False)
+    b.close()
+info["final_url"] = pg.url.split("?")[0]
 json.dump(info, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-print(json.dumps(info, ensure_ascii=False, indent=1)[:3000])
+print(json.dumps({k: v for k, v in info.items() if k != "text"}, ensure_ascii=False, indent=1)[:2500])
+print("본문 일부:", info["text"][:1500])
