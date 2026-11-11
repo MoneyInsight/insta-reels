@@ -60,6 +60,7 @@ def pick(keywords):
         for p in items or []:
             pid = str(p.get("productId"))
             if pid in seen or pid in posted or not p.get("productImage"): continue
+            if "AFFTDP" in (p.get("productUrl") or ""): continue  # 여행·숙박·티켓 상품은 숏츠에 맞지 않아 제외
             seen.add(pid); found.append(norm(p, source))
     add(call("GET", BASE + "/products/goldbox", f"subId={SUB_ID}&imageSize=700x700"), "골드박스")
     for cid, cname in CATEGORIES.items():
@@ -70,9 +71,13 @@ def pick(keywords):
         d = call("GET", BASE + "/products/search", q)
         add((d or {}).get("productData") if isinstance(d, dict) else d, f"검색-{kw}")
         time.sleep(1)
-    links = short_links([p["url"] for p in found[:40] if p["url"]])
+    # 짧은 제휴 링크(link.coupang.com/a/...)는 일반 상품 주소를 딥링크 API에 넣어야 만들어진다
     for p in found:
-        p["short_url"] = links.get(p["url"]) or p["url"]
+        p["product_page"] = f"https://www.coupang.com/vp/products/{p['productId']}"
+    links = short_links([p["product_page"] for p in found[:40]])
+    print(f"짧은 링크 {len(links)}개 생성")
+    for p in found:
+        p["short_url"] = links.get(p["product_page"]) or p["url"]
     os.makedirs("coupang", exist_ok=True)
     json.dump({"updated": time.strftime("%Y-%m-%d %H:%M", time.localtime()), "count": len(found), "items": found[:40]},
               open("coupang/candidates.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
