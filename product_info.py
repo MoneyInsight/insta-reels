@@ -12,8 +12,11 @@ with sync_playwright() as p:
     caught = []  # 중간 페이지가 주고받는 데이터(JSON)를 모아 둔다
     def on_resp(resp):
         try:
-            if "json" in (resp.headers.get("content-type") or "") and "naver" in resp.url:
-                caught.append({"url": resp.url.split("?")[0], "status": resp.status, "body": resp.json()})
+            ct = resp.headers.get("content-type") or ""
+            if "naver" in resp.url and not re.search(r"\.(js|css|png|jpg|gif|svg|woff2?)(\?|$)", resp.url):
+                print("요청:", resp.status, ct[:30], resp.url[:200])
+            if ("json" in ct or "text/plain" in ct) and "naver" in resp.url:
+                caught.append({"url": resp.url.split("?")[0], "status": resp.status, "body": resp.text()[:20000]})
         except Exception: pass
     pg.on("response", on_resp)
     pg.goto(url, wait_until="domcontentloaded", timeout=60000)
@@ -35,7 +38,7 @@ with sync_playwright() as p:
     b.close()
 info["final_url"] = pg.url.split("?")[0]
 info["api"] = caught
-for c in caught: print("API:", c["url"], c["status"], json.dumps(c["body"], ensure_ascii=False)[:1500])
+for c in caught: print("API:", c["url"], c["status"], c["body"][:1500])
 json.dump(info, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(json.dumps({k: v for k, v in info.items() if k != "text"}, ensure_ascii=False, indent=1)[:2500])
 print("본문 일부:", info["text"][:1500])
