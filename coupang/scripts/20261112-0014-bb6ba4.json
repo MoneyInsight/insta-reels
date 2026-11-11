@@ -1,0 +1,63 @@
+{
+ "name": "20261112-0014-bb6ba4",
+ "product": "블루핀 여성용 겨울 발열 초극세사",
+ "coupang_product_id": 8335720931,
+ "images": [
+  "https://t4a.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/619133552523961-279e3927-9e02-4f90-81e8-cfa959641722.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599683815618-e12fa9ed-207f-4237-a6e6-4453f983b21a.jpg",
+  "https://image.coupangcdn.com/image/retail/images/592600849069270-c9f42ee7-1006-4d85-8cd9-dd429d324d05.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619658062203882-31acf128-ba91-49ae-853e-daf7c0e16e71.jpg",
+  "https://image.coupangcdn.com/image/retail/images/382493687065153-add7035d-fe69-4995-b968-bc784bd1e70f.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619667484518473-0c1d5c8c-7a31-42ce-8c18-58b7a380086e.jpg"
+ ],
+ "voice": "male",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "살림 좀 해본 사람들은 다 아는 그거요.",
+   "cap": [
+    "살림러들은",
+    "[다 아는 그거]"
+   ],
+   "badge": "살림 필수템"
+  },
+  {
+   "img": 1,
+   "say": "오늘 소개할 건 블루핀 여성용 겨울 발열 초극세사",
+   "cap": [
+    "오늘의 템",
+    "[블루핀 여성용]"
+   ]
+  },
+  {
+   "img": 2,
+   "say": "요즘 쿠팡에서 반응 좋은 상품이에요",
+   "cap": [
+    "요즘",
+    "[반응 좋은 템]"
+   ]
+  },
+  {
+   "img": 3,
+   "say": "상세 정보는 링크에서 꼭 확인해 보세요",
+   "cap": [
+    "자세한 건",
+    "[링크에서 확인]"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "잠깐!!",
+   "[이거 보고 가요]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
