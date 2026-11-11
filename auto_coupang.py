@@ -129,9 +129,10 @@ def gemini_copy(p):
         return None
     try:
         ms = requests.get(f"https://generativelanguage.googleapis.com/v1beta/models?key={key}&pageSize=200", timeout=20).json().get("models", [])
-        names = [m["name"] for m in ms if "generateContent" in m.get("supportedGenerationMethods", []) and "flash" in m["name"]
-                 and not any(x in m["name"] for x in ["lite", "image", "tts", "live", "audio", "exp", "preview"])]
-        model = sorted(names)[-1] if names else "models/gemini-2.5-flash"
+        avail = [m["name"] for m in ms if "generateContent" in m.get("supportedGenerationMethods", [])]
+        flash = sorted([n for n in avail if re.match(r"models/gemini-[\d.]+-flash$", n)], reverse=True)
+        order = [n for n in ["models/gemini-flash-latest", "models/gemini-2.5-flash"] if n in avail] + flash
+        order = list(dict.fromkeys(order)) or ["models/gemini-2.5-flash"]
         prompt = f"""너는 쿠팡 살림템을 친구한테 추천하는 30대 유튜버다. 아래 상품으로 30초 세로 숏츠 대본과 캡션을 JSON으로만 써라.
 상품명: {p['name']}
 카테고리: {p.get('category','')}
@@ -145,13 +146,17 @@ def gemini_copy(p):
 - threads_text: 400자 이내. 친구한테 카톡 보내듯 자연스럽게. 첫 줄 후킹 → 왜 눈에 띄었는지 한두 줄 → 상품명 → 특징 2~3개를 문장 속에 자연스럽게 → 마지막 줄에 정확히 "{{LINK}}" 를 쓴다. 해시태그 2개. 이모지 1~2개.
 - insta_hook: 인스타 캡션 첫 줄, 사람 말투 후킹 한 문장 + 이모지 1개. features: 상품명 속 특징 4개를 짧은 구어체로. hashtags: 해시태그 5개(# 포함).
 JSON 형식: {{"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
-        r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=60,
-                          json={"contents": [{"parts": [{"text": prompt}]}],
-                                "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9}})
-        rj = r.json()
-        if "candidates" not in rj:
-            raise RuntimeError(f"{model} 응답 오류: {json.dumps(rj, ensure_ascii=False)[:300]}")
-        txt = rj["candidates"][0]["content"]["parts"][0]["text"]
+        txt, errs = None, []
+        for model in order[:4]:  # 무료 한도가 남은 모델을 차례로 시도
+            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=60,
+                              json={"contents": [{"parts": [{"text": prompt}]}],
+                                    "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9}})
+            rj = r.json()
+            if "candidates" in rj:
+                txt = rj["candidates"][0]["content"]["parts"][0]["text"]; break
+            errs.append(f"{model}:{rj.get('error', {}).get('code')}")
+        if txt is None:
+            raise RuntimeError("모든 모델 실패 " + ", ".join(errs))
         g = json.loads(txt)
         assert len(g["scenes"]) >= 4 and all(len(s["cap"]) == 2 for s in g["scenes"])
         assert "{LINK}" in g["threads_text"] and len(g["threads_text"]) < 480
