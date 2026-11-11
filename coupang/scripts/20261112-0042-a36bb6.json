@@ -1,0 +1,63 @@
+{
+ "name": "20261112-0042-a36bb6",
+ "product": "반찬단지 궁채절임",
+ "coupang_product_id": 7284944333,
+ "images": [
+  "https://t5a.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/289590842838931-f53c0057-b665-40c1-a400-f882151563b2.JPG",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/291785696660838-3a66874e-c179-45d0-b595-1a4cafe7e4d7.JPG",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/289614924597623-b3e098ee-327c-4929-866c-e476c2978da4.JPG",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2789611803617-93a5b6f3-d98b-487f-9b69-b5003451160a.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/615915497995484-6091115b-c011-42a2-8c8d-41cb858375d0.jpg",
+  "https://image.coupangcdn.com/image/retail/images/289590842838931-f53c0057-b665-40c1-a400-f882151563b2.JPG",
+  "https://image.coupangcdn.com/image/retail/images/289597481226461-77ebb860-7222-4893-a068-4e49b5e8cf33.JPG"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "아니 근데 이거 아직 모르는 사람 있어요?",
+   "cap": [
+    "아니 근데 이거",
+    "[아직 몰라요]?"
+   ],
+   "badge": "장바구니 1순위"
+  },
+  {
+   "img": 1,
+   "say": "오늘 소개할 건 반찬단지 궁채절임",
+   "cap": [
+    "오늘의 템",
+    "[반찬단지 궁채절임]"
+   ]
+  },
+  {
+   "img": 2,
+   "say": "요즘 쿠팡에서 반응 좋은 상품이에요",
+   "cap": [
+    "요즘",
+    "[반응 좋은 템]"
+   ]
+  },
+  {
+   "img": 3,
+   "say": "상세 정보는 링크에서 꼭 확인해 보세요",
+   "cap": [
+    "자세한 건",
+    "[링크에서 확인]"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "여러분! 이거 아시나요?!",
+  "cap": [
+   "여러분!",
+   "[이거 아시나요?!]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
