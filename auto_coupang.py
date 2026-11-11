@@ -296,6 +296,9 @@ if __name__ == "__main__":
     if cmd == "prepare":
         prepare_threads() if sys.argv[2] == "threads" else prepare_insta()
     elif cmd == "clicks":
+        start = (NOW - timedelta(days=1)).strftime("%Y%m%d"); end = NOW.strftime("%Y%m%d")
+        d = cp.call("GET", cp.BASE + "/reports/clicks", f"startDate={start}&endDate={end}")
+        print("원본:", json.dumps(d, ensure_ascii=False)[:800])
         print(clicks_by_subid())
     elif cmd == "mark":
         mark(sys.argv[2], sys.argv[3])
