@@ -296,7 +296,7 @@ def make_one(p=None):
     scenes = []
     for i, s in enumerate(g["scenes"][:5]):
         sc = {"img": 0, "say": speakable(s["say"])[:60], "cap": [c[:16] for c in s["cap"][:2]]}
-        if i == 0: sc["badge"] = g.get("badge", "요즘 인기")[:8]
+        if i == 0: sc["badge"] = (g.get("badge") if g.get("badge") not in (None, "", "요즘 인기", "살림 필수템", "장바구니 1순위") else "꿀템 발견")[:8]
         t = s.get("tile")
         if isinstance(t, int) and 0 <= t < len(tiles):
             di, y0, y1 = tiles[t]; sc["img"] = 1 + di; sc["crop"] = [0, y0, 1, y1]
