@@ -258,8 +258,21 @@ def prepare_insta():
         print("인스타에 올릴 후보(최근 24시간 스레드 영상)가 없습니다"); out("skip", "true"); return
     clicks = clicks_by_subid()
     for e in pool: e["clicks"] = clicks.get(e["subId"], 0)
-    best = sorted(pool, key=lambda e: (e["clicks"], e["time"]), reverse=True)[0]
-    print("클릭 순위:", [(e["product"][:20], e["clicks"]) for e in sorted(pool, key=lambda e: -e["clicks"])[:5]])
+    # 쿠팡 클릭은 집계가 늦으므로 스레드 조회수·좋아요도 함께 본다 (클릭 > 조회수 순)
+    tok = os.environ.get("THREADS_ACCESS_TOKEN", "").strip()
+    for e in pool:
+        e["views"] = 0
+        if tok and e.get("threads_id"):
+            try:
+                j = requests.get(f"https://graph.threads.net/v1.0/{e['threads_id']}/insights",
+                                 params={"metric": "views,likes,shares", "access_token": tok}, timeout=20).json()
+                vals = {m["name"]: (m.get("values") or [{}])[0].get("value", 0) or (m.get("total_value") or {}).get("value", 0) for m in j.get("data", [])}
+                e["views"] = vals.get("views", 0) + 20 * vals.get("likes", 0) + 50 * vals.get("shares", 0)
+                if "error" in j: print("::notice::스레드 조회수 조회 불가:", j["error"].get("message", "")[:120])
+            except Exception as ex:
+                print("::notice::스레드 조회수 조회 실패", str(ex)[:100])
+    best = sorted(pool, key=lambda e: (e["clicks"], e["views"], e["time"]), reverse=True)[0]
+    print("순위(클릭, 조회점수):", [(e["product"][:20], e["clicks"], e["views"]) for e in sorted(pool, key=lambda e: (-e["clicks"], -e["views"]))[:5]])
     name = best["name"]
     os.makedirs("site", exist_ok=True)
     build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
@@ -267,7 +280,7 @@ def prepare_insta():
     print("인스타 선택:", best["product"], "클릭", best["clicks"])
 
 
-def mark(kind, name):
+def mark(kind, name, post_id=""):
     if kind == "insta" and os.path.exists(f"site/short-{name}.mp4"):  # 인스타에 올린 영상은 네이버 클립용으로 보관
         os.makedirs("naver-clip", exist_ok=True)
         import shutil
@@ -280,6 +293,7 @@ def mark(kind, name):
     for e in log:
         if e["name"] == name:
             e[kind] = True
+            if post_id: e[f"{kind}_id"] = post_id
             if kind == "insta":
                 ids = jload("coupang/posted.json", [])
                 if e["productId"] not in ids: ids.append(e["productId"]); jsave("coupang/posted.json", ids)
@@ -301,4 +315,4 @@ if __name__ == "__main__":
         print("원본:", json.dumps(d, ensure_ascii=False)[:800])
         print(clicks_by_subid())
     elif cmd == "mark":
-        mark(sys.argv[2], sys.argv[3])
+        mark(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else "")
