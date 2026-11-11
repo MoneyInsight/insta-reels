@@ -2,8 +2,7 @@ name: 쿠팡 숏츠 완전 자동 (스레드 30분·인스타 3시간)
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # 스레드: 30분마다 새 상품
-    - cron: "20 */3 * * *"   # 인스타: 3시간마다 클릭 1위 영상
+    - cron: "7,37 * * * *"   # 30분마다 (붐비는 정각·30분을 피함). 인스타는 3시간이 지났으면 같은 실행 끝에 이어서 돌린다
   workflow_dispatch:
     inputs:
       mode:
@@ -13,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
   issues: write
   pages: write
   id-token: write
@@ -36,9 +36,7 @@ jobs:
         id: mode
         run: |
           M="${{ inputs.mode }}"
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            if [ "${{ github.event.schedule }}" = "20 */3 * * *" ]; then M=insta; else M=threads; fi
-          fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then M=threads; fi
           echo "mode=${M:-threads}" >> $GITHUB_OUTPUT; echo "모드: ${M:-threads}"
 
       - name: 도구 설치
@@ -99,6 +97,22 @@ jobs:
           git add -A coupang naver-clip 2>/dev/null || git add -A coupang
           git commit -qm "쿠팡 자동 ${{ steps.mode.outputs.mode }}: ${{ steps.prep.outputs.name }} (${{ steps.post.outcome }})" || exit 0
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done
+
+      - name: 인스타 차례면 이어서 실행 (마지막 인스타 게시 후 3시간)
+        if: always() && steps.mode.outputs.mode == 'threads'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git pull -q --rebase origin main || true
+          DUE=$(python3 -c "
+          import json,datetime as d
+          L=json.load(open('coupang/auto_log.json'))
+          t=[e['time'] for e in L if e.get('insta')]
+          now=d.datetime.utcnow()+d.timedelta(hours=9)
+          last=d.datetime.strptime(max(t),'%Y-%m-%d %H:%M') if t else now-d.timedelta(days=1)
+          print('yes' if (now-last).total_seconds()>=3*3600-600 else 'no')")
+          echo "인스타 차례: $DUE"
+          if [ "$DUE" = yes ]; then gh workflow run coupang-auto.yml -f mode=insta --ref main; fi
 
       - name: 토큰 만료면 알림 (깃허브 이슈)
         if: failure() && hashFiles('post.log') != ''
