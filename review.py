@@ -58,7 +58,13 @@ def gemini_check(js, th, mp4):
                                     {"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json"}}
     last = ""
-    for model in ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]:
+    try:
+        ms = requests.get(f"https://generativelanguage.googleapis.com/v1beta/models?key={key}&pageSize=200", timeout=20).json().get("models", [])
+        names = [m["name"].split("/")[1] for m in ms if "generateContent" in m.get("supportedGenerationMethods", [])]
+    except Exception:
+        names = []
+    flash = sorted([n for n in names if re.match(r"gemini-[\d.]+-flash(-lite)?$", n)], reverse=True)
+    for model in (["gemini-flash-latest"] + flash)[:4]:
         r = {}
         try:
             r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
@@ -66,7 +72,7 @@ def gemini_check(js, th, mp4):
             t = r["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(t[t.find("{"): t.rfind("}") + 1])
         except Exception as e:
-            last = f"{model}: " + (json.dumps(r.get("error", {}), ensure_ascii=False)[:200] if isinstance(r, dict) and r.get("error") else repr(e)[:200])
+            last += f" | {model}: " + (json.dumps(r.get("error", {}), ensure_ascii=False)[:200] if isinstance(r, dict) and r.get("error") else repr(e)[:200])
             continue
     print("::notice::AI 검수 오류 " + last)
     return None
