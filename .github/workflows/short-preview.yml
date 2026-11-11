@@ -26,13 +26,10 @@ jobs:
             N=$(basename "$J" .json)
             python make_product_short.py "$J" "preview-out/$N.mp4"
           done
-      - uses: actions/upload-artifact@v4
-        with:
-          name: short-preview
-          path: preview-out/*.mp4
-          retention-days: 7
-      - name: 미리보기 대본 정리
+      - name: 미리보기 영상을 저장소에 올리고 대본 정리
         run: |
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          mkdir -p shorts/preview-out && mv preview-out/*.mp4 shorts/preview-out/
           git rm -rq shorts/preview
+          git add shorts/preview-out
           git commit -qm "숏츠 미리보기 완료" && git pull -q --rebase && git push -q
