@@ -1,0 +1,91 @@
+{
+ "name": "20261112-0721-c9208c",
+ "product": "파워에이드 마운틴 블라스트",
+ "coupang_product_id": 8157286425,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/640x640ex/image/retail/images/2026/01/16/13/1/0537b379-6e80-4cb6-a879-44ccd1ca3598.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/220493565997522-437a7584-c4d5-41ec-88a5-3fd184858a8f.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/108177431382620-83f1f95c-9846-4759-b339-e01b00502e74.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "목 마를 때 이거 아직 모르세요?",
+   "cap": [
+    "목 마를 때",
+    "[급 수분 충전]"
+   ],
+   "badge": "요즘 인기"
+  },
+  {
+   "img": 2,
+   "say": "파워에이드 마운틴 블라스트 미쳤네",
+   "cap": [
+    "시원한 블루",
+    "[마운틴블라스트]"
+   ],
+   "crop": [
+    0,
+    0.187,
+    1,
+    0.3739
+   ]
+  },
+  {
+   "img": 2,
+   "say": "파워에이드 마운틴 블라스트 520밀리 은근 든든함",
+   "cap": [
+    "520ml 용량",
+    "[은근 든든함]"
+   ],
+   "crop": [
+    0,
+    0.5609,
+    1,
+    0.7479
+   ]
+  },
+  {
+   "img": 2,
+   "say": "나이아신 함유라니 이거 뭐임",
+   "cap": [
+    "나이아신 함유",
+    "[에너지 생성]"
+   ],
+   "crop": [
+    0,
+    0.7479,
+    1,
+    0.9348
+   ]
+  },
+  {
+   "img": 2,
+   "say": "지금 안 담으면 또 품절되겠네",
+   "cap": [
+    "지금 담기",
+    "[품절 임박]"
+   ],
+   "crop": [
+    0,
+    0.3739,
+    1,
+    0.5609
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "수분 충전",
+   "[파워에이드]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

@@ -1,0 +1,95 @@
+{
+ "name": "20261112-0722-5ff62f",
+ "product": "쿠첸 전기압력밥솥 6인용",
+ "coupang_product_id": 8087867523,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/1615512424267684-fd2da63a-198c-431b-8f70-b23dae33eff2.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/1615512424267684-fd2da63a-198c-431b-8f70-b23dae33eff2.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/442553132606872-367de004-3385-4220-a513-80c83ab5252b.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/245289990973086-ab670c89-8e0f-4705-a9db-075723cce226.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/72603873035795-51a37638-b766-4ea0-89e1-8bf98a859a94.jpg",
+  "https://image.coupangcdn.com/image/retail/images/448953896822819-e22d53d0-3cb3-407f-a5e8-9e5e25063f51.jpg",
+  "https://image.coupangcdn.com/image/retail/images/1039902860347756-c7cc80ed-c29d-42de-90de-041a24d014f6.png"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "매번 밥 지을 때마다 맛없어서 짜증나셨죠?",
+   "cap": [
+    "맨날 맛없는 밥",
+    "[진짜 짜증나네]"
+   ],
+   "badge": "살림 필수템"
+  },
+  {
+   "img": 3,
+   "say": "3단계 밥맛 조절 기능으로 취향대로 골라 먹어",
+   "cap": [
+    "취향대로 골라 먹는",
+    "[3단계 밥맛 조절]"
+   ],
+   "crop": [
+    0,
+    0.4572,
+    1,
+    0.5334
+   ]
+  },
+  {
+   "img": 3,
+   "say": "29분 잡곡밥 취사 기능으로 바쁠 때도 빠르게 완성",
+   "cap": [
+    "바쁜 아침에도 빠르게",
+    "[29분 잡곡밥]"
+   ],
+   "crop": [
+    0,
+    0.5334,
+    1,
+    0.6096
+   ]
+  },
+  {
+   "img": 3,
+   "say": "분리형 클린커버로 세척까지 엄청 편해졌네",
+   "cap": [
+    "구석구석 깨끗하게",
+    "[분리형 클린커버]"
+   ],
+   "crop": [
+    0,
+    0.6096,
+    1,
+    0.6858
+   ]
+  },
+  {
+   "img": 3,
+   "say": "쿠첸 전기압력밥솥 6인용 지금 바로 장바구니 담자",
+   "cap": [
+    "고민은 배송만 늦출 뿐",
+    "[지금 바로 담자]"
+   ],
+   "crop": [
+    0,
+    0.8382,
+    1,
+    0.9144
+   ]
+  }
+ ],
+ "intro": {
+  "say": "밥맛이 고민인가요?!",
+  "cap": [
+   "밥맛 고민",
+   "[해결템 발견]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

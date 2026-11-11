@@ -1,0 +1,101 @@
+{
+ "name": "20261112-0726-bb6ba4",
+ "product": "블루핀 여성용 겨울 발열 초극세사",
+ "coupang_product_id": 8335720931,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599683815618-e12fa9ed-207f-4237-a6e6-4453f983b21a.jpg",
+  "https://image.coupangcdn.com/image/retail/images/592600849069270-c9f42ee7-1006-4d85-8cd9-dd429d324d05.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619658062203882-31acf128-ba91-49ae-853e-daf7c0e16e71.jpg",
+  "https://image.coupangcdn.com/image/retail/images/382493687065153-add7035d-fe69-4995-b968-bc784bd1e70f.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619667484518473-0c1d5c8c-7a31-42ce-8c18-58b7a380086e.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 1,
+   "say": "매번 겨울마다 추워서 떨기 바빴지?",
+   "cap": [
+    "겨울만 되면",
+    "[덜덜] 떨림"
+   ],
+   "badge": "살림 필수템",
+   "crop": [
+    0,
+    0.1053,
+    1,
+    0.2107
+   ]
+  },
+  {
+   "img": 2,
+   "say": "빅 라운드 U넥이라 겉옷 밖으로 티 안 나고 편하네",
+   "cap": [
+    "티 안 나는",
+    "[U넥] 디자인"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.0495
+   ]
+  },
+  {
+   "img": 2,
+   "say": "쭉쭉 늘어나는 슬림핏이라 활동할 때 완전 편함",
+   "cap": [
+    "입는 순간",
+    "[쭉쭉] 늘어남"
+   ],
+   "crop": [
+    0,
+    0.0991,
+    1,
+    0.1486
+   ]
+  },
+  {
+   "img": 1,
+   "say": "피치기모 원단이라 포근하게 감싸주니까 진심 따뜻하겠다",
+   "cap": [
+    "포근하게 감싸는",
+    "[기모] 원단"
+   ],
+   "crop": [
+    0,
+    0.632,
+    1,
+    0.7373
+   ]
+  },
+  {
+   "img": 1,
+   "say": "이거 입고 나니까 겨울 칼바람도 무섭지 않음 ㅋㅋ",
+   "cap": [
+    "칼바람 차단",
+    "[완벽] 방어"
+   ],
+   "crop": [
+    0,
+    0.8426,
+    1,
+    0.9479
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "추위 타는 분",
+   "[주목]하세요"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

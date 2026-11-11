@@ -1,0 +1,86 @@
+{
+ "name": "20261112-0725-f13a8c",
+ "product": "블랙홀 타이벡 재배 12brix 감귤",
+ "coupang_product_id": 8440021482,
+ "images": [
+  "https://image11.coupangcdn.com/image/retail/images/123315955852817-072c4ac5-ef9b-4276-be2e-00358edf8d12.jpg",
+  "https://image11.coupangcdn.com/image/retail/images/123315955852817-072c4ac5-ef9b-4276-be2e-00358edf8d12.jpg",
+  "https://image11.coupangcdn.com/image/retail/images/50697987995108-02de0a96-b908-41f1-afef-ccd36f4b72cb.png",
+  "https://image11.coupangcdn.com/image/retail/images/1056770024131040-466efd71-f3c4-49fc-93b3-fe6f2af0f7a6.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "집에 있는 과일 맛이 맨날 밍밍했지?",
+   "cap": [
+    "맨날 밍밍한",
+    "과일 맛에 [짜증]"
+   ],
+   "badge": "요즘 인기"
+  },
+  {
+   "img": 1,
+   "say": "껍질이 초록색이어도 속은 새콤달콤해 ㅋㅋ",
+   "cap": [
+    "초록빛 껍질",
+    "알고 보니 [새콤달콤]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    1.0
+   ]
+  },
+  {
+   "img": 2,
+   "say": "취향대로 크기 골라 먹는 재미도 은근 쏠쏠함",
+   "cap": [
+    "취향에 맞는",
+    "[사이즈] 선택"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    1.0
+   ]
+  },
+  {
+   "img": 3,
+   "say": "새벽에 시키면 오늘 바로 문 앞에 도착하네",
+   "cap": [
+    "주문하면",
+    "바로 오는 [새벽배송]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.698
+   ]
+  },
+  {
+   "img": 1,
+   "say": "이거 보니까 급 상큼한 거 먹고 싶어짐",
+   "cap": [
+    "지금 안 사면",
+    "[품절]될지도"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "과일 러버들",
+   "[주목]하세요"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

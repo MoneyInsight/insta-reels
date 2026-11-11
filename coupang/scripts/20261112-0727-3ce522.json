@@ -1,0 +1,88 @@
+{
+ "name": "20261112-0727-3ce522",
+ "product": "연어 스테이크용",
+ "coupang_product_id": 9574144919,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/157333138991393-e22b3ef1-6fd7-437d-abdf-d4754c1c5822.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/157333138991393-e22b3ef1-6fd7-437d-abdf-d4754c1c5822.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/22610102384604-18f3291e-9067-4a8b-851a-175533d9abe7.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/22610071157390-d3a037c8-fd84-452f-959d-4914f4fa50a3.jpg",
+  "https://image.coupangcdn.com/image/retail/images/62506332482671-ae2c2ad1-cdd3-49f9-9292-f103be683a6d.jpg",
+  "https://image.coupangcdn.com/image/retail/images/62510837889946-7d592998-12c4-47e8-8ea1-756f6e772e2d.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "매번 장 볼 때마다 한숨 쉬었죠?",
+   "cap": [
+    "자취생",
+    "[주목]"
+   ],
+   "badge": "요즘 인기"
+  },
+  {
+   "img": 5,
+   "say": "냉동 상태로 와서 은근 편하네",
+   "cap": [
+    "신선함",
+    "[미쳤네]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    1.0
+   ]
+  },
+  {
+   "img": 4,
+   "say": "크기가 이 정도라 진심 놀람",
+   "cap": [
+    "알찬",
+    "[사이즈]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    1.0
+   ]
+  },
+  {
+   "img": 2,
+   "say": "이거 뭐임 비주얼 미쳤네",
+   "cap": [
+    "구이용",
+    "[딱이야]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    1.0
+   ]
+  },
+  {
+   "img": 4,
+   "say": "급 저녁 메뉴 고민해지네",
+   "cap": [
+    "품절임박",
+    "[달려가]"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "연어 땡길 때",
+   "[필수템] 등장"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
