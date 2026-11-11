@@ -65,8 +65,8 @@ def candidates():
     used = {str(x) for x in jload("coupang/posted.json", [])} | {str(e["productId"]) for e in jload(LOG, [])}
     items = [p for p in d.get("items", []) if str(p["productId"]) not in used and usable(p)]
     detailed = [p for p in items if os.path.exists(f"coupang/details/{p['productId']}.json")]
-    if detailed:
-        return detailed          # 상세 이미지가 있는 상품만 올린다 (영상 품질)
+    if detailed or True:
+        return detailed          # 상세 이미지가 있는 상품만 만든다 (사진 한 장짜리 영상 금지)
     fresh = d.get("updated", "") >= (NOW - timedelta(hours=6)).strftime("%Y-%m-%d %H:%M")
     if len(items) < 5 or not fresh:
         print("후보가 부족하거나 오래돼서 새로 받는다")
