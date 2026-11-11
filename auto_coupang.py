@@ -322,7 +322,8 @@ def prepare_insta():
                 if "error" in j: print("::notice::스레드 조회수 조회 불가:", j["error"].get("message", "")[:120])
             except Exception as ex:
                 print("::notice::스레드 조회수 조회 실패", str(ex)[:100])
-    best = sorted(pool, key=lambda e: (e["clicks"], e["views"], e["time"]), reverse=True)[0]
+    for e in pool: e["detail"] = os.path.exists(f"coupang/details/{e['productId']}.json")
+    best = sorted(pool, key=lambda e: (e["clicks"], e["detail"], e["views"], e["time"]), reverse=True)[0]  # 클릭 같으면 상세 이미지 영상 우선
     print("순위(클릭, 조회점수):", [(e["product"][:20], e["clicks"], e["views"]) for e in sorted(pool, key=lambda e: (-e["clicks"], -e["views"]))[:5]])
     name = best["name"]
     os.makedirs("site", exist_ok=True)
