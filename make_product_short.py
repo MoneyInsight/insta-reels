@@ -142,7 +142,7 @@ def tts(text, path):
     try:
         import edge_tts
         async def run():
-            await edge_tts.Communicate(text, VOICES.get(data.get("voice", "female"), "ko-KR-SunHiNeural"), rate="+12%").save(path)
+            await edge_tts.Communicate(text, VOICES.get(data.get("voice", "female"), "ko-KR-SunHiNeural"), rate="+15%", pitch="+3Hz").save(path)
         asyncio.run(run())
         wav = path.replace(".mp3", ".wav")
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", path, "-ar", "44100", "-ac", "2", wav], check=True)
@@ -173,7 +173,7 @@ for i, s in enumerate(scenes):
     op = f"{tmp}/o{i}.png"; overlay(s, i, len(scenes), last=s.get("last", False)).save(op)
     frames = int(sec * FPS)
     mode = (SALT + i) % 3
-    z = ["min(zoom+0.0009,1.12)", "if(eq(on,0),1.12,max(zoom-0.0009,1.0))", "1.06"][mode]
+    z = ["if(lt(on,6),1.16-on*0.02,min(zoom+0.0009,1.12))", "if(lt(on,6),1.20-on*0.013,max(zoom-0.0009,1.0))", "if(lt(on,6),1.14-on*0.013,1.06)"][mode]
     xexpr = "iw/2-(iw/zoom/2)" if mode != 2 else f"(iw-iw/zoom)*on/{frames}"
     c = f"{tmp}/c{i}.mp4"
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", pp, "-loop", "1", "-i", op, "-t", f"{sec:.2f}",
@@ -225,8 +225,24 @@ for (v, _), st in zip(voices, starts):
         with wave.open(v) as w:
             a = np.frombuffer(w.readframes(w.getnframes()), np.int16).reshape(-1, 2).mean(axis=1) / 32768
         add(a, st + 0.15, voice)
+sfx = np.zeros(N)
+def whoosh():
+    t = np.arange(int(0.35 * SR)) / SR
+    noise = np.random.default_rng(SALT).standard_normal(len(t))
+    env = np.sin(np.pi * t / t[-1]) ** 2
+    return 0.25 * np.convolve(noise, np.ones(6) / 6, mode="same") * env
+def pop():
+    t = np.arange(int(0.18 * SR)) / SR
+    return 0.5 * np.sin(2 * np.pi * (600 + 900 * t / t[-1]) * t) * np.exp(-t * 18)
+def ding():
+    t = np.arange(int(0.6 * SR)) / SR
+    return 0.3 * (np.sin(2 * np.pi * 1318 * t) + 0.5 * np.sin(2 * np.pi * 1975 * t)) * np.exp(-t * 6)
+for k, st in enumerate(starts):
+    if k > 0: add(whoosh(), max(0, st - 0.12), sfx)
+    if scenes[k].get("badge"): add(pop(), st + 0.05, sfx)
+add(ding(), starts[-1] + 0.1, sfx)
 has_voice = np.max(np.abs(voice)) > 0
-mix = out * (0.12 if has_voice else 0.4) + voice * 0.95
+mix = out * (0.12 if has_voice else 0.4) + voice * 0.95 + sfx * 0.6
 fi, fo = int(0.1 * SR), int(0.8 * SR)
 mix[:fi] *= np.linspace(0, 1, fi); mix[-fo:] *= np.linspace(1, 0, fo)
 mix = np.clip(mix / max(1.0, np.max(np.abs(mix)) / 0.95), -1, 1)
