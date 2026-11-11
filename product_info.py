@@ -9,6 +9,13 @@ UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.1
 with sync_playwright() as p:
     b = p.chromium.launch()
     pg = b.new_page(user_agent=UA, locale="ko-KR", viewport={"width": 430, "height": 932})
+    caught = []  # 중간 페이지가 주고받는 데이터(JSON)를 모아 둔다
+    def on_resp(resp):
+        try:
+            if "json" in (resp.headers.get("content-type") or "") and "naver" in resp.url:
+                caught.append({"url": resp.url.split("?")[0], "status": resp.status, "body": resp.json()})
+        except Exception: pass
+    pg.on("response", on_resp)
     pg.goto(url, wait_until="domcontentloaded", timeout=60000)
     for _ in range(30):  # 상품 페이지에 도착할 때까지 기다린다
         if re.search(r"smartstore|brand\.naver|shopping\.naver|/products/", pg.url) and "brandconnect" not in pg.url: break
@@ -27,6 +34,8 @@ with sync_playwright() as p:
         pg.screenshot(path="page.png", full_page=False)
     b.close()
 info["final_url"] = pg.url.split("?")[0]
+info["api"] = caught
+for c in caught: print("API:", c["url"], c["status"], json.dumps(c["body"], ensure_ascii=False)[:1500])
 json.dump(info, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(json.dumps({k: v for k, v in info.items() if k != "text"}, ensure_ascii=False, indent=1)[:2500])
 print("본문 일부:", info["text"][:1500])
