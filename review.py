@@ -44,18 +44,44 @@ def rule_check(name):
     return probs, js, th, mp4
 
 
-def gemini_check(js, th, mp4):
+def detail_parts(js):
+    """상세페이지 이미지를 줄여서 Gemini에 같이 보낸다 (내용 대조용)."""
+    import io
+    try:
+        from PIL import Image
+        d = json.load(open(f"coupang/details/{js.get('coupang_product_id')}.json", encoding="utf-8"))
+    except Exception:
+        return []
+    parts = []
+    for x in d.get("images", [])[:4]:
+        try:
+            u = x["url"] if isinstance(x, dict) else x
+            im = Image.open(io.BytesIO(requests.get(u, timeout=20).content)).convert("RGB")
+            im = im.resize((500, max(1, int(im.height * 500 / im.width))))
+            if im.height > 6000: im = im.crop((0, 0, 500, 6000))
+            b = io.BytesIO(); im.save(b, "JPEG", quality=75)
+            parts.append({"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(b.getvalue()).decode()}})
+        except Exception:
+            continue
+    return parts
+
+
+def gemini_check(js, th, mp4, ig=""):
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key or os.path.getsize(mp4) > 18_000_000: return None
     script = "\n".join([js.get("intro", {}).get("say", "")] + [s["say"] for s in js["scenes"]] + [js.get("cta_say", "")])
+    det = detail_parts(js)
     prompt = (f"너는 쇼츠 검수자야. 이 영상은 쿠팡 상품 '{js['product']}' 홍보 쇼츠고, 원래 내레이션 대본은 아래와 같아.\n{script}\n\n"
               "영상을 직접 보고 들은 뒤 JSON으로만 답해: "
               '{"transcript": "실제로 들린 내레이션", "extra_speech": "대본에 없는데 읽힌 말(지시문 등), 없으면 빈칸", '
               '"problems": ["심각한 문제만: 대본에 없는 말 읽음, 소리 끊김/잡음, 상품과 무관한 이미지, 자막 잘림/겹침, 깨진 이미지, 오타, 어색한 문장"], '
               '"hook_score": 1~10 (첫 3초가 시선을 끄는 정도), "ok": true/false}\n'
-              "사소한 취향 문제는 problems에 넣지 마.")
+              "사소한 취향 문제는 problems에 넣지 마.\n"
+              + (f"\n함께 보낸 이미지들은 이 상품의 실제 쿠팡 상세페이지야. 영상 내레이션·자막과 아래 게시글에 나온 수치·기능·효과·구성이 "
+                 f"상세페이지와 다르거나 상세페이지에 없는 과장이면 '내용 불일치: ~' 형식으로 problems에 넣어. 상품명이 다르면 그것도.\n"
+                 f"[스레드 글]\n{th}\n[인스타 글]\n{ig}" if det else ""))
     body = {"contents": [{"parts": [{"inline_data": {"mime_type": "video/mp4", "data": base64.b64encode(open(mp4, "rb").read()).decode()}},
-                                    {"text": prompt}]}],
+                                    {"text": prompt}] + det}],
             "generationConfig": {"responseMimeType": "application/json"}}
     last = ""
     try:
@@ -82,10 +108,12 @@ def review(name):
     probs, js, th, mp4 = rule_check(name)
     g = None
     if not any("영상 파일" in p for p in probs):
-        g = gemini_check(js, th, mp4)
+        ig = open(f"{SCRIPTS}/{name}.insta.txt", encoding="utf-8").read()
+        g = gemini_check(js, th, mp4, ig)
     if g:
         if g.get("extra_speech", "").strip(): probs.append("대본에 없는 말 읽음: " + g["extra_speech"][:60])
-        probs += [f"AI 검수: {p}" for p in g.get("problems", [])[:5] if p]
+        for p in g.get("problems", [])[:6]:
+            if p: probs.append(p if p.startswith("내용 불일치") else f"AI 검수: {p}")
         for w in ["아나운서", "또박또박", "Say this", "friend"]:
             if w in g.get("transcript", ""): probs.append(f"내레이션에 지시문 포함: {w}")
     else:

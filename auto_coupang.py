@@ -259,6 +259,8 @@ def build_checked(name):
         build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
         ok, probs = review.review(name)
         if ok: return True
+        if any(p.startswith("내용 불일치") for p in probs):
+            print("::error::상세페이지와 내용이 달라 게시 안 함: " + " / ".join(probs)[:300]); return False
         print(f"검수 문제 → 다시 생성 ({i + 1}/2)")
     hard = [p for p in probs if not p.startswith("AI 검수")]
     if hard:
@@ -280,7 +282,7 @@ def prepare_threads():
         print("상세 이미지가 모인 상품이 없어 이번 회차는 건너뜁니다"); out("skip", "true"); return
     since = (NOW - timedelta(hours=6)).strftime("%Y-%m-%d %H:%M")
     retry = [e for e in jload(LOG, []) if not e.get("threads") and e.get("tries", 0) < 3 and e["time"] >= since
-             and os.path.exists(f"{SCRIPTS}/{e['name']}.json")]
+             and "내용 불일치" not in e.get("last_error", "") and os.path.exists(f"{SCRIPTS}/{e['name']}.json")]
     if retry:
         e = retry[-1]; name = e["name"]
         print("지난번 실패한 글 재게시:", e["product"], "시도", e.get("tries", 0) + 1)
@@ -330,7 +332,8 @@ def prepare_threads():
                 "subId": sub, "link": link, "time": NOW.strftime("%Y-%m-%d %H:%M"), "threads": False, "insta": False})
     jsave(LOG, log)
     if not passed:
-        fail("threads", name, "검수 불합격"); out("skip", "true"); return
+        rv = jload(f"coupang/reviews/{name}.json", {}).get("problems", [])
+        fail("threads", name, "검수 불합격: " + " / ".join(rv)); out("skip", "true"); return
     out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt")
     print("상품:", p["name"], "/ 링크:", link)
 
