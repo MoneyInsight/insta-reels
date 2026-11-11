@@ -84,6 +84,7 @@ def choose(items):
         if p.get("category", "") in recent_cats: s -= 3          # 같은 분야 연속 피하기
         if p.get("source") == "골드박스": s += 1
         if p.get("rocket"): s += 1
+        if os.path.exists(f"coupang/details/{p['productId']}.json"): s += 10   # 상세 이미지가 있으면 최우선
         s += min(len(feature_tokens(p["name"])), 4) * 0.5        # 특징이 많은 상품
         return s
     items = sorted(items, key=score, reverse=True)
@@ -123,6 +124,12 @@ def speakable(t):  # 숫자 단위를 읽기 좋게
 
 
 # ---------------- 후킹 대본: Gemini ----------------
+def detail_images(p, n=4):
+    d = jload(f"coupang/details/{p['productId']}.json", {})
+    imgs = [x for x in d.get("images", []) if x.get("w", 0) >= 500 and x.get("h", 0) >= 500]
+    return imgs[1:1 + n] if len(imgs) > 1 else imgs[:n]   # 첫 장은 대표 사진과 겹치는 경우가 많다
+
+
 def gemini_copy(p):
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key:
@@ -146,10 +153,26 @@ def gemini_copy(p):
 - threads_text: 250자 이내 반말 커뮤니티체, 3~5줄. 숫자는 숫자 그대로(5.4, 9L). 첫 줄 공감 후킹 → 상품 특징 1~2개를 감탄하듯 → 웃음 포인트 한 줄 → 마지막 줄에 정확히 "{{LINK}}". 상품명 전체는 쓰지 않아도 된다. 해시태그 없이, 이모지 1~2개.
 - insta_hook: 인스타 캡션 첫 줄, 같은 반말 커뮤니티체 후킹 한 문장 + 이모지 1개. features: 상품명 속 특징 4개를 짧은 구어체로. hashtags: 해시태그 5개(# 포함).
 JSON 형식: {{"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
+        parts = []
+        import base64
+        import io
+        from PIL import Image
+        for x in detail_images(p, 2):   # 상세 이미지를 잘라서 보여주고 거기 적힌 내용으로 쓰게 한다
+            try:
+                im = Image.open(io.BytesIO(requests.get(x["url"], timeout=30, headers={"User-Agent": "Mozilla/5.0"}).content)).convert("RGB")
+                step = int(im.width * 1.3)
+                for y in range(0, im.height, step):
+                    if len(parts) >= 6: break
+                    buf = io.BytesIO(); im.crop((0, y, im.width, min(im.height, y + step))).save(buf, "JPEG", quality=80)
+                    parts.append({"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(buf.getvalue()).decode()}})
+            except Exception:
+                pass
+        if parts:
+            prompt = prompt.replace("규칙:", "첨부한 상세페이지 이미지에 적힌 특징·장점도 근거로 써도 된다(이미지에 없는 내용은 지어내지 않는다).\n규칙:", 1)
         txt, errs = None, []
         for model in order[:4]:  # 무료 한도가 남은 모델을 차례로 시도
-            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=60,
-                              json={"contents": [{"parts": [{"text": prompt}]}],
+            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=90,
+                              json={"contents": [{"parts": [{"text": prompt}] + parts}],
                                     "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9}})
             rj = r.json()
             if "candidates" in rj:
@@ -237,14 +260,20 @@ def prepare_threads():
     name = NOW.strftime("%Y%m%d-%H%M") + "-" + hashlib.md5(str(p["productId"]).encode()).hexdigest()[:6]
     g = gemini_copy(p) or gemini_copy(p) or template_copy(p, name)  # 실패하면 Gemini 1번 더
     crops = [None, [0.1, 0.05, 0.9, 0.95], None, [0.15, 0.1, 0.85, 0.8], None]
+    det = detail_images(p, 4)
+    images = [p["image"]] + [x["url"] for x in det]
     scenes = []
     for i, s in enumerate(g["scenes"][:5]):
         sc = {"img": 0, "say": speakable(s["say"])[:60], "cap": [c[:16] for c in s["cap"][:2]]}
         if i == 0: sc["badge"] = g.get("badge", "요즘 인기")[:8]
-        if crops[i]: sc["crop"] = crops[i]
+        if i >= 1 and det:   # 상세 이미지의 한 부분(가로 꽉, 세로 일부)을 잘라 장면으로
+            x = det[(i - 1) % len(det)]; sc["img"] = 1 + (i - 1) % len(det)
+            win = min(1.0, x["w"] * 1.1 / x["h"]); y0 = (1 - win) * [0.05, 0.3, 0.55, 0.8][i - 1] if win < 1 else 0
+            if win < 1: sc["crop"] = [0, round(y0, 3), 1, round(y0 + win, 3)]
+        elif crops[i]: sc["crop"] = crops[i]
         scenes.append(sc)
     os.makedirs(SCRIPTS, exist_ok=True)
-    js = {"name": name, "product": short_name(p["name"], 20), "coupang_product_id": p["productId"], "images": [p["image"]],
+    js = {"name": name, "product": short_name(p["name"], 20), "coupang_product_id": p["productId"], "images": images,
           "voice": random.Random(name).choice(["female", "female", "male"]), "disclosure": DISCLOSURE, "scenes": scenes,
           "cta": ["가격·구매는", "[링크]에서 확인!"], "cta_say": "가격과 구매는 링크에서 확인하세요."}
     jsave(f"{SCRIPTS}/{name}.json", js)
