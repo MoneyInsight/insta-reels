@@ -23,11 +23,11 @@ def media_info(mp4):
     return dur, float(v[1]) if v else -99.0
 
 
-def rule_check(name):
+def rule_check(name, mp4=None):
     js = json.load(open(f"{SCRIPTS}/{name}.json", encoding="utf-8"))
     th = open(f"{SCRIPTS}/{name}.threads.txt", encoding="utf-8").read()
     ig = open(f"{SCRIPTS}/{name}.insta.txt", encoding="utf-8").read()
-    mp4 = f"site/short-{name}.mp4"
+    mp4 = mp4 or f"site/short-{name}.mp4"
     probs = []
     if not os.path.exists(mp4) or os.path.getsize(mp4) < 200_000: probs.append("영상 파일이 없거나 너무 작음")
     else:

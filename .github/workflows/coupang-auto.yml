@@ -1,4 +1,4 @@
-name: 쿠팡 숏츠 완전 자동 (스레드 30분·인스타 3시간)
+name: 쿠팡 숏츠 자동 (Claude 검수 통과 영상만 30분마다 스레드·인스타)
 
 on:
   schedule:
@@ -54,7 +54,7 @@ jobs:
           done
           ffmpeg -version | head -1; ls -la ~/.fonts
 
-      - name: 상품·대본·영상 준비
+      - name: 승인된 영상 꺼내기
         id: prep
         env:
           COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
@@ -114,7 +114,7 @@ jobs:
         run: |
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
           git add -A coupang
-          git commit -qm "쿠팡 자동: 검수 기록" || exit 0
+          git commit -qm "쿠팡 자동: 기록" || exit 0
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done
 
       - name: 토큰 만료면 알림 (깃허브 이슈)
@@ -126,3 +126,18 @@ jobs:
           M="${{ steps.mode.outputs.mode }}"; T=$(grep -q "TOKEN_ERROR insta" post.log && echo IG_ACCESS_TOKEN || echo THREADS_ACCESS_TOKEN)
           gh issue list --state open --search "토큰 만료 $T" --json number -q '.[0].number' | grep -q . && exit 0
           gh issue create --title "⚠️ 토큰 만료: $T 다시 발급 필요" --body "쿠팡 자동 게시($M)가 토큰 오류로 멈췄습니다. Meta에서 토큰을 재발급해 Secrets의 $T 를 갱신하세요. 갱신 후 이 이슈를 닫으면 됩니다."
+
+      - name: 검수 대기 영상 만들기 (Claude가 검수)
+        if: always()
+        timeout-minutes: 12
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          git pull -q --rebase origin main || true
+          python auto_coupang.py make || true
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add -A coupang
+          git commit -qm "쿠팡: 검수 대기 영상 추가" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done

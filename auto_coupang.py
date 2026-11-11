@@ -20,6 +20,7 @@ import coupang_api as cp
 KST = timezone(timedelta(hours=9))
 NOW = datetime.now(KST)
 LOG = "coupang/auto_log.json"
+QUEUE = "coupang/queue"
 SCRIPTS = "coupang/scripts"
 DISCLOSURE = "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
 OUT = os.environ.get("GITHUB_OUTPUT")
@@ -276,24 +277,11 @@ def write_caps(name, p, g, link):
     open(f"{SCRIPTS}/{name}.insta.txt", "w", encoding="utf-8").write(ig[:2200])
 
 
-def prepare_threads():
-    if not any(os.path.exists(f"coupang/details/{p['productId']}.json") for p in jload("coupang/candidates.json", {}).get("items", [])
-               if str(p["productId"]) not in {str(e["productId"]) for e in jload(LOG, [])}):
-        print("상세 이미지가 모인 상품이 없어 이번 회차는 건너뜁니다"); out("skip", "true"); return
-    since = (NOW - timedelta(hours=6)).strftime("%Y-%m-%d %H:%M")
-    retry = [e for e in jload(LOG, []) if not e.get("threads") and e.get("tries", 0) < 3 and e["time"] >= since
-             and "내용 불일치" not in e.get("last_error", "") and os.path.exists(f"{SCRIPTS}/{e['name']}.json")]
-    if retry:
-        e = retry[-1]; name = e["name"]
-        print("지난번 실패한 글 재게시:", e["product"], "시도", e.get("tries", 0) + 1)
-        os.makedirs("site", exist_ok=True)
-        if not build_checked(name):
-            fail("threads", name, "검수 불합격"); out("skip", "true"); return
-        out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt"); return
+def make_one():
     items = candidates()
     p = choose(items)
     if not p:
-        print("::error::올릴 상품 후보가 없습니다"); out("skip", "true"); return
+        print("::warning::만들 상품 후보가 없습니다"); return False
     sub = "t" + NOW.strftime("%y%m%d%H%M")
     # 상품마다 다른 subId로 짧은 링크를 만들어 클릭을 따로 센다
     d = cp.call("POST", cp.BASE + "/deeplink", body={"coupangUrls": [f"https://www.coupang.com/vp/products/{p['productId']}"], "subId": sub}) or []
@@ -325,17 +313,69 @@ def prepare_threads():
           "cta": ["가격·구매는", "[링크]에서 확인!"], "cta_say": "가격과 구매는 링크에서 확인하세요."}
     jsave(f"{SCRIPTS}/{name}.json", js)
     write_caps(name, p, g, link)
-    os.makedirs("site", exist_ok=True)
-    passed = build_checked(name)
+    os.makedirs(QUEUE, exist_ok=True)
+    mp4 = f"/tmp/{name}.mp4"  # 영상은 저장소에 쌓지 않고 게시할 때 같은 대본으로 다시 만든다
+    build_video(f"{SCRIPTS}/{name}.json", mp4)
+    review_sheets(name, mp4, det)
+    import review
+    probs = review.rule_check(name, mp4)[0]
     log = jload(LOG, [])
     log.append({"name": name, "productId": p["productId"], "product": p["name"], "category": p.get("category", ""),
                 "subId": sub, "link": link, "time": NOW.strftime("%Y-%m-%d %H:%M"), "threads": False, "insta": False})
     jsave(LOG, log)
-    if not passed:
-        rv = jload(f"coupang/reviews/{name}.json", {}).get("problems", [])
-        fail("threads", name, "검수 불합격: " + " / ".join(rv)); out("skip", "true"); return
+    jsave(f"{QUEUE}/{name}.status.json", {"status": "rejected" if probs else "pending", "product": p["name"],
+                                          "rule_problems": probs, "made": NOW.strftime("%Y-%m-%d %H:%M")})
+    print("검수 대기열에 추가:", p["name"], "| 규칙 검사:", probs or "통과")
+    return True
+
+
+def review_sheets(name, mp4, det):
+    """Claude 검수용: 영상 장면 6컷 한 장 + 상세페이지 축소본 한 장"""
+    import io
+    from PIL import Image
+    tmp = f"/tmp/fr-{name}"; os.makedirs(tmp, exist_ok=True)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp4, "-vf", "fps=1/3.5,scale=270:-1", f"{tmp}/%02d.jpg"], check=False)
+    fr = [Image.open(f"{tmp}/{f}") for f in sorted(os.listdir(tmp))][:8]
+    if fr:
+        sheet = Image.new("RGB", (270 * 4, 480 * ((len(fr) + 3) // 4)), "white")
+        for k, im in enumerate(fr): sheet.paste(im, (270 * (k % 4), 480 * (k // 4)))
+        sheet.save(f"{QUEUE}/{name}.frames.jpg", quality=70)
+    cols = []
+    for x in det[:5]:
+        try:
+            im = Image.open(io.BytesIO(requests.get(x["url"], timeout=20).content)).convert("RGB")
+            im = im.resize((360, int(im.height * 360 / im.width)))
+            cols.append(im.crop((0, 0, 360, min(im.height, 2400))))
+        except Exception:
+            pass
+    if cols:
+        h = max(c.height for c in cols); sh = Image.new("RGB", (360 * len(cols), h), "white")
+        for k, c in enumerate(cols): sh.paste(c, (360 * k, 0))
+        sh.save(f"{QUEUE}/{name}.detail.jpg", quality=70)
+
+
+def make_queue(target=8):
+    q = [jload(f"{QUEUE}/{f}", {}) for f in os.listdir(QUEUE)] if os.path.isdir(QUEUE) else []
+    waiting = sum(1 for x in q if x.get("status") in ("pending", "approved"))
+    for _ in range(min(2, max(0, target - waiting))):
+        if not make_one(): break
+
+
+def post_next():
+    """Claude가 승인한 영상 중 가장 오래된 것을 게시 준비"""
+    if not os.path.isdir(QUEUE): out("skip", "true"); return
+    ok = sorted(f[:-12] for f in os.listdir(QUEUE) if f.endswith(".status.json")
+                and jload(f"{QUEUE}/{f}", {}).get("status") == "approved")
+    if not ok:
+        print("승인된 영상이 없어 이번 회차는 건너뜁니다"); out("skip", "true"); return
+    name = ok[0]
+    os.makedirs("site", exist_ok=True); build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
+    import review
+    hard = review.rule_check(name)[0]
+    if hard:
+        print("::error::다시 만든 영상 규칙 검사 실패:", hard); fail("threads", name, " / ".join(hard)); out("skip", "true"); return
     out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt")
-    print("상품:", p["name"], "/ 링크:", link)
+    print("게시:", jload(f"{QUEUE}/{name}.status.json", {}).get("product"))
 
 
 def clicks_by_subid():
@@ -399,6 +439,8 @@ def mark(kind, name, post_id=""):
         cut = (NOW - timedelta(days=14)).strftime("%Y%m%d")
         for f in os.listdir("naver-clip"):
             if f[:8].isdigit() and f[:8] < cut: os.remove(os.path.join("naver-clip", f))
+    for ext in (".mp4", ".frames.jpg", ".detail.jpg", ".status.json"):  # 게시된 영상은 대기열에서 뺀다
+        if os.path.exists(f"{QUEUE}/{name}{ext}"): os.remove(f"{QUEUE}/{name}{ext}")
     log = jload(LOG, [])
     for e in log:
         if e["name"] == name:
@@ -418,7 +460,9 @@ def mark(kind, name, post_id=""):
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "prepare":
-        prepare_threads() if sys.argv[2] == "threads" else prepare_insta()
+        post_next()
+    elif cmd == "make":
+        make_queue()
     elif cmd == "gemtest":
         d = jload("coupang/candidates.json", {}); g = gemini_copy(d["items"][0]); print(json.dumps(g, ensure_ascii=False)[:1500])
     elif cmd == "clicks":
