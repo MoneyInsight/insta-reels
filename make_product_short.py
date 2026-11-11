@@ -183,8 +183,7 @@ def gemini_tts(text, path):
     if not key or _gtts_off: return None
     import base64, requests
     voice = GVOICE.get(data.get("voice", "female"), GVOICE["female"])[SALT % 3]
-    style = ("20대 후반 한국인이 친구한테 꿀템 알려주듯, 신나고 자연스럽게 말해. 아나운서처럼 또박또박 읽지 말고 "
-             "실제 사람처럼 억양을 살리고 살짝 빠르게, 감탄은 진짜 놀란 것처럼: ")
+    style = "Say this in Korean like an excited friend sharing a great find, casual and fast: "
     for model in ["gemini-2.5-flash-preview-tts", "gemini-2.5-flash-tts", "gemini-2.5-pro-preview-tts"]:
         r = {}
         try:
@@ -198,6 +197,9 @@ def gemini_tts(text, path):
             subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "s16le", "-ar", "24000", "-ac", "1", "-i", raw,
                             "-af", "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse",
                             "-ar", "44100", "-ac", "2", wav], check=True)
+            dur = os.path.getsize(raw) / 48000
+            if dur > len(text) * 0.22 + 1.5:  # 지시문까지 읽어버린 경우 버림
+                print(f"::notice::Gemini 음성이 너무 김({dur:.1f}s) → 다시 시도"); continue
             return wav
         except Exception as e:
             err = str(r.get("error", {}).get("code")) if isinstance(r, dict) and "error" in r else type(e).__name__
