@@ -29,7 +29,7 @@ os.makedirs(tmp, exist_ok=True)
 W, H, FPS = 1080, 1920, 30
 SALT = int(hashlib.md5(NAME.encode()).hexdigest()[:8], 16)
 rng = np.random.default_rng(SALT)
-DISCLOSURE = "이 콘텐츠는 네이버 쇼핑 커넥트 활동의 일환으로, 판매 시 수수료를 제공받습니다."
+DISCLOSURE = data.get("disclosure") or "이 콘텐츠는 네이버 쇼핑 커넥트 활동의 일환으로, 판매 시 수수료를 제공받습니다."
 
 # ---------- 폰트 ----------
 def find_font(weights):
@@ -155,7 +155,7 @@ def dur(wav):
 
 # ---------- 장면 만들기 ----------
 scenes = list(data["scenes"])
-cta = {"img": scenes[0].get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."),
+cta = {"img": scenes[0].get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."), "crop": data.get("cta_crop"),
        "cap": data.get("cta", ["구매 링크는", "[프로필]에서 확인!"]), "last": True}
 scenes.append(cta)
 T = 0.3  # 장면 전환 겹침
@@ -165,7 +165,11 @@ for i, s in enumerate(scenes):
     sec = max(1.8, (dur(v) + 0.45) if v else len(s.get("say", "")) * 0.13 + 0.8)
     sec = min(sec, 6.5) + T
     voices.append((v, sec))
-    plate = make_plate(IMGS[s.get("img", i) % len(IMGS)]); pp = f"{tmp}/p{i}.png"; plate.save(pp)
+    src_im = IMGS[s.get("img", i) % len(IMGS)]
+    if s.get("crop"):  # [x0, y0, x1, y1] 비율(0~1)로 사진 일부를 확대해서 보여준다 (사진이 한 장뿐일 때 장면마다 다르게)
+        x0, y0, x1, y1 = s["crop"]; w0, h0 = src_im.size
+        src_im = src_im.crop((int(x0 * w0), int(y0 * h0), int(x1 * w0), int(y1 * h0)))
+    plate = make_plate(src_im); pp = f"{tmp}/p{i}.png"; plate.save(pp)
     op = f"{tmp}/o{i}.png"; overlay(s, i, len(scenes), last=s.get("last", False)).save(op)
     frames = int(sec * FPS)
     mode = (SALT + i) % 3

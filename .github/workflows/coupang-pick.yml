@@ -1,0 +1,33 @@
+name: 쿠팡 숏츠 후보 상품 수집
+
+on:
+  workflow_dispatch:
+    inputs:
+      keywords:
+        description: "추가로 검색할 키워드 (띄어쓰기 구분, 비워도 됨)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coupang-pick
+  cancel-in-progress: false
+
+jobs:
+  pick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests
+      - name: 후보 수집
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+        run: python coupang_api.py pick ${{ inputs.keywords }}
+      - name: 후보 목록 저장
+        run: |
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add coupang/candidates.json
+          git commit -qm "쿠팡 후보 상품 갱신" && git pull -q --rebase && git push -q || echo "변경 없음"

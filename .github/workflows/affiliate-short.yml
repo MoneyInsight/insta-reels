@@ -111,9 +111,13 @@ jobs:
           N=${{ steps.pick.outputs.name }}
           mkdir -p shorts/posted/src
           mv shorts/$N.* shorts/posted/
-          if [ -f "shorts/src/$N.json" ]; then mv "shorts/src/$N.json" shorts/posted/src/; fi
+          if [ -f "shorts/src/$N.json" ]; then
+            # 쿠팡 상품이면 다시 올리지 않도록 상품번호를 기록한다
+            python3 -c "import json,sys,os;d=json.load(open(sys.argv[1],encoding='utf-8'));pid=d.get('coupang_product_id');f='coupang/posted.json';os.makedirs('coupang',exist_ok=True);L=json.load(open(f)) if os.path.exists(f) else [];(pid and str(pid) not in map(str,L)) and L.append(pid);json.dump(L,open(f,'w'))" "shorts/src/$N.json"
+            mv "shorts/src/$N.json" shorts/posted/src/
+          fi
           if [ -d "shorts/src/$N" ]; then mv "shorts/src/$N" shorts/posted/src/; fi
-          git add -A shorts
+          git add -A shorts coupang
           git commit -m "제휴 숏폼 게시 완료: ${{ steps.pick.outputs.name }}"
           git pull --rebase
           git push
