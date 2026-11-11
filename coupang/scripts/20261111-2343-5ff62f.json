@@ -1,0 +1,63 @@
+{
+ "name": "20261111-2343-5ff62f",
+ "product": "쿠첸 전기압력밥솥 6인용",
+ "coupang_product_id": 8087867523,
+ "images": [
+  "https://thumbnail8.coupangcdn.com/thumbnails/remote/700x700ex/image/1025_amir_coupang_oct_80k/6d8f/b4742c8b2c224c755b998c62d49b8ae9e67c47440dba1d3f5490adc76fe0.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/1615512424267684-fd2da63a-198c-431b-8f70-b23dae33eff2.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/442553132606872-367de004-3385-4220-a513-80c83ab5252b.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/245289990973086-ab670c89-8e0f-4705-a9db-075723cce226.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/72603873035795-51a37638-b766-4ea0-89e1-8bf98a859a94.jpg",
+  "https://image.coupangcdn.com/image/retail/images/448953896822819-e22d53d0-3cb3-407f-a5e8-9e5e25063f51.jpg",
+  "https://image.coupangcdn.com/image/retail/images/1039902860347756-c7cc80ed-c29d-42de-90de-041a24d014f6.png"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "아니 근데 이거 아직 모르는 사람 있어요?",
+   "cap": [
+    "아니 근데 이거",
+    "[아직 몰라요]?"
+   ],
+   "badge": "오늘의 추천"
+  },
+  {
+   "img": 1,
+   "say": "오늘 소개할 건 쿠첸 전기압력밥솥 6인용",
+   "cap": [
+    "오늘의 템",
+    "[쿠첸 전기압력밥솥]"
+   ]
+  },
+  {
+   "img": 2,
+   "say": "요즘 쿠팡에서 반응 좋은 상품이에요",
+   "cap": [
+    "요즘",
+    "[반응 좋은 템]"
+   ]
+  },
+  {
+   "img": 3,
+   "say": "상세 정보는 링크에서 꼭 확인해 보세요",
+   "cap": [
+    "자세한 건",
+    "[링크에서 확인]"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "여러분! 이거 아시나요?!",
+  "cap": [
+   "여러분!",
+   "[이거 아시나요?!]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
