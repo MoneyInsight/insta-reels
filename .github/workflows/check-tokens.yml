@@ -1,0 +1,14 @@
+name: 토큰 점검 (게시 없음)
+on: workflow_dispatch
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 인스타그램·스레드 토큰 확인
+        env:
+          IG: ${{ secrets.IG_ACCESS_TOKEN }}
+          TH: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          echo "인스타 토큰 앞 2글자: ${IG:0:2} (길이 ${#IG})"
+          curl -s "https://graph.instagram.com/v21.0/me?fields=username&access_token=$IG" | python3 -c "import json,sys;d=json.load(sys.stdin);print('인스타:', d.get('username') or d.get('error',{}).get('message'))"
+          curl -s "https://graph.threads.net/v1.0/me?fields=username&access_token=$TH" | python3 -c "import json,sys;d=json.load(sys.stdin);print('스레드:', d.get('username') or d.get('error',{}).get('message'))"
