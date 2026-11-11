@@ -152,7 +152,8 @@ def gemini_copy(p):
 - cap은 2줄, 한 줄 12자 이내, 가장 센 단어 하나를 [대괄호]로 감싼다.
 - threads_text: 250자 이내 반말 커뮤니티체, 3~5줄. 숫자는 숫자 그대로(5.4, 9L). 첫 줄 공감 후킹 → 상품 특징 1~2개를 감탄하듯 → 웃음 포인트 한 줄 → 마지막 줄에 정확히 "{{LINK}}". 상품명 전체는 쓰지 않아도 된다. 해시태그 없이, 이모지 1~2개.
 - insta_hook: 인스타 캡션 첫 줄, 같은 반말 커뮤니티체 후킹 한 문장 + 이모지 1개. features: 상품명 속 특징 4개를 짧은 구어체로. hashtags: 해시태그 5개(# 포함).
-JSON 형식: {{"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
+- intro_say: 영상 맨 첫 1초 외침(12자 안팎, 예: "여러분! 이거 아시나요?!", "잠깐! 이거 보고 가요!"). intro_cap: 2줄(첫 줄 4~6자 외침, 둘째 줄 8자 안팎 핵심을 [대괄호]).
+JSON 형식: {{"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
         parts = []
         import base64
         import io
@@ -202,6 +203,8 @@ HOOKS = [
     ("살림 좀 해본 사람들은 다 아는 그거요.", ["살림러들은", "[다 아는 그거]"]),
     ("이거 하나로 잔소리 줄어든 집 있대요.", ["이거 하나로", "[잔소리 감소]?"]),
 ]
+INTROS = [("여러분! 이거 아시나요?!", ["여러분!", "[이거 아시나요?!]"]), ("잠깐! 이거 보고 가요!", ["잠깐!!", "[이거 보고 가요]"]),
+          ("여러분 이거 실화예요?!", ["여러분!!", "[이거 실화?!]"]), ("이거 모르면 손해예요!", ["잠깐만요!", "[모르면 손해]"])]
 BADGES = ["요즘 인기", "살림 필수템", "베스트 상품", "장바구니 1순위", "오늘의 추천"]
 FEAT_SAY = ["일단 {f}, 이게 제일 눈에 띄더라고요.", "거기다 {f}까지 챙겼어요.", "{f}, 이거 은근 중요하거든요.", "포인트는 바로 {f}예요.", "{f}라니, 이건 좀 반칙 아닌가요?"]
 FEAT_CAP = [["[{f}]", "이게 핵심"], ["{f}까지", "[챙겼다]"], ["놓치면 아쉬운", "[{f}]"], ["포인트는", "[{f}]"], ["눈여겨볼 점", "[{f}]"]]
@@ -275,6 +278,8 @@ def prepare_threads():
     os.makedirs(SCRIPTS, exist_ok=True)
     js = {"name": name, "product": short_name(p["name"], 20), "coupang_product_id": p["productId"], "images": images,
           "voice": random.Random(name).choice(["female", "female", "male"]), "disclosure": DISCLOSURE, "scenes": scenes,
+          "intro": {"say": g.get("intro_say") or random.Random(name).choice(INTROS)[0],
+                    "cap": (g.get("intro_cap") or random.Random(name).choice(INTROS)[1])[:2]},
           "cta": ["가격·구매는", "[링크]에서 확인!"], "cta_say": "가격과 구매는 링크에서 확인하세요."}
     jsave(f"{SCRIPTS}/{name}.json", js)
     write_caps(name, p, g, link)

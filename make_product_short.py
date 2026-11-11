@@ -65,6 +65,16 @@ IMGS = load_images()
 def cover(im, w, h):
     return ImageOps.fit(im, (w, h), Image.LANCZOS)
 
+def make_intro_plate(im, scale=1.12):
+    w, h = int(W * scale), int(H * scale)
+    bg = cover(im, w, h).filter(ImageFilter.GaussianBlur(18))
+    bg = Image.blend(bg, Image.new("RGB", (w, h), (0, 0, 0)), 0.35)
+    ph = im.copy(); r = min(w * 0.96 / ph.width, h * 0.62 / ph.height)
+    ph = ph.resize((int(ph.width * r), int(ph.height * r)), Image.LANCZOS)
+    bg.paste(ph, ((w - ph.width) // 2, int(h * 0.30)))
+    return bg
+
+
 def make_plate(im, scale=1.12):
     """배경: 같은 사진을 크게 흐리고 어둡게 + 가운데에 상품 사진(둥근 카드, 그림자). 줌을 위해 크게 만든다."""
     w, h = int(W * scale), int(H * scale)
@@ -99,7 +109,31 @@ def draw_rich(d, y, line, size, maxw=980):
         x += d.textlength(t, font=f)
     return size
 
+def overlay_intro(scene):
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    sc = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(sc).rectangle([0, 120, W, 560], fill=(0, 0, 0, 170))
+    im.alpha_composite(sc.filter(ImageFilter.GaussianBlur(30))); d = ImageDraw.Draw(im)
+    pf = font(FB, 64); t = "주목!!"; tw = d.textlength(t, font=pf)
+    d.rounded_rectangle([(W - tw) / 2 - 30, 150, (W + tw) / 2 + 30, 240], 45, fill=(235, 30, 45))
+    d.text(((W - tw) / 2, 158), t, font=pf, fill=(255, 255, 255))
+    y = 280
+    for k, line in enumerate(scene.get("cap", [])[:2]):
+        segs = parse(line); size = 132
+        while True:
+            f = font(FB, size); tw = sum(d.textlength(x, font=f) for x, _ in segs)
+            if tw <= 1000 or size <= 70: break
+            size -= 4
+        x0 = (W - tw) / 2
+        for t2, hi in segs:
+            d.text((x0, y), t2, font=f, fill=(255, 226, 0) if (hi or k == 1) else (255, 255, 255), stroke_width=10, stroke_fill=(0, 0, 0))
+            x0 += d.textlength(t2, font=f)
+        y += size + 30
+    return im
+
+
 def overlay(scene, idx, total, last=False):
+    if scene.get("intro"): return overlay_intro(scene)
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     # 위: 상품명 띠 + 진행 막대
     pf = font(FBold, 40); prod = data["product"]
@@ -155,6 +189,9 @@ def dur(wav):
 
 # ---------- 장면 만들기 ----------
 scenes = list(data["scenes"])
+if data.get("intro"):  # 첫 1~2초 후킹 인트로 (상품 크게 + 외침)
+    scenes.insert(0, {"img": 0, "intro": True, "badge": "!", "say": data["intro"].get("say", "여러분! 이거 아시나요?!"),
+                      "cap": data["intro"].get("cap", ["여러분!", "[이거 아시나요?!]"])})
 cta = {"img": scenes[0].get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."), "crop": data.get("cta_crop"),
        "cap": data.get("cta", ["구매 링크는", "[프로필]에서 확인!"]), "last": True}
 scenes.append(cta)
@@ -162,14 +199,14 @@ T = 0.3  # 장면 전환 겹침
 clips, voices = [], []
 for i, s in enumerate(scenes):
     v = tts(s["say"], f"{tmp}/v{i}.mp3") if s.get("say") else None
-    sec = max(1.8, (dur(v) + 0.45) if v else len(s.get("say", "")) * 0.13 + 0.8)
+    sec = max(1.6 if s.get("intro") else 1.8, (dur(v) + (0.25 if s.get("intro") else 0.45)) if v else len(s.get("say", "")) * 0.13 + 0.8)
     sec = min(sec, 6.5) + T
     voices.append((v, sec))
     src_im = IMGS[s.get("img", i) % len(IMGS)]
     if s.get("crop"):  # [x0, y0, x1, y1] 비율(0~1)로 사진 일부를 확대해서 보여준다 (사진이 한 장뿐일 때 장면마다 다르게)
         x0, y0, x1, y1 = s["crop"]; w0, h0 = src_im.size
         src_im = src_im.crop((int(x0 * w0), int(y0 * h0), int(x1 * w0), int(y1 * h0)))
-    plate = make_plate(src_im); pp = f"{tmp}/p{i}.png"; plate.save(pp)
+    plate = (make_intro_plate if s.get("intro") else make_plate)(src_im); pp = f"{tmp}/p{i}.png"; plate.save(pp)
     op = f"{tmp}/o{i}.png"; overlay(s, i, len(scenes), last=s.get("last", False)).save(op)
     frames = int(sec * FPS)
     mode = (SALT + i) % 3
