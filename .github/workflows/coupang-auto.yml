@@ -40,9 +40,14 @@ jobs:
           echo "mode=${M:-threads}" >> $GITHUB_OUTPUT; echo "모드: ${M:-threads}"
 
       - name: 도구 설치
+        timeout-minutes: 8
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk > /dev/null
+          # 패키지 서버가 늦으면 시간 제한을 두고 다시 시도
+          for t in 1 2 3; do
+            timeout 150 sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk > /dev/null 2>&1 && break
+            timeout 120 sudo apt-get update -qq -o Acquire::Retries=2 > /dev/null 2>&1 || true
+          done
+          which ffmpeg && fc-list | grep -qi "Noto Sans CJK"
           pip install -q pillow numpy requests edge-tts
 
       - name: 상품·대본·영상 준비
