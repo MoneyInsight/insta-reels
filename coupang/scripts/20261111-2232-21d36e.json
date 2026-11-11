@@ -1,0 +1,89 @@
+{
+ "name": "20261111-2232-21d36e",
+ "product": "뷰센 더블와이드 칫솔",
+ "coupang_product_id": 7788118478,
+ "images": [
+  "https://thumbnail10.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/2026/01/15/14/0/97ce7ffc-297b-4721-91bb-ba2e00660610.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/318461505670600-0d0484e5-58b4-4fe1-b10f-f3536a1ae1d4.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/6506712518597526-997c6898-771e-45e7-a103-2998c686f6eb.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/282889952115707-cfe5baa2-7593-40f9-a846-a287dd6c0ed6.jpg",
+  "https://image.coupangcdn.com/image/retail/images/282889556420386-bc2146b5-ab95-4095-a8bc-48d870374b0d.jpg",
+  "https://image.coupangcdn.com/image/retail/images/282890046915493-c6f55d28-09a3-4d9a-bd52-4526e37bb5e3.jpg",
+  "https://image.coupangcdn.com/image/retail/images/76945168301277-db8be49f-c930-4ba8-af58-38eeeb28abaf.jpg"
+ ],
+ "voice": "male",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "양치질 꼼꼼히 하기 귀찮았던 사람 손!",
+   "cap": [
+    "양치하기 진심",
+    "귀찮았던 [사람]"
+   ],
+   "badge": "양치 필수템"
+  },
+  {
+   "img": 3,
+   "say": "어금니 두 개 덮는 와이드 헤드 미쳤네",
+   "cap": [
+    "치아 덮어주는",
+    "[와이드헤드]"
+   ],
+   "crop": [
+    0,
+    0.3452,
+    1,
+    0.4315
+   ]
+  },
+  {
+   "img": 3,
+   "say": "이중 모라 잇몸이랑 틈새 다 털어줌",
+   "cap": [
+    "단차 미세모라",
+    "[틈새케어] 끝"
+   ],
+   "crop": [
+    0,
+    0.4315,
+    1,
+    0.5178
+   ]
+  },
+  {
+   "img": 3,
+   "say": "이천이백 개 칫솔모가 빈틈없이 닦아줌",
+   "cap": [
+    "빽빽한 모 수로",
+    "[플라그] 박멸"
+   ],
+   "crop": [
+    0,
+    0.5178,
+    1,
+    0.6041
+   ]
+  },
+  {
+   "img": 4,
+   "say": "뷰센 더블와이드 칫솔 지금 쟁여야 됨",
+   "cap": [
+    "도구는 완벽한데",
+    "움직이긴 [귀찮음]"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "양치 귀찮은 사람 잠깐만!",
+  "cap": [
+   "잠깐 주목",
+   "양치 시간 [순삭템]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
