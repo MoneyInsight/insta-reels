@@ -1,0 +1,15 @@
+name: 쇼핑 커넥트 링크 풀기
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "링크들 (띄어쓰기로 구분)"
+        required: true
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests && python resolve_links.py ${{ inputs.urls }}
