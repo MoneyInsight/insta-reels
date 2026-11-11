@@ -188,8 +188,9 @@
   "subId": "t2611120721",
   "link": "https://link.coupang.com/a/iBupw0TI8y",
   "time": "2026-11-12 07:21",
-  "threads": false,
-  "insta": false
+  "threads": true,
+  "insta": true,
+  "threads_id": " 18221705788344611"
  },
  {
   "name": "20261112-0722-5ff62f",
