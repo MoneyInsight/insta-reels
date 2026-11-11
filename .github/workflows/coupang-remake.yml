@@ -1,0 +1,28 @@
+name: 쿠팡 숏츠 다시 만들기 (검수 대기열로)
+on:
+  workflow_dispatch:
+    inputs:
+      names: { description: "다시 만들 NAME (공백 구분)", required: true }
+permissions: { contents: write }
+concurrency: { group: daily-reel, cancel-in-progress: false }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: 도구 설치
+        run: |
+          pip install -q pillow numpy requests edge-tts imageio-ffmpeg
+          which ffmpeg || sudo ln -sf $(python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())") /usr/local/bin/ffmpeg
+          mkdir -p ~/.fonts; for w in Black Bold Medium; do curl -sSL --retry 3 -o ~/.fonts/NotoSansCJKkr-$w.otf "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/Korean/NotoSansCJKkr-$w.otf"; done
+      - name: 다시 만들기
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          for n in ${{ inputs.names }}; do python auto_coupang.py remake $n || true; sleep 20; done
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add -A coupang; git commit -qm "쿠팡: 어색한 영상 다시 만들기" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep 7; done

@@ -277,9 +277,8 @@ def write_caps(name, p, g, link):
     open(f"{SCRIPTS}/{name}.insta.txt", "w", encoding="utf-8").write(ig[:2200])
 
 
-def make_one():
-    items = candidates()
-    p = choose(items)
+def make_one(p=None):
+    p = p or choose(candidates())
     if not p:
         print("::warning::만들 상품 후보가 없습니다"); return False
     sub = "t" + NOW.strftime("%y%m%d%H%M")
@@ -469,6 +468,15 @@ if __name__ == "__main__":
         post_next()
     elif cmd == "make":
         make_queue()
+    elif cmd == "remake":  # 어색했던 게시물을 같은 상품으로 다시 만들어 검수 대기열에 넣는다
+        for n in sys.argv[2:]:
+            e = next((x for x in jload(LOG, []) if x["name"] == n), None)
+            det = jload(f"coupang/details/{e['productId']}.json", {}).get("images", []) if e else []
+            if not det: print("상세 이미지 없음:", n); continue
+            u = det[0]["url"] if isinstance(det[0], dict) else det[0]
+            ok = make_one({"productId": e["productId"], "name": e["product"], "category": e.get("category", ""), "image": u,
+                           "url": f"https://www.coupang.com/vp/products/{e['productId']}"})
+            print("다시 만들기", "완료" if ok else "실패", e["product"])
     elif cmd == "gemtest":
         d = jload("coupang/candidates.json", {}); g = gemini_copy(d["items"][0]); print(json.dumps(g, ensure_ascii=False)[:1500])
     elif cmd == "clicks":
