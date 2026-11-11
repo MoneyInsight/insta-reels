@@ -172,7 +172,40 @@ def overlay(scene, idx, total, last=False):
 
 # ---------- AI 내레이션 (edge-tts, 실패하면 무음) ----------
 VOICES = {"female": "ko-KR-SunHiNeural", "male": "ko-KR-InJoonNeural"}
+GVOICE = {"female": ["Aoede", "Kore", "Leda"], "male": ["Puck", "Fenrir", "Orus"]}
+_gtts_off = False
+def gemini_tts(text, path):
+    """Gemini 음성: 사람이 말하듯 자연스러운 톤. 실패하면 None (무료 한도 초과 등)."""
+    global _gtts_off
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key or _gtts_off: return None
+    import base64, requests
+    voice = GVOICE.get(data.get("voice", "female"), GVOICE["female"])[SALT % 3]
+    style = ("20대 후반 한국인이 친구한테 꿀템 알려주듯, 신나고 자연스럽게 말해. 아나운서처럼 또박또박 읽지 말고 "
+             "실제 사람처럼 억양을 살리고 살짝 빠르게, 감탄은 진짜 놀란 것처럼: ")
+    for model in ["gemini-2.5-flash-preview-tts", "gemini-2.5-flash-tts", "gemini-2.5-pro-preview-tts"]:
+        r = {}
+        try:
+            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}", timeout=60,
+                              json={"contents": [{"parts": [{"text": style + text}]}],
+                                    "generationConfig": {"responseModalities": ["AUDIO"],
+                                                         "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}}}).json()
+            b64 = r["candidates"][0]["content"]["parts"][0]["inlineData"]["data"]
+            raw = path.replace(".mp3", ".pcm"); open(raw, "wb").write(base64.b64decode(b64))
+            wav = path.replace(".mp3", ".wav")
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "s16le", "-ar", "24000", "-ac", "1", "-i", raw,
+                            "-af", "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse",
+                            "-ar", "44100", "-ac", "2", wav], check=True)
+            return wav
+        except Exception as e:
+            err = str(r.get("error", {}).get("code")) if isinstance(r, dict) and "error" in r else type(e).__name__
+            if err in ("429", "403"): continue
+    print("::notice::Gemini 음성 사용 불가 → 기본 음성으로 대체"); _gtts_off = True
+    return None
+
 def tts(text, path):
+    g = gemini_tts(text, path)
+    if g: return g
     try:
         import edge_tts
         async def run():

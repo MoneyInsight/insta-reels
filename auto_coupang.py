@@ -271,7 +271,7 @@ def prepare_threads():
         print("지난번 실패한 글 재게시:", e["product"], "시도", e.get("tries", 0) + 1)
         os.makedirs("site", exist_ok=True)
         build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
-        out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); return
+        out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt"); return
     items = candidates()
     p = choose(items)
     if not p:
@@ -313,7 +313,7 @@ def prepare_threads():
     log.append({"name": name, "productId": p["productId"], "product": p["name"], "category": p.get("category", ""),
                 "subId": sub, "link": link, "time": NOW.strftime("%Y-%m-%d %H:%M"), "threads": False, "insta": False})
     jsave(LOG, log)
-    out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt")
+    out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt")
     print("상품:", p["name"], "/ 링크:", link)
 
 

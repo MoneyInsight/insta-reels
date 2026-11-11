@@ -2,7 +2,7 @@ name: 쿠팡 숏츠 완전 자동 (스레드 30분·인스타 3시간)
 
 on:
   schedule:
-    - cron: "7,37 * * * *"   # 30분마다 (붐비는 정각·30분을 피함). 인스타는 3시간이 지났으면 같은 실행 끝에 이어서 돌린다
+    - cron: "7,37 * * * *"   # 30분마다 (붐비는 정각·30분을 피함) 같은 영상을 스레드·인스타에 함께
   workflow_dispatch:
     inputs:
       mode:
@@ -75,44 +75,30 @@ jobs:
           for i in $(seq 1 30); do code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10; done
           echo "영상 주소 $URL ($code)"
           # 실패하면 원인별로 기다렸다가 최대 3번 다시 올린다
-          for t in 1 2 3; do
-            if [ "${{ steps.mode.outputs.mode }}" = "insta" ]; then
-              python post_instagram.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee post.log && exit 0
-            else
-              python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee post.log && exit 0
-            fi
-            if grep -qiE "parse access token|expired|session has|OAuthException|토큰" post.log; then echo "TOKEN_ERROR" >> post.log; exit 1; fi
-            if grep -qiE "maximum number of posts|2207042|rate limit" post.log; then exit 1; fi
-            echo "재시도 $t: $(grep -m1 '::error::' post.log)"; sleep $((t * 60))
-            curl -s -o /dev/null "$URL"
-          done
-          exit 1
+          post() {  # $1=threads|insta : 실패하면 원인별로 기다렸다가 최대 3번
+            for t in 1 2 3; do
+              if [ "$1" = insta ]; then python post_instagram.py "$URL" "${{ steps.prep.outputs.insta_caption }}" 2>&1 | tee -a post.log && return 0
+              else python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee -a post.log && return 0; fi
+              if grep -qiE "parse access token|expired|session has|OAuthException" post.log; then echo "TOKEN_ERROR $1" >> post.log; return 1; fi
+              if grep -qiE "maximum number of posts|2207042" post.log; then return 1; fi
+              sleep $((t * 60)); curl -s -o /dev/null "$URL"
+            done; return 1; }
+          OK=0
+          post threads && echo "THREADS_OK" >> post.log && OK=1
+          post insta && echo "INSTA_OK" >> post.log && OK=1
+          [ $OK = 1 ]
 
       - name: 기록 저장
         if: always() && steps.prep.outputs.skip != 'true' && steps.prep.outcome == 'success'
         run: |
-          if [ "${{ steps.post.outcome }}" = "success" ]; then python auto_coupang.py mark ${{ steps.mode.outputs.mode }} ${{ steps.prep.outputs.name }} "$(grep -o 'ID: [0-9]*' post.log | tail -1 | cut -c5-)"
-          else python auto_coupang.py fail ${{ steps.mode.outputs.mode }} ${{ steps.prep.outputs.name }} "$(grep -m1 '::error::' post.log)"; fi
+          N=${{ steps.prep.outputs.name }}
+          grep -q THREADS_OK post.log && python auto_coupang.py mark threads $N "$(grep -o '게시물 ID: [0-9]*' post.log | head -1 | cut -c8-)"
+          grep -q INSTA_OK post.log && python auto_coupang.py mark insta $N
+          grep -q THREADS_OK post.log || python auto_coupang.py fail threads $N "$(grep -m1 '::error::' post.log)"
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
           git add -A coupang naver-clip 2>/dev/null || git add -A coupang
           git commit -qm "쿠팡 자동 ${{ steps.mode.outputs.mode }}: ${{ steps.prep.outputs.name }} (${{ steps.post.outcome }})" || exit 0
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done
-
-      - name: 인스타 차례면 이어서 실행 (마지막 인스타 게시 후 3시간)
-        if: always() && steps.mode.outputs.mode == 'threads'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git pull -q --rebase origin main || true
-          DUE=$(python3 -c "
-          import json,datetime as d
-          L=json.load(open('coupang/auto_log.json'))
-          t=[e['time'] for e in L if e.get('insta')]
-          now=d.datetime.utcnow()+d.timedelta(hours=9)
-          last=d.datetime.strptime(max(t),'%Y-%m-%d %H:%M') if t else now-d.timedelta(days=1)
-          print('yes' if (now-last).total_seconds()>=3*3600-600 else 'no')")
-          echo "인스타 차례: $DUE"
-          if [ "$DUE" = yes ]; then gh workflow run coupang-auto.yml -f mode=insta --ref main; fi
 
       - name: 토큰 만료면 알림 (깃허브 이슈)
         if: failure() && hashFiles('post.log') != ''
@@ -120,6 +106,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           grep -q TOKEN_ERROR post.log || exit 0
-          M="${{ steps.mode.outputs.mode }}"; T=$([ "$M" = insta ] && echo IG_ACCESS_TOKEN || echo THREADS_ACCESS_TOKEN)
+          M="${{ steps.mode.outputs.mode }}"; T=$(grep -q "TOKEN_ERROR insta" post.log && echo IG_ACCESS_TOKEN || echo THREADS_ACCESS_TOKEN)
           gh issue list --state open --search "토큰 만료 $T" --json number -q '.[0].number' | grep -q . && exit 0
           gh issue create --title "⚠️ 토큰 만료: $T 다시 발급 필요" --body "쿠팡 자동 게시($M)가 토큰 오류로 멈췄습니다. Meta에서 토큰을 재발급해 Secrets의 $T 를 갱신하세요. 갱신 후 이 이슈를 닫으면 됩니다."
