@@ -275,7 +275,6 @@ def ding():
     t = np.arange(int(0.6 * SR)) / SR
     return 0.3 * (np.sin(2 * np.pi * 1318 * t) + 0.5 * np.sin(2 * np.pi * 1975 * t)) * np.exp(-t * 6)
 for k, st in enumerate(starts):
-    if k > 0: add(whoosh(), max(0, st - 0.12), sfx)
     if scenes[k].get("badge"): add(pop(), st + 0.05, sfx)
 add(ding(), starts[-1] + 0.1, sfx)
 has_voice = np.max(np.abs(voice)) > 0

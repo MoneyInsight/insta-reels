@@ -63,6 +63,9 @@ def candidates():
     d = jload("coupang/candidates.json", {})
     used = {str(x) for x in jload("coupang/posted.json", [])} | {str(e["productId"]) for e in jload(LOG, [])}
     items = [p for p in d.get("items", []) if str(p["productId"]) not in used and usable(p)]
+    detailed = [p for p in items if os.path.exists(f"coupang/details/{p['productId']}.json")]
+    if detailed:
+        return detailed          # 상세 이미지가 있는 상품만 올린다 (영상 품질)
     fresh = d.get("updated", "") >= (NOW - timedelta(hours=6)).strftime("%Y-%m-%d %H:%M")
     if len(items) < 5 or not fresh:
         print("후보가 부족하거나 오래돼서 새로 받는다")
@@ -146,30 +149,36 @@ def gemini_copy(p):
 말투: 스레드 커뮤니티 반말체. 짧은 줄, 줄바꿈 많이, "ㅋㅋ", "진심", "미쳤네", "은근", "급 ~해짐", "이거 뭐임" 같은 구어. 영상을 보고 감탄하는 구경꾼 시점("영상 보는데 ~ 미쳤네", "이거 보고 나니까 ~하기 귀찮아짐"). 마지막 줄은 피식 웃게 하는 현실 공감 한 줄(예: "기계가 썰어도 눈물은 내 몫이다😭"). 광고 말("제품", "탁월한", "최고의", "강력 추천")은 금지.
 규칙:
 - 상품명에 실제로 들어 있는 특징만 쓴다. 상품명에 없는 기능·수치·효능·후기·가격은 절대 지어내지 않는다. 써 본 척하지 않는다. "샀어요", "담았어요", "써보니", "먹어보니", "우리 집", "제가 써보니" 같은 직접 구매·사용 경험 표현은 절대 쓰지 않는다(추천하는 사람 시점으로만).
+- 상품은 반드시 상품명 전체 또는 자연스러운 이름으로 부른다(상품명을 단어 하나씩 쪼개서 "극세사", "워싱"처럼 따로 나열하지 않는다).
+- 장면 흐름: 1 공감 문제 상황 → 2·3·4 상세페이지 핵심 장점 3개(각각 왜 좋은지 생활 이득으로) → 5 "지금 사야 할 이유"로 구매 욕구 자극(가격·할인 수치는 쓰지 않는다).
 - 1장면은 스크롤을 멈추게 하는 후킹: 대상 지목 + 공감되는 상황 질문(예: "자취생 여러분, 이거 아직 모르세요?", "매번 ○○ 때문에 짜증나셨죠?"). badge는 4~6자(예: 요즘 인기, 살림 필수템).
 - 2~5장면은 상품명 속 특징을 하나씩, 생활 장면에 빗대서 재미있게. 마지막 장면은 가벼운 웃음 포인트로 마무리.
 - say는 반말 구어체로 말하듯 짧은 한 문장(25자 이내, 숫자는 읽는 대로 '9리터'). 예: "이거 뭐임 진짜 신기하네".
 - cap은 2줄, 한 줄 12자 이내, 가장 센 단어 하나를 [대괄호]로 감싼다.
 - threads_text: 250자 이내 반말 커뮤니티체, 3~5줄. 숫자는 숫자 그대로(5.4, 9L). 첫 줄 공감 후킹 → 상품 특징 1~2개를 감탄하듯 → 웃음 포인트 한 줄 → 마지막 줄에 정확히 "{{LINK}}". 상품명 전체는 쓰지 않아도 된다. 해시태그 없이, 이모지 1~2개.
-- insta_hook: 인스타 캡션 첫 줄, 같은 반말 커뮤니티체 후킹 한 문장 + 이모지 1개. features: 상품명 속 특징 4개를 짧은 구어체로. hashtags: 해시태그 5개(# 포함).
+- insta_hook: 인스타 캡션 첫 줄, 같은 반말 커뮤니티체 후킹 한 문장 + 이모지 1개. features: 상세페이지 핵심 장점 4개를 짧은 문장으로(단어 하나만 쓰지 않는다). hashtags: 해시태그 5개(# 포함).
 - intro_say: 영상 맨 첫 1초 외침(12자 안팎, 예: "여러분! 이거 아시나요?!", "잠깐! 이거 보고 가요!"). intro_cap: 2줄(첫 줄 4~6자 외침, 둘째 줄 8자 안팎 핵심을 [대괄호]).
 JSON 형식: {{"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
         parts = []
         import base64
         import io
         from PIL import Image
-        for x in detail_images(p, 2):   # 상세 이미지를 잘라서 보여주고 거기 적힌 내용으로 쓰게 한다
+        tiles = []   # (상세 이미지 번호, y0, y1) — Gemini가 장면마다 고른다
+        for di, x in enumerate(detail_images(p, 3)):
             try:
                 im = Image.open(io.BytesIO(requests.get(x["url"], timeout=30, headers={"User-Agent": "Mozilla/5.0"}).content)).convert("RGB")
-                step = int(im.width * 1.3)
-                for y in range(0, im.height, step):
-                    if len(parts) >= 6: break
-                    buf = io.BytesIO(); im.crop((0, y, im.width, min(im.height, y + step))).save(buf, "JPEG", quality=80)
+                step = int(im.width * 1.1)
+                for y in range(0, im.height - step // 3, step):
+                    if len(tiles) >= 14: break
+                    y1 = min(im.height, y + step)
+                    buf = io.BytesIO(); im.crop((0, y, im.width, y1)).resize((600, int(600 * (y1 - y) / im.width))).save(buf, "JPEG", quality=78)
+                    parts.append({"text": f"[타일 {len(tiles)}]"})
                     parts.append({"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(buf.getvalue()).decode()}})
+                    tiles.append((di, round(y / im.height, 4), round(y1 / im.height, 4)))
             except Exception:
                 pass
         if parts:
-            prompt = prompt.replace("규칙:", "첨부한 상세페이지 이미지에 적힌 특징·장점도 근거로 써도 된다(이미지에 없는 내용은 지어내지 않는다).\n규칙:", 1)
+            prompt = prompt.replace("규칙:", "첨부한 [타일 N] 이미지들은 상세페이지를 자른 것이다. 여기서 구매욕을 부르는 핵심 장점 3가지를 골라 근거로 쓴다(이미지에 없는 내용은 지어내지 않는다). scenes 2~4번째 항목에는 그 장점이 가장 잘 보이는 타일 번호를 \"tile\"로 넣는다(사람·사용 장면·제품이 크게 보이는 타일 우선, 글자만 가득한 표·인증서·배송안내 타일은 피한다).\n규칙:", 1)
         txt, errs = None, []
         for model in order[:4]:  # 무료 한도가 남은 모델을 차례로 시도
             r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=90,
@@ -188,6 +197,7 @@ JSON 형식: {{"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"
         assert len(g["scenes"]) >= 4 and all(len(s["cap"]) == 2 for s in g["scenes"])
         assert "{LINK}" in g["threads_text"] and len(g["threads_text"]) < 480
         print("후킹 대본: Gemini", model)
+        g["_tiles"] = tiles if parts else []
         return g
     except Exception as e:
         print("::warning::Gemini 대본 실패 → 템플릿 사용:", str(e)[:200])
@@ -222,8 +232,13 @@ def template_copy(p, seed):
     for i, f in enumerate(feats[:4]):
         k = idx[i % len(idx)]
         scenes.append({"say": speakable(FEAT_SAY[k].format(f=f)), "cap": [c.format(f=f[:10]) for c in FEAT_CAP[k]]})
+    full = short_name(p["name"], 40)
+    scenes = [scenes[0]] + [{"say": f"오늘 소개할 건 {short_name(p['name'], 20)}", "cap": ["오늘의 템", f"[{short_name(p['name'], 10)}]"]},
+                            {"say": "요즘 쿠팡에서 반응 좋은 상품이에요", "cap": ["요즘", "[반응 좋은 템]"]},
+                            {"say": "상세 정보는 링크에서 꼭 확인해 보세요", "cap": ["자세한 건", "[링크에서 확인]"]}]
     hook_line = scenes[0]["say"]
-    th = f"{hook_line}\n\n{short_name(p['name'], 40)}\n" + "\n".join(f"- {f}" for f in feats[:3]) + "\n\n{LINK}\n\n#쿠팡추천 #살림템"
+    feats = [full]
+    th = f"{hook_line}\n\n{full}\n\n{{LINK}}\n\n#쿠팡추천 #살림템"
     tags = ["#쿠팡추천", "#살림템", "#꿀템추천", "#" + re.sub(r"\W", "", feats[0])[:12], "#생활용품"]
     return {"badge": rnd.choice(BADGES), "scenes": scenes, "threads_text": th, "insta_hook": hook_line + " 👀",
             "features": feats[:4], "hashtags": tags}
@@ -243,6 +258,9 @@ def write_caps(name, p, g, link):
 
 
 def prepare_threads():
+    if not any(os.path.exists(f"coupang/details/{p['productId']}.json") for p in jload("coupang/candidates.json", {}).get("items", [])
+               if str(p["productId"]) not in {str(e["productId"]) for e in jload(LOG, [])}):
+        print("상세 이미지가 모인 상품이 없어 이번 회차는 건너뜁니다"); out("skip", "true"); return
     since = (NOW - timedelta(hours=6)).strftime("%Y-%m-%d %H:%M")
     retry = [e for e in jload(LOG, []) if not e.get("threads") and e.get("tries", 0) < 3 and e["time"] >= since
              and os.path.exists(f"{SCRIPTS}/{e['name']}.json")]
@@ -263,13 +281,17 @@ def prepare_threads():
     name = NOW.strftime("%Y%m%d-%H%M") + "-" + hashlib.md5(str(p["productId"]).encode()).hexdigest()[:6]
     g = gemini_copy(p) or gemini_copy(p) or template_copy(p, name)  # 실패하면 Gemini 1번 더
     crops = [None, [0.1, 0.05, 0.9, 0.95], None, [0.15, 0.1, 0.85, 0.8], None]
-    det = detail_images(p, 4)
+    det = detail_images(p, 3)
     images = [p["image"]] + [x["url"] for x in det]
+    tiles = g.get("_tiles") or []
     scenes = []
     for i, s in enumerate(g["scenes"][:5]):
         sc = {"img": 0, "say": speakable(s["say"])[:60], "cap": [c[:16] for c in s["cap"][:2]]}
         if i == 0: sc["badge"] = g.get("badge", "요즘 인기")[:8]
-        if i >= 1 and det:   # 상세 이미지의 한 부분(가로 꽉, 세로 일부)을 잘라 장면으로
+        t = s.get("tile")
+        if isinstance(t, int) and 0 <= t < len(tiles):
+            di, y0, y1 = tiles[t]; sc["img"] = 1 + di; sc["crop"] = [0, y0, 1, y1]
+        elif i >= 1 and det:
             x = det[(i - 1) % len(det)]; sc["img"] = 1 + (i - 1) % len(det)
             win = min(1.0, x["w"] * 1.1 / x["h"]); y0 = (1 - win) * [0.05, 0.3, 0.55, 0.8][i - 1] if win < 1 else 0
             if win < 1: sc["crop"] = [0, round(y0, 3), 1, round(y0 + win, 3)]
