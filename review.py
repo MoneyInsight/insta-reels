@@ -1,0 +1,93 @@
+"""게시 전 자동 검수: 규칙 검사 + Gemini가 영상을 직접 보고 듣고 확인.
+사용: python3 review.py NAME  (coupang/scripts/NAME.* 와 site/short-NAME.mp4 검사)
+반환: (통과 여부, 문제 목록)"""
+import base64, json, os, re, subprocess, sys
+import requests
+
+SCRIPTS = "coupang/scripts"
+BAD_WORDS = ["아나운서", "또박또박", "말해", "지시", "Say this", "excited friend", "{LINK}", "None", "undefined", "샀어", "써보니"]
+
+
+def ffmpeg():
+    try:
+        import imageio_ffmpeg; return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        return "ffmpeg"
+
+
+def media_info(mp4):
+    r = subprocess.run([ffmpeg(), "-i", mp4, "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True).stderr
+    m = re.search(r"Duration: (\d+):(\d+):([\d.]+)", r)
+    dur = int(m[1]) * 3600 + int(m[2]) * 60 + float(m[3]) if m else 0
+    v = re.search(r"mean_volume: (-?[\d.]+) dB", r)
+    return dur, float(v[1]) if v else -99.0
+
+
+def rule_check(name):
+    js = json.load(open(f"{SCRIPTS}/{name}.json", encoding="utf-8"))
+    th = open(f"{SCRIPTS}/{name}.threads.txt", encoding="utf-8").read()
+    ig = open(f"{SCRIPTS}/{name}.insta.txt", encoding="utf-8").read()
+    mp4 = f"site/short-{name}.mp4"
+    probs = []
+    if not os.path.exists(mp4) or os.path.getsize(mp4) < 200_000: probs.append("영상 파일이 없거나 너무 작음")
+    else:
+        dur, vol = media_info(mp4)
+        if not 12 <= dur <= 60: probs.append(f"영상 길이 이상 ({dur:.0f}초)")
+        if vol < -40: probs.append("소리가 거의 없음")
+    if "coupang" not in th and "coupa.ng" not in th: probs.append("스레드 글에 구매 링크 없음")
+    if "coupang" not in ig and "coupa.ng" not in ig: probs.append("인스타 글에 구매 링크 없음")
+    if "수수료" not in th or "수수료" not in ig: probs.append("대가성 문구 없음")
+    if len(th) > 500: probs.append("스레드 글 500자 초과")
+    say = " ".join([js.get("intro", {}).get("say", "")] + [s["say"] for s in js["scenes"]])
+    for w in BAD_WORDS:
+        if w in th or w in ig or w in say: probs.append(f"금지 표현 포함: {w}")
+    return probs, js, th, mp4
+
+
+def gemini_check(js, th, mp4):
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key or os.path.getsize(mp4) > 18_000_000: return None
+    script = "\n".join([js.get("intro", {}).get("say", "")] + [s["say"] for s in js["scenes"]] + [js.get("cta_say", "")])
+    prompt = (f"너는 쇼츠 검수자야. 이 영상은 쿠팡 상품 '{js['product']}' 홍보 쇼츠고, 원래 내레이션 대본은 아래와 같아.\n{script}\n\n"
+              "영상을 직접 보고 들은 뒤 JSON으로만 답해: "
+              '{"transcript": "실제로 들린 내레이션", "extra_speech": "대본에 없는데 읽힌 말(지시문 등), 없으면 빈칸", '
+              '"problems": ["심각한 문제만: 대본에 없는 말 읽음, 소리 끊김/잡음, 상품과 무관한 이미지, 자막 잘림/겹침, 깨진 이미지, 오타, 어색한 문장"], '
+              '"hook_score": 1~10 (첫 3초가 시선을 끄는 정도), "ok": true/false}\n'
+              "사소한 취향 문제는 problems에 넣지 마.")
+    body = {"contents": [{"parts": [{"inline_data": {"mime_type": "video/mp4", "data": base64.b64encode(open(mp4, "rb").read()).decode()}},
+                                    {"text": prompt}]}],
+            "generationConfig": {"responseMimeType": "application/json"}}
+    for model in ["gemini-flash-latest", "gemini-2.5-flash"]:
+        try:
+            r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
+                              json=body, timeout=180).json()
+            t = r["candidates"][0]["content"]["parts"][0]["text"]
+            return json.loads(t[t.find("{"): t.rfind("}") + 1])
+        except Exception:
+            continue
+    return None
+
+
+def review(name):
+    probs, js, th, mp4 = rule_check(name)
+    g = None
+    if not any("영상 파일" in p for p in probs):
+        g = gemini_check(js, th, mp4)
+    if g:
+        if g.get("extra_speech", "").strip(): probs.append("대본에 없는 말 읽음: " + g["extra_speech"][:60])
+        probs += [f"AI 검수: {p}" for p in g.get("problems", [])[:5] if p]
+        for w in ["아나운서", "또박또박", "Say this", "friend"]:
+            if w in g.get("transcript", ""): probs.append(f"내레이션에 지시문 포함: {w}")
+    else:
+        print("::notice::AI 검수 사용 불가 → 규칙 검사만 진행")
+    os.makedirs("coupang/reviews", exist_ok=True)
+    json.dump({"name": name, "problems": probs, "gemini": g}, open(f"coupang/reviews/{name}.json", "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    print("검수:", "통과" if not probs else "문제 " + str(len(probs)) + "개", "| 후킹 점수:", (g or {}).get("hook_score", "-"))
+    for p in probs: print("  -", p)
+    return not probs, probs
+
+
+if __name__ == "__main__":
+    ok, _ = review(sys.argv[1])
+    sys.exit(0 if ok else 1)

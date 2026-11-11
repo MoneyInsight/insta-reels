@@ -109,6 +109,14 @@ jobs:
           git commit -qm "쿠팡 자동 ${{ steps.mode.outputs.mode }}: ${{ steps.prep.outputs.name }} (${{ steps.post.outcome }})" || exit 0
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done
 
+      - name: 검수 불합격 기록 저장
+        if: always() && steps.prep.outputs.skip == 'true'
+        run: |
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add -A coupang
+          git commit -qm "쿠팡 자동: 검수 기록" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep $((RANDOM % 6 + 5)); done
+
       - name: 토큰 만료면 알림 (깃허브 이슈)
         if: failure() && hashFiles('post.log') != ''
         env:

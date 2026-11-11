@@ -251,6 +251,21 @@ def build_video(js_path, mp4):
     subprocess.run([sys.executable, "make_product_short.py", js_path, mp4], check=True)
 
 
+def build_checked(name):
+    """영상 생성 → 검수. 문제 있으면 1번 다시 만들고, 그래도 심각한 문제면 게시 안 함."""
+    import review
+    probs = []
+    for i in range(2):
+        build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
+        ok, probs = review.review(name)
+        if ok: return True
+        print(f"검수 문제 → 다시 생성 ({i + 1}/2)")
+    hard = [p for p in probs if not p.startswith("AI 검수")]
+    if hard:
+        print("::error::검수 불합격 → 이번 회차 게시 안 함: " + " / ".join(hard)[:300]); return False
+    print("::notice::사소한 지적만 남아 게시 진행: " + " / ".join(probs)[:300]); return True
+
+
 def write_caps(name, p, g, link):
     th = g["threads_text"].replace("{LINK}", f"구매 링크 👉 {link}") + f"\n\n{DISCLOSURE}"
     ig = (f"{g['insta_hook']}\n\n{p['name']}\n" + "\n".join(f"✔ {f}" for f in g["features"][:5]) +
@@ -270,7 +285,8 @@ def prepare_threads():
         e = retry[-1]; name = e["name"]
         print("지난번 실패한 글 재게시:", e["product"], "시도", e.get("tries", 0) + 1)
         os.makedirs("site", exist_ok=True)
-        build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
+        if not build_checked(name):
+            fail("threads", name, "검수 불합격"); out("skip", "true"); return
         out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt"); return
     items = candidates()
     p = choose(items)
@@ -308,11 +324,13 @@ def prepare_threads():
     jsave(f"{SCRIPTS}/{name}.json", js)
     write_caps(name, p, g, link)
     os.makedirs("site", exist_ok=True)
-    build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
+    passed = build_checked(name)
     log = jload(LOG, [])
     log.append({"name": name, "productId": p["productId"], "product": p["name"], "category": p.get("category", ""),
                 "subId": sub, "link": link, "time": NOW.strftime("%Y-%m-%d %H:%M"), "threads": False, "insta": False})
     jsave(LOG, log)
+    if not passed:
+        fail("threads", name, "검수 불합격"); out("skip", "true"); return
     out("name", name); out("caption", f"{SCRIPTS}/{name}.threads.txt"); out("insta_caption", f"{SCRIPTS}/{name}.insta.txt")
     print("상품:", p["name"], "/ 링크:", link)
 
