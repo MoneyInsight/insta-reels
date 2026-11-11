@@ -340,12 +340,16 @@ def review_sheets(name, mp4, det):
         sheet = Image.new("RGB", (270 * 4, 480 * ((len(fr) + 3) // 4)), "white")
         for k, im in enumerate(fr): sheet.paste(im, (270 * (k % 4), 480 * (k // 4)))
         sheet.save(f"{QUEUE}/{name}.frames.jpg", quality=70)
-    cols = []
-    for x in det[:5]:
+    # 상세페이지 전체가 아니라 장면에 쓴 부분만 잘라서 모은다
+    js = jload(f"{SCRIPTS}/{name}.json", {}); cols = []
+    for sc in js.get("scenes", []):
+        k = sc.get("img", 0) - 1
+        if k < 0 or k >= len(det): continue
         try:
-            im = Image.open(io.BytesIO(requests.get(x["url"], timeout=20).content)).convert("RGB")
-            im = im.resize((360, int(im.height * 360 / im.width)))
-            cols.append(im.crop((0, 0, 360, min(im.height, 2400))))
+            im = Image.open(io.BytesIO(requests.get(det[k]["url"], timeout=20).content)).convert("RGB")
+            c = sc.get("crop") or [0, 0, 1, min(1, im.width * 1.2 / im.height)]
+            im = im.crop((int(c[0] * im.width), int(c[1] * im.height), int(c[2] * im.width), int(c[3] * im.height)))
+            cols.append(im.resize((360, max(1, int(im.height * 360 / im.width)))))
         except Exception:
             pass
     if cols:

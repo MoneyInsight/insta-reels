@@ -244,6 +244,9 @@ for i, s in enumerate(scenes):
     if s.get("crop"):  # [x0, y0, x1, y1] 비율(0~1)로 사진 일부를 확대해서 보여준다 (사진이 한 장뿐일 때 장면마다 다르게)
         x0, y0, x1, y1 = s["crop"]; w0, h0 = src_im.size
         src_im = src_im.crop((int(x0 * w0), int(y0 * h0), int(x1 * w0), int(y1 * h0)))
+    if src_im.height > src_im.width * 1.6:  # 긴 상세페이지 통째로는 쓰지 않고 한 부분만
+        w0, h0 = src_im.size; y0 = int(h0 * [0.05, 0.3, 0.55, 0.75][i % 4]); y0 = min(y0, h0 - int(w0 * 1.2))
+        src_im = src_im.crop((0, max(0, y0), w0, max(0, y0) + int(w0 * 1.2)))
     plate = (make_intro_plate if s.get("intro") else make_plate)(src_im); pp = f"{tmp}/p{i}.png"; plate.save(pp)
     op = f"{tmp}/o{i}.png"; overlay(s, i, len(scenes), last=s.get("last", False)).save(op)
     frames = int(sec * FPS)
