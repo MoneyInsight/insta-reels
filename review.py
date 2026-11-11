@@ -90,7 +90,7 @@ def gemini_check(js, th, mp4, ig=""):
     except Exception:
         names = []
     flash = sorted([n for n in names if re.match(r"gemini-[\d.]+-flash(-lite)?$", n)], reverse=True)
-    for model in (["gemini-flash-latest"] + flash)[:4]:
+    for model in (["gemini-flash-latest", "gemini-flash-lite-latest"] + flash)[:6]:
         r = {}
         try:
             r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",

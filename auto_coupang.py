@@ -141,8 +141,8 @@ def gemini_copy(p):
     try:
         ms = requests.get(f"https://generativelanguage.googleapis.com/v1beta/models?key={key}&pageSize=200", timeout=20).json().get("models", [])
         avail = [m["name"] for m in ms if "generateContent" in m.get("supportedGenerationMethods", [])]
-        flash = sorted([n for n in avail if re.match(r"models/gemini-[\d.]+-flash$", n)], reverse=True)
-        order = [n for n in ["models/gemini-flash-latest", "models/gemini-2.5-flash"] if n in avail] + flash
+        flash = sorted([n for n in avail if re.match(r"models/gemini-[\d.]+-flash(-lite)?$", n)], reverse=True)
+        order = [n for n in ["models/gemini-flash-latest", "models/gemini-flash-lite-latest", "models/gemini-2.5-flash"] if n in avail] + flash
         order = list(dict.fromkeys(order)) or ["models/gemini-2.5-flash"]
         prompt = f"""너는 쿠팡 살림템을 친구한테 추천하는 30대 유튜버다. 아래 상품으로 30초 세로 숏츠 대본과 캡션을 JSON으로만 써라.
 상품명: {p['name']}
