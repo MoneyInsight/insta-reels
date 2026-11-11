@@ -1,0 +1,60 @@
+{
+ "name": "20261111-2354-f13a8c",
+ "product": "블랙홀 타이벡 재배 12brix 감귤",
+ "coupang_product_id": 8440021482,
+ "images": [
+  "https://t5c.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/51626618701289-ece3b9cc-b8a6-4341-b372-fa4c21f12988.jpg",
+  "https://image11.coupangcdn.com/image/retail/images/123315955852817-072c4ac5-ef9b-4276-be2e-00358edf8d12.jpg",
+  "https://image11.coupangcdn.com/image/retail/images/50697987995108-02de0a96-b908-41f1-afef-ccd36f4b72cb.png",
+  "https://image11.coupangcdn.com/image/retail/images/1056770024131040-466efd71-f3c4-49fc-93b3-fe6f2af0f7a6.jpg"
+ ],
+ "voice": "male",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "살림 좀 해본 사람들은 다 아는 그거요.",
+   "cap": [
+    "살림러들은",
+    "[다 아는 그거]"
+   ],
+   "badge": "베스트 상품"
+  },
+  {
+   "img": 1,
+   "say": "오늘 소개할 건 블랙홀 타이벡 재배 12brix 감귤",
+   "cap": [
+    "오늘의 템",
+    "[블랙홀 타이벡]"
+   ]
+  },
+  {
+   "img": 2,
+   "say": "요즘 쿠팡에서 반응 좋은 상품이에요",
+   "cap": [
+    "요즘",
+    "[반응 좋은 템]"
+   ]
+  },
+  {
+   "img": 3,
+   "say": "상세 정보는 링크에서 꼭 확인해 보세요",
+   "cap": [
+    "자세한 건",
+    "[링크에서 확인]"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "이거 모르면 손해예요!",
+  "cap": [
+   "잠깐만요!",
+   "[모르면 손해]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
