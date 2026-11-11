@@ -129,8 +129,9 @@ def speakable(t):  # 숫자 단위를 읽기 좋게
 # ---------------- 후킹 대본: Gemini ----------------
 def detail_images(p, n=4):
     d = jload(f"coupang/details/{p['productId']}.json", {})
-    imgs = [x for x in d.get("images", []) if x.get("w", 0) >= 500 and x.get("h", 0) >= 500]
-    return imgs[1:1 + n] if len(imgs) > 1 else imgs[:n]   # 첫 장은 대표 사진과 겹치는 경우가 많다
+    imgs = [x for x in d.get("images", []) if not x.get("w") or (x["w"] >= 500 and x.get("h", 0) >= 400)]
+    if imgs and imgs[0].get("w") == 640 and imgs[0].get("h") == 640: imgs = imgs[1:]   # 대표 사진과 겹치는 첫 장
+    return imgs[:n]
 
 
 def gemini_copy(p):
@@ -164,9 +165,10 @@ JSON 형식: {{"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"
         import io
         from PIL import Image
         tiles = []   # (상세 이미지 번호, y0, y1) — Gemini가 장면마다 고른다
-        for di, x in enumerate(detail_images(p, 3)):
+        for di, x in enumerate(detail_images(p, 6)):
             try:
                 im = Image.open(io.BytesIO(requests.get(x["url"], timeout=30, headers={"User-Agent": "Mozilla/5.0"}).content)).convert("RGB")
+                if im.width < 500 or im.height < 300: continue   # 아이콘·배지 같은 작은 이미지 제외
                 step = int(im.width * 1.1)
                 for y in range(0, im.height - step // 3, step):
                     if len(tiles) >= 14: break
@@ -281,7 +283,7 @@ def prepare_threads():
     name = NOW.strftime("%Y%m%d-%H%M") + "-" + hashlib.md5(str(p["productId"]).encode()).hexdigest()[:6]
     g = gemini_copy(p) or gemini_copy(p) or template_copy(p, name)  # 실패하면 Gemini 1번 더
     crops = [None, [0.1, 0.05, 0.9, 0.95], None, [0.15, 0.1, 0.85, 0.8], None]
-    det = detail_images(p, 3)
+    det = detail_images(p, 6)
     images = [p["image"]] + [x["url"] for x in det]
     tiles = g.get("_tiles") or []
     scenes = []
@@ -293,7 +295,7 @@ def prepare_threads():
             di, y0, y1 = tiles[t]; sc["img"] = 1 + di; sc["crop"] = [0, y0, 1, y1]
         elif i >= 1 and det:
             x = det[(i - 1) % len(det)]; sc["img"] = 1 + (i - 1) % len(det)
-            win = min(1.0, x["w"] * 1.1 / x["h"]); y0 = (1 - win) * [0.05, 0.3, 0.55, 0.8][i - 1] if win < 1 else 0
+            win = min(1.0, x["w"] * 1.1 / x["h"]) if x.get("w") and x.get("h") else 1.0; y0 = (1 - win) * [0.05, 0.3, 0.55, 0.8][i - 1] if win < 1 else 0
             if win < 1: sc["crop"] = [0, round(y0, 3), 1, round(y0 + win, 3)]
         elif crops[i]: sc["crop"] = crops[i]
         scenes.append(sc)
