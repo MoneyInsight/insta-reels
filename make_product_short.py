@@ -36,9 +36,11 @@ def find_font(weights):
     for w in weights:
         hits = glob.glob(f"/usr/share/fonts/**/NotoSansCJK-{w}.ttc", recursive=True)
         if hits: return hits[0]
+        hits = glob.glob(os.path.expanduser(f"~/.fonts/NotoSansCJKkr-{w}.otf")) + glob.glob(f"fonts/NotoSansCJKkr-{w}.otf")
+        if hits: return hits[0]
     raise SystemExit("Noto Sans CJK 폰트를 찾을 수 없습니다")
-FB = find_font(["Black", "Bold"]); FBold = find_font(["Bold"]); FM = find_font(["Medium", "Regular"])
-def font(path, size): return ImageFont.truetype(path, size, index=1)  # index=1: 한국어
+FB = find_font(["Black", "Bold"]); FBold = find_font(["Bold"]); FM = find_font(["Medium", "Regular", "Bold"])
+def font(path, size): return ImageFont.truetype(path, size, index=1 if path.endswith(".ttc") else 0)  # ttc는 index=1이 한국어
 
 # ---------- 강조색 (상품마다 다르게, 모두 밝은 색) ----------
 ACCENTS = [(255, 214, 0), (0, 230, 180), (255, 120, 150), (110, 200, 255), (255, 160, 60), (190, 150, 255)]

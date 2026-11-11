@@ -40,15 +40,19 @@ jobs:
           echo "mode=${M:-threads}" >> $GITHUB_OUTPUT; echo "모드: ${M:-threads}"
 
       - name: 도구 설치
-        timeout-minutes: 8
+        timeout-minutes: 6
         run: |
-          # 패키지 서버가 늦으면 시간 제한을 두고 다시 시도
-          for t in 1 2 3; do
-            timeout 150 sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk > /dev/null 2>&1 && break
-            timeout 120 sudo apt-get update -qq -o Acquire::Retries=2 > /dev/null 2>&1 || true
+          pip install -q pillow numpy requests edge-tts imageio-ffmpeg
+          # 영상 변환기: 패키지 서버를 거치지 않는 고정 실행파일
+          if ! which ffmpeg >/dev/null; then
+            F=$(python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())"); sudo ln -sf "$F" /usr/local/bin/ffmpeg
+          fi
+          # 한글 글꼴: 깃허브에서 직접 받기
+          mkdir -p ~/.fonts
+          for w in Black Bold Medium; do
+            [ -f ~/.fonts/NotoSansCJKkr-$w.otf ] || curl -sSL --retry 3 -o ~/.fonts/NotoSansCJKkr-$w.otf "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/Korean/NotoSansCJKkr-$w.otf"
           done
-          which ffmpeg && fc-list | grep -qi "Noto Sans CJK"
-          pip install -q pillow numpy requests edge-tts
+          ffmpeg -version | head -1; ls -la ~/.fonts
 
       - name: 상품·대본·영상 준비
         id: prep
