@@ -1,0 +1,112 @@
+{
+ "name": "20261112-2055-813ad1",
+ "product": "하기스 퓨어그린 생분해 아기물티슈",
+ "coupang_product_id": 6615096004,
+ "images": [
+  "https://thumbnail2.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/46452575628319-21d2e3f2-f8a6-404e-9cbf-fb755636916c.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/6506712518597526-997c6898-771e-45e7-a103-2998c686f6eb.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/139400968872271-67a313ee-f668-44be-9a67-7c6c75af1a08.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/11074999554436-f01a9511-96ad-4833-ae06-eda1171bfab3.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/138090893046883-84623d79-310a-41c6-a74d-b62c12f9d662.jpg",
+  "https://image.coupangcdn.com/image/retail/images/46452575628319-21d2e3f2-f8a6-404e-9cbf-fb755636916c.jpg",
+  "https://image.coupangcdn.com/image/retail/images/34067031784269-5ec6e9bd-63fe-4d78-9bd3-757c7a5b9178.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 3,
+   "say": "매번 쓰는 물티슈, 찝찝하지 않으셨나요?",
+   "cap": [
+    "매번 쓰던",
+    "[물티슈] 찝찝"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0,
+    0.0396,
+    1,
+    0.0792
+   ]
+  },
+  {
+   "img": 3,
+   "say": "하기스 퓨어그린 생분해 아기물티슈는 생분해 원단이라 안심이에요.",
+   "cap": [
+    "자연을 담은",
+    "[생분해] 원단"
+   ],
+   "crop": [
+    0.15,
+    0.3288,
+    0.85,
+    0.3506
+   ]
+  },
+  {
+   "img": 3,
+   "say": "꼭 필요한 3가지 성분만 담아서 순하게 닦여요.",
+   "cap": [
+    "필요한 것만",
+    "[성분] 3가지"
+   ],
+   "crop": [
+    0.1,
+    0.204,
+    0.9,
+    0.2337
+   ]
+  },
+  {
+   "img": 3,
+   "say": "미세플라스틱 불검출 원단이라 매일 쓰기 좋아요.",
+   "cap": [
+    "걱정 없는",
+    "[미세플라스틱]"
+   ],
+   "crop": [
+    0.05,
+    0.3585,
+    0.95,
+    0.3822
+   ]
+  },
+  {
+   "img": 3,
+   "say": "하기스 퓨어그린으로 편하게 바꿔보세요.",
+   "cap": [
+    "지금 바로",
+    "[정착]하세요"
+   ],
+   "crop": [
+    0,
+    0.0792,
+    1,
+    0.1188
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0,
+  0.0396,
+  1,
+  0.0792
+ ],
+ "title": [
+  "매번 쓰는 물티슈",
+  "성분 걱정되셨죠?"
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "잠깐만요",
+   "[성분] 확인해요"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
