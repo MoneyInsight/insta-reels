@@ -277,7 +277,7 @@ scenes = list(data["scenes"])
 if data.get("intro") and not PANDA:  # 첫 1~2초 후킹 인트로 (상품 크게 + 외침)
     scenes.insert(0, {"img": 0, "intro": True, "badge": "!", "say": data["intro"].get("say", "여러분! 이거 아시나요?!"),
                       "cap": data["intro"].get("cap", ["여러분!", "[이거 아시나요?!]"])})
-cta = {"img": scenes[0].get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."), "crop": data.get("cta_crop"),
+cta = {"img": (data["scenes"][0] if PANDA else scenes[0]).get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."), "crop": data.get("cta_crop"),
        "cap": data.get("cta", ["구매 링크는", "[프로필]에서 확인!"]), "last": True}
 scenes.append(cta)
 T = 0.3  # 장면 전환 겹침

@@ -156,6 +156,8 @@ def gemini_copy(p):
 - 1장면은 스크롤을 멈추게 하는 후킹: 대상 지목 + 공감되는 상황 질문(예: "자취생 여러분, 이거 아직 모르세요?", "매번 ○○ 때문에 짜증나셨죠?"). badge는 4~6자(예: 요즘 인기, 살림 필수템).
 - 2~5장면은 상품명 속 특징을 하나씩, 생활 장면에 빗대서 재미있게. 마지막 장면은 가벼운 웃음 포인트로 마무리.
 - say는 영상 내레이션이다. 5개 장면의 say를 이어 읽으면 한 편의 자연스러운 이야기가 되게 쓴다(문제 → 왜 불편한지 → 이 상품이 해결 → 장점 → 마무리). 친근한 존댓말 "~요"체, 장면당 1~2문장, 합쳐서 40자 이내, 숫자는 읽는 대로('9리터'). 예: "딱딱한 돌 규조토, 설마 아직도 쓰세요?" → "시간 지나면 쉽게 휘고, 빨지도 못해 찝찝하잖아요." → "이건 부드러워서 깨질 일도 없어요." 단 "바꿨어요"처럼 직접 써 본 표현은 쓰지 않는다.
+- 마지막 장면 say에는 긴 상품명 전체를 읽지 않는다(브랜드+종류 정도의 짧은 이름만, 예: "쿠첸 밥솥").
+- 타일을 고른 장면에는 "box":[x0,y0,x1,y1]도 넣는다: 그 타일 안에서 글자 없이 사진만 담기는 영역(0~1 비율, 가로세로 비슷하게, 타일의 40% 이상 크기). 사진과 글자가 섞여 분리가 안 되면 box를 생략한다.
 - title: 영상 위에 계속 떠 있는 2줄 제목. 각 줄 6~10자. 첫 줄은 문제·상황, 둘째 줄은 해결·상품 종류(예: ["돌 규조토 버리고", "정착한 꿀템"] 말고 써 본 척 없는 ["전자파 걱정 없는", "꿀잠 탄소매트"]).
 - cap은 2줄, 한 줄 12자 이내, 가장 센 단어 하나를 [대괄호]로 감싼다.
 - threads_text: 250자 이내 반말 커뮤니티체, 3~5줄. 숫자는 숫자 그대로(5.4, 9L). 첫 줄 공감 후킹 → 상품 특징 1~2개를 감탄하듯 → 웃음 포인트 한 줄 → 마지막 줄에 정확히 "{{LINK}}". 상품명 전체는 쓰지 않아도 된다. 해시태그 없이, 이모지 1~2개.
@@ -301,6 +303,12 @@ def make_one(p=None):
         t = s.get("tile")
         if isinstance(t, int) and 0 <= t < len(tiles):
             di, y0, y1 = tiles[t]; sc["img"] = 1 + di; sc["crop"] = [0, y0, 1, y1]
+            b = s.get("box")
+            try:
+                if b and len(b) == 4 and 0 <= b[0] < b[2] <= 1 and 0 <= b[1] < b[3] <= 1 and (b[2] - b[0]) * (b[3] - b[1]) >= 0.3:
+                    sc["crop"] = [round(b[0], 3), round(y0 + (y1 - y0) * b[1], 4), round(b[2], 3), round(y0 + (y1 - y0) * b[3], 4)]
+            except Exception:
+                pass
         elif i >= 1 and det:
             x = det[(i - 1) % len(det)]; sc["img"] = 1 + (i - 1) % len(det)
             win = min(1.0, x["w"] * 1.1 / x["h"]) if x.get("w") and x.get("h") else 1.0; y0 = (1 - win) * [0.05, 0.3, 0.55, 0.8][i - 1] if win < 1 else 0
@@ -309,7 +317,7 @@ def make_one(p=None):
         scenes.append(sc)
     os.makedirs(SCRIPTS, exist_ok=True)
     js = {"name": name, "product": short_name(p["name"], 20), "coupang_product_id": p["productId"], "images": images,
-          "voice": "female", "disclosure": DISCLOSURE, "scenes": scenes, "style": "panda",
+          "voice": "female", "disclosure": DISCLOSURE, "scenes": scenes, "style": "panda", "cta_crop": scenes[0].get("crop"),
           "title": [str(t)[:12] for t in (g.get("title") or [])[:2]] or [short_name(p["name"], 12)],
           "intro": {"say": g.get("intro_say") or random.Random(name).choice(INTROS)[0],
                     "cap": (g.get("intro_cap") or random.Random(name).choice(INTROS)[1])[:2]},
@@ -376,6 +384,10 @@ def post_next():
     if not ok:
         print("승인된 영상이 없어 이번 회차는 건너뜁니다"); out("skip", "true"); return
     name = ok[0]
+    js = jload(f"{SCRIPTS}/{name}.json", {})
+    if js.get("style") != "panda":  # 예전 대본도 새 형식으로 만든다
+        js["style"] = "panda"; js.setdefault("title", [c.replace("[", "").replace("]", "") for c in js.get("intro", {}).get("cap", [])][:2] or [js["product"]])
+        js["cta_crop"] = js["scenes"][0].get("crop"); jsave(f"{SCRIPTS}/{name}.json", js)
     os.makedirs("site", exist_ok=True); build_video(f"{SCRIPTS}/{name}.json", f"site/short-{name}.mp4")
     import review
     hard = review.rule_check(name)[0]
