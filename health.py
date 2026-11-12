@@ -78,10 +78,15 @@ def build():
         subprocess.run([sys.executable, "cardnews.py", f"{d}/spec.json", f"{d}/cards"], check=True)
         r = subprocess.run([sys.executable, "cardvideo.py", d, "--gemini-only"], capture_output=True, text=True)
         print(r.stdout[-600:], r.stderr[-600:])
+        if (r.returncode != 0 or not os.path.exists(f"{d}/video.mp4")) and not items("ready"):
+            # 자연 음성 한도 + 올릴 것이 없으면 → 무료 대체 음성으로 만들어 빈 시간 없이 게시
+            r = subprocess.run([sys.executable, "cardvideo.py", d], capture_output=True, text=True)
+            print("대체 음성", r.stdout[-300:], r.stderr[-300:])
         if r.returncode != 0 or not os.path.exists(f"{d}/video.mp4"):
             print("::notice::자연 음성 한도 → 다음 회차에 다시", n); continue
         link = spec["product"]["link"]
         spec["threads_caption"] = spec["threads_text"].strip() + f"\n\n오늘 카드 속 상품 👉 {link}\n\n{CAUTION}\n{DISCLOSURE}"
+        spec["threads_reply"] = f"📌 {spec.get('product_label') or spec['product']['name'][:30]} 바로가기 👉 {link}\n저장해 두면 필요할 때 다시 보기 편해요.\n{DISCLOSURE}"
         spec["insta_caption"] = (spec["insta_text"].strip() + f"\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n{CAUTION}\n{DISCLOSURE}\n\n"
                                  + " ".join("#" + h.lstrip("#") for h in spec.get("hashtags", [])[:12]))
         spec["status"] = "ready"; js(f"{d}/spec.json", spec); print("준비 완료", n)
@@ -94,12 +99,12 @@ def links_page():
         s = jl(f"{Q}/{n}/spec.json", {})
         if s.get("status") not in ("posted", "ready") or not s.get("product"): continue
         p = s["product"]
-        rows.append(f'<a class="i" href="{p["link"]}" rel="sponsored nofollow"><img src="{p["image"]}" alt=""><div><b>{s.get("topic","")}</b><span>{p["name"]}</span></div></a>')
+        rows.append(f'<a class="i" href="{p["link"]}" rel="sponsored nofollow"><img src="{p["image"]}" alt=""><div><b>{s.get("topic","")}</b><span>{p["name"]}</span><em>쿠팡에서 보기 ›</em></div></a>')
     html = ("<!DOCTYPE html><html lang='ko'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
             "<title>오늘 소개한 상품</title><style>body{margin:0;font-family:system-ui,sans-serif;background:#faf5ed;color:#221c18}"
             "h1{font-size:20px;padding:18px 16px 4px}p.n{font-size:12px;color:#6e6258;padding:0 16px}"
             ".i{display:flex;gap:12px;align-items:center;margin:10px 12px;padding:10px;background:#fff;border-radius:14px;text-decoration:none;color:inherit}"
-            ".i img{width:72px;height:72px;object-fit:cover;border-radius:10px}.i b{display:block;font-size:15px;color:#b3261e}.i span{font-size:13px}</style></head><body>"
+            ".i img{width:72px;height:72px;object-fit:cover;border-radius:10px}.i b{display:block;font-size:15px;color:#b3261e}.i span{display:block;font-size:13px}.i em{display:inline-block;margin-top:6px;font-style:normal;font-size:13px;font-weight:700;color:#fff;background:#b3261e;padding:5px 12px;border-radius:20px}</style></head><body>"
             "<h1>오늘 소개한 상품</h1><p class='n'>" + DISCLOSURE + "</p>" + "".join(rows) + "</body></html>")
     os.makedirs("site", exist_ok=True); open("site/links.html", "w", encoding="utf-8").write(html)
 
@@ -111,6 +116,7 @@ def nxt():
     n, s = r[0]
     os.makedirs("site", exist_ok=True); shutil.copy(f"{Q}/{n}/video.mp4", f"site/health-{n}.mp4")
     open(f"{Q}/{n}/threads.txt", "w", encoding="utf-8").write(s["threads_caption"])
+    if s.get("threads_reply"): open(f"{Q}/{n}/threads_reply.txt", "w", encoding="utf-8").write(s["threads_reply"])
     open(f"{Q}/{n}/insta.txt", "w", encoding="utf-8").write(s["insta_caption"])
     out("name", n); out("caption", f"{Q}/{n}/threads.txt"); out("insta_caption", f"{Q}/{n}/insta.txt")
     print("게시:", s.get("topic"), "/", s["product"]["name"][:30])

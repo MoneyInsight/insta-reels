@@ -43,3 +43,17 @@ else:
 
 pub = call("POST", f"{uid}/threads_publish", creation_id=cid)
 print("스레드 게시 완료! 게시물 ID:", pub["id"])
+
+# 첫 댓글에 링크 다시 달기 (클릭 유도) — 실패해도 본문 게시는 성공으로 둔다
+rf = os.environ.get("THREADS_REPLY", "")
+if rf and os.path.exists(rf):
+    try:
+        time.sleep(20)
+        r = requests.post(f"{G}/{uid}/threads", data={"media_type": "TEXT", "text": open(rf, encoding="utf-8").read().strip()[:500],
+                          "reply_to_id": pub["id"], "access_token": TOKEN}, timeout=60).json()
+        if "id" in r:
+            time.sleep(5)
+            q = requests.post(f"{G}/{uid}/threads_publish", data={"creation_id": r["id"], "access_token": TOKEN}, timeout=60).json()
+            print("링크 댓글:", q.get("id") or q)
+        else: print("::warning::링크 댓글 실패:", r)
+    except Exception as e: print("::warning::링크 댓글 실패:", e)

@@ -1,4 +1,4 @@
-name: 건강 카드뉴스 자동 (매시간 만들기 + 07~23시 1시간에 1편 게시)
+name: 건강 카드뉴스 자동 (매시간 1편 만들고 게시, 24시간)
 on:
   schedule:
     - cron: "23 * * * *"   # 매시간: 영상 만들기 + (한국 07~23시) 1편 게시
@@ -32,9 +32,6 @@ jobs:
       - name: 게시할 것 꺼내기
         id: prep
         run: |
-          H=$(date -u +%H)
-          K=$(( (10#$H + 9) % 24 ))
-          if [ "${{ github.event_name }}" = "schedule" ] && { [ $K -lt 7 ] || [ $K -gt 23 ]; }; then echo "skip=true" >> $GITHUB_OUTPUT; echo "새벽(한국 ${K}시)은 만들기만"; exit 0; fi
           if [ "${{ inputs.post }}" = "no" ]; then echo "skip=true" >> $GITHUB_OUTPUT; exit 0; fi
           python health.py next
       - uses: actions/upload-pages-artifact@v3
@@ -55,7 +52,7 @@ jobs:
           for i in $(seq 1 30); do code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10; done
           post() { for t in 1 2 3; do
               if [ "$1" = insta ]; then python post_instagram.py "$URL" "${{ steps.prep.outputs.insta_caption }}" 2>&1 | tee -a post.log && return 0
-              else python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee -a post.log && return 0; fi
+              else THREADS_REPLY="coupang/cardnews/queue/${{ steps.prep.outputs.name }}/threads_reply.txt" python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee -a post.log && return 0; fi
               grep -qiE "parse access token|expired|session has|OAuthException" post.log && { echo "TOKEN_ERROR $1" >> post.log; return 1; }
               sleep $((t * 60)); done; return 1; }
           OK=0
