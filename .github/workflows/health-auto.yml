@@ -22,7 +22,8 @@ jobs:
           pip install -q pillow numpy requests edge-tts imageio-ffmpeg
           which ffmpeg || { F=$(python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())"); sudo ln -sf "$F" /usr/local/bin/ffmpeg; }
           which ffprobe || sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true
-          fc-list | grep -qi "Noto Sans CJK" || sudo apt-get install -y -qq fonts-noto-cjk >/dev/null 2>&1 || true
+          sudo apt-get install -y -qq fonts-noto-cjk fonts-noto-cjk-extra >/dev/null 2>&1 || true
+          ls /usr/share/fonts/opentype/noto/ | grep -i cjk
       - name: 영상 만들기
         env:
           COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}

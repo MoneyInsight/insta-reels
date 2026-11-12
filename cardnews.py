@@ -8,11 +8,17 @@ SAFE_T, SAFE_B = 130, 170  # 위아래는 인스타 버튼·이름에 가려지�
 BG, INK, SUB = (250, 245, 237), (34, 28, 24), (110, 98, 88)
 
 
+FALLBACK = {"Black": ["Black", "Bold"], "Bold": ["Bold", "Black"], "Medium": ["Medium", "Regular", "DemiLight"], "Regular": ["Regular", "Medium", "DemiLight"]}
+
+
 def font(w, size):
-    cands = glob.glob(f"/usr/share/fonts/**/NotoSansCJK-{w}.ttc", recursive=True)
-    if cands: return ImageFont.truetype(cands[0], size, index=1)
-    cands = glob.glob(os.path.expanduser(f"~/.fonts/NotoSansCJKkr-{w}.otf"))
-    return ImageFont.truetype(cands[0], size) if cands else ImageFont.load_default()
+    """굵기 파일이 없으면 가까운 굵기로 대신 (기본 비트맵 글꼴로 떨어지면 글자가 깨져 보임)"""
+    for x in FALLBACK.get(w, [w]) + ["Bold", "Regular"]:
+        c = glob.glob(f"/usr/share/fonts/**/NotoSansCJK-{x}.ttc", recursive=True)
+        if c: return ImageFont.truetype(c[0], size, index=1)
+        c = glob.glob(os.path.expanduser(f"~/.fonts/NotoSansCJKkr-{x}.otf"))
+        if c: return ImageFont.truetype(c[0], size)
+    raise SystemExit("한글 글꼴 없음 — 카드 만들기 중단")
 
 
 def hexc(h): h = h.lstrip("#"); return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
