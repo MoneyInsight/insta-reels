@@ -1,8 +1,6 @@
 name: 쿠팡 숏츠 자동 (Claude 검수 통과 영상만 30분마다 스레드·인스타)
 
 on:
-  schedule:
-    - cron: "7,37 * * * *"   # 30분마다 (붐비는 정각·30분을 피함) 같은 영상을 스레드·인스타에 함께
   workflow_dispatch:
     inputs:
       mode:

@@ -6,7 +6,7 @@ import requests
 from PIL import Image, ImageFilter, ImageEnhance
 
 W, H, FPS = 1080, 1920, 30
-d = sys.argv[1]; spec = json.load(open(f"{d}/spec.json", encoding="utf-8"))
+d = [a for a in sys.argv[1:] if not a.startswith("--")][0]; spec = json.load(open(f"{d}/spec.json", encoding="utf-8"))
 tmp = f"/tmp/cv-{os.path.basename(d)}"; os.makedirs(tmp, exist_ok=True)
 STYLE = ("Read the following Korean text aloud in a warm, calm, friendly female voice, like a kind health-information host "
          "explaining to a friend. Natural pace, clear pronunciation, gentle smile in the voice. Read only the text: ")
@@ -49,6 +49,8 @@ cards = spec["cards"]; wavs = [f"{tmp}/n{i}.wav" for i in range(len(cards))]
 used = "gemini"
 for i, c in enumerate(cards):
     if not gemini(c["narration"], wavs[i]): used = "edge"; break
+if used == "edge" and "--gemini-only" in sys.argv:
+    print("::notice::자연 음성 한도 초과 → 영상 만들지 않음"); sys.exit(2)
 if used == "edge":
     print("::notice::자연 음성 한도 초과 → 전체 기본 음성으로")
     for i, c in enumerate(cards): edge(c["narration"], wavs[i])

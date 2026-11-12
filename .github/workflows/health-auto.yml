@@ -1,0 +1,81 @@
+name: 건강 카드뉴스 자동 (만들기 17:23 · 게시 12:23, 20:23)
+on:
+  schedule:
+    - cron: "23 3,8,11 * * *"   # 한국 12:23 게시 / 17:23 영상 만들기(자연 음성 한도가 풀린 뒤) / 20:23 게시
+  workflow_dispatch:
+    inputs:
+      post: { description: "지금 게시도 할지 (yes/no)", required: false, default: "yes" }
+permissions: { contents: write, pages: write, id-token: write, issues: write }
+concurrency: { group: daily-reel, cancel-in-progress: false }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - name: 도구 설치
+        run: |
+          pip install -q pillow numpy requests edge-tts imageio-ffmpeg
+          which ffmpeg || { F=$(python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())"); sudo ln -sf "$F" /usr/local/bin/ffmpeg; }
+          which ffprobe || sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true
+          fc-list | grep -qi "Noto Sans CJK" || sudo apt-get install -y -qq fonts-noto-cjk >/dev/null 2>&1 || true
+      - name: 영상 만들기
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python health.py build
+      - name: 게시할 것 꺼내기
+        id: prep
+        run: |
+          H=$(date -u +%H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$H" = "08" ]; then echo "skip=true" >> $GITHUB_OUTPUT; echo "만들기만 하는 회차"; python health.py next >/dev/null || true; exit 0; fi
+          if [ "${{ inputs.post }}" = "no" ]; then echo "skip=true" >> $GITHUB_OUTPUT; exit 0; fi
+          python health.py next
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.prep.outputs.skip != 'true'
+        with: { path: site }
+      - name: 영상 공개 주소 만들기
+        id: deploy
+        if: steps.prep.outputs.skip != 'true'
+        uses: actions/deploy-pages@v4
+      - name: 게시
+        id: post
+        if: steps.prep.outputs.skip != 'true'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          URL="${{ steps.deploy.outputs.page_url }}health-${{ steps.prep.outputs.name }}.mp4"
+          for i in $(seq 1 30); do code=$(curl -s -o /dev/null -w "%{http_code}" "$URL"); [ "$code" = "200" ] && break; sleep 10; done
+          post() { for t in 1 2 3; do
+              if [ "$1" = insta ]; then python post_instagram.py "$URL" "${{ steps.prep.outputs.insta_caption }}" 2>&1 | tee -a post.log && return 0
+              else python post_threads.py "$URL" "${{ steps.prep.outputs.caption }}" 2>&1 | tee -a post.log && return 0; fi
+              grep -qiE "parse access token|expired|session has|OAuthException" post.log && { echo "TOKEN_ERROR $1" >> post.log; return 1; }
+              sleep $((t * 60)); done; return 1; }
+          OK=0
+          post threads && echo THREADS_OK >> post.log && OK=1
+          post insta && echo INSTA_OK >> post.log && OK=1
+          [ $OK = 1 ]
+      - name: 기록 저장
+        if: always()
+        run: |
+          N="${{ steps.prep.outputs.name }}"
+          if [ -n "$N" ] && [ -f post.log ]; then
+            grep -q THREADS_OK post.log && python health.py mark $N threads "$(grep -o '게시물 ID: [0-9]*' post.log | head -1 | grep -o '[0-9]*$')"
+            grep -q INSTA_OK post.log && python health.py mark $N insta "$(grep -o '미디어 ID: [0-9]*' post.log | head -1 | grep -o '[0-9]*$')"
+          fi
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add -A coupang naver-clip 2>/dev/null; git commit -qm "건강 카드뉴스: ${N:-만들기}" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep 7; done
+      - name: 토큰 만료 알림
+        if: failure() && hashFiles('post.log') != ''
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          grep -q TOKEN_ERROR post.log || exit 0
+          T=$(grep -q "TOKEN_ERROR insta" post.log && echo IG_ACCESS_TOKEN || echo THREADS_ACCESS_TOKEN)
+          gh issue list --state open --search "토큰 만료 $T" --json number -q '.[0].number' | grep -q . || gh issue create --title "⚠️ 토큰 만료: $T 다시 발급 필요" --body "건강 카드뉴스 게시가 토큰 오류로 멈췄습니다."
