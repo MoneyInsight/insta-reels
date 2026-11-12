@@ -30,7 +30,11 @@ def ig_views(i):
 clicks = {}
 try:
     s = (now - timedelta(days=7)).strftime("%Y%m%d"); d = ac.cp.call("GET", ac.cp.BASE + "/reports/clicks", f"startDate={s}&endDate={now:%Y%m%d}") or []
-    for row in d if isinstance(d, list) else d.get("data", []):
+    rows_ = d if isinstance(d, list) else d.get("data", [])
+    tot_ = sum(int(r.get("click") or 0) for r in rows_); subs_ = {}
+    for r in rows_: subs_[r.get("subId") or "(없음)"] = subs_.get(r.get("subId") or "(없음)", 0) + int(r.get("click") or 0)
+    print("클릭 리포트 원본: 행", len(rows_), "총 클릭", tot_, "날짜", sorted({str(r.get("date")) for r in rows_})[-3:], "코드별", dict(sorted(subs_.items(), key=lambda x: -x[1])[:12]), "키", list(rows_[0].keys()) if rows_ else None)
+    for row in rows_:
         k = row.get("subId") or ""; clicks[k] = clicks.get(k, 0) + int(row.get("click") or 0)
 except BaseException as e:
     print("클릭 조회 실패", e)
