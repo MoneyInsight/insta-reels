@@ -1,0 +1,112 @@
+{
+ "name": "20261112-1859-37aa90",
+ "product": "타포 400만 화소 QHD 주야간",
+ "coupang_product_id": 7660655062,
+ "images": [
+  "https://thumbnail4.coupangcdn.com/thumbnails/remote/700x700ex/image/1025_amir_coupang_oct_80k/2159/17b192bdf5ec159570593595e3c7bab26d068b5e9c1a7469fd83d477ed76.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/43284206564147-7ebb0e16-2647-4555-a479-5b2521b80cd4.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/4121656845713084-33b40fee-4a66-49b6-9150-e6deb2386dd4.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/37256652442341-f978bd60-683c-414a-8e99-b30f6270b936.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/230047740430777-84eed242-9c9e-457e-bc05-662c1ebe8723.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/52350933373264-6358babe-3dbf-40e9-98c9-b59fdc1efde8.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/52350451419410-75348182-1425-4abd-95b8-ba2d944830c8.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 4,
+   "say": "주변에 어두운 곳 많아서 걱정되셨죠?",
+   "cap": [
+    "밤마다 [불안]",
+    "하신 분?"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0.0,
+    0.1724,
+    1.0,
+    0.2413
+   ]
+  },
+  {
+   "img": 3,
+   "say": "400만 화소 QHD로 선명하게 보여요.",
+   "cap": [
+    "디테일이 [미쳤네]",
+    "초고화질"
+   ],
+   "crop": [
+    0,
+    0.3408,
+    1,
+    0.5112
+   ]
+  },
+  {
+   "img": 3,
+   "say": "주야간 감시가 가능해서 든든해요.",
+   "cap": [
+    "밤에도 [환하게]",
+    "야간 감시"
+   ],
+   "crop": [
+    0.0,
+    0.0,
+    1.0,
+    0.1278
+   ]
+  },
+  {
+   "img": 4,
+   "say": "스마트 WiFi로 앱 연결도 편해요.",
+   "cap": [
+    "핸드폰으로 [바로]",
+    "스마트 연동"
+   ],
+   "crop": [
+    0.35,
+    0.405,
+    1.0,
+    0.5085
+   ]
+  },
+  {
+   "img": 4,
+   "say": "지금 바로 확인해 보세요.",
+   "cap": [
+    "품절되기 전",
+    "[급 구경하기]"
+   ],
+   "crop": [
+    0.0,
+    0.0517,
+    1.0,
+    0.1724
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0.0,
+  0.1724,
+  1.0,
+  0.2413
+ ],
+ "title": [
+  "집 주위 불안하다면",
+  "실외용 홈 CCTV"
+ ],
+ "intro": {
+  "say": "여러분! 이거 아시나요?!",
+  "cap": [
+   "밤마다 불안하면",
+   "[실외용 홈 CCTV]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
