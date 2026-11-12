@@ -1,0 +1,112 @@
+{
+ "name": "20261112-1826-112ba6",
+ "product": "마이비데 클린케어 화장실용 물티슈",
+ "coupang_product_id": 6964996972,
+ "images": [
+  "https://thumbnail3.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/4992491197695-d4163cba-eb03-43b6-810d-661d9df6b56a.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2855924773989943-1557553a-e678-4294-a2f9-48c75f01983d.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/61142445047630-be47c38a-7149-4cd0-8e91-56d6cfe4cd9a.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/61141656631433-c1056150-c256-4a40-b9a9-33f332a61827.jpg",
+  "https://image.coupangcdn.com/image/vendor_inventory/e77f/d9a0ec13145e313a33590094372b07934040d1629b30a6b7c702c090bc68.jpg",
+  "https://image.coupangcdn.com/image/vendor_inventory/29cc/435146cc52680edb71b69d86ffac05e33d4e61e7bf564794fa975d93d83a.jpg",
+  "https://image.coupangcdn.com/image/vendor_inventory/4e0f/ba8f26ec0e0c7b44b34bb3b72cdad280998a463db6614395069ec14339f3.png"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 2,
+   "say": "그냥 휴지만 쓰면 뭔가 찝찝하죠?",
+   "cap": [
+    "찝찝한 마무리",
+    "이제는 [안녕]"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.0391
+   ]
+  },
+  {
+   "img": 2,
+   "say": "변기에 내려도 쏙 잘 내려가요.",
+   "cap": [
+    "변기에 내려도",
+    "[걱정 없는]"
+   ],
+   "crop": [
+    0,
+    0.3126,
+    1,
+    0.3517
+   ]
+  },
+  {
+   "img": 2,
+   "say": "엠보싱으로 깔끔하게 닦여요.",
+   "cap": [
+    "입체 엠보싱",
+    "[말끔한 세정]"
+   ],
+   "crop": [
+    0,
+    0.1563,
+    1,
+    0.1954
+   ]
+  },
+  {
+   "img": 2,
+   "say": "한 손으로 톡 뽑아 쓰기 편해요.",
+   "cap": [
+    "한 손으로 톡",
+    "[편리한 사용]"
+   ],
+   "crop": [
+    0,
+    0.3126,
+    1,
+    0.3517
+   ]
+  },
+  {
+   "img": 2,
+   "say": "마이비데 클린케어로 개운하게 끝내요.",
+   "cap": [
+    "상쾌한 마무리",
+    "[인생 꿀템]"
+   ],
+   "crop": [
+    0.15,
+    0.0411,
+    0.85,
+    0.0762
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0,
+  0.0,
+  1,
+  0.0391
+ ],
+ "title": [
+  "화장실 갈 때마다",
+  "이거 찾게 되네"
+ ],
+ "intro": {
+  "say": "여러분! 이거 아시나요?!",
+  "cap": [
+   "화장실 필수템",
+   "[물로 씻은 듯이]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

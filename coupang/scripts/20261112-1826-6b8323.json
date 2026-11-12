@@ -1,0 +1,100 @@
+{
+ "name": "20261112-1826-6b8323",
+ "product": "모더너리 돌아오는 UFO 매직볼",
+ "coupang_product_id": 9726443387,
+ "images": [
+  "https://thumbnail3.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/101756194584961-d77d5028-1215-4fe5-bb21-a94b71d2a24b.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/66401544887298-3c6188dd-0b09-40e3-b455-9468e1525ce0.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/325915049140614-97bf096c-2220-4a5c-bbc6-9b6e1bb1bea2.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/66401565632277-8ae1ef1c-1c8b-4b1c-9c02-f4b72e443bbb.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/63273806702412-08a0941f-6a35-4d4b-97a8-94edd102e240.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/325915091310188-3d094099-aa6c-48af-a879-7c3bd24fcbd5.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/63250894290221-6071bf0a-3a5a-4bad-b22d-ef3e641805cb.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 6,
+   "say": "집에서 화면만 보느라 지루하셨죠?",
+   "cap": [
+    "맨날 보는",
+    "[스마트폰]"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.7122
+   ]
+  },
+  {
+   "img": 5,
+   "say": "이건 던지면 스르륵 돌아와서 신기해요.",
+   "cap": [
+    "던지면 싹",
+    "[돌아오는]"
+   ],
+   "crop": [
+    0.1,
+    0.3429,
+    0.9,
+    0.724
+   ]
+  },
+  {
+   "img": 5,
+   "say": "삼백육십도 보호망이라 부딪혀도 안전해요.",
+   "cap": [
+    "다칠 걱정",
+    "[없는 안심]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.7621
+   ]
+  },
+  {
+   "img": 3,
+   "say": "무지개 LED가 빛나서 밤에도 예뻐요.",
+   "cap": [
+    "어둠 속",
+    "[무지개 LED]"
+   ]
+  },
+  {
+   "img": 4,
+   "say": "모더너리 부메랑 볼로 몸으로 놀아봐요.",
+   "cap": [
+    "조종 없이",
+    "[바로 노는]"
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0,
+  0.0,
+  1,
+  0.7122
+ ],
+ "title": [
+  "집에서 심심할 때",
+  "모더너리 UFO 매직볼"
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "집콕 놀이",
+   "[꿀템 발견]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
