@@ -1,0 +1,29 @@
+name: 카드뉴스 내레이션 영상 만들기
+on:
+  workflow_dispatch:
+    inputs:
+      dir: { description: "카드뉴스 폴더 (예: coupang/cardnews/s001)", required: true }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: 도구 설치
+        run: |
+          pip install -q pillow requests edge-tts imageio-ffmpeg
+          F=$(python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())"); sudo ln -sf $F /usr/local/bin/ffmpeg
+          which ffprobe || (sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true)
+      - name: 영상 만들기
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DIR: ${{ inputs.dir }}
+        run: python cardvideo.py "$DIR"
+      - name: 저장
+        env:
+          DIR: ${{ inputs.dir }}
+        run: |
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add "$DIR/video.mp4"; git commit -qm "카드뉴스 영상" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin main && break; sleep 5; done
