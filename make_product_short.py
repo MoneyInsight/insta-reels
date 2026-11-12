@@ -312,7 +312,19 @@ for i, s in enumerate(scenes):
         order = ["crash", "dolly_in", "arc", "dolly_out", "pan_right", "arc", "pan_left", "tilt_up"]
         cam = s.get("cam") if s.get("cam") in CAMS else ("static" if s.get("last") else order[i % len(order)])
         z, xe, ye = CAMS[cam]
-        if cam == "arc":
+        vid = None
+        if s.get("video"):
+            try:
+                import requests
+                vid = f"{tmp}/vid{i}.mp4"; r = requests.get(s["video"], timeout=90, headers={"User-Agent": "Mozilla/5.0"}); r.raise_for_status()
+                open(vid, "wb").write(r.content)
+            except Exception as e:
+                print(f"::warning::영상 클립을 못 받아 사진으로 대체 ({e.__class__.__name__})"); vid = None
+        if vid:
+            side = BAND_Y1 - BAND_Y0; top = s.get("video_top", 0.06)
+            ins = ["-stream_loop", "-1", "-i", vid]
+            fc.append(f"[0:v]scale={W}:-2,crop={W}:{side}:0:'min(ih-{side},ih*{top})',pad={W}:{H}:0:{BAND_Y0}:black,fps={FPS},setsar=1[bg]")
+        elif cam == "arc":
             sw = f"sin(on/{frames}*PI*{1 if i % 2 else -1})"   # 한쪽에서 반대쪽으로 한 번 돈다
             c0, c1 = f"(110*(0.5+0.5*{sw}))", f"(110*(0.5-0.5*{sw}))"
             fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='{xe}':y='{ye}':s={W}x{H}:fps={FPS},"

@@ -484,6 +484,11 @@ if __name__ == "__main__":
         post_next()
     elif cmd == "make":
         make_queue()
+    elif cmd == "build":  # 저장된 대본 그대로 영상만 만들어 확인용으로 남긴다
+        import shutil
+        for n in sys.argv[2:]:
+            build_video(f"{SCRIPTS}/{n}.json", f"/tmp/{n}.mp4")
+            os.makedirs("coupang/preview", exist_ok=True); shutil.copy(f"/tmp/{n}.mp4", f"coupang/preview/{n}.mp4"); print("확인용 영상 저장", n)
     elif cmd == "remake":  # 어색했던 게시물을 같은 상품으로 다시 만들어 검수 대기열에 넣는다
         for n in sys.argv[2:]:
             e = next((x for x in jload(LOG, []) if x["name"] == n), None)
