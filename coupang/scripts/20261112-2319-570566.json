@@ -1,0 +1,89 @@
+{
+ "name": "20261112-2319-570566",
+ "product": "에이서 2026 아스파이어 GO",
+ "coupang_product_id": 9668430594,
+ "images": [
+  "https://thumbnail8.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/2026/07/27/11/0/fcf205a5-33b0-40f6-b42d-05c215e5d03c.jpg",
+  "https://image.coupangcdn.com/image/retail/images/9715150136209-c2178e7e-ef91-45e0-8207-621943fb390b.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/254309295081393-73b4d616-9820-4b7f-a242-49d0652b1482.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/254309374156587-1f12b22b-491a-4a92-9ae6-6091b7c9ad0e.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2026/07/27/11/8/ff54e2d0-64df-4b2a-a32f-52c71ebdb81c.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2026/07/24/11/1/9087b4a2-72ad-4a6b-aca1-5214a64b9ec4.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/416508679656317-b340cfc7-8381-418d-a487-9b777d11c412.png"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "매번 버벅거리는 노트북 때문에 짜증나셨죠?",
+   "cap": [
+    "답답한 속도",
+    "이제 그만!"
+   ],
+   "badge": "꿀템 발견"
+  },
+  {
+   "img": 1,
+   "say": "에이서 2026 아스파이어 GO 14 코어Ultra5 인텔 14세대로 바꿔보세요.",
+   "cap": [
+    "빠른 처리 속도",
+    "[속이 뻥 뚫림]"
+   ]
+  },
+  {
+   "img": 2,
+   "say": "24시간 접수 가능한 전담 고객센터가 있어서 든든해요.",
+   "cap": [
+    "365일 언제나",
+    "[안심 케어]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.9977
+   ]
+  },
+  {
+   "img": 3,
+   "say": "전문 상담 센터까지 따로 있으니까 문제 생겨도 걱정 없어요.",
+   "cap": [
+    "친절한 상담",
+    "[문제 해결]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    1.0
+   ]
+  },
+  {
+   "img": 4,
+   "say": "이거 뭐임 진심 미쳤네ㅋㅋ",
+   "cap": [
+    "지금 바로",
+    "[득템 기회]"
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": null,
+ "title": [
+  "노트북 느려서",
+  "답답했던 분들"
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "노트북 고민",
+   "[해결템 발견]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
