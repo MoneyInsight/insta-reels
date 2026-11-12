@@ -8,7 +8,8 @@
    "title": "모니터 보다 보면\n[눈이 뻑뻑]해지죠?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "오후만 되면 눈이 뻑뻑하죠? 삼십 초만 보세요."
+   "narration": "오후만 되면 눈이 뻑뻑하죠? 삼십 초만 보세요.",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -36,7 +37,14 @@
   },
   {
    "type": "photo",
-   "narration": "유에스비 온열 안대는 프로필 링크에 있어요. 저장해 두고 오늘 오후에 해 보세요."
+   "narration": "유에스비 온열 안대는 프로필 링크에 있어요. 저장해 두고 오늘 오후에 해 보세요.",
+   "image": "product.jpg",
+   "name": "USB 온열 안대",
+   "cta": "프로필 링크에서 확인",
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -55,5 +63,12 @@
   "생활건강",
   "건강정보",
   "겨울건강"
- ]
+ ],
+ "product": {
+  "id": "9225338575",
+  "name": "Richday 리치데이 660nm+850nm 적외선 레드 라이트 온열 진동 안마 무릎 팔꿈치 3 in 1 보호대",
+  "link": "https://link.coupang.com/a/iCV4zvInUi",
+  "subId": "h2611130415",
+  "image": "https://ads-partners.coupang.com/image1/M-XhGMRBOa-9W-VDM07fp6NqeFXsVpbromyOUv7s2zxVLu0AdWKTfl5JxFbLcBNQCCUB20LNorKvTXbjCwp2sAs2kCEBNDGxwjqio8vtH_P2PGnplbsO-926h7mrIyurUpz1X6_wKViTaQqSefSYKVo-Wdsv3h3s4fC7rUp4o-i1jP1zEe7hsVd3RUXbxRbFS5y5-DeryCvGmFIoGxGmw23XGHR-LP-dm1_rDlMXOrzb2nSLEaSif7C-OO1EQP_d2ZN3WL2PW76OI85LFlQmIELMKaS_MWiVvNUbPK-ibZvOd1jcYDrQ0RSxB5l09GlpJcQuhXNkYyk6e8LEWdYLdoPoh95Zr5K5wQ2HdPD3kRIg4nWtZTsxwJxBkS72dIZh0PIGUY_lyrwaqDyyrTSlywvDS3M-ecJuPzZqhBw00JibK91Ww0kBxsRt7Rhkdwn6TCdVzs3HQrD-wNvk6qtW-G4uGkAPx-oVzoBWZ9wU7Xz3tz-6YHxoVx6dhdrPJyVDQrEOKWsVfdtJ5zh1NCmEd83u7A87anOFS1rLrIUUrfTFC1JgtgpAFyZf6TLUCQx8N1NF8Bi6U82kvbC6RC9n"
+ }
 }

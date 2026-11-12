@@ -8,7 +8,8 @@
    "title": "오늘 물 몇 잔\n[드셨는지] 기억나세요?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "오늘 물 몇 잔 드셨는지 기억나세요? 삼십 초만 보세요."
+   "narration": "오늘 물 몇 잔 드셨는지 기억나세요? 삼십 초만 보세요.",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -36,7 +37,14 @@
   },
   {
    "type": "photo",
-   "narration": "보온 손잡이 텀블러는 프로필 링크에 있어요. 저장해 두고 내일 아침 해 보세요."
+   "narration": "보온 손잡이 텀블러는 프로필 링크에 있어요. 저장해 두고 내일 아침 해 보세요.",
+   "image": "product.jpg",
+   "name": "보온 손잡이 텀블러",
+   "cta": "프로필 링크에서 확인",
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -55,5 +63,12 @@
   "건강습관",
   "생활건강",
   "건강정보"
- ]
+ ],
+ "product": {
+  "id": "8787064545",
+  "name": "아이스픽 텀블러 대용량 빨대 스텐텀블러, 1개, 1.2L, 블랙",
+  "link": "https://link.coupang.com/a/iCV4SEUN9U",
+  "subId": "h2611130415",
+  "image": "https://ads-partners.coupang.com/image1/N78DNkOahzN7VgJrN3RTCorjnknnogwkkIVQ_82H4UsjgeQLVTkw9fSAp0r39jjzGQDmwo5aGGQ9Qw85llBpZdsruOY6Po0lp-zHGvmBFvlZc4GBrrhAWce_DZfHzUU9EKz23Tw7EL17XOAmefvkfY1boaOTfVJz9sUs3L1CHRpZv8Vwe0Qtd6jS4QdjrJmzWvFZ4jztiUWeIKgz4PppKCXAFngKh_jEKZVhdA4wO_Cgwq2_GbZOBWBk4ZjLn_G75JThM_BfcAOjHjQ5vB8oZcVFu1-WFTfBGd8qQPsgE-dDxFod5VhRCd1sEbpEMB7o9Nq695z-cbNMQtcnRCx4bWpH3AccHYSLGcaqOrmdEzO39O_1e56OamhZTTcXUUbGSs3YvL5zTgv7pftmaendUIrblsZeChpN7mkHT09Bw5omkewsyJMVvun1KqG5nqO0zDwYV2G5kSzqZHfwo7Tsdr4cRq1ujK-NIBPclKJYewmvyDQ__xpmD5Zyq--FusjHSyUIdld4fNjwfBRtZiP41UcxbvgqKfCWqoqeZjaN8_hfQ7KKrT9RiiKx_DC20eaqcV84UW6x2a_Q_TKOfa4s"
+ }
 }
