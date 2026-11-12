@@ -94,6 +94,53 @@ def make_plate(im, scale=1.12):
     bg.paste(ph, (x, y), mask)
     return bg.convert("RGB")
 
+# ---------- 판다랭크식 레이아웃: 검은 바탕 + 위 고정 제목(흰/빨강) + 가운데 사진 + 작은 자막 ----------
+PANDA = data.get("style") == "panda"
+BAND_Y0, BAND_Y1 = 420, 1500
+
+def make_plate_panda(im, scale=1.12):
+    w, h = int(W * scale), int(H * scale)
+    bg = Image.new("RGB", (w, h), (0, 0, 0))
+    side = int((BAND_Y1 - BAND_Y0) * scale)
+    bg.paste(cover(im, w, side), (0, (h - side) // 2))
+    return bg
+
+def chunks(say):
+    out = []
+    for part in re.split(r"(?<=[,.!?…])\s+", say.strip()):
+        while len(part) > 17:
+            k = part.rfind(" ", 0, 17); k = k if k > 5 else 17
+            out.append(part[:k].strip()); part = part[k:].strip()
+        if part: out.append(part)
+    m = []
+    for x in out:  # 너무 짧은 조각은 앞 조각에 붙인다
+        if m and (len(x) < 6 or len(m[-1]) < 6) and len(m[-1]) + len(x) <= 21: m[-1] += " " + x
+        else: m.append(x)
+    return m or [""]
+
+def overlay_panda(text, last=False):
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, W, BAND_Y0], fill=(0, 0, 0, 255)); d.rectangle([0, BAND_Y1, W, H], fill=(0, 0, 0, 255))
+    title = [t for t in (data.get("title") or [data["product"]]) if t][:2]
+    y = 170 if len(title) == 2 else 230
+    for k, line in enumerate(title):
+        f = font(FB, 98)
+        while d.textlength(line, font=f) > 1000: f = font(FB, f.size - 4)
+        d.text(((W - d.textlength(line, font=f)) / 2, y + 118 * k), line, font=f,
+               fill=(255, 255, 255) if k == 0 and len(title) == 2 else (255, 45, 45))
+    if text:
+        f = font(FBold, 54)
+        while d.textlength(text, font=f) > 990: f = font(FBold, f.size - 2)
+        tw = d.textlength(text, font=f); ty = BAND_Y1 - 130
+        d.rectangle([(W - tw) / 2 - 20, ty - 6, (W + tw) / 2 + 20, ty + f.size + 22], fill=(0, 0, 0, 235))
+        d.text(((W - tw) / 2, ty), text, font=f, fill=(255, 255, 255))
+    if last:
+        df = font(FM, 30); ws = DISCLOSURE.split(" "); k = len(ws) // 2
+        lines = [DISCLOSURE] if d.textlength(DISCLOSURE, font=df) < 980 else [" ".join(ws[:k]), " ".join(ws[k:])]
+        for k, t in enumerate(lines):
+            d.text(((W - d.textlength(t, font=df)) / 2, 1570 + 44 * k), t, font=df, fill=(210, 210, 210))
+    return im
+
 # ---------- 자막 ----------
 def parse(line):  # "[강조] 문장" → [(텍스트, 강조여부)]
     parts = re.split(r"(\[[^\]]+\])", line)
@@ -227,7 +274,7 @@ def dur(wav):
 
 # ---------- 장면 만들기 ----------
 scenes = list(data["scenes"])
-if data.get("intro"):  # 첫 1~2초 후킹 인트로 (상품 크게 + 외침)
+if data.get("intro") and not PANDA:  # 첫 1~2초 후킹 인트로 (상품 크게 + 외침)
     scenes.insert(0, {"img": 0, "intro": True, "badge": "!", "say": data["intro"].get("say", "여러분! 이거 아시나요?!"),
                       "cap": data["intro"].get("cap", ["여러분!", "[이거 아시나요?!]"])})
 cta = {"img": scenes[0].get("img", 0), "say": data.get("cta_say", "구매 링크는 프로필에서 확인하세요."), "crop": data.get("cta_crop"),
@@ -247,6 +294,22 @@ for i, s in enumerate(scenes):
     if src_im.height > src_im.width * 1.6:  # 긴 상세페이지 통째로는 쓰지 않고 한 부분만
         w0, h0 = src_im.size; y0 = int(h0 * [0.05, 0.3, 0.55, 0.75][i % 4]); y0 = min(y0, h0 - int(w0 * 1.2))
         src_im = src_im.crop((0, max(0, y0), w0, max(0, y0) + int(w0 * 1.2)))
+    c = f"{tmp}/c{i}.mp4"; frames = int(sec * FPS)
+    if PANDA:
+        pp = f"{tmp}/p{i}.png"; make_plate_panda(src_im).save(pp)
+        cs = chunks(s.get("say", "")); tot = sum(len(x) for x in cs) or 1; talk = max(0.5, sec - T - 0.3); t0 = 0.0
+        ins, fc, prev = ["-loop", "1", "-i", pp], [], "bg"
+        z = "min(1.0+on*0.0007,1.10)" if i % 2 == 0 else "max(1.10-on*0.0007,1.0)"
+        fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}[bg]")
+        for k, tx in enumerate(cs):
+            op = f"{tmp}/o{i}_{k}.png"; overlay_panda(tx, last=s.get("last", False)).save(op)
+            t1 = sec if k == len(cs) - 1 else t0 + talk * len(tx) / tot
+            ins += ["-loop", "1", "-i", op]
+            fc.append(f"[{prev}][{k + 1}:v]overlay=0:0:enable='between(t,{t0:.2f},{t1:.2f})'[x{k}]"); prev = f"x{k}"; t0 = t1
+        fc.append(f"[{prev}]format=yuv420p[out]")
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *ins, "-t", f"{sec:.2f}", "-filter_complex", ";".join(fc), "-map", "[out]",
+                        "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-r", str(FPS), c], check=True)
+        clips.append((c, sec)); continue
     plate = (make_intro_plate if s.get("intro") else make_plate)(src_im); pp = f"{tmp}/p{i}.png"; plate.save(pp)
     op = f"{tmp}/o{i}.png"; overlay(s, i, len(scenes), last=s.get("last", False)).save(op)
     frames = int(sec * FPS)
@@ -261,7 +324,7 @@ for i, s in enumerate(scenes):
     clips.append((c, sec))
 
 TRANS = ["slideleft", "smoothleft", "slideup", "fade", "wipeleft"]
-tr = TRANS[SALT % len(TRANS)]
+tr = "fade" if PANDA else TRANS[SALT % len(TRANS)]
 inputs, filt, last, off = [], [], "0:v", 0.0
 for c, _ in clips: inputs += ["-i", c]
 starts = [0.0]

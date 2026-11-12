@@ -155,12 +155,13 @@ def gemini_copy(p):
 - 장면 흐름: 1 공감 문제 상황 → 2·3·4 상세페이지 핵심 장점 3개(각각 왜 좋은지 생활 이득으로) → 5 "지금 사야 할 이유"로 구매 욕구 자극(가격·할인 수치는 쓰지 않는다).
 - 1장면은 스크롤을 멈추게 하는 후킹: 대상 지목 + 공감되는 상황 질문(예: "자취생 여러분, 이거 아직 모르세요?", "매번 ○○ 때문에 짜증나셨죠?"). badge는 4~6자(예: 요즘 인기, 살림 필수템).
 - 2~5장면은 상품명 속 특징을 하나씩, 생활 장면에 빗대서 재미있게. 마지막 장면은 가벼운 웃음 포인트로 마무리.
-- say는 반말 구어체로 말하듯 짧은 한 문장(25자 이내, 숫자는 읽는 대로 '9리터'). 예: "이거 뭐임 진짜 신기하네".
+- say는 영상 내레이션이다. 5개 장면의 say를 이어 읽으면 한 편의 자연스러운 이야기가 되게 쓴다(문제 → 왜 불편한지 → 이 상품이 해결 → 장점 → 마무리). 친근한 존댓말 "~요"체, 장면당 1~2문장, 합쳐서 40자 이내, 숫자는 읽는 대로('9리터'). 예: "딱딱한 돌 규조토, 설마 아직도 쓰세요?" → "시간 지나면 쉽게 휘고, 빨지도 못해 찝찝하잖아요." → "이건 부드러워서 깨질 일도 없어요." 단 "바꿨어요"처럼 직접 써 본 표현은 쓰지 않는다.
+- title: 영상 위에 계속 떠 있는 2줄 제목. 각 줄 6~10자. 첫 줄은 문제·상황, 둘째 줄은 해결·상품 종류(예: ["돌 규조토 버리고", "정착한 꿀템"] 말고 써 본 척 없는 ["전자파 걱정 없는", "꿀잠 탄소매트"]).
 - cap은 2줄, 한 줄 12자 이내, 가장 센 단어 하나를 [대괄호]로 감싼다.
 - threads_text: 250자 이내 반말 커뮤니티체, 3~5줄. 숫자는 숫자 그대로(5.4, 9L). 첫 줄 공감 후킹 → 상품 특징 1~2개를 감탄하듯 → 웃음 포인트 한 줄 → 마지막 줄에 정확히 "{{LINK}}". 상품명 전체는 쓰지 않아도 된다. 해시태그 없이, 이모지 1~2개.
 - insta_hook: 인스타 캡션 첫 줄, 같은 반말 커뮤니티체 후킹 한 문장 + 이모지 1개. features: 상세페이지 핵심 장점 4개를 짧은 문장으로(단어 하나만 쓰지 않는다). hashtags: 해시태그 5개(# 포함).
 - intro_say: 영상 맨 첫 1초 외침(12자 안팎, 예: "여러분! 이거 아시나요?!", "잠깐! 이거 보고 가요!"). intro_cap: 2줄(첫 줄 4~6자 외침, 둘째 줄 8자 안팎 핵심을 [대괄호]).
-JSON 형식: {{"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
+JSON 형식: {{"title":["",""],"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"","cap":["",""]}}x5],"threads_text":"","insta_hook":"","features":["",""],"hashtags":["#"]}}"""
         parts = []
         import base64
         import io
@@ -181,7 +182,7 @@ JSON 형식: {{"intro_say":"","intro_cap":["",""],"badge":"","scenes":[{{"say":"
             except Exception:
                 pass
         if parts:
-            prompt = prompt.replace("규칙:", "첨부한 [타일 N] 이미지들은 상세페이지를 자른 것이다. 여기서 구매욕을 부르는 핵심 장점 3가지를 골라 근거로 쓴다(이미지에 없는 내용은 지어내지 않는다). scenes 2~4번째 항목에는 그 장점이 가장 잘 보이는 타일 번호를 \"tile\"로 넣는다(사람·사용 장면·제품이 크게 보이는 타일 우선, 글자만 가득한 표·인증서·배송안내 타일은 피한다).\n규칙:", 1)
+            prompt = prompt.replace("규칙:", "첨부한 [타일 N] 이미지들은 상세페이지를 자른 것이다. 여기서 구매욕을 부르는 핵심 장점 3가지를 골라 근거로 쓴다(이미지에 없는 내용은 지어내지 않는다). scenes 5개 항목 모두에 그 문장과 가장 잘 맞는 타일 번호를 \"tile\"로 넣는다. 사람이 쓰는 모습·사용 장면·제품이 크게 찍힌 사진 타일을 최우선으로 고르고, 글자가 많은 설명·표·인증서·배송안내 타일은 고르지 않는다. 같은 타일을 두 번 쓰지 않는다. 맞는 사진 타일이 없으면 tile을 생략한다.\n규칙:", 1)
         txt, errs = None, []
         for model in order[:4]:  # 무료 한도가 남은 모델을 차례로 시도
             r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent?key={key}", timeout=90,
@@ -308,7 +309,8 @@ def make_one(p=None):
         scenes.append(sc)
     os.makedirs(SCRIPTS, exist_ok=True)
     js = {"name": name, "product": short_name(p["name"], 20), "coupang_product_id": p["productId"], "images": images,
-          "voice": random.Random(name).choice(["female", "female", "male"]), "disclosure": DISCLOSURE, "scenes": scenes,
+          "voice": "female", "disclosure": DISCLOSURE, "scenes": scenes, "style": "panda",
+          "title": [str(t)[:12] for t in (g.get("title") or [])[:2]] or [short_name(p["name"], 12)],
           "intro": {"say": g.get("intro_say") or random.Random(name).choice(INTROS)[0],
                     "cap": (g.get("intro_cap") or random.Random(name).choice(INTROS)[1])[:2]},
           "cta": ["가격·구매는", "[링크]에서 확인!"], "cta_say": "가격과 구매는 링크에서 확인하세요."}
