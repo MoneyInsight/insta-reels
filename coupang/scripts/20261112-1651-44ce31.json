@@ -1,95 +1,101 @@
 {
-  "name": "20261112-1651-44ce31",
-  "product": "크리넥스 울트라클린 천연펄프 3겹",
-  "coupang_product_id": 34846576,
-  "images": [
-    "https://t1c.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/7587974490006-951c0769-a359-496b-968d-8f57b1658ef2.png",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2855924773989943-1557553a-e678-4294-a2f9-48c75f01983d.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/268570523716390-ffc1bb85-5192-4f13-a5b4-62da605a98dd.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/96234849739774-dbd28207-4c02-4a28-bb27-a0fc3723db1e.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/99912237077951-4af3aa52-bb41-489b-b24e-738677ec9e20.jpg",
-    "https://image.coupangcdn.com/image/retail/images/5129db76-5b98-41fa-988f-7a22ecf15fad5254954394245060957.png",
-    "https://image.coupangcdn.com/image/retail/images/92469875440742-9d8b81e6-9be4-478e-adff-70b972db3542.jpg"
-  ],
-  "voice": "male",
-  "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
-  "scenes": [
-    {
-      "img": 0,
-      "say": "얇은 화장지 찢어져서 짜증났지?",
-      "cap": [
-        "얇아서 찢어짐",
-        "[스트레스] 폭발"
-      ],
-      "badge": "꿀템 발견"
-    },
-    {
-      "img": 3,
-      "say": "에어쿠션 엠보싱으로 도톰해 미쳤네",
-      "cap": [
-        "도톰한 3겹",
-        "[에어쿠션]"
-      ],
-      "crop": [
-        0,
-        0.2318,
-        1,
-        0.2898
-      ]
-    },
-    {
-      "img": 3,
-      "say": "물로 붙여서 진심 안심되네 이거 뭐임",
-      "cap": [
-        "마실 수 있는 물",
-        "[아쿠아프레시]"
-      ],
-      "crop": [
-        0,
-        0.2898,
-        1,
-        0.3478
-      ]
-    },
-    {
-      "img": 3,
-      "say": "천연펄프 3겹 고급롤화장지 은근 든든함",
-      "cap": [
-        "천연펄프 3겹",
-        "[고급롤화장지]"
-      ],
-      "crop": [
-        0,
-        0.1159,
-        1,
-        0.1739
-      ]
-    },
-    {
-      "img": 3,
-      "say": "이거 보고 나니까 마트 가기 귀찮아짐",
-      "cap": [
-        "부드럽고",
-        "[깨끗한 케어]"
-      ],
-      "crop": [
-        0,
-        0.058,
-        1,
-        0.1159
-      ]
-    }
-  ],
-  "intro": {
-    "say": "잠깐! 이거 보고 가요!",
-    "cap": [
-      "자취생 필수",
-      "[화장지] 미쳤네"
-    ]
+ "name": "20261112-1651-44ce31",
+ "product": "크리넥스 울트라클린 천연펄프 3겹",
+ "coupang_product_id": 34846576,
+ "images": [
+  "https://t1c.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/7587974490006-951c0769-a359-496b-968d-8f57b1658ef2.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2855924773989943-1557553a-e678-4294-a2f9-48c75f01983d.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/268570523716390-ffc1bb85-5192-4f13-a5b4-62da605a98dd.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/96234849739774-dbd28207-4c02-4a28-bb27-a0fc3723db1e.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/99912237077951-4af3aa52-bb41-489b-b24e-738677ec9e20.jpg",
+  "https://image.coupangcdn.com/image/retail/images/5129db76-5b98-41fa-988f-7a22ecf15fad5254954394245060957.png",
+  "https://image.coupangcdn.com/image/retail/images/92469875440742-9d8b81e6-9be4-478e-adff-70b972db3542.jpg"
+ ],
+ "voice": "male",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "얇은 화장지 찢어져서 짜증났지?",
+   "cap": [
+    "얇아서 찢어짐",
+    "[스트레스] 폭발"
+   ],
+   "badge": "꿀템 발견"
   },
-  "cta": [
-    "가격·구매는",
-    "[링크]에서 확인!"
-  ],
-  "cta_say": "가격과 구매는 링크에서 확인하세요."
+  {
+   "img": 3,
+   "say": "에어쿠션 엠보싱으로 도톰해 미쳤네",
+   "cap": [
+    "도톰한 3겹",
+    "[에어쿠션]"
+   ],
+   "crop": [
+    0,
+    0.2318,
+    1,
+    0.2898
+   ]
+  },
+  {
+   "img": 3,
+   "say": "물로 붙여서 진심 안심되네 이거 뭐임",
+   "cap": [
+    "마실 수 있는 물",
+    "[아쿠아프레시]"
+   ],
+   "crop": [
+    0,
+    0.2898,
+    1,
+    0.3478
+   ]
+  },
+  {
+   "img": 3,
+   "say": "천연펄프 3겹 고급롤화장지 은근 든든함",
+   "cap": [
+    "천연펄프 3겹",
+    "[고급롤화장지]"
+   ],
+   "crop": [
+    0,
+    0.1159,
+    1,
+    0.1739
+   ]
+  },
+  {
+   "img": 3,
+   "say": "이거 보고 나니까 마트 가기 귀찮아짐",
+   "cap": [
+    "부드럽고",
+    "[깨끗한 케어]"
+   ],
+   "crop": [
+    0,
+    0.058,
+    1,
+    0.1159
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "자취생 필수",
+   "[화장지] 미쳤네"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요.",
+ "style": "panda",
+ "title": [
+  "자취생 필수",
+  "화장지 미쳤네"
+ ],
+ "cta_crop": null
 }
