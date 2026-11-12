@@ -36,8 +36,8 @@ except BaseException as e:
     print("클릭 조회 실패", e)
 rows, tt, ti, tc = [], 0, 0, 0
 for e in sorted(log, key=lambda x: x["time"], reverse=True):
-    t = th_views(e["threads_id"]) if e.get("threads_id") else {}
-    iid = e.get("insta_id") or next((m["id"] for m in ig_media if e["product"].replace("[로켓프레시] ", "")[:14] in (m.get("caption") or "")), None)
+    t = th_views(e["threads_id"].strip()) if e.get("threads_id") else {}
+    iid = (e.get("insta_id") or "").strip() or next((m["id"] for m in ig_media if e["product"].replace("[로켓프레시] ", "")[:14] in (m.get("caption") or "")), None)
     i = ig_views(iid) if iid and e.get("insta") else {}
     c = clicks.get(e.get("subId", ""), 0)
     tt += t.get("views", 0); ti += i.get("views", 0); tc += c

@@ -467,7 +467,7 @@ def mark(kind, name, post_id=""):
     for e in log:
         if e["name"] == name:
             e[kind] = True
-            if post_id: e[f"{kind}_id"] = post_id
+            if post_id.strip(): e[f"{kind}_id"] = post_id.strip()
             if kind == "insta":
                 ids = jload("coupang/posted.json", [])
                 if e["productId"] not in ids: ids.append(e["productId"]); jsave("coupang/posted.json", ids)

@@ -102,7 +102,7 @@ jobs:
         run: |
           N=${{ steps.prep.outputs.name }}
           grep -q THREADS_OK post.log && python auto_coupang.py mark threads $N "$(grep -o '게시물 ID: [0-9]*' post.log | head -1 | cut -c8-)"
-          grep -q INSTA_OK post.log && python auto_coupang.py mark insta $N
+          grep -q INSTA_OK post.log && python auto_coupang.py mark insta $N "$(grep -o '미디어 ID: [0-9]*' post.log | head -1 | grep -o '[0-9]*$')"
           grep -q THREADS_OK post.log || python auto_coupang.py fail threads $N "$(grep -m1 '::error::' post.log)"
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
           git add -A coupang naver-clip 2>/dev/null || git add -A coupang
