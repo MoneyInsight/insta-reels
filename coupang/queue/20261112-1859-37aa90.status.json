@@ -1,6 +1,7 @@
 {
- "status": "pending",
+ "status": "rejected",
  "product": "타포 400만 화소 QHD 주야간 감시 스마트 WiFi 홈 CCTV 실외용",
  "rule_problems": [],
- "made": "2026-11-12 18:59"
+ "made": "2026-11-12 18:59",
+ "review": "첫 장면(야간 조명 비교)과 5번째 장면 글자 잘림·제품 안 보임 등 깨진 장면 2개 이상, CTA도 잘린 첫 장면 재사용"
 }
