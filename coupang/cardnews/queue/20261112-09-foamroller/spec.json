@@ -8,7 +8,8 @@
    "title": "추워서 안 움직였더니\n[몸이 뻣뻣]하죠?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "추워서 안 움직였더니 몸이 뻣뻣하죠? 삼십 초만 보세요."
+   "narration": "추워서 안 움직였더니 몸이 뻣뻣하죠? 삼십 초만 보세요.",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -36,7 +37,14 @@
   },
   {
    "type": "photo",
-   "narration": "사십오 센티 폼롤러는 프로필 링크에 있어요. 저장해 두고 오늘 밤 거실에서 해 보세요."
+   "narration": "사십오 센티 폼롤러는 프로필 링크에 있어요. 저장해 두고 오늘 밤 거실에서 해 보세요.",
+   "image": "product.jpg",
+   "name": "EVA 폼롤러 45cm",
+   "cta": "프로필 링크에서 확인",
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -55,5 +63,12 @@
   "저녁루틴",
   "생활건강",
   "건강정보"
- ]
+ ],
+ "product": {
+  "id": "8695482267",
+  "name": "워너바디 웨이버 EVA 폼롤러 45cm 런닝롤러 스트레칭 종아리 마사지, 레몬옐로우/스카이그레이, 1개",
+  "link": "https://link.coupang.com/a/iC70e6DHWK",
+  "subId": "h2611130702",
+  "image": "https://ads-partners.coupang.com/image1/HSWn3dB2uMT4CLD6HR1VggqFXTu9krufnBqGcJrYC-dxHOLLpYKdZ35YazYprsedMSFhp7ENGx0iTjOoiRD0w_VDdBdp97O4hzT70q5dbUwgEEhwFfWkE-DjgY2T99YaROs0GFhtOwUXZ0Pn4WLocW7b4ngxE-mgPeWHBsu3UOKSPHCrMxj0rFNdYHU5sUMHB11T7jAmmxJPqsXx_fIHKMfOjd12F8YOcuQXrl2xNgL5CmSPJjadO78qRWs3NuLHEst5pMlSegV-cTYfTjuQoPUiAdPRcjuGjLTwVqTMIZVf-XzLPqCLgnpPIx6o3ou6dMtsb_U9SZqer5QSOf1Xjd-nmLxRubwE6NXpmB22BrMxIBR4HzNGNdEQ_ZGxrZf-8dj4iYipujpJPyR7LEX0abRo_jUoW6t6XXrVKl0oTT4CMyzJDfTYdZpJExiStcEojyhWPKRP1F94N2vpTDINeCR27xSjoYZyQYzxxJgGwJoGeRBcb3uBaDCcrejrefXMcmXWb_5tMJbaWodIDDSuTElaJcw9aV4xnFk9pkBH9bW0ijexpSd4zT6vUttx4LnIVdcQjEA1IaLnxIL9REQdPYhTqYE3RduRu41aiUsWY6JL0Na2Vcl_svtbXm0PG3x5RVFQIHLbCWXy8c8="
+ }
 }
