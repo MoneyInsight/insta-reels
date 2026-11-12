@@ -308,10 +308,17 @@ for i, s in enumerate(scenes):
                 "pan_left": ("1.12", f"(iw-iw/zoom)*(1-on/{frames})", cy),
                 "tilt_up": ("1.14", cx, f"ih/2-(ih/zoom/2)+50-100*on/{frames}"),
                 "static": ("min(1+on*0.0003,1.04)", cx, cy)}
-        order = ["crash", "dolly_in", "pan_right", "dolly_out", "pan_left", "tilt_up"]
+        CAMS["arc"] = ("1.06", cx, cy)   # 사진 카드를 입체로 좌우 회전 (아래 perspective)
+        order = ["crash", "dolly_in", "arc", "dolly_out", "pan_right", "arc", "pan_left", "tilt_up"]
         cam = s.get("cam") if s.get("cam") in CAMS else ("static" if s.get("last") else order[i % len(order)])
         z, xe, ye = CAMS[cam]
-        fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='{xe}':y='{ye}':s={W}x{H}:fps={FPS}[bg]")
+        if cam == "arc":
+            sw = f"sin(on/{frames}*PI*{1 if i % 2 else -1})"   # 한쪽에서 반대쪽으로 한 번 돈다
+            c0, c1 = f"(110*(0.5+0.5*{sw}))", f"(110*(0.5-0.5*{sw}))"
+            fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='{xe}':y='{ye}':s={W}x{H}:fps={FPS},"
+                      f"perspective=x0=0:y0='{c0}':x1=W:y1='{c1}':x2=0:y2='H-{c0}':x3=W:y3='H-{c1}':eval=frame:interpolation=cubic[bg]")
+        else:
+            fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='{xe}':y='{ye}':s={W}x{H}:fps={FPS}[bg]")
         for k, tx in enumerate(cs):
             op = f"{tmp}/o{i}_{k}.png"; overlay_panda(tx, last=s.get("last", False)).save(op)
             t1 = sec if k == len(cs) - 1 else t0 + talk * len(tx) / tot
