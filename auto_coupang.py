@@ -371,10 +371,10 @@ def review_sheets(name, mp4, det):
         sh.save(f"{QUEUE}/{name}.detail.jpg", quality=70)
 
 
-def make_queue(target=24):
+def make_queue(target=6):
     q = [jload(f"{QUEUE}/{f}", {}) for f in os.listdir(QUEUE)] if os.path.isdir(QUEUE) else []
     waiting = sum(1 for x in q if x.get("status") in ("pending", "approved"))
-    for _ in range(min(3, max(0, target - waiting))):
+    for _ in range(min(2, max(0, target - waiting))):
         if not make_one(): break
 
 

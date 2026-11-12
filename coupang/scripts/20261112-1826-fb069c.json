@@ -1,112 +1,98 @@
 {
-  "name": "20261112-1826-fb069c",
-  "product": "까르엠가구 스윙 030 4인용 소파",
-  "coupang_product_id": 9690882562,
-  "images": [
-    "https://thumbnail6.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/2026/08/06/12/3/5ea18a50-1e08-4937-8836-b7a02f2e085c.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/35908642728367-9b8a99e5-16cc-4b9c-b138-bd22eaa3db37.png",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/857955770178821-f6e218d2-107d-41b3-b238-c88d31320c1d.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/909218491762862-878aca81-8ea1-43cd-8e49-62f01d612d23.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/927757231104908-fc721133-99d5-46f8-8b7b-4f05576c09f9.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/927756674201861-d72ebb44-7942-460f-9133-2794768ee781.jpg",
-    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/233441247273155-cebcbda8-18de-40d9-8bad-476d5e68d0e6.jpg"
-  ],
-  "voice": "female",
-  "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
-  "scenes": [
-    {
-      "img": 3,
-      "say": "매일 쓰는 소파, 꺼지고 불편해서 지치셨죠?",
-      "cap": [
-        "거실 소파",
-        "[불편함 폭발]"
-      ],
-      "badge": "꿀템 발견",
-      "crop": [
-        0,
-        0.5232,
-        1,
-        1.0
-      ]
-    },
-    {
-      "img": 4,
-      "say": "넉넉한 4인용 사이즈라 온 가족이 넓게 쓸 수 있어요.",
-      "cap": [
-        "4인용",
-        "[넉넉한 사이즈]"
-      ],
-      "crop": [
-        0,
-        0.6766,
-        1,
-        0.8457
-      ]
-    },
-    {
-      "img": 4,
-      "say": "쿠션도 무려 9개나 세트로 들어있어서 따로 살 필요 없답니다.",
-      "cap": [
-        "쿠션 9p",
-        "[세트 구성]"
-      ],
-      "crop": [
-        0,
-        0.1691,
-        1,
-        0.3383
-      ]
-    },
-    {
-      "img": 1,
-      "say": "게다가 전문가가 직접 와서 안전하게 방문설치까지 해줘요.",
-      "cap": [
-        "전문가",
-        "[방문설치]"
-      ],
-      "crop": [
-        0.1,
-        0.6841,
-        0.9,
-        0.921
-      ]
-    },
-    {
-      "img": 4,
-      "say": "집 분위기 싹 바꾸고 싶다면 까르엠가구 스윙 030 4인용 소파 + 쿠션 9개 세트 방문설치 어떠세요?",
-      "cap": [
-        "거실 꿀템",
-        "[지금 바로]"
-      ],
-      "crop": [
-        0.1,
-        0.4059,
-        0.9,
-        0.4736
-      ]
-    }
-  ],
-  "style": "panda",
-  "cta_crop": [
+ "name": "20261112-1826-fb069c",
+ "product": "까르엠가구 스윙 030 4인용 소파",
+ "coupang_product_id": 9690882562,
+ "images": [
+  "https://thumbnail6.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/2026/08/06/12/3/5ea18a50-1e08-4937-8836-b7a02f2e085c.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/35908642728367-9b8a99e5-16cc-4b9c-b138-bd22eaa3db37.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/857955770178821-f6e218d2-107d-41b3-b238-c88d31320c1d.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/909218491762862-878aca81-8ea1-43cd-8e49-62f01d612d23.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/927757231104908-fc721133-99d5-46f8-8b7b-4f05576c09f9.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/927756674201861-d72ebb44-7942-460f-9133-2794768ee781.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/233441247273155-cebcbda8-18de-40d9-8bad-476d5e68d0e6.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 3,
+   "say": "매일 쓰는 소파, 꺼지고 불편해서 지치셨죠?",
+   "cap": [
+    "거실 소파",
+    "[불편함 폭발]"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
     0,
     0.5232,
     1,
     1.0
-  ],
-  "title": [
-    "거실 인테리어 고민",
-    "까르엠가구 소파"
-  ],
-  "intro": {
-    "say": "잠깐! 거실 분위기 바꿀 사람?",
-    "cap": [
-      "거실 분위기",
-      "[소파 바꾸기]"
-    ]
+   ]
   },
-  "cta": [
-    "가격·구매는",
-    "[링크]에서 확인!"
-  ],
-  "cta_say": "가격과 구매는 링크에서 확인하세요."
+  {
+   "img": 4,
+   "say": "넉넉한 4인용 사이즈라 온 가족이 넓게 쓸 수 있어요.",
+   "cap": [
+    "4인용",
+    "[넉넉한 사이즈]"
+   ],
+   "crop": [
+    0,
+    0.6766,
+    1,
+    0.8457
+   ]
+  },
+  {
+   "img": 4,
+   "say": "쿠션도 무려 9개나 세트로 들어있어서 따로 살 필요 없답니다.",
+   "cap": [
+    "쿠션 9p",
+    "[세트 구성]"
+   ],
+   "crop": [
+    0,
+    0.1691,
+    1,
+    0.3383
+   ]
+  },
+  {
+   "img": 4,
+   "say": "집 분위기 바꾸고 싶다면 까르엠가구 4인용 소파 어떠세요?",
+   "cap": [
+    "거실 꿀템",
+    "[지금 바로]"
+   ],
+   "crop": [
+    0.1,
+    0.4059,
+    0.9,
+    0.4736
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0,
+  0.5232,
+  1,
+  1.0
+ ],
+ "title": [
+  "거실 분위기 바꾸는",
+  "4인용 패브릭 소파"
+ ],
+ "intro": {
+  "say": "잠깐! 거실 분위기 바꿀 사람?",
+  "cap": [
+   "거실 분위기",
+   "[소파 바꾸기]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
 }
