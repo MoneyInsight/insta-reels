@@ -8,7 +8,8 @@
    "title": "거울 속 내 옆모습\n[목이 앞으로] 나와 있나요?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "옆모습 보면 목이 앞으로 나와 있나요? 삼십 초만 보세요."
+   "narration": "옆모습 보면 목이 앞으로 나와 있나요? 삼십 초만 보세요.",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -36,7 +37,14 @@
   },
   {
    "type": "photo",
-   "narration": "높이 조절 모니터 받침대는 프로필 링크에 있어요. 저장해 두고 내일 책상에서 해 보세요."
+   "narration": "높이 조절 모니터 받침대는 프로필 링크에 있어요. 저장해 두고 내일 책상에서 해 보세요.",
+   "image": "product.jpg",
+   "name": "높이 조절 모니터 받침대",
+   "cta": "프로필 링크에서 확인",
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -55,5 +63,12 @@
   "재택근무",
   "생활건강",
   "건강정보"
- ]
+ ],
+ "product": {
+  "id": "9494603044",
+  "name": "플레이기어 내추럴 싱글 모니터받침대 우드 원목 서랍 받침 선반, 1개, 420PO(화이트오크)",
+  "link": "https://link.coupang.com/a/iC33ldL92q",
+  "subId": "h2611130606",
+  "image": "https://ads-partners.coupang.com/image1/4c70Xxb9PfFXRCtF4Wdv1mXXXnKk4pvABgUjuWxJBxNbdf0nXgewIeu83rXRPRELc0Txa4tfDG6cNF1AU-S9083wobiwnkqB6jLBY7WUKRF7zHBMgssGa5fYckNPiltji34ZO5EEVa8BJcvYxJgWkQgqrfWRLAXvTAVF4XAXrPhB5z2RxcYJu8GiqUc1tOIiuH89hkpqyZfOnAPiVDs2jNqEpWNJzIXgZJl2eZHoIouI11LBxM_5TBFZ8TTS6lxxrOL6Y8sqxLK5TG5mQ2tdsOid5GYOJ3vGDCcngVwpxKv30c2gzGCkLeKGUreKg-fH4DNjDYLb_AiWMplocwK408SFCoxBkRI7ORlrP2oOaB3M_DFkSyUPO7NyKxVPUESdRAH0CXHQZPqdxiYypqM9bXOIwbtH3Y6E7ZmpM56UtKxXA1kLUljcksvMY0BKQtV6ss5FzF9T8dkncuMVpDGd8aUauySLKz0CbL06r3e1Mx7FqByj7Sr-h5QVh1bjpR4FbpixewiGY9M0pnylyYiGYxAAXMC1-lzA4H-KTpE7KXcp47IDs_6A6DNHf47xHje7Q-t2Kl5UMCyZUGUNdtty"
+ }
 }
