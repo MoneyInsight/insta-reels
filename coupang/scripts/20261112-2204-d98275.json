@@ -1,0 +1,112 @@
+{
+ "name": "20261112-2204-d98275",
+ "product": "아망떼 소울메이트 장모 극세사",
+ "coupang_product_id": 6764152921,
+ "images": [
+  "https://thumbnail1.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/63427586605856-60496d28-dc84-45cb-98f6-6adb36674074.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/26244885139941-27233838-3a6e-43ad-98b5-6c53d7212669.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/26244737362883-c2f73abf-ed97-4ba5-a321-3f3c7f7c094e.jpg",
+  "https://image.coupangcdn.com/image/retail/images/63728325312284-a629433d-af3b-457c-b6e2-3d126f9bea7c.jpg",
+  "https://image.coupangcdn.com/image/retail/images/32086781565325-a8c8c4a0-b694-4241-a317-3f36bbea7d82.jpg",
+  "https://image.coupangcdn.com/image/retail/images/32086737483440-4c9382bc-13ce-4986-914a-44d8fbb1f62c.jpg",
+  "https://image.coupangcdn.com/image/retail/images/118647844628120-aa3bc962-cc35-4464-b102-847444b9f72d.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 1,
+   "say": "자취생 여러분, 이불 속 추위 아직도 참으세요?",
+   "cap": [
+    "이불 밖은 위험해",
+    "벌써 [추워]지네"
+   ],
+   "badge": "겨울 준비",
+   "crop": [
+    0.1,
+    0.1115,
+    0.9,
+    0.1403
+   ]
+  },
+  {
+   "img": 1,
+   "say": "아망떼 소울메이트 장모 극세사 침대패드는 4밀리 장모 극세사로 덮자마자 따뜻해요.",
+   "cap": [
+    "4mm 장모 극세사",
+    "[온기] 가득"
+   ],
+   "crop": [
+    0.1,
+    0.1115,
+    0.9,
+    0.1403
+   ]
+  },
+  {
+   "img": 1,
+   "say": "소프트실드 가공으로 털 빠짐과 먼지 날림이 없어서 깔끔해요.",
+   "cap": [
+    "먼지 걱정 뚝",
+    "[깔끔]한 포근함"
+   ],
+   "crop": [
+    0.2,
+    0.1511,
+    0.8,
+    0.1726
+   ]
+  },
+  {
+   "img": 1,
+   "say": "3중직 고무 밴딩이라 뒤척여도 밀리지 않아서 편해요.",
+   "cap": [
+    "밀림 없는 밴딩",
+    "[고정]력 미쳤네"
+   ],
+   "crop": [
+    0.2,
+    0.259,
+    0.8,
+    0.2805
+   ]
+  },
+  {
+   "img": 1,
+   "say": "지금 쿠팡에서 아망떼 소울메이트 장모 극세사 침대패드 만나보세요.",
+   "cap": [
+    "지금 당장",
+    "[득템] 타이밍"
+   ],
+   "crop": [
+    0,
+    0.4676,
+    1,
+    0.5035
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0.1,
+  0.1115,
+  0.9,
+  0.1403
+ ],
+ "title": [
+  "추위 타는 사람",
+  "이거 주목해요"
+ ],
+ "intro": {
+  "say": "여러분! 이거 아시나요?!",
+  "cap": [
+   "겨울철 필수템",
+   "[포근한 침대패드]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

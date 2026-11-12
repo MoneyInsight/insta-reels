@@ -1,0 +1,112 @@
+{
+ "name": "20261112-2204-951392",
+ "product": "아크네스 포밍워시 클렌저",
+ "coupang_product_id": 2168681,
+ "images": [
+  "https://t4a.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/2371725729733952-1a3d5e0e-f869-4342-bdab-10c0f1aafed6.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2098792544389516-826352a2-5216-4ae6-b16f-3f459bbe062d.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/8561795216690302-e9008de1-c0ef-446d-8927-1f0de3b86e7e.jpg",
+  "https://image.coupangcdn.com/image/retail/images/2371725729733952-1a3d5e0e-f869-4342-bdab-10c0f1aafed6.jpg",
+  "https://image.coupangcdn.com/image/retail/images/128106688739123-a6536af0-46d1-41ed-990b-d31291df14f1.jpg",
+  "https://image.coupangcdn.com/image/retail/images/128100025176152-0fc26dd4-fcb6-4b41-98f0-041adc95eee3.jpg",
+  "https://image.coupangcdn.com/image/retail/images/34869565684532-f89db6c9-2856-4ae5-bcd4-c4730f898cd0.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 2,
+   "say": "매일 하는 세안인데 왜 피부는 자꾸 성이 날까요?",
+   "cap": [
+    "자극적인 세안",
+    "[이제 그만]"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0.05,
+    0.2609,
+    0.95,
+    0.3095
+   ]
+  },
+  {
+   "img": 2,
+   "say": "여드름성 피부 완화 기능성이 있어서 진정해 줘요.",
+   "cap": [
+    "여드름성 피부",
+    "[기능성 화장품]"
+   ],
+   "crop": [
+    0.05,
+    0.1335,
+    0.95,
+    0.182
+   ]
+  },
+  {
+   "img": 2,
+   "say": "풍성한 거품이 바로 나와서 마찰을 줄여줘요.",
+   "cap": [
+    "편리한 포밍타입",
+    "[풍성한 거품]"
+   ],
+   "crop": [
+    0.05,
+    0.8616,
+    0.95,
+    0.9102
+   ]
+  },
+  {
+   "img": 2,
+   "say": "피지량은 줄여주고 수분은 채워주니까 당김이 없어요.",
+   "cap": [
+    "피지량 감소",
+    "[수분량 증가]"
+   ],
+   "crop": [
+    0.05,
+    0.7585,
+    0.95,
+    0.807
+   ]
+  },
+  {
+   "img": 6,
+   "say": "지금 바로 아크네스 포밍워시 만나보세요.",
+   "cap": [
+    "산뜻한 마무리",
+    "[지금 바로]"
+   ],
+   "crop": [
+    0.05,
+    0.05,
+    0.95,
+    0.95
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0.05,
+  0.2609,
+  0.95,
+  0.3095
+ ],
+ "title": [
+  "피부 고민이라면",
+  "아크네스 포밍워시"
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "피부 고민",
+   "[클렌저 꿀템]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
