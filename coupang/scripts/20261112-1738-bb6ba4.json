@@ -1,0 +1,106 @@
+{
+ "name": "20261112-1738-bb6ba4",
+ "product": "블루핀 여성용 겨울 발열 초극세사",
+ "coupang_product_id": 8335720931,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599683815618-e12fa9ed-207f-4237-a6e6-4453f983b21a.jpg",
+  "https://image.coupangcdn.com/image/retail/images/592600849069270-c9f42ee7-1006-4d85-8cd9-dd429d324d05.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619658062203882-31acf128-ba91-49ae-853e-daf7c0e16e71.jpg",
+  "https://image.coupangcdn.com/image/retail/images/382493687065153-add7035d-fe69-4995-b968-bc784bd1e70f.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619667484518473-0c1d5c8c-7a31-42ce-8c18-58b7a380086e.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 1,
+   "say": "매번 추워서 덜덜 떨기만 하셨죠?",
+   "cap": [
+    "겨울만 되면",
+    "찾아오는 [한파]"
+   ],
+   "badge": "겨울 필수템",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.1053
+   ]
+  },
+  {
+   "img": 1,
+   "say": "이건 압착한 초극세사라 안 입은 듯 가벼워요.",
+   "cap": [
+    "입은 듯 안 입은",
+    "[가벼운 무게]"
+   ],
+   "crop": [
+    0,
+    0.5266,
+    1,
+    0.632
+   ]
+  },
+  {
+   "img": 1,
+   "say": "부드러운 촉감이라 포근하게 감싸주거든요.",
+   "cap": [
+    "피치기모 원단의",
+    "[부드러운 촉감]"
+   ],
+   "crop": [
+    0,
+    0.632,
+    1,
+    0.7373
+   ]
+  },
+  {
+   "img": 2,
+   "say": "게다가 쫙쫙 늘어나서 활동할 때도 편해요.",
+   "cap": [
+    "우수한 신축성으로",
+    "[편안한 활동]"
+   ],
+   "crop": [
+    0,
+    0.0991,
+    1,
+    0.1486
+   ]
+  },
+  {
+   "img": 2,
+   "say": "지금 바로 블루핀 여성용 겨울 발열 초극세사 기모내의 상하 세트 2개 만나보세요.",
+   "cap": [
+    "겨울 나기 필수",
+    "[블루핀 기모내의]"
+   ],
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.0495
+   ]
+  }
+ ],
+ "style": "panda",
+ "title": [
+  "추위 타는 사람",
+  "필독하는 기모내의"
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "한파에도",
+   "[끄떡없는 온기]"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}

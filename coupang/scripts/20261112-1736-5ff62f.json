@@ -1,0 +1,106 @@
+{
+ "name": "20261112-1736-5ff62f",
+ "product": "쿠첸 전기압력밥솥 6인용",
+ "coupang_product_id": 8087867523,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/1615512424267684-fd2da63a-198c-431b-8f70-b23dae33eff2.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/1615512424267684-fd2da63a-198c-431b-8f70-b23dae33eff2.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/442553132606872-367de004-3385-4220-a513-80c83ab5252b.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/245289990973086-ab670c89-8e0f-4705-a9db-075723cce226.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/72603873035795-51a37638-b766-4ea0-89e1-8bf98a859a94.jpg",
+  "https://image.coupangcdn.com/image/retail/images/448953896822819-e22d53d0-3cb3-407f-a5e8-9e5e25063f51.jpg",
+  "https://image.coupangcdn.com/image/retail/images/1039902860347756-c7cc80ed-c29d-42de-90de-041a24d014f6.png"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 3,
+   "say": "매번 밥 지을 때마다 시간 지나면 푸석해져서 짜증나셨죠?",
+   "cap": [
+    "푸석한 밥",
+    "[짜증나네] 진심"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0,
+    0.0762,
+    1,
+    0.1524
+   ]
+  },
+  {
+   "img": 3,
+   "say": "이건 3중 파워 패킹으로 초고압을 잡아줘서 찰진 밥이 가능해요.",
+   "cap": [
+    "3중 파워 패킹",
+    "[찰진 밥] 미쳤네"
+   ],
+   "crop": [
+    0,
+    0.6096,
+    1,
+    0.6858
+   ]
+  },
+  {
+   "img": 3,
+   "say": "분리형 클린커버라서 손쉽게 분리하고 구석구석 세척할 수 있어요.",
+   "cap": [
+    "분리형 클린커버",
+    "[간편 세척] 은근"
+   ],
+   "crop": [
+    0,
+    0.6858,
+    1,
+    0.762
+   ]
+  },
+  {
+   "img": 3,
+   "say": "다이킹 코팅으로 쌀이 닿는 부분을 위생적이고 견고하게 지켜줘요.",
+   "cap": [
+    "다이킹 코팅",
+    "[위생적인] 밥솥"
+   ],
+   "crop": [
+    0,
+    0.3048,
+    1,
+    0.381
+   ]
+  },
+  {
+   "img": 3,
+   "say": "쿠첸 전기압력밥솥 6인용 하나로 매일 갓 지은 밥맛을 즐겨보세요.",
+   "cap": [
+    "지금 바로",
+    "[득템하자] 급호감"
+   ],
+   "crop": [
+    0,
+    0.8382,
+    1,
+    0.9144
+   ]
+  }
+ ],
+ "style": "panda",
+ "title": [
+  "밥맛이 살아야",
+  "살림도 살지"
+ ],
+ "intro": {
+  "say": "잠깐! 밥맛 없던 분들 이거 봐요!",
+  "cap": [
+   "매일 먹는 밥,",
+   "[지루했다면?] 완벽"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
