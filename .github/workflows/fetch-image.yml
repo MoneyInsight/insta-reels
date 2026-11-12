@@ -1,0 +1,31 @@
+name: 상품 사진 가져오기 (잘라서 저장)
+on:
+  workflow_dispatch:
+    inputs:
+      url: { description: "이미지 주소", required: true }
+      box: { description: "x0,y0,x1,y1 (픽셀)", required: true }
+      out: { description: "저장 이름", required: true }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          URL: ${{ inputs.url }}
+          BOX: ${{ inputs.box }}
+          OUT: ${{ inputs.out }}
+        run: |
+          pip install -q pillow requests
+          python - <<'PY'
+          import io, os, re, requests
+          from PIL import Image
+          url, out = os.environ["URL"], re.sub(r"[^A-Za-z0-9_.-]", "", os.environ["OUT"])
+          assert re.match(r"https://[a-z0-9]+\.coupangcdn\.com/", url)
+          im = Image.open(io.BytesIO(requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"}).content)).convert("RGB")
+          im = im.crop(tuple(int(v) for v in os.environ["BOX"].split(",")))
+          os.makedirs("coupang/preview", exist_ok=True); im.save(f"coupang/preview/{out}", quality=92); print(im.size)
+          PY
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add coupang/preview; git commit -qm "상품 사진 저장" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin main && break; sleep 5; done
