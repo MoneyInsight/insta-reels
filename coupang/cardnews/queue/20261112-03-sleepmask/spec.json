@@ -8,7 +8,8 @@
    "title": "누우면 오히려\n[눈이 말똥말똥]?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "누우면 오히려 눈이 말똥말똥해지죠? 삼십 초만 보세요."
+   "narration": "누우면 오히려 눈이 말똥말똥해지죠? 삼십 초만 보세요.",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -36,10 +37,17 @@
   },
   {
    "type": "photo",
-   "narration": "쓰리디 암막 수면안대는 프로필 링크에 있어요. 저장해 두고 오늘 밤 해 보세요."
+   "narration": "쓰리디 암막 수면안대는 프로필 링크에 있어요. 저장해 두고 오늘 밤 해 보세요.",
+   "image": "product.jpg",
+   "name": "3D 암막 수면안대",
+   "cta": "프로필 링크에서 확인",
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "잠 못 드는 밤",
  "product_label": "3D 암막 수면안대",
  "product_keyword": "3D 암막 수면안대",
@@ -55,5 +63,15 @@
   "생활건강",
   "건강정보",
   "직장인건강"
- ]
+ ],
+ "product": {
+  "id": "5071236307",
+  "name": "컴포럽 프리미엄 암막 수면안대",
+  "link": "https://link.coupang.com/a/iCNSKzefca",
+  "subId": "h2611130220",
+  "image": "https://ads-partners.coupang.com/image1/cHIw8_fYRIKPnaWMcPHmYO5KL-j4pliXjpulks5YYacNk7NMbUfL2naSghkXf-hSHAIpfIRXO12TdPHjS63Qj9h_r6od-Le0zDRXBGu0T6Eau3chUnHL_aBKLGialC1jQY_zVpJXIF1AOpFvRGI11WDRhca1p-_h-9v2yDmi4tNAVCUnMvKf1zjzS_6ygJGEj1itKjUivYR7QeHaFZo9xS-GDNWsSBdlOoOItSDqe5moF1l37S6KcAGAUmH7RUBrEDK3Pzv72Ifk7ewRBZZJmX3b5nO0geTZQQLPKp8q8dmkgY57uxYQ005oDQawcmZqPSSg1XkhKZlxBXl1qXX8CFH8nHtFaHVKicGY-lMH1MTTjsbutyrrA3gJFhxfysW3XknxTvORtvkg_6rOyK4D9czoyE-Z3BEgNOCTLaJepkIxUa4RbJ3uVrFFlPY8KPmYoQ224gHRhCYJ9DlM3UKrYZowFdQonMykgFAGce8hYX80s7ZDodCDas0GyJeRzvduk693-8o7zb2aeyJavl32aFHGzW59qAuodvsUASfUaaOFtsirvdB57GQajneY"
+ },
+ "threads_caption": "누우면 오히려 눈 말똥말똥해지는 사람?\n\n자기 전 휴대폰\n늦은 오후 커피\n들쭉날쭉한 기상 시간\n밝은 방\n이게 잠을 멀리 보낸대\n\n불 끄기 30분 전엔 폰 멀리\n커튼 치고 작은 불빛도 가리기\n주말에도 비슷한 시간에 일어나기\n\n저장해두고 오늘 밤 해 봐\n\n오늘 카드 속 상품 👉 https://link.coupang.com/a/iCNSKzefca\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 3D 암막 수면안대 바로가기 👉 https://link.coupang.com/a/iCNSKzefca\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "누우면 오히려 눈이 말똥말똥한 분들 🙋 30초면 끝나는 잠드는 환경 정리예요.\n\n✔ 잠을 멀리 보내는 4가지 습관\n✔ 불 끄기 30분 전 할 일\n✔ 어두운 방 만들기\n\n📌 저장해 두고 오늘 밤 다시 보세요\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#꿀잠 #수면습관 #수면안대 #잠자리 #저녁루틴 #생활건강 #건강정보 #직장인건강"
 }
