@@ -299,8 +299,19 @@ for i, s in enumerate(scenes):
         pp = f"{tmp}/p{i}.png"; make_plate_panda(src_im).save(pp)
         cs = chunks(s.get("say", "")); tot = sum(len(x) for x in cs) or 1; talk = max(0.5, sec - T - 0.3); t0 = 0.0
         ins, fc, prev = ["-loop", "1", "-i", pp], [], "bg"
-        z = "min(1.0+on*0.0007,1.10)" if i % 2 == 0 else "max(1.10-on*0.0007,1.0)"
-        fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}[bg]")
+        # 카메라 워크 프리셋 (영상 AI 도구의 dolly / pan / crash zoom / tilt 를 사진에 적용)
+        cx, cy = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+        CAMS = {"crash": ("if(lt(on,9),1+on*0.028,min(1.224+(on-9)*0.0004,1.30))", cx, cy),
+                "dolly_in": ("min(1+on*0.0009,1.16)", cx, cy),
+                "dolly_out": ("max(1.18-on*0.0009,1.0)", cx, cy),
+                "pan_right": ("1.12", f"(iw-iw/zoom)*on/{frames}", cy),
+                "pan_left": ("1.12", f"(iw-iw/zoom)*(1-on/{frames})", cy),
+                "tilt_up": ("1.14", cx, f"ih/2-(ih/zoom/2)+50-100*on/{frames}"),
+                "static": ("min(1+on*0.0003,1.04)", cx, cy)}
+        order = ["crash", "dolly_in", "pan_right", "dolly_out", "pan_left", "tilt_up"]
+        cam = s.get("cam") if s.get("cam") in CAMS else ("static" if s.get("last") else order[i % len(order)])
+        z, xe, ye = CAMS[cam]
+        fc.append(f"[0:v]zoompan=z='{z}':d={frames}:x='{xe}':y='{ye}':s={W}x{H}:fps={FPS}[bg]")
         for k, tx in enumerate(cs):
             op = f"{tmp}/o{i}_{k}.png"; overlay_panda(tx, last=s.get("last", False)).save(op)
             t1 = sec if k == len(cs) - 1 else t0 + talk * len(tx) / tot
