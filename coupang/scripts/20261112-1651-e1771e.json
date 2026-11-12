@@ -1,0 +1,89 @@
+{
+ "name": "20261112-1651-e1771e",
+ "product": "제스파 국내제조 전기 온열 찜질기",
+ "coupang_product_id": 7041169364,
+ "images": [
+  "https://thumbnail6.coupangcdn.com/thumbnails/remote/700x700ex/image/vendor_inventory/bbba/b2d5d61e1aac0a6a50f0887e3f39df24b467dc12f2853063991b23f5cad1.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/374015157968160-6e4bcef7-faa6-4d8b-8610-eb7038adaf38.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2640426127869-28bf7f03-6c9d-4066-adc0-6a5842d17352.png",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2640129981500-95e3206e-999a-46da-9234-1d77ab9fa5e5.png",
+  "https://image.coupangcdn.com/image/vendor_inventory/d364/a145e867c31c045576f6e5c2c8739a90ccc2ea21199d99d23023e3489640.jpg",
+  "https://image.coupangcdn.com/image/retail/images/98149502701399-852823ed-a3fc-4d44-a866-79e99597d960.jpg",
+  "https://image.coupangcdn.com/image/retail/images/204789555106674-957607fd-fba2-42c1-b537-c1c017e7e886.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 0,
+   "say": "요즘 날씨에 온몸이 뻐근해서 찌뿌둥하셨죠?",
+   "cap": [
+    "몸이 찌뿌둥할 때",
+    "[공감] 백퍼센트"
+   ],
+   "badge": "꿀템 발견"
+  },
+  {
+   "img": 3,
+   "say": "영상 보는데 4선식 찜질기로 빠르게 온도 유지되는 거 미쳤네",
+   "cap": [
+    "빠르게 온도 유지",
+    "[4선식] 찜질기"
+   ],
+   "crop": [
+    0,
+    0.3925,
+    1,
+    0.4282
+   ]
+  },
+  {
+   "img": 3,
+   "say": "16중 열선이 촘촘하게 채워져서 진심 빈틈없이 후끈함ㅋㅋ",
+   "cap": [
+    "빈틈없이 채운",
+    "[16중] 열선"
+   ],
+   "crop": [
+    0,
+    0.4282,
+    1,
+    0.4639
+   ]
+  },
+  {
+   "img": 3,
+   "say": "특허받은 기술로 안정성이 뛰어나서 은근 안심되네",
+   "cap": [
+    "특허받은 기술로",
+    "[안정성] 업"
+   ],
+   "crop": [
+    0,
+    0.0714,
+    1,
+    0.1071
+   ]
+  },
+  {
+   "img": 4,
+   "say": "이거 하나면 매일 뜨끈하게 지지기 급 편해짐ㅋㅋ",
+   "cap": [
+    "매일 뜨끈하게",
+    "[꿀템] 인정"
+   ]
+  }
+ ],
+ "intro": {
+  "say": "잠깐 이거 보고 가요!",
+  "cap": [
+   "추위 타는 분",
+   "[필수템] 발견"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
