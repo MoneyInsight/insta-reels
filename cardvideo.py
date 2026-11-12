@@ -47,8 +47,16 @@ def dur(p):
 
 cards = spec["cards"]; wavs = [f"{tmp}/n{i}.wav" for i in range(len(cards))]
 used = "gemini"
-for i, c in enumerate(cards):
-    if not gemini(c["narration"], wavs[i]): used = "edge"; break
+# 자연 음성은 영상 1편에 한 번만 부른다(무료 한도 절약). 카드별 길이는 글자 수 비율로 나눈다.
+full = f"{tmp}/full.wav"
+if gemini(" ... ".join(c["narration"] for c in cards), full):
+    total = dur(full); lens = [len(c["narration"]) for c in cards]; t0 = 0.0
+    for i, c in enumerate(cards):
+        seg = total * lens[i] / sum(lens)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", full, "-ss", f"{t0:.3f}", "-t", f"{seg:.3f}", wavs[i]], check=True)
+        t0 += seg
+else:
+    used = "edge"
 if used == "edge" and "--gemini-only" in sys.argv:
     print("::notice::자연 음성 한도 초과 → 영상 만들지 않음"); sys.exit(2)
 if used == "edge":

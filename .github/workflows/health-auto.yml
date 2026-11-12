@@ -1,7 +1,7 @@
-name: 건강 카드뉴스 자동 (만들기 17:23 · 게시 12:23, 20:23)
+name: 건강 카드뉴스 자동 (매시간 만들기 + 07~23시 1시간에 1편 게시)
 on:
   schedule:
-    - cron: "23 3,8,11 * * *"   # 한국 12:23 게시 / 17:23 영상 만들기(자연 음성 한도가 풀린 뒤) / 20:23 게시
+    - cron: "23 * * * *"   # 매시간: 영상 만들기 + (한국 07~23시) 1편 게시
   workflow_dispatch:
     inputs:
       post: { description: "지금 게시도 할지 (yes/no)", required: false, default: "yes" }
@@ -33,7 +33,8 @@ jobs:
         id: prep
         run: |
           H=$(date -u +%H)
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$H" = "08" ]; then echo "skip=true" >> $GITHUB_OUTPUT; echo "만들기만 하는 회차"; python health.py next >/dev/null || true; exit 0; fi
+          K=$(( (10#$H + 9) % 24 ))
+          if [ "${{ github.event_name }}" = "schedule" ] && { [ $K -lt 7 ] || [ $K -gt 23 ]; }; then echo "skip=true" >> $GITHUB_OUTPUT; echo "새벽(한국 ${K}시)은 만들기만"; exit 0; fi
           if [ "${{ inputs.post }}" = "no" ]; then echo "skip=true" >> $GITHUB_OUTPUT; exit 0; fi
           python health.py next
       - uses: actions/upload-pages-artifact@v3

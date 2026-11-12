@@ -60,7 +60,7 @@ def find_product(spec, d):
 
 
 def build():
-    todo = items("written")[:2]
+    todo = items("written")[:2]  # 한 번에 2편까지 (매시간 돌면서 조금씩)
     if not todo: print("만들 카드뉴스 없음"); return
     for n, spec in todo:
         d = f"{Q}/{n}"
