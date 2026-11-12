@@ -131,6 +131,10 @@ def card(c, i, n, spec, base_dir):
             f = font("Bold", 38); tw = d.textlength(c["cta"], font=f)
             d.rounded_rectangle([(W - tw) / 2 - 40, y + 14, (W + tw) / 2 + 40, y + 92], 39, fill=acc)
             d.text(((W - tw) / 2, y + 28), c["cta"], font=f, fill=(255, 255, 255))
+        if c.get("notes"):
+            f = font("Regular", 26); ny = H - SAFE_B - 36 * len(c["notes"]) + 20
+            for nline in c["notes"]:
+                for l in wrap(d, nline, f, W - 120): d.text(((W - d.textlength(l, font=f)) / 2, ny), l, font=f, fill=SUB); ny += 36
     elif t == "end":
         f = font("Medium", 40)
         for k, para in enumerate(c["body"]):

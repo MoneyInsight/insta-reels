@@ -36,7 +36,7 @@ def gemini(text, out):
 def edge(text, out):
     import edge_tts
     mp3 = out + ".mp3"
-    asyncio.run(edge_tts.Communicate(text, "ko-KR-SunHiNeural", rate="+4%").save(mp3))
+    asyncio.run(edge_tts.Communicate(text, "ko-KR-SunHiNeural", rate="+12%").save(mp3))
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-ar", "44100", "-ac", "2", out], check=True)
 
 
