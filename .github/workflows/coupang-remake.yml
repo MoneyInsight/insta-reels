@@ -21,6 +21,7 @@ jobs:
           COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
           COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          KEEP_MP4: "1"
         run: |
           for n in ${{ inputs.names }}; do python auto_coupang.py remake $n || true; sleep 20; done
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"

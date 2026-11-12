@@ -328,6 +328,8 @@ def make_one(p=None):
     mp4 = f"/tmp/{name}.mp4"  # 영상은 저장소에 쌓지 않고 게시할 때 같은 대본으로 다시 만든다
     build_video(f"{SCRIPTS}/{name}.json", mp4)
     review_sheets(name, mp4, det)
+    if os.environ.get("KEEP_MP4"):  # 확인용으로 영상 파일도 저장소에 남긴다
+        import shutil; os.makedirs("coupang/preview", exist_ok=True); shutil.copy(mp4, f"coupang/preview/{name}.mp4")
     import review
     probs = review.rule_check(name, mp4)[0]
     log = jload(LOG, [])
