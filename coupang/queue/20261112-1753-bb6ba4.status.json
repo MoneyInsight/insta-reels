@@ -1,6 +1,8 @@
 {
- "status": "pending",
+ "status": "approved",
  "product": "블루핀 여성용 겨울 발열 초극세사 기모내의 상하 세트 2p",
  "rule_problems": [],
- "made": "2026-11-12 17:53"
+ "made": "2026-11-12 17:53",
+ "priority": true,
+ "review": "합격(사용자 확인): Newtake 클립 포함, 상세페이지와 일치"
 }

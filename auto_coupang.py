@@ -385,6 +385,7 @@ def post_next():
                 and jload(f"{QUEUE}/{f}", {}).get("status") == "approved")
     if not ok:
         print("승인된 영상이 없어 이번 회차는 건너뜁니다"); out("skip", "true"); return
+    ok.sort(key=lambda n: (not jload(f"{QUEUE}/{n}.status.json", {}).get("priority"), n))  # 먼저 올리라고 표시한 영상 우선
     name = ok[0]
     js = jload(f"{SCRIPTS}/{name}.json", {})
     if js.get("style") != "panda":  # 예전 대본도 새 형식으로 만든다
