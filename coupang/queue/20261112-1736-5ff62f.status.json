@@ -1,6 +1,7 @@
 {
- "status": "pending",
- "product": "쿠첸 전기압력밥솥 6인용",
- "rule_problems": [],
- "made": "2026-11-12 17:36"
+  "status": "rejected",
+  "product": "쿠첸 전기압력밥솥 6인용",
+  "rule_problems": [],
+  "made": "2026-11-12 17:36",
+  "review": "상세는 10인용(CRS-FCWK1070K)인데 대본·글은 6인용으로 상품명 불일치"
 }

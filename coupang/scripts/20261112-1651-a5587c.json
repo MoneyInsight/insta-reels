@@ -1,95 +1,95 @@
 {
- "name": "20261112-1651-a5587c",
- "product": "팬틴 극손상케어 샴푸 과일",
- "coupang_product_id": 7006899364,
- "images": [
-  "https://t2a.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/232595096484475-f586304b-78fb-4417-b0a3-4adeaac914b9.png",
-  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/52613997131591-f9cba204-6431-4e9c-8dbe-ba04984cdb68.jpg",
-  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/389609545154410-705ead44-5b4d-4d1e-9ac3-f1eb12787fdd.jpg",
-  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/389609953274625-0e20066b-01cd-428d-bbdb-f170485b2778.jpg",
-  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/359498831923275-7e0ce9d6-6136-4dc4-bdc8-b7406013a41a.jpg",
-  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/493249914826592-f77f8acf-cd8b-4818-bd88-d9306b64643e.jpg",
-  "https://image.coupangcdn.com/image/retail/images/378772053087833-473ab4a3-cba3-44ef-aa30-7fb360133328.jpg"
- ],
- "voice": "female",
- "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "scenes": [
-  {
-   "img": 0,
-   "say": "매번 빗질마다 뚝뚝 끊기는 머리 때문에 짜증나셨죠?",
-   "cap": [
-    "손상모",
-    "머리 [끊김]"
-   ],
-   "badge": "꿀템 발견"
+  "name": "20261112-1651-a5587c",
+  "product": "팬틴 극손상케어 샴푸 과일",
+  "coupang_product_id": 7006899364,
+  "images": [
+    "https://t2a.coupangcdn.com/thumbnails/remote/700x700ex/image/retail/images/232595096484475-f586304b-78fb-4417-b0a3-4adeaac914b9.png",
+    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/52613997131591-f9cba204-6431-4e9c-8dbe-ba04984cdb68.jpg",
+    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/389609545154410-705ead44-5b4d-4d1e-9ac3-f1eb12787fdd.jpg",
+    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/389609953274625-0e20066b-01cd-428d-bbdb-f170485b2778.jpg",
+    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/359498831923275-7e0ce9d6-6136-4dc4-bdc8-b7406013a41a.jpg",
+    "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/493249914826592-f77f8acf-cd8b-4818-bd88-d9306b64643e.jpg",
+    "https://image.coupangcdn.com/image/retail/images/378772053087833-473ab4a3-cba3-44ef-aa30-7fb360133328.jpg"
+  ],
+  "voice": "female",
+  "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+  "scenes": [
+    {
+      "img": 0,
+      "say": "매번 빗질마다 뚝뚝 끊기는 머리 때문에 짜증나셨죠?",
+      "cap": [
+        "손상모",
+        "머리 [끊김]"
+      ],
+      "badge": "꿀템 발견"
+    },
+    {
+      "img": 3,
+      "say": "케라틴이랑 판테놀 포뮬러로 텅 빈 머리에 영양 꽉 채워줌 ㅋㅋ",
+      "cap": [
+        "영양 충전",
+        "[케라틴] 팍팍"
+      ],
+      "crop": [
+        0,
+        0.0,
+        1,
+        0.0702
+      ]
+    },
+    {
+      "img": 3,
+      "say": "산뜻한 자몽이랑 부드러운 플로럴 향이라 은근 기분 급 좋아짐",
+      "cap": [
+        "향기 미쳤네",
+        "[자몽] 플로럴"
+      ],
+      "crop": [
+        0,
+        0.351,
+        1,
+        0.4213
+      ]
+    },
+    {
+      "img": 3,
+      "say": "팬틴만의 판테놀 포뮬러로 속부터 차오르는 머릿결 미쳤네",
+      "cap": [
+        "윤기 좔좔",
+        "빛나는 [머릿결]"
+      ],
+      "crop": [
+        0,
+        0.1404,
+        1,
+        0.2106
+      ]
+    },
+    {
+      "img": 2,
+      "say": "패키지 리뉴얼로 더 산뜻해진 팬틴 극손상케어 샴푸 과일 당장 담아!",
+      "cap": [
+        "리뉴얼",
+        "지금 [당장]"
+      ],
+      "crop": [
+        0,
+        0.0,
+        1,
+        1.0
+      ]
+    }
+  ],
+  "intro": {
+    "say": "잠깐! 이거 보고 가요!",
+    "cap": [
+      "손상모들",
+      "팬틴 극손상케어 샴푸 [과일]"
+    ]
   },
-  {
-   "img": 3,
-   "say": "케라틴이랑 판테놀 포뮬러로 텅 빈 머리에 영양 꽉 채워줌 ㅋㅋ",
-   "cap": [
-    "영양 충전",
-    "[케라틴] 팍팍"
-   ],
-   "crop": [
-    0,
-    0.0,
-    1,
-    0.0702
-   ]
-  },
-  {
-   "img": 3,
-   "say": "산뜻한 자몽이랑 부드러운 플로럴 향이라 은근 기분 급 좋아짐",
-   "cap": [
-    "향기 미쳤네",
-    "[자몽] 플로럴"
-   ],
-   "crop": [
-    0,
-    0.351,
-    1,
-    0.4213
-   ]
-  },
-  {
-   "img": 3,
-   "say": "판틴만의 판테놀 포뮬러로 속부터 차오르는 머릿결 미쳤네",
-   "cap": [
-    "윤기 좔좔",
-    "빛나는 [머릿결]"
-   ],
-   "crop": [
-    0,
-    0.1404,
-    1,
-    0.2106
-   ]
-  },
-  {
-   "img": 2,
-   "say": "패키지 리뉴얼로 더 산뜻해진 팬틴 극손상케어 샴푸 과일 당장 담아!",
-   "cap": [
-    "리뉴얼",
-    "지금 [당장]"
-   ],
-   "crop": [
-    0,
-    0.0,
-    1,
-    1.0
-   ]
-  }
- ],
- "intro": {
-  "say": "잠깐! 이거 보고 가요!",
-  "cap": [
-   "손상모들",
-   "팬틴 극손상케어 샴푸 [과일]"
-  ]
- },
- "cta": [
-  "가격·구매는",
-  "[링크]에서 확인!"
- ],
- "cta_say": "가격과 구매는 링크에서 확인하세요."
+  "cta": [
+    "가격·구매는",
+    "[링크]에서 확인!"
+  ],
+  "cta_say": "가격과 구매는 링크에서 확인하세요."
 }
