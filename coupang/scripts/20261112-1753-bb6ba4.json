@@ -1,0 +1,112 @@
+{
+ "name": "20261112-1753-bb6ba4",
+ "product": "블루핀 여성용 겨울 발열 초극세사",
+ "coupang_product_id": 8335720931,
+ "images": [
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599551359680-7ed735e4-ba93-46fb-b85f-6eaafcbbef96.jpg",
+  "https://thumbnail.coupangcdn.com/thumbnails/remote/q89/image/retail/images/279599683815618-e12fa9ed-207f-4237-a6e6-4453f983b21a.jpg",
+  "https://image.coupangcdn.com/image/retail/images/592600849069270-c9f42ee7-1006-4d85-8cd9-dd429d324d05.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619658062203882-31acf128-ba91-49ae-853e-daf7c0e16e71.jpg",
+  "https://image.coupangcdn.com/image/retail/images/382493687065153-add7035d-fe69-4995-b968-bc784bd1e70f.jpg",
+  "https://image.coupangcdn.com/image/retail/images/619667484518473-0c1d5c8c-7a31-42ce-8c18-58b7a380086e.jpg"
+ ],
+ "voice": "female",
+ "disclosure": "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "scenes": [
+  {
+   "img": 1,
+   "say": "매번 칼바람 불 때마다 덜덜 떨기 바쁘셨죠?",
+   "cap": [
+    "겨울만 되면",
+    "[칼바람]에 덜덜"
+   ],
+   "badge": "꿀템 발견",
+   "crop": [
+    0,
+    0.0,
+    1,
+    0.1053
+   ]
+  },
+  {
+   "img": 1,
+   "say": "블루핀 여성용 겨울 발열 초극세사 기모내의 상하 세트 2개 이거 보세여",
+   "cap": [
+    "입는 순간",
+    "[포근함] 미쳤네"
+   ],
+   "crop": [
+    0.05,
+    0.5319,
+    0.95,
+    0.6162
+   ]
+  },
+  {
+   "img": 2,
+   "say": "피치기모 원단이라 진심 부드럽고 가벼워요.",
+   "cap": [
+    "가볍고 부드러운",
+    "[피치기모] 원단"
+   ],
+   "crop": [
+    0,
+    0.0495,
+    1,
+    0.0991
+   ]
+  },
+  {
+   "img": 2,
+   "say": "신축성이 좋아 입고 움직여도 은근 편해요.",
+   "cap": [
+    "쭉쭉 늘어나는",
+    "[우수한] 신축성"
+   ],
+   "crop": [
+    0.05,
+    0.1016,
+    0.95,
+    0.1461
+   ]
+  },
+  {
+   "img": 1,
+   "say": "블루핀 기모내의로 따뜻하게 겨울 나보세요.",
+   "cap": [
+    "한파 걱정 끝",
+    "[방한] 꿀템"
+   ],
+   "crop": [
+    0.05,
+    0.1106,
+    0.95,
+    0.1633
+   ]
+  }
+ ],
+ "style": "panda",
+ "cta_crop": [
+  0,
+  0.0,
+  1,
+  0.1053
+ ],
+ "title": [
+  "추위 타는 분들",
+  "이거 아직 모르세요?"
+ ],
+ "intro": {
+  "say": "잠깐! 이거 보고 가요!",
+  "cap": [
+   "겨울 추위",
+   "[기모내의] 세트"
+  ]
+ },
+ "cta": [
+  "가격·구매는",
+  "[링크]에서 확인!"
+ ],
+ "cta_say": "가격과 구매는 링크에서 확인하세요."
+}
