@@ -26,11 +26,31 @@ def font(s): return ImageFont.truetype(FONT, s, index=1)  # index 1 = 한국어
 def save_q(q): json.dump(q, open(Q, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 
 
+def fix_cookies(path="cookies.txt"):
+    """깃허브 비밀값에 붙여넣으며 탭이 공백으로 바뀌거나 JSON 형식이어도 yt-dlp용(Netscape) 형식으로 고친다"""
+    if not os.path.exists(path): return
+    raw = open(path, encoding="utf-8", errors="ignore").read().strip()
+    rows = []
+    if raw.startswith("["):  # JSON 형식 쿠키
+        for c in json.loads(raw):
+            d = c.get("domain", ""); exp = int(c.get("expirationDate", c.get("expires", 0)) or 0)
+            rows.append([d, "TRUE" if d.startswith(".") else "FALSE", c.get("path", "/"), "TRUE" if c.get("secure") else "FALSE", str(exp), c.get("name", ""), c.get("value", "")])
+    else:
+        for ln in raw.replace("\r", "").split("\n"):
+            ln = ln.strip()
+            if not ln or (ln.startswith("#") and not ln.startswith("#HttpOnly_")): continue
+            f = ln.split("\t") if "\t" in ln else ln.split(None, 6)
+            if len(f) == 6: f.append("")
+            if len(f) == 7: rows.append(f)
+    open(path, "w", encoding="utf-8").write("# Netscape HTTP Cookie File\n" + "".join("\t".join(r) + "\n" for r in rows))
+    print(f"쿠키 {len(rows)}개 정리 완료")
+
+
 def download(vid):
     out = f"{WD}/src.mp4"
     cmd = ["yt-dlp", "-q", "--no-playlist", "--max-filesize", "400M", "-f", "bv*[height<=1080][ext=mp4]+ba[ext=m4a]/b[height<=1080]/b",
            "--merge-output-format", "mp4", "-o", out, f"https://www.youtube.com/watch?v={vid}"]
-    if os.path.exists("cookies.txt"): cmd[1:1] = ["--cookies", "cookies.txt"]
+    if os.path.exists("cookies.txt"): fix_cookies(); cmd[1:1] = ["--cookies", "cookies.txt"]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode or not os.path.exists(out): print("::warning::다운로드 실패", vid, r.stderr[-300:]); return None
     return out
