@@ -8,7 +8,8 @@
    "title": "오늘 간식도\n[또 과자]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "아이 간식으로 과자만 사게 되는 사람 있어? 매번 뭐 줄지 고민되지?"
+   "narration": "아이 간식으로 과자만 사게 되는 사람 있어? 매번 뭐 줄지 고민되지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 호박고구마 준비했어! 씻어서 굽기만 하면 간식 끝이야. 이번 주 간식 바꾸게 지금 바로 링크 눌러 봐!"
+   "narration": "그래서 호박고구마 준비했어! 씻어서 굽기만 하면 간식 끝이야. 이번 주 간식 바꾸게 지금 바로 링크 눌러 봐!",
+   "image": "product.jpg",
+   "name": "호박고구마",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "호박고구마",
+    "고구마 원물"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -73,5 +85,12 @@
   "호박고구마",
   "고구마 원물"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9240520620",
+  "name": "해남 달망 호박고구마, 1박스, 3kg 특상",
+  "link": "https://link.coupang.com/a/iEMOQD9Oc8",
+  "subId": "h2611140701",
+  "image": "https://ads-partners.coupang.com/image1/eDkGC5sRIMP30WEieHBAc9ktfftuqnPnbhNlEO7AzE5mMfxXtxnTSrnEuq3oU3cJr_4JPU_bYGuGBavt9PUqC7oTCQj8X6xu6QAdHBmwuCzTdhMbiGhVxuDEr1ew4ziINrjpwcYVIdFdtnskIafiID3JfagC6aCrTU8ohHBLrIL1SKLSm7ejzKJeQrq0x7emFyCVKY-ohMoHyvrcMaQX66er7dx4cP_veyVK2Ddcc3McReHece5QoqERC35gGXtL41g9dtrFTu-Hx3_T1R2QTShnGlOKrn7wMPej_Q9iFDzFsBBx50IUwBif24BKVE-p7dA6XVnucp_sDGbZ5XBj_Qn3dDXkCvu3PQw3xB-NhGXFlnqKwixTGI8POl7UVj89JUKYYj1JOba6C1yabc87ZIRUuZVpfT3NM-3FXVAbFdju1BLRUi_JkO4pyA7qUKpFbv2TygIXtbj-9b5iwgCj8vD2SSVE9VwasiPcpG98w84V-uKYKXvffR8vBzp7wrF-1nEPaErnRIz3fH-ysk5bf6VjxDVa481mc4518ku2JKHva-UZpu2RMtyjfSGhCoSkOSSh813EXKG3qOYxaYS7"
+ }
 }

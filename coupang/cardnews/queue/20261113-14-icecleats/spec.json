@@ -8,7 +8,8 @@
    "title": "눈 온 다음 날\n[길이 꽁꽁]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "눈 온 다음 날 부모님 외출할 때 걱정되는 사람 있어? 길이 꽁꽁 얼어 있지?"
+   "narration": "눈 온 다음 날 부모님 외출할 때 걱정되는 사람 있어? 길이 꽁꽁 얼어 있지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 신발에 끼우는 아이젠 골라 왔어! 신던 신발에 끼우면 끝이야. 더 얼기 전에 링크 눌러서 챙겨 드려!"
+   "narration": "그래서 신발에 끼우는 아이젠 골라 왔어! 신던 신발에 끼우면 끝이야. 더 얼기 전에 링크 눌러서 챙겨 드려!",
+   "image": "product.jpg",
+   "name": "신발용 아이젠",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "신발에 끼우는",
+    "아이젠"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -69,5 +81,12 @@
   "신발에 끼우는",
   "아이젠"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "8583648656",
+  "name": "스노우마스터 아이젠 도시형 미끄럼방지 빙판길 등산용 휴대용 신발체인 8p, 블랙",
+  "link": "https://link.coupang.com/a/iEMOydbpgO",
+  "subId": "h2611140701",
+  "image": "https://ads-partners.coupang.com/image1/f2rtZDItc4cYWJv4f6y0NV_F4_NRYfw71r1p-LAaQqbB-Af4Yi27XaH6mFbA9eb48zPLxcLS_lqhp1FeKu0UfDca61WHP0crXLLnyG4ituOZLHyfaa-sfHezobz2gFYSuP9hi9j4_k4KluBQDKHxNTgaiOb9rzR-aEHrW5NFboFtagM_TZr9Gj1G3q0fJB6VSgYe1GdkJppXdifNKEWCe09t9APqlTJBeXTIhQMk8kHyNfSeAMTZ2gakf7JSC9DID1OoEvplqbjXbK5aLgo98E-w2ncUh9ajYzcvM3CVrv2ToGIjW39Vi0IqiRRmkB74DnLfoo2RvjwFP_gi2oVNAbbMtk98RdBWF52KhTnmDIEfWTuxDuFLpoiex1yi88jhXPz62YLcqDWLNPfznuZM3rQGHVdLGBsPixoUkU07U5GnPWcJYBtOAJ4m33-FfO5PzZ9mhYvJm62nYIzSrnzwwl56idltj2vj0w5yz4MT2rIP3wY5doaLGUBwTTJsdOgmkh1EWEDnl1ULPsp8fGy04FMZkZZFlGfOclN0neQ_ZCn3M2Iyk_xQvIafbkl2OA=="
+ }
 }
