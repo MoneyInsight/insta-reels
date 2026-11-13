@@ -8,7 +8,8 @@
    "title": "겨울 설거지\n[손끝이 얼얼]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "겨울에 설거지할 때 손 시린 사람 있어? 장갑 껴도 손끝이 얼얼하지?"
+   "narration": "겨울에 설거지할 때 손 시린 사람 있어? 장갑 껴도 손끝이 얼얼하지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 안쪽에 기모 들어간 고무장갑 준비했어! 끼는 순간부터 포근해. 지금 바로 링크 눌러 봐!"
+   "narration": "그래서 안쪽에 기모 들어간 고무장갑 준비했어! 끼는 순간부터 포근해. 지금 바로 링크 눌러 봐!",
+   "image": "product.jpg",
+   "name": "기모 고무장갑",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "안쪽 기모",
+    "고무장갑"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "찬물 설거지",
  "product_label": "기모 고무장갑",
  "product_keyword": "기모 고무장갑",
@@ -64,5 +76,15 @@
   "안쪽 기모",
   "고무장갑"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "41623907",
+  "name": "크린랩  기모 고무장갑 (Free 사이즈)",
+  "link": "https://link.coupang.com/a/iEI7KWzWSG",
+  "subId": "h2611140608",
+  "image": "https://ads-partners.coupang.com/image1/bxgxd9tSM7iz-qQub65KouhO_18owAEfqQGl0nktD_QSbrC8MnSm9jS8ugpWv3Cw2WMDySpI4i93bKZFs9-Y4i8aE0Mt0-EZC3FEGgSrSa-RwdXNdWysgFkBo-lsZzrEF1PV44PKWnidOy2_klp9LmhLtjsNgYeJZhw9OSuCwr9ZK3-eLeu0xVGPK6KbPuA9uayV7s84CnfP_dek1ol_abtDTKVYLPrZN7XqrwDt66sPVyBQdR7mJiOao5UY_MC2tYJ8fh356O3vbvc_hgrs_3bLiSTDPRWjXiR4KN066nDTBBeVW8vYesd09AcBsuz-Yz8W-nmPVtAY6Ixn0gQKcKt3bx7PFWEp6IRnK7FNXZrAdeDoptDhVlYDTBzhh0T2yW1TIPCrVLejWqdb5zHCh-541D8BqQ__yLTY6zqK8da7EGLpzNreT3NgGKPCIH5McUzdrF_wqzrxoWMjGd7DMp9UVurI3DQj5FZTaKkPXwcw3u47C_jrdKCOsEFQYm2KDNR8GXnnc6wN3q4Ad6bg98DOgQqS2sa9I2agkCQft52W02ODfRulcaggUWwJ8t4qj8x0zbkNSTsYdfwLAv4UtQZO4xA4eBCuw5or6YtaAo9V_D6krNogSlI2yU6VQPCNX8rwYcoYt5sXHfT1uoQjeQ=="
+ },
+ "threads_caption": "겨울에 설거지할 때 손 시린 사람 있어? 장갑 껴도 손끝이 얼얼하지?\n\n얇은 장갑은 찬물 온도가 그대로 와서 그래. 매일 반복되니까 손이 점점 더 거칠어져.\n\n온수만 쓰면 좋겠지만, 물 데워지길 기다리다 보면 결국 그냥 찬물 쓰게 되잖아.\n\n그래서 안쪽에 기모 들어간 고무장갑 준비했어! 끼는 순간부터 포근해. 지금 바로 링크 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEI7KWzWSG\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 기모 고무장갑 바로가기 👉 https://link.coupang.com/a/iEI7KWzWSG\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "겨울에 설거지할 때 손 시린 사람 있어? 장갑 껴도 손끝이 얼얼하지?\n\n얇은 장갑은 찬물 온도가 그대로 와서 그래. 매일 반복되니까 손이 점점 더 거칠어져.\n\n온수만 쓰면 좋겠지만, 물 데워지길 기다리다 보면 결국 그냥 찬물 쓰게 되잖아.\n\n그래서 안쪽에 기모 들어간 고무장갑 준비했어! 끼는 순간부터 포근해. 지금 바로 링크 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#고무장갑 #기모장갑 #겨울설거지 #주방템 #살림템 #주부일상 #생활꿀팁 #살림꿀팁"
 }

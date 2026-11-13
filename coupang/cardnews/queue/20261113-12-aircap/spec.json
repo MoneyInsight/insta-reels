@@ -8,7 +8,8 @@
    "title": "창가만 가면\n[찬 바람 솔솔]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "집 안인데 창가만 가면 서늘한 사람 있어? 난방 틀어도 발밑이 춥지?"
+   "narration": "집 안인데 창가만 가면 서늘한 사람 있어? 난방 틀어도 발밑이 춥지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 창에 붙이는 단열 에어캡 골라 왔어! 대고 붙이기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!"
+   "narration": "그래서 창에 붙이는 단열 에어캡 골라 왔어! 대고 붙이기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!",
+   "image": "product.jpg",
+   "name": "단열 에어캡",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "단열용",
+    "에어캡"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "창가 외풍",
  "product_label": "단열 에어캡",
  "product_keyword": "창문 단열 에어캡 뽁뽁이",
@@ -68,5 +80,15 @@
   "단열용",
   "에어캡"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9788928954",
+  "name": "코어템코리아 창문 단열 뽁뽁이 에어캡 물 없이 붙이는 두 겹 7중 해피트리, 1개",
+  "link": "https://link.coupang.com/a/iEI1XceQvI",
+  "subId": "h2611140608",
+  "image": "https://ads-partners.coupang.com/image1/QkYRLb76KbWJcdfTQjI6tgt12E7kl3VSnbqSTwj6as3uzdit1PDVDPLeeMhJo56BNlDWhgJv3dkixPJegwV8-1j9GeeSLtJ48IJILrpiKBJYMuCVOfud5z_nRX-XVqg8HEgZgxIz_q0u6oHWDmiyu9T3Ckyt4PUrsQGGj-xpKpcAWnTEPsl97omnz-CVT4IY2s5HU27IbQJ_4rFDjMB9Mfo17dh0zrMKgVzlSnd1HG4qCp83zEJhpJcdNnUNuMdX4w9-gLosXiBoaooi8YwmHrXbnP4u6-wXRRV_K1pn4er2qFAgL_XkhJx2fGtNTU8jJN94FI0fVGWpEra7si1h9n-nxITUiS9aZrLpFU7koIESiyBox1Cp_wsQj2XimS7SR6iybhwLdLTbelJ7T0FzBUAmptWdVTTsXBhOZZhHpWddr_PIkhpZS9RVhUj4lydt8zYpEyw2DVstGciMFHUpAfGA49ROKPrO9sO2bBQNk__KfomGIdkkaJinHm8rRrjqzR2cLB2p-qG5KgdxaBnQUODoJfGtGLJ0__Vr1lHTBgtxqfI1bj8-8QsyX6QKz5egXySpDcnAE3jRz9R9TfdlRe31tLHMfjm0HUfczHphVVHDgywYfI2zEQAbJaNO1sI8jpl4l8FbzNkGHg=="
+ },
+ "threads_caption": "집 안인데 창가만 가면 서늘한 사람 있어? 난방 틀어도 발밑이 춥지?\n\n얇은 유리로 찬 기운이 계속 들어와서 그래. 그냥 두면 따뜻한 공기가 금방 식어 버려.\n\n창에 한 겹 더 막아 주면 좋은데, 이중창으로 바꾸는 건 돈도 시간도 너무 들잖아.\n\n그래서 창에 붙이는 단열 에어캡 골라 왔어! 대고 붙이기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEI1XceQvI\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 단열 에어캡 바로가기 👉 https://link.coupang.com/a/iEI1XceQvI\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "집 안인데 창가만 가면 서늘한 사람 있어? 난방 틀어도 발밑이 춥지?\n\n얇은 유리로 찬 기운이 계속 들어와서 그래. 그냥 두면 따뜻한 공기가 금방 식어 버려.\n\n창에 한 겹 더 막아 주면 좋은데, 이중창으로 바꾸는 건 돈도 시간도 너무 들잖아.\n\n그래서 창에 붙이는 단열 에어캡 골라 왔어! 대고 붙이기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#뽁뽁이 #단열에어캡 #외풍차단 #겨울집 #창문단열 #생활꿀팁 #살림꿀팁 #살림템"
 }
