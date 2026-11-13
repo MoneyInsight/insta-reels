@@ -8,7 +8,8 @@
    "title": "출근 준비하다\n[아침은 또 패스]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "오늘도 아침 굶고 출근한 사람? 준비하다 보면 시간이 없지?"
+   "narration": "오늘도 아침 굶고 출근한 사람? 준비하다 보면 시간이 없지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 오트밀 골라 왔어! 우유만 부으면 끝이야. 내일 아침부터 챙기게 링크 걸어 놨어, 지금 확인해 봐!"
+   "narration": "그래서 오트밀 골라 왔어! 우유만 부으면 끝이야. 내일 아침부터 챙기게 링크 걸어 놨어, 지금 확인해 봐!",
+   "image": "product.jpg",
+   "name": "오트밀",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "오트밀",
+    "우유만 부으면 끝"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "아침 거르는 출근길",
  "product_label": "오트밀",
  "product_keyword": "오트밀 귀리 압착",
@@ -69,5 +81,15 @@
   "오트밀",
   "우유만 부으면 끝"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "6176474603",
+  "name": "톡톡 오트밀, 400g, 2개, (국산 귀리), 400g, 2개",
+  "link": "https://link.coupang.com/a/iD6F7dULEi",
+  "subId": "h2611132111",
+  "image": "https://ads-partners.coupang.com/image1/RVPBrA1x2NfKmlH-RSlqYr_CpsP_lEfq2UIk3mMcCESYBTb54-_4TURMbkAKoiv8aUBAnr0IqDyyon50kTsgWJjbVwG-WPqSrK2Offj4RMvGqio2UJHNAapJVzE4YI5rMbkCNiXB9rxnSe2nTSIMjGz3yPvy3NdZSVng6clSxja9dvCAHVPydXfA-v4DuC9MeKKTS6VMVaeW-mVQREbWP6yGgdTGOi6c06JXSX-RGayCL08PAhn2B0ZfxdVqALDSnCjCaKwtsQGk2cJ8gO9WRj3tRIvDLoD3gMsPKlXe9dRI6wEXqzG46qHUMQiDd-8CoSgeBvYkAu1gkIIOCJ7gIGa_Yw_knPk-XKBSIb9XEZCO9AqjuZiRb1hvxWdApnj8_G86pGk8kfyyQ-5fqHzs_ZVyTZ4iPKbRqAk52-m2xeWTPStGCRpcM7NmMrDg1bdRzvzPoS8m8aIZvnqdvchZYHjWg_byWjyICPM8Ws0Ksc0yk4xqRYyy42qaRoiBCLcbMwif4guUsL1LV0TVIoUAT23DdEkaLREh8_l7cJo8C5FMOrMiai4PbkZs1NWpHAdH9uig5RZxswZXzQcx"
+ },
+ "threads_caption": "오늘도 아침 굶고 출근한 사람? 준비하다 보면 시간이 없지?\n\n아침 거르면 빈속에 커피로 버티다가, 점심에 허겁지겁 먹게 돼.\n\n삼 분이면 끝나는 아침이 답인데, 요리해야 하면 바쁜 날엔 결국 못 먹어.\n\n그래서 오트밀 골라 왔어! 우유만 부으면 끝이야 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iD6F7dULEi\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 오트밀 바로가기 👉 https://link.coupang.com/a/iD6F7dULEi\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "오늘도 아침 굶고 출근한 사람? 준비하다 보면 시간이 없지? 🙋\n\n아침 거르면 빈속에 커피로 버티다가, 점심에 허겁지겁 먹게 돼.\n\n삼 분이면 끝나는 아침이 답인데, 요리해야 하면 바쁜 날엔 결국 못 먹어.\n\n그래서 오트밀 골라 왔어! 우유만 부으면 끝이야 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#오트밀 #아침식사 #직장인아침 #간편식 #생활꿀팁 #겨울철건강 #건강정보 #주방템"
 }
