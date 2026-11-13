@@ -115,7 +115,7 @@ JSON만 반환:
 
 def plan(src, title):
     f = gemini_upload(src)
-    for model in ["gemini-2.5-flash", "gemini-2.5-pro", "gemini-2.0-flash"]:
+    for model in ["gemini-3.8-flash", "gemini-3.1-pro-preview", "gemini-2.5-flash"]:
         r = requests.post(f"{G}/v1beta/models/{model}:generateContent?key={KEY}", timeout=300, json={
             "contents": [{"parts": [{"file_data": {"mime_type": "video/mp4", "file_uri": f["uri"]}}, {"text": PROMPT.format(title=title)}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9}}).json()
