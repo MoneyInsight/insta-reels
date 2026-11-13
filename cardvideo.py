@@ -189,14 +189,25 @@ ain, af, t = [], [], 0.0
 for k, g in enumerate(segs):
     st = t + (0.5 if k == 0 else 0.25); ain += ["-i", wavs[k]]
     af.append(f"[{k + 1}:a]adelay={int(st * 1000)}|{int(st * 1000)}[a{k}]"); t += g["sec"]
-af.append("".join(f"[a{k}]" for k in range(len(segs))) + f"amix=inputs={len(segs)}:normalize=0,loudnorm=I=-15:TP=-1.5,apad[a]")
+# 배경음악: 부드러운 곡을 영상마다 돌아가며 (목소리가 나올 땐 자동으로 작아짐)
+import glob as _g, bgm as _bgm
+qdir = os.path.dirname(os.path.abspath(d).rstrip("/"))
+idx = spec.get("bgm_idx")
+if idx is None:
+    idx = sum(1 for f in _g.glob(f"{qdir}/*/spec.json") if json.load(open(f)).get("status") in ("posted", "ready"))
+song = _bgm.make(f"{tmp}/bgm.wav", t, idx); ain += ["-i", f"{tmp}/bgm.wav"]; nb = len(segs) + 1
+af.append("".join(f"[a{k}]" for k in range(len(segs))) + f"amix=inputs={len(segs)}:normalize=0,asplit=2[v1][v2]")
+af.append(f"[{nb}:a]volume=0.20[bg]")
+af.append("[bg][v2]sidechaincompress=threshold=0.02:ratio=5:attack=30:release=500[bgd]")
+af.append("[v1][bgd]amix=inputs=2:normalize=0,loudnorm=I=-15:TP=-1.5,apad[a]")
+print("배경음악:", song)
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{tmp}/video.mp4", *ain, "-filter_complex", ";".join(af),
                 "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-t", f"{t:.3f}", f"{d}/video.mp4"], check=True)
 # 검수: 음성이 끝까지 들어갔는지, 영상 길이·프레임이 맞는지
 need = sum(dur(w) for w in wavs); vd = dur(f"{d}/video.mp4")
 fr = subprocess.run(["ffprobe", "-v", "error", "-count_frames", "-select_streams", "v:0", "-show_entries", "stream=nb_read_frames", "-of", "csv=p=0", f"{d}/video.mp4"], capture_output=True, text=True).stdout.strip()
-tail = silences(f"{d}/video.mp4", -40, 0.3)
-end_silent = bool(tail) and tail[-1][1] >= vd - 0.05
+last_start = sum(g["sec"] for g in segs[:-1]) + (0.5 if len(segs) == 1 else 0.25)
+end_silent = vd - (last_start + dur(wavs[-1])) >= 0.5  # 마지막 말이 끝나고 0.5초 이상 여유
 if vd < need + 0.5 or not end_silent or abs(int(fr or 0) - vd * FPS) > FPS:
     print(f"::error::영상 검수 실패: 길이 {vd:.1f}s / 음성 {need:.1f}s / 끝 무음 {end_silent} / 프레임 {fr}"); os.remove(f"{d}/video.mp4"); sys.exit(3)
 print(f"완성: {d}/video.mp4 ({dur(f'{d}/video.mp4'):.1f}초, 음성: {used})")
