@@ -108,6 +108,11 @@ def links_page():
         if s.get("status") not in ("posted", "ready") or not s.get("product"): continue
         p = s["product"]
         rows.append(f'<a class="i" href="{p["link"]}" rel="sponsored nofollow"><img src="{p["image"]}" alt=""><div><b>{s.get("topic","")}</b><span>{p["name"]}</span><em>쿠팡에서 보기 ›</em></div></a>')
+    if os.path.exists("comic/queue.json"):
+        cq = sorted([x for x in jl("comic/queue.json", {"items": []})["items"] if x.get("product")], key=lambda x: x.get("made_at", ""), reverse=True)[:15]
+        for x in cq:
+            p = x["product"]; lab = (x.get("plan") or {}).get("product_label") or "영상 속 그 상품"
+            rows.append(f'<a class="i" href="{p["link"]}" rel="sponsored nofollow"><img src="{p["image"]}" alt=""><div><b>{lab}</b><span>{p["name"]}</span><em>쿠팡에서 보기 ›</em></div></a>')
     html = ("<!DOCTYPE html><html lang='ko'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
             "<title>오늘 소개한 상품</title><style>body{margin:0;font-family:system-ui,sans-serif;background:#faf5ed;color:#221c18}"
             "h1{font-size:20px;padding:18px 16px 4px}p.n{font-size:12px;color:#6e6258;padding:0 16px}"
