@@ -181,11 +181,11 @@ def main():
     if not KEY: print("::error::GEMINI_API_KEY 없음"); raise SystemExit(1)
     os.makedirs(WD, exist_ok=True)
     q = json.load(open(Q, encoding="utf-8"))
-    dl_streak = 0
+    dl_streak = 0; tried = set()
     for _ in range(4):  # 실패하면 다음 순위로 최대 4번
-        todo = sorted([x for x in q["items"] if x["status"] == "todo"], key=lambda x: x["rank"])
+        todo = sorted([x for x in q["items"] if x["status"] == "todo" and x["id"] not in tried], key=lambda x: x["rank"])
         if not todo: print("::warning::대기열이 비었습니다 → rank.py로 보충 필요"); return
-        it = todo[0]; print(f"{it['rank']}위 {it['title']} ({it['views']:,}회) / {it['channel']}")
+        it = todo[0]; tried.add(it["id"]); print(f"{it['rank']}위 {it['title']} ({it['views']:,}회) / {it['channel']}")
         for f in os.listdir(WD): os.remove(os.path.join(WD, f))
         try:
             src = download(it["id"])
