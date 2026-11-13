@@ -8,7 +8,8 @@
    "title": "일어나면\n[목이 칼칼]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "아침에 일어나면 목이 칼칼하고 바싹 마른 사람? 겨울엔 매일 그렇지?"
+   "narration": "아침에 일어나면 목이 칼칼하고 바싹 마른 사람? 겨울엔 매일 그렇지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 도라지청 준비했어! 따뜻한 물에 한 스푼이면 달콤한 차 한 잔 완성. 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 도라지청 준비했어! 따뜻한 물에 한 스푼이면 달콤한 차 한 잔 완성. 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "도라지청",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "도라지청",
+    "물에 타서 한 잔"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -64,5 +76,12 @@
   "도라지청",
   "물에 타서 한 잔"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9124638840",
+  "name": "고려담록 국산 배 약도라지청 흑도라지 진액, 3개, 550g",
+  "link": "https://link.coupang.com/a/iEhtYKIuVE",
+  "subId": "h2611132341",
+  "image": "https://ads-partners.coupang.com/image1/YadABCOEdTlar9i4YbgVaUAzqhdQYHkQA4EHePVvsD3KqyfY4dginStY6YqDyfYR8HmlW36XK8-RXvgg6NLMLVa6zPIcMtcg3wDeZFHe9eL6UrDRLncb5KxJtWFhEOPFofWTIWMu1rYBmmpiDIs48WOy24kbvrxYxoTGNzDiuy6cX2iTETAbiariaL3YDLda_vpWKNops5HczRiiCiWWwiPSLnmRVOgAcHZ1gvsevyJU70GSVt87or_OnyJzRY8T25CnxMwSeLsRu8ynQE715F1rOh_3mSwB6XfYAN4ejiczlJRfQaLYfZ2vzn4HM_3zbh_ndk6SIPa10PxRIxrlFoT9NbK32nq7iKuItUHRcfCmvzmUucpTndfJ7XpBYiIKUKSuE3DLCipvZhuCb8THlOkf1L_Hhu7BClcHZTJcrDgOoO6yFMCADO246yzQFmkQLjeHHa504Z0CM7UlfgK4ZwX5rbA5zlrpN5_wYKhH5wqbRY05f0lmQ5Y9kkKXD19154n8LituBA8HeMOiRgcMuVhWsDogvk1W4G4gA93gkFKsPkWiWB3o6lRpyBX1G5gEhB_B8-459xw96K9Siw=="
+ }
 }
