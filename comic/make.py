@@ -50,11 +50,22 @@ def download_any(it):
     """Commons 등 직접 주소가 있으면 그대로 받고 mp4로 변환, 없으면 유튜브(yt-dlp)"""
     if not it.get("url"): return download(it["id"])
     raw, out = f"{WD}/raw", f"{WD}/src.mp4"
+    base = it["url"].split("?")[0]; fn = base.rsplit("/", 1)[1]
+    tr = base.replace("/wikipedia/commons/", "/wikipedia/commons/transcoded/", 1) + "/" + fn
+    urls = [tr + ".720p.vp9.webm", tr + ".480p.vp9.webm", base]  # 가벼운 변환본부터 (원본은 마지막)
+    ua = {"User-Agent": "ComicShortsBot/1.0 (https://github.com/MoneyInsight/insta-reels; reel-bot@users.noreply.github.com) python-requests"}
     try:
-        with requests.get(it["url"], stream=True, timeout=120, headers={"User-Agent": "comic-shorts-bot/1.0 (github.com/MoneyInsight/insta-reels)"}) as r:
-            r.raise_for_status()
-            with open(raw, "wb") as f:
-                for ch in r.iter_content(1 << 20): f.write(ch)
+        ok = False
+        for u in urls:
+            for t in range(3):
+                r = requests.get(u, stream=True, timeout=120, headers=ua)
+                if r.status_code == 429: time.sleep(20 * (t + 1)); continue
+                if r.status_code != 200: break
+                with open(raw, "wb") as f:
+                    for ch in r.iter_content(1 << 20): f.write(ch)
+                ok = True; break
+            if ok: break
+        if not ok: raise RuntimeError(f"받기 실패 (마지막 상태 {r.status_code})")
         sh("ffmpeg", "-v", "error", "-y", "-i", raw, "-t", "600", "-vf", "scale=-2:'min(1080,ih)'", "-c:v", "libx264", "-preset", "veryfast",
            "-crf", "20", "-c:a", "aac", "-b:a", "128k", out)
         return out
