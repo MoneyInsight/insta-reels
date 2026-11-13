@@ -8,7 +8,8 @@
    "title": "저녁만 먹으면\n[속이 더부룩]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "저녁만 먹으면 속이 더부룩하고 무거운 사람? 밤마다 그렇지?"
+   "narration": "저녁만 먹으면 속이 더부룩하고 무거운 사람? 밤마다 그렇지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 국산 볶은 보리 준비했어! 카페인 없어서 밤에도 편하게 마셔. 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 국산 볶은 보리 준비했어! 카페인 없어서 밤에도 편하게 마셔. 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "국산 볶은 보리",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "국산 보리",
+    "카페인 없는 차"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "더부룩한 저녁",
  "product_label": "국산 볶은 보리",
  "product_keyword": "국산 볶은 겉보리 보리차",
@@ -70,5 +82,15 @@
   "국산 보리",
   "카페인 없는 차"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9555206734",
+  "name": "국산 볶은 유기농 발아보리차 저온로스팅 아기보리차 보리차, 600g, 3개, 1개입",
+  "link": "https://link.coupang.com/a/iD2LEUhYPI",
+  "subId": "h2611132015",
+  "image": "https://ads-partners.coupang.com/image1/VSMWC0YO_HHb9MPeVRVq9CTYbuJoltFFn5cEOnGlLAY2T1KD1NfMWkce6158CEyF95zmtWLXPvbFMGhpnz_wNPE_mHd2gE4kxrgFh6r3HRQHXEjMV5h1dnR8c9gBzoybiYjbWGZvvlDkZQzrgZ2L7EGTPu-hG9FZqWJpALyoV0PYPvW73nn2giRX3OVEiDSrn7aa98F2f3HosSgXA5KX8C6TVCFqx81xChYZ2j7M6rk4JhxdY7gRraiXExtlxkzdbqrNjwnWrbXNH_0duGxSvRFF5xL-geGPVayLemcM0g3UpylIOF_vYmKXvSZc-O6yfr1Ap-YwpqkapfQqs6QK-oSkAxJ7OHUBMCGJmdfi9ZhRNf7ld55AQ4IkRLxQo7kZzr7w4OZqMTavLX_4FGeueCU_MF7cedjDZ1nXI-N9UCUunsgLZcAKAeNaH8e89m59x7wsIxD7SCjTL0WMe6Nq6QdwLOgiCP6ECSkSZBnZw8m_KGFi4e5cJZuSbdxkB2g8rib8HHQ5bpqRgd2F_60IYbopPt4QeRU0X_3SRmIC-RI7ptK6KxLy3GoqFL1hyeJImQcM2_lyQ-tNcYBjoYJcTOcxMJ-cDscRvpBu-Lnss_0U8-aQvPMbr5MlX9xD2nNMKznLtt-OPyFbCfc="
+ },
+ "threads_caption": "저녁만 먹으면 속이 더부룩하고 무거운 사람? 밤마다 그렇지?\n\n급하게 먹고 바로 눕거나 식후에 찬 음료 찾는 습관이 겹치면, 더 무겁게 느껴져.\n\n식후엔 십 분 걷고 따뜻한 차 한 잔이 좋은데, 밤에 커피는 부담되잖아.\n\n그래서 국산 볶은 보리 준비했어! 카페인 없어서 밤에도 편하게 마셔 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iD2LEUhYPI\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 국산 볶은 보리 바로가기 👉 https://link.coupang.com/a/iD2LEUhYPI\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "저녁만 먹으면 속이 더부룩하고 무거운 사람? 밤마다 그렇지? 🙋\n\n급하게 먹고 바로 눕거나 식후에 찬 음료 찾는 습관이 겹치면, 더 무겁게 느껴져.\n\n식후엔 십 분 걷고 따뜻한 차 한 잔이 좋은데, 밤에 커피는 부담되잖아.\n\n그래서 국산 볶은 보리 준비했어! 카페인 없어서 밤에도 편하게 마셔 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#보리차 #저녁습관 #따뜻한차 #카페인없는차 #생활꿀팁 #겨울철건강 #건강정보 #주방템"
 }
