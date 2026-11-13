@@ -120,6 +120,14 @@ def links_page():
             ".i img{width:72px;height:72px;object-fit:cover;border-radius:10px}.i b{display:block;font-size:15px;color:#b3261e}.i span{display:block;font-size:13px}.i em{display:inline-block;margin-top:6px;font-style:normal;font-size:13px;font-weight:700;color:#fff;background:#b3261e;padding:5px 12px;border-radius:20px}</style></head><body>"
             "<h1>오늘 소개한 상품</h1><p class='n'>" + DISCLOSURE + "</p>" + "".join(rows) + "</body></html>")
     os.makedirs("site", exist_ok=True); open("site/links.html", "w", encoding="utf-8").write(html)
+    open("site/privacy.html", "w", encoding="utf-8").write(
+        "<!DOCTYPE html><html lang='ko'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>개인정보처리방침</title></head>"
+        "<body style='font-family:system-ui,sans-serif;max-width:720px;margin:24px auto;padding:0 16px;line-height:1.7'>"
+        "<h1>개인정보처리방침</h1><p>이 서비스(comic-shorts-uploader)는 운영자 본인의 유튜브 채널에 직접 만든 영상을 업로드하기 위해서만 YouTube Data API를 사용합니다.</p>"
+        "<ul><li>수집 정보: 없음. 다른 사용자의 개인정보나 유튜브 데이터를 수집·저장·공유하지 않습니다.</li>"
+        "<li>사용 권한: 운영자 채널에 영상 업로드(youtube.upload)만 사용합니다.</li>"
+        "<li>권한 철회: Google 계정 → 보안 → 타사 액세스에서 언제든 철회할 수 있습니다.</li></ul>"
+        "<p>문의: 이 페이지를 게시한 운영자에게 연락해 주세요.</p></body></html>")
 
 
 def nxt():
