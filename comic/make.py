@@ -181,6 +181,7 @@ def main():
     if not KEY: print("::error::GEMINI_API_KEY 없음"); raise SystemExit(1)
     os.makedirs(WD, exist_ok=True)
     q = json.load(open(Q, encoding="utf-8"))
+    dl_streak = 0
     for _ in range(4):  # 실패하면 다음 순위로 최대 4번
         todo = sorted([x for x in q["items"] if x["status"] == "todo"], key=lambda x: x["rank"])
         if not todo: print("::warning::대기열이 비었습니다 → rank.py로 보충 필요"); return
@@ -188,7 +189,12 @@ def main():
         for f in os.listdir(WD): os.remove(os.path.join(WD, f))
         try:
             src = download(it["id"])
-            if not src: it["status"] = "fail_download"; save_q(q); continue
+            if not src:
+                it["dl_fail"] = it.get("dl_fail", 0) + 1
+                if it["dl_fail"] >= 3: it["status"] = "fail_download"
+                save_q(q); dl_streak += 1
+                if dl_streak >= 2: print("::error::연속 다운로드 실패 → 쿠키 만료 또는 유튜브 차단 의심, 이번 회차 중단"); raise SystemExit(1)
+                continue
             p = plan(src, it["title"])
             if not p or p.get("skip") or not p.get("scenes"):
                 it["status"] = "skip"; it["reason"] = (p or {}).get("reason", "대본 실패"); save_q(q); print("건너뜀:", it["reason"]); continue
