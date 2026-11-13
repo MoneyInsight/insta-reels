@@ -93,7 +93,7 @@ def build():
                 js(f"{d}/spec.json", spec)
             print("::notice::영상 못 만듦(음성 한도 또는 검수 실패) → 다음 회차에 다시", n); continue
         link = spec["product"]["link"]
-        spec["threads_caption"] = spec["threads_text"].strip() + f"\n\n오늘 카드 속 상품 👉 {link}\n\n{CAUTION}\n{DISCLOSURE}"
+        spec["threads_caption"] = spec["threads_text"].strip() + f"\n\n👉 바로가기: {link}\n\n{CAUTION}\n{DISCLOSURE}"
         spec["threads_reply"] = f"📌 {spec.get('product_label') or spec['product']['name'][:30]} 바로가기 👉 {link}\n저장해 두면 필요할 때 다시 보기 편해요.\n{DISCLOSURE}"
         spec["insta_caption"] = (spec["insta_text"].strip() + f"\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n{CAUTION}\n{DISCLOSURE}\n\n"
                                  + " ".join("#" + h.lstrip("#") for h in spec.get("hashtags", [])[:12]))

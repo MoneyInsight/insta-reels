@@ -8,8 +8,9 @@ from PIL import Image, ImageFilter, ImageEnhance
 W, H, FPS = 1080, 1920, 30
 d = [a for a in sys.argv[1:] if not a.startswith("--")][0]; spec = json.load(open(f"{d}/spec.json", encoding="utf-8"))
 tmp = f"/tmp/cv-{os.path.basename(d)}"; os.makedirs(tmp, exist_ok=True)
-STYLE = ("Read the following Korean text aloud in a warm, calm, friendly female voice, like a kind health-information host "
-         "explaining to a friend. Natural pace, clear pronunciation, gentle smile in the voice. Read only the text: ")
+STYLE = ("Read the following Korean text aloud as a bright, high-pitched, energetic young Korean woman hosting a live shopping show. "
+         "Excited, upbeat and persuasive, like recommending a must-have item to a close friend; lively fast pace, rising intonation on questions, "
+         "strong emphasis on the final call to action. Read only the text: ")
 
 
 def gemini(text, out):
@@ -20,7 +21,7 @@ def gemini(text, out):
             r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}", timeout=90,
                               json={"contents": [{"parts": [{"text": STYLE + text}]}],
                                     "generationConfig": {"responseModalities": ["AUDIO"],
-                                                         "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": spec.get("voice", "Aoede")}}}}}).json()
+                                                         "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": spec.get("voice", "Zephyr")}}}}}).json()
             raw = base64.b64decode(r["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
             if len(raw) / 48000 > len(text) * 0.24 + 2: print("::notice::지시문까지 읽은 듯 → 다른 모델"); continue
             open(out + ".pcm", "wb").write(raw)
@@ -38,7 +39,7 @@ def edge(text, out):
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-t", f"{len(text) * 0.17:.2f}", out], check=True); return
     import edge_tts
     mp3 = out + ".mp3"
-    asyncio.run(edge_tts.Communicate(text, "ko-KR-SunHiNeural", rate="+12%").save(mp3))
+    asyncio.run(edge_tts.Communicate(text, "ko-KR-SunHiNeural", rate="+18%", pitch="+18Hz").save(mp3))
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-ar", "44100", "-ac", "2", out], check=True)
 
 
@@ -154,6 +155,12 @@ def frame(gi, tl, t_all):
         fr.paste(prev, (int(-W * e), CY)); fr.paste(cd, (int(W * (1 - e)), CY))
     else: fr.paste(cd, (0, CY))
     dr = ImageDraw.Draw(fr)
+    if gi == len(segs) - 1 and tl > 0.6:  # 마지막 장: 링크 누르라는 깜빡이는 버튼
+        import math
+        sc = 1 + 0.06 * math.sin(tl * 7); txt = "지금 링크 눌러서 확인 ›"; fb = CN.font("Black", int(50 * sc))
+        tw = dr.textlength(txt, font=fb); bh = 50 * sc + 44; y0 = CY + 1100 - bh / 2
+        dr.rounded_rectangle([(W - tw) / 2 - 44, y0, (W + tw) / 2 + 44, y0 + bh], int(bh / 2), fill=(255, 214, 0))
+        dr.text(((W - tw) / 2, y0 + 16), txt, font=fb, fill=(20, 20, 20))
     # 위: 주제 + 진행 막대
     topic = spec.get("topic", "")
     dr.text(((W - dr.textlength(topic, font=ftop)) / 2, CY - 120), topic, font=ftop, fill=(255, 255, 255))
