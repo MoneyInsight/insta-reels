@@ -26,8 +26,72 @@
 "sec": 48,
 "views": 0,
 "score": 113,
-"status": "todo",
-"rank": 2
+"status": "posted",
+"rank": 2,
+"made_at": "2026-11-13 23:44",
+"plan": {
+"top1": "친구 혼자 빵 터졌을 때",
+"top2": "옆 사람 현실 반응 ㅋㅋㅋ",
+"yt_title": "친구 혼자 숨 넘어가게 웃을 때 옆 사람 반응 ㅋㅋㅋ 🤣",
+"hashtags": [
+"애니메이션",
+"공감",
+"웃긴영상",
+"친구태그",
+"고양이",
+"클레이애니"
+],
+"mood": "funny",
+"sns_text": "만화책 보다가 혼자 웃겨서 숨 넘어가는 친구 옆에 있으면 딱 이 표정 됨 ㅋㅋㅋ\n결국 참다못해 헤드폰 장착하는 고양이 표정 진짜 찐이다 ㅋㅋㅋ\n너도 옆에서 끅끅거리는 친구 있으면 댓글로 바로 소환해!\n시끄러운 친구 옆에서도 평화 지켜주는 노이즈캔슬링 헤드폰 하나 장만하자.",
+"product_keyword": "헤드폰",
+"product_must": "헤드폰",
+"product_label": "무선 헤드폰",
+"scenes": [
+{
+"start": 19.5,
+"end": 26.0,
+"narration": "야 친구 혼자 빵 터져서 오열할 때 옆 사람 표정 봐 ㅋㅋㅋ",
+"caption": "친구 혼자\n오열할 때 표정",
+"highlight": "오열할 때"
+},
+{
+"start": 26.0,
+"end": 31.0,
+"narration": "결국 시끄러워서 헤드폰 끼는 고양이 반응 실화냐 ㅋㅋㅋ",
+"caption": "결국 헤드폰\n껴버림 ㅋㅋㅋ",
+"highlight": "헤드폰"
+},
+{
+"start": 8.0,
+"end": 15.0,
+"narration": "원래 만화책 보다가 혼자 웃긴 장면 나오면 슬슬 시동 걸림 ㅋㅋㅋ",
+"caption": "만화책 볼 때\n시동 거는 과정",
+"highlight": "시동"
+},
+{
+"start": 15.0,
+"end": 19.5,
+"narration": "굳이 옆 사람한테 들이밀면서 끅끅거림 ㅋㅋㅋ",
+"caption": "굳이 옆 사람한테\n들이밀기 ㅋㅋㅋ",
+"highlight": "들이밀기"
+},
+{
+"start": 31.0,
+"end": 35.0,
+"narration": "입틀막하고 참는 거 봐 ㅋㅋㅋ 너도 이런 친구 있지? 태그해!",
+"caption": "입틀막 시전\n너도 이런 친구 있지?",
+"highlight": "입틀막"
+}
+]
+},
+"yt": "iBnlhb3tVHI",
+"product": {
+"id": "9153372586",
+"name": "보스 QC 울트라 헤드폰 2세대 BOSE QC ULTRA HEADPHONES 2Gen, 데저트골드, 890101",
+"link": "https://link.coupang.com/a/iEUbkHSElU",
+"subId": "h2611140844",
+"image": "https://ads-partners.coupang.com/image1/DLd4DRsVDJNjtJYkDDGg0i5X8ImgAA9x2pU4yFtoQEGlMUCg2KhTWDNZKOLxYhk8_O46ZmvDlyK_tOzQ8TyB-ybI-Gp_OWnV8swoJZmLnK_s4w2C5jx0RSt9dF7xpYkxtrTTGf-S3KbwBoUTgmaPC1U_OX9lvViT0DChKz7gisFuZ1S6eZNDFKXfXZpfWaxUxFINQsqognV30VbJlGonMElonTKAmb3ddv1ltJthTF5f3JiV0boa63alQplEGGTXMaF_RLLX-uW5dKssnfPULTLEPn8D39Xj8vkkKVgFoTHyUVhi81fOfwEGyFq0z2dyETQ6PTzmDaPd_n26MHEfwOjJ3L8L_21ldsBVOQQwOuyb7zPgYLnUAq7gVsYXJdEmCKolexk-2OeTVsoE-EvMbCfdqRjr0wgAQDoHw4ohmno6Rb9tMvRhwwD650-rQZcn8d0J6InriFSu35Iw5ugQVewntNGj4exQXK6gAIF848VRHcB2pSAvOnmLJKfkB8Lz0J0mc8u81V48ec1oz5Y-v4xb3cFkBy4RjGzByNC61T1JYIskq2sOb9BF1EySCecbQnhU3sPoz0WjG0Pa6H8="
+}
 },
 {
 "id": "c199969388",
