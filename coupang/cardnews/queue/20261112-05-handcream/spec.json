@@ -68,5 +68,13 @@
   "300g 대용량",
   "무향"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "old_posts": [
+  {
+   "threads_id": "18122700322947309",
+   "insta_id": "18387585580300816",
+   "posted_at": "2026-11-13 16:41",
+   "note": "예전 대본"
+  }
+ ]
 }

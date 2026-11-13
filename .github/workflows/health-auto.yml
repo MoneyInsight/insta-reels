@@ -70,7 +70,7 @@ jobs:
           fi
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
           git add -A coupang naver-clip 2>/dev/null; git commit -qm "건강 카드뉴스: ${N:-만들기}" || exit 0
-          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin main && break; sleep 7; done
+          for i in 1 2 3 4 5; do (git pull -q --rebase -X theirs origin main || git rebase --abort) && git push -q origin main && break; sleep 7; done
       - name: 토큰 만료 알림
         if: failure() && hashFiles('post.log') != ''
         env: { GH_TOKEN: "${{ github.token }}" }
