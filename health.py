@@ -83,7 +83,11 @@ def build():
             r = subprocess.run([sys.executable, "cardvideo.py", d], capture_output=True, text=True)
             print("대체 음성", r.stdout[-300:], r.stderr[-300:])
         if r.returncode != 0 or not os.path.exists(f"{d}/video.mp4"):
-            print("::notice::자연 음성 한도 → 다음 회차에 다시", n); continue
+            if r.returncode == 3:  # 영상 검수 실패
+                spec["qa_fail"] = spec.get("qa_fail", 0) + 1
+                if spec["qa_fail"] >= 3: spec["status"] = "failed"; spec["error"] = "영상 검수 3번 실패"
+                js(f"{d}/spec.json", spec)
+            print("::notice::영상 못 만듦(음성 한도 또는 검수 실패) → 다음 회차에 다시", n); continue
         link = spec["product"]["link"]
         spec["threads_caption"] = spec["threads_text"].strip() + f"\n\n오늘 카드 속 상품 👉 {link}\n\n{CAUTION}\n{DISCLOSURE}"
         spec["threads_reply"] = f"📌 {spec.get('product_label') or spec['product']['name'][:30]} 바로가기 👉 {link}\n저장해 두면 필요할 때 다시 보기 편해요.\n{DISCLOSURE}"
