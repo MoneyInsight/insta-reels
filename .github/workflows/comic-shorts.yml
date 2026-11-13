@@ -1,0 +1,124 @@
+name: 코믹 쇼츠 자동 (CC-BY 조회수 순위 1~1000위, 하루 5편)
+on:
+  schedule:
+    - cron: "7 23,2,5,8,11 * * *"   # 한국시간 08:07 · 11:07 · 14:07 · 17:07 · 20:07
+    - cron: "37 15 * * 0"           # 매주 월요일 00:37(한국) 순위 대기열 보충
+  workflow_dispatch:
+    inputs:
+      task: { description: "make(만들고 올리기) / rank(순위 대기열 만들기) / test(만들기만)", required: false, default: "make" }
+permissions: { contents: write, issues: write, pages: write, id-token: write }
+concurrency: { group: daily-reel, cancel-in-progress: false }  # 건강 숏폼과 같은 공개 주소(Pages)를 쓰므로 순서대로
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - name: 할 일 정하기
+        id: t
+        run: |
+          T="${{ inputs.task }}"; [ -z "$T" ] && T=make
+          [ "${{ github.event.schedule }}" = "37 15 * * 0" ] && T=rank
+          [ -f comic/queue.json ] || T=rank-$T
+          echo "task=$T" >> $GITHUB_OUTPUT; echo "할 일: $T"
+      - name: 도구 설치
+        run: |
+          pip install -q pillow requests yt-dlp
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk >/dev/null
+      - name: 순위 대기열 만들기/보충
+        if: contains(steps.t.outputs.task, 'rank')
+        env: { YT_API_KEY: "${{ secrets.YT_API_KEY }}" }
+        run: python comic/rank.py
+      - name: 쇼츠 만들기
+        id: make
+        if: contains(steps.t.outputs.task, 'make') || contains(steps.t.outputs.task, 'test')
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
+        run: |
+          [ -n "$YT_COOKIES" ] && printf '%s\n' "$YT_COOKIES" > cookies.txt
+          python comic/make.py
+          rm -f cookies.txt
+      - name: 완성 영상 보관 (7일)
+        if: steps.make.outputs.vid != ''
+        uses: actions/upload-artifact@v4
+        with: { name: "comic-${{ steps.make.outputs.vid }}", path: "comic/work/final.mp4", retention-days: 7 }
+      - name: 유튜브 업로드 (쿠팡 링크 없음)
+        if: steps.make.outputs.vid != '' && !contains(steps.t.outputs.task, 'test')
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YTC_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YTC_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YTC_REFRESH_TOKEN }}
+          YT_LOG: comic/youtube_log.json
+          YT_DAILY_MAX: "5"
+          YT_GAP_HOURS: "2"
+        run: |
+          python post_youtube.py comic/work/final.mp4 comic/work/meta.json 2>&1 | tee yt.log
+          ID=$(grep -o '유튜브 ID: [A-Za-z0-9_-]*' yt.log | head -1 | awk '{print $3}')
+          V="${{ steps.make.outputs.vid }}"
+          python - "$V" "$ID" <<'EOF'
+          import json, sys
+          q = json.load(open("comic/queue.json", encoding="utf-8"))
+          for x in q["items"]:
+              if x["id"] == sys.argv[1]:
+                  x["status"] = "posted" if sys.argv[2] else "made"; x["yt"] = sys.argv[2]
+          json.dump(q, open("comic/queue.json", "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+          EOF
+          grep -q "토큰 갱신 실패" yt.log && echo "TOKEN_ERROR" > tok.flag || true
+          [ -n "$ID" ] || grep -q "건너뜀\|건너뜁니다" yt.log
+      - name: 스레드·인스타용 쿠팡 링크 글 만들기
+        id: sns
+        if: steps.make.outputs.vid != '' && !contains(steps.t.outputs.task, 'test')
+        env:
+          COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
+          COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
+        run: |
+          python comic/social.py "${{ steps.make.outputs.vid }}"
+          mkdir -p site && cp comic/work/final.mp4 "site/comic-${{ steps.make.outputs.vid }}.mp4"
+          python -c "import health; health.links_page()"
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.sns.outcome == 'success'
+        with: { path: site }
+      - name: 영상 공개 주소 만들기
+        id: deploy
+        if: steps.sns.outcome == 'success'
+        uses: actions/deploy-pages@v4
+      - name: 스레드·인스타 게시
+        if: steps.sns.outcome == 'success'
+        continue-on-error: true
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          V="${{ steps.make.outputs.vid }}"
+          URL="${{ steps.deploy.outputs.page_url }}comic-$V.mp4"
+          for i in $(seq 1 30); do [ "$(curl -s -o /dev/null -w '%{http_code}' "$URL")" = 200 ] && break; sleep 10; done
+          R=""; [ -s comic/work/threads_reply.txt ] && R=comic/work/threads_reply.txt
+          for t in 1 2 3; do THREADS_REPLY="$R" python post_threads.py "$URL" comic/work/threads.txt 2>&1 | tee -a sns.log && break; sleep 60; done
+          for t in 1 2 3; do python post_instagram.py "$URL" comic/work/insta.txt 2>&1 | tee -a sns.log && break; sleep 60; done
+          TH=$(grep -o '게시물 ID: [0-9]*' sns.log | head -1 | grep -o '[0-9]*$'); IG=$(grep -o '미디어 ID: [0-9]*' sns.log | head -1 | grep -o '[0-9]*$')
+          python - "$V" "$TH" "$IG" <<'EOF'
+          import json, sys
+          q = json.load(open("comic/queue.json", encoding="utf-8"))
+          for x in q["items"]:
+              if x["id"] == sys.argv[1]: x["sns"] = {"threads": sys.argv[2], "insta": sys.argv[3]}
+          json.dump(q, open("comic/queue.json", "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+          EOF
+          [ -n "$TH$IG" ]
+      - name: 기록 저장
+        if: always()
+        run: |
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add comic/queue.json; [ -f comic/youtube_log.json ] && git add comic/youtube_log.json; git commit -qm "코믹 쇼츠: ${{ steps.t.outputs.task }} ${{ steps.make.outputs.vid }}" || exit 0
+          for i in 1 2 3 4 5; do (git pull -q --rebase -X theirs origin main || git rebase --abort) && git push -q origin main && break; sleep 7; done
+      - name: 문제 알림
+        if: failure()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          T="코믹 쇼츠 실패"; [ -f tok.flag ] && T="⚠️ 토큰 만료: YTC_REFRESH_TOKEN 다시 발급 필요"
+          gh issue list --state open --search "$T" --json number -q '.[0].number' | grep -q . || gh issue create --title "$T" --body "실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
