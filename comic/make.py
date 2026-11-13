@@ -46,6 +46,22 @@ def fix_cookies(path="cookies.txt"):
     print(f"쿠키 {len(rows)}개 정리 완료")
 
 
+def download_any(it):
+    """Commons 등 직접 주소가 있으면 그대로 받고 mp4로 변환, 없으면 유튜브(yt-dlp)"""
+    if not it.get("url"): return download(it["id"])
+    raw, out = f"{WD}/raw", f"{WD}/src.mp4"
+    try:
+        with requests.get(it["url"], stream=True, timeout=120, headers={"User-Agent": "comic-shorts-bot/1.0 (github.com/MoneyInsight/insta-reels)"}) as r:
+            r.raise_for_status()
+            with open(raw, "wb") as f:
+                for ch in r.iter_content(1 << 20): f.write(ch)
+        sh("ffmpeg", "-v", "error", "-y", "-i", raw, "-t", "600", "-vf", "scale=-2:'min(1080,ih)'", "-c:v", "libx264", "-preset", "veryfast",
+           "-crf", "20", "-c:a", "aac", "-b:a", "128k", out)
+        return out
+    except Exception as e:
+        print("::warning::다운로드 실패", it["id"], str(e)[:200]); return None
+
+
 def download(vid):
     out = f"{WD}/src.mp4"
     cmd = ["yt-dlp", "-q", "--no-playlist", "--max-filesize", "400M", "-f", "bv*[height<=1080][ext=mp4]+ba[ext=m4a]/b[height<=1080]/b",
@@ -146,7 +162,7 @@ def overlay(i, top1, top2, cap, hl, credit):
 
 
 def render(src, p, item):
-    total = dur(src); credit = f"원본: {item['channel']} / YouTube (CC BY)"
+    total = dur(src); credit = f"원본: {item['channel']} / " + ("Wikimedia Commons (" + item.get("license", "CC BY") + ")" if item.get("src") == "commons" else "YouTube (CC BY)")
     vids, auds, cuts, t = [], [], [], 0.0
     for i, s in enumerate(p["scenes"][:5]):
         st = max(0.0, float(s["start"])); en = min(total, float(s["end"]))
@@ -208,7 +224,7 @@ def main():
         it = todo[0]; tried.add(it["id"]); print(f"{it['rank']}위 {it['title']} ({it['views']:,}회) / {it['channel']}")
         for f in os.listdir(WD): os.remove(os.path.join(WD, f))
         try:
-            src = download(it["id"])
+            src = download_any(it)
             if not src:
                 it["dl_fail"] = it.get("dl_fail", 0) + 1
                 if it["dl_fail"] >= 3: it["status"] = "fail_download"
@@ -225,9 +241,8 @@ def main():
         tags = [h.lstrip("#") for h in p.get("hashtags", [])][:8]
         meta = {"yt_title": (p.get("yt_title") or p.get("top1", ""))[:85] + " #Shorts",
                 "yt_description": (f"{p.get('top1','')} {p.get('top2','')}\n\n"
-                                   f"🎬 원본 영상: \"{it['title']}\" — {it['channel']}\nhttps://www.youtube.com/watch?v={it['id']}\n"
-                                   "원본은 크리에이티브 커먼즈 저작자표시(CC BY) 라이선스로 공개된 영상이며, 한국어 더빙·자막·편집을 더했습니다.\n"
-                                   "라이선스: https://creativecommons.org/licenses/by/3.0/deed.ko\n\n"
+                                   f"🎬 원본 영상: \"{it['title']}\" — {it['channel']}\n{it.get('page') or 'https://www.youtube.com/watch?v=' + it['id']}\n"
+                                   f"원본 라이선스: {it.get('license', 'CC BY')} — 재사용이 허락된 영상에 한국어 더빙·자막·편집을 더했습니다.\n\n"
                                    + " ".join("#" + h for h in tags + ["쇼츠", "웃긴영상", "Shorts"])),
                 "yt_tags": tags + ["웃긴영상", "쇼츠", "Shorts", "해외반응"], "yt_category": "23" if p.get("mood") != "touching" else "24"}
         json.dump(meta, open(f"{WD}/meta.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
