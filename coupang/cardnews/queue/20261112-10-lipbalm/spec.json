@@ -5,64 +5,57 @@
   {
    "type": "hook",
    "tag": "찬바람 부는 날",
-   "title": "자꾸 침 바르는 입술\n[오히려 더] 마른다고요?",
+   "title": "침 바르는 입술\n[오히려 더 마른다]?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "입술 마를 때마다 침 바르고 계시죠? 삼십 초만 보세요.",
-   "image": "product.jpg"
+   "narration": "입술 마를 때마다 침 바르시죠? 그러면 오히려 더 말라요. 삼십 초만 보세요."
   },
   {
    "type": "text",
    "label": "왜 그럴까",
-   "title": "입술이\n[유독 잘 트는] 이유",
+   "title": "입술이 유독\n[잘 트는 이유]",
    "body": [
-    "[피지 거의 없음] 입술은 스스로 기름막을 못 만들어요.",
-    "[침 바르기] 침이 마르면서 더 건조해져요.",
-    "[찬바람·난방] 밖도 안도 건조해요.",
-    "[각질 뜯기] 뜯은 자리가 또 갈라져요."
+    "[피지 거의 없음] 기름막을 못 만들어요.",
+    "[침 바르기] 마르면서 더 건조해져요.",
+    "[찬 바람] 밖에선 더 빨리 말라요.",
+    "[각질 뜯기] 상처가 생겨요."
    ],
-   "narration": "입술엔 피지가 거의 없어요. 침은 마르면서 더 건조하게 하고, 각질을 뜯으면 또 갈라져요."
+   "narration": "입술은 기름막을 거의 못 만들어서, 침을 바르면 마르면서 더 건조해져요."
   },
   {
    "type": "text",
-   "label": "오늘부터 해 보기",
-   "title": "입술 보습\n[이 순서]로 해요",
+   "label": "핵심은 이것",
+   "title": "답은\n[수시로 덧바르기]",
    "body": [
-    "[각질은 그대로] 뜯지 말고 불려서 닦아요.",
-    "[수시로 덧바르기] 외출 전·식사 후·자기 전.",
-    "[밤에는 도톰하게] 듬뿍 바르고 자요."
+    "[각질] 뜯지 말고 불려서 닦아요.",
+    "[수시로] 외출 전·식사 후 덧발라요.",
+    "[자기 전] 도톰하게 바르고 자요.",
+    "[손 닿는 곳] 여러 군데 두기."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "각질은 뜯지 말고, 외출 전과 식사 후에 덧발라요. 자기 전엔 도톰하게요."
+   "narration": "그래서 수시로 덧바르는 게 핵심인데, 립밤이 하나뿐이면 꼭 필요할 때 손에 없어요."
   },
   {
    "type": "photo",
-   "narration": "보습 립밤은 프로필 링크에 있어요. 저장해 두고 오늘 밤부터 해 보세요.",
-   "image": "product.jpg",
-   "name": "보습 립밤",
-   "cta": "프로필 링크에서 확인",
-   "notes": [
-    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
-    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
-   ]
+   "narration": "네 개짜리 립밤이면 가방, 책상, 침대맡에 하나씩 두고 생각날 때 바로 바를 수 있어요. 프로필 링크에 있어요."
   }
  ],
  "status": "written",
  "topic": "트는 입술",
- "product_label": "보습 립밤",
+ "product_label": "시어버터 허니 립밤 4개입",
  "product_keyword": "시어버터 보습 립밤",
  "product_must": "립밤",
- "threads_text": "입술 마를 때마다 침 바르는 사람?\n\n그게 오히려 더 마르게 한대\n입술엔 피지가 거의 없어서\n스스로 기름막을 못 만든다더라\n\n각질은 뜯지 말고 불려서 닦기\n외출 전, 밥 먹고 나서 덧바르기\n자기 전엔 도톰하게\n\n너는 각질 뜯는 파야, 참는 파야?",
- "insta_text": "찬바람에 입술이 자꾸 트는 분들 🙋 30초면 끝나는 입술 보습 정리예요.\n\n✔ 침 바르면 더 마르는 이유\n✔ 각질은 뜯지 말고 불려서\n✔ 자기 전 도톰하게 바르기\n\n📌 저장해 두고 입술 자주 트는 친구에게 보내 주세요",
+ "threads_text": "입술 마를 때마다 침 바르시죠? 그러면 오히려 더 말라요.\n\n입술이 유독 잘 트는 이유\n- 피지 거의 없음 기름막을 못 만들어요.\n- 침 바르기 마르면서 더 건조해져요.\n- 찬 바람 밖에선 더 빨리 말라요.\n\n답은 수시로 덧바르기\n- 각질 뜯지 말고 불려서 닦아요.\n- 수시로 외출 전·식사 후 덧발라요.\n- 자기 전 도톰하게 바르고 자요.\n- 손 닿는 곳 여러 군데 두기.\n\n네 개짜리 립밤이면 가방, 책상, 침대맡에 하나씩 두고 생각날 때 바로 바를 수 있어요.\n\n너도 입술에 침 바르는 버릇 있어?",
+ "insta_text": "입술 마를 때마다 침 바르시죠? 그러면 오히려 더 말라요. 🙋\n30초 정리예요.\n\n✔ 입술이 유독 잘 트는 이유\n✔ 답은 수시로 덧바르기\n✔ 시어버터 허니 립밤 4개입, 이래서 하나 두면 편해요\n\n📌 저장해 두고 오늘부터 해 보세요",
  "hashtags": [
   "립밤",
+  "트는입술",
   "입술보습",
-  "겨울보습",
-  "건조한입술",
-  "겨울필수템",
-  "생활건강",
+  "겨울입술",
+  "생활꿀팁",
+  "겨울철건강",
   "건강정보",
-  "뷰티팁"
+  "파우치템"
  ],
  "product": {
   "id": "7792431739",
@@ -71,7 +64,8 @@
   "subId": "h2611130858",
   "image": "https://ads-partners.coupang.com/image1/n9RRSX3DU2vpo1-Yn3LXcsB01o-AKaT7J9PJrUe3f4xa7OqmbPFMjPkPihEOScuyCkklmew94Hr7CcpLE2-MKgyhzZF8BHMFUW5VT5fZBbFgl-V7VaxRbSYDqOBkzSLNiFyYTfvnDzL73m6E6tevU9fjmk4P7SbcGd9IGOROTPlU__-P_WFYH_lYHxCUSROuqzqlDZEShHvvAG-qkyPN5066nq2tRm424fd_H-h7r4ZTjZk81gsHEa2-MisXvvV25Cy4O7g9Cv4JadWFCNyoMaifa_lbUY9Y5uuYeanO7WiXiLtuCdK4LJUWEr9OGJ5hSOzCruFIsP6a5j184eTgAiaElqxX1VkKk6chaCeT9iGRNb7aVKs3mDX5KUSJSeXwlyVEt70X5V24SnFZRjvlulN1ORmXmvzs8k_zxrwdwEWNjTH-MdE--zn-gKOpyCs2Isr7VK6uU62w2LGmywMMLU7Oq_25ZSXUYwJPKkXddPN826sOVfrexqRHs1rM0HumFV53IuUSKnpTaSBA085UU_6z8PwN4iJmZ8WDJSFjGDkOEtb1c5CfmdM3RoH7ABBRJGvqqfHngjBj--FBeeUdvg6y7lEl_J8-JcpExf26lOI_Qeh53qxWp9zoeAi0sr3r6LZ2YPEsVA=="
  },
- "threads_caption": "입술 마를 때마다 침 바르는 사람?\n\n그게 오히려 더 마르게 한대\n입술엔 피지가 거의 없어서\n스스로 기름막을 못 만든다더라\n\n각질은 뜯지 말고 불려서 닦기\n외출 전, 밥 먹고 나서 덧바르기\n자기 전엔 도톰하게\n\n너는 각질 뜯는 파야, 참는 파야?\n\n오늘 카드 속 상품 👉 https://link.coupang.com/a/iDgjhEM3X2\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 보습 립밤 바로가기 👉 https://link.coupang.com/a/iDgjhEM3X2\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "찬바람에 입술이 자꾸 트는 분들 🙋 30초면 끝나는 입술 보습 정리예요.\n\n✔ 침 바르면 더 마르는 이유\n✔ 각질은 뜯지 말고 불려서\n✔ 자기 전 도톰하게 바르기\n\n📌 저장해 두고 입술 자주 트는 친구에게 보내 주세요\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#립밤 #입술보습 #겨울보습 #건조한입술 #겨울필수템 #생활건강 #건강정보 #뷰티팁"
+ "product_facts": [
+  "시어버터 허니",
+  "4개입"
+ ]
 }

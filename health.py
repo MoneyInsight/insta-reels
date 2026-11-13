@@ -45,6 +45,9 @@ def find_product(spec, d):
     for p in rows or []:
         name = p.get("productName", "")
         if must and must not in name: continue
+        if not all(w in name for w in spec.get("product_require", [])): continue
+        if spec.get("product_require_any") and not any(w in name for w in spec["product_require_any"]): continue
+        if any(w in name for w in spec.get("product_exclude", [])): continue
         if any(w in name for w in ["중고", "리퍼", "렌탈"]): continue
         try:
             im = Image.open(io.BytesIO(requests.get(p["productImage"], timeout=20).content)).convert("RGB")
@@ -73,7 +76,8 @@ def build():
             if c["type"] == "photo":
                 c["name"] = spec.get("product_label") or spec["product"]["name"][:30]
                 c.setdefault("cta", "프로필 링크에서 확인")
-                c["notes"] = [CAUTION, DISCLOSURE]
+                if spec.get("product_facts"): c["facts"] = spec["product_facts"]
+                c["notes"] = spec.get("extra_notes", []) + [CAUTION, DISCLOSURE]
         js(f"{d}/spec.json", spec)
         subprocess.run([sys.executable, "cardnews.py", f"{d}/spec.json", f"{d}/cards"], check=True)
         r = subprocess.run([sys.executable, "cardvideo.py", d, "--gemini-only"], capture_output=True, text=True)

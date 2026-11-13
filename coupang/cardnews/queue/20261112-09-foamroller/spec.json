@@ -4,47 +4,40 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "겨울 저녁의 고민",
-   "title": "추워서 안 움직였더니\n[몸이 뻣뻣]하죠?",
+   "tag": "겨울 집콕",
+   "title": "운동은커녕\n[몸이 뻣뻣]?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "추워서 안 움직였더니 몸이 뻣뻣하죠? 삼십 초만 보세요.",
-   "image": "product.jpg"
+   "narration": "겨울엔 운동은커녕 몸이 뻣뻣하게 굳는 느낌이죠? 삼십 초만 보세요."
   },
   {
    "type": "text",
    "label": "왜 그럴까",
-   "title": "겨울에 몸이\n[굳는] 이유",
+   "title": "겨울에 몸이\n[굳는 이유]",
    "body": [
-    "[덜 걷기] 추워서 바깥에 덜 나가요.",
-    "[움츠린 자세] 어깨가 저절로 올라가요.",
-    "[짧은 낮] 퇴근하면 벌써 깜깜해요.",
-    "[오래 앉기] 집에서도 소파에만 있어요."
+    "[추위] 몸을 웅크리고 다녀요.",
+    "[활동량] 밖에 덜 나가요.",
+    "[오래 앉기] 다리·등이 굳어요.",
+    "[미루기] 운동 준비가 번거로워요."
    ],
-   "narration": "추워서 덜 걷고, 어깨는 움츠리고, 집에서도 소파에만 있게 되죠."
+   "narration": "추우면 몸을 웅크리고 밖에도 덜 나가서, 하루 종일 같은 자세로 지내게 돼요."
   },
   {
    "type": "text",
-   "label": "오늘 밤 해 보기",
-   "title": "자기 전 [10분]\n거실 스트레칭",
+   "label": "이거면 충분",
+   "title": "자기 전\n[10분 스트레칭]",
    "body": [
-    "[종아리] 바닥에 두고 천천히 굴려요.",
-    "[등] 누워서 등 아래를 위아래로 굴려요.",
-    "[숨 고르기] 천천히 쉬면서 아프지 않게."
+    "[종아리] 앉아서 천천히 굴려요.",
+    "[허벅지] 엎드려 앞쪽을 풀어요.",
+    "[등] 누워서 가슴을 열어요.",
+    "[호흡] 천천히 내쉬며 해요."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "자기 전 십 분, 종아리와 등을 천천히 굴려 주세요. 숨은 천천히, 아프지 않을 만큼만요."
+   "narration": "거창한 운동 대신 자기 전 십 분 스트레칭이면 충분해요. 근데 맨몸으로는 금방 지루해서 안 하게 되죠."
   },
   {
    "type": "photo",
-   "narration": "사십오 센티 폼롤러는 프로필 링크에 있어요. 저장해 두고 오늘 밤 거실에서 해 보세요.",
-   "image": "product.jpg",
-   "name": "EVA 폼롤러 45cm",
-   "cta": "프로필 링크에서 확인",
-   "notes": [
-    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
-    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
-   ]
+   "narration": "사십오 센티 폼롤러 하나면 거실에서 종아리, 허벅지, 등까지 굴리며 풀 수 있어요. 프로필 링크에 있어요."
   }
  ],
  "status": "written",
@@ -52,17 +45,17 @@
  "product_label": "EVA 폼롤러 45cm",
  "product_keyword": "EVA 폼롤러 45cm",
  "product_must": "폼롤러",
- "threads_text": "겨울 되고 퇴근하면 소파랑 한 몸 된 사람?\n\n추워서 덜 걷고\n어깨는 움츠러들고\n해는 벌써 깜깜하고\n그러다 보니 몸이 뻣뻣해지더라\n\n자기 전 10분만\n종아리 천천히 굴리고\n누워서 등도 위아래로\n숨은 천천히, 아프지 않게\n\n너는 겨울에 어떻게 움직여?",
- "insta_text": "추워서 안 움직였더니 몸이 뻣뻣한 분들 🙋 30초면 끝나는 겨울 거실 스트레칭이에요.\n\n✔ 겨울에 몸이 굳는 4가지 이유\n✔ 자기 전 10분 종아리·등 풀기\n✔ 천천히, 아프지 않게\n\n📌 저장해 두고 같이 할 가족에게 공유해 주세요",
+ "threads_text": "겨울엔 운동은커녕 몸이 뻣뻣하게 굳는 느낌이죠?\n\n겨울에 몸이 굳는 이유\n- 추위 몸을 웅크리고 다녀요.\n- 활동량 밖에 덜 나가요.\n- 오래 앉기 다리·등이 굳어요.\n\n자기 전 10분 스트레칭\n- 종아리 앉아서 천천히 굴려요.\n- 허벅지 엎드려 앞쪽을 풀어요.\n- 등 누워서 가슴을 열어요.\n- 호흡 천천히 내쉬며 해요.\n\n사십오 센티 폼롤러 하나면 거실에서 종아리, 허벅지, 등까지 굴리며 풀 수 있어요.\n\n너는 겨울에 운동 어떻게 해?",
+ "insta_text": "겨울엔 운동은커녕 몸이 뻣뻣하게 굳는 느낌이죠? 🙋\n30초 정리예요.\n\n✔ 겨울에 몸이 굳는 이유\n✔ 자기 전 10분 스트레칭\n✔ EVA 폼롤러 45cm, 이래서 하나 두면 편해요\n\n📌 저장해 두고 오늘부터 해 보세요",
  "hashtags": [
-  "홈트",
-  "스트레칭",
   "폼롤러",
+  "스트레칭",
+  "홈트",
   "겨울운동",
-  "거실운동",
-  "저녁루틴",
-  "생활건강",
-  "건강정보"
+  "집콕",
+  "생활꿀팁",
+  "건강정보",
+  "홈트템"
  ],
  "product": {
   "id": "8695482267",
@@ -71,9 +64,6 @@
   "subId": "h2611130702",
   "image": "https://ads-partners.coupang.com/image1/HSWn3dB2uMT4CLD6HR1VggqFXTu9krufnBqGcJrYC-dxHOLLpYKdZ35YazYprsedMSFhp7ENGx0iTjOoiRD0w_VDdBdp97O4hzT70q5dbUwgEEhwFfWkE-DjgY2T99YaROs0GFhtOwUXZ0Pn4WLocW7b4ngxE-mgPeWHBsu3UOKSPHCrMxj0rFNdYHU5sUMHB11T7jAmmxJPqsXx_fIHKMfOjd12F8YOcuQXrl2xNgL5CmSPJjadO78qRWs3NuLHEst5pMlSegV-cTYfTjuQoPUiAdPRcjuGjLTwVqTMIZVf-XzLPqCLgnpPIx6o3ou6dMtsb_U9SZqer5QSOf1Xjd-nmLxRubwE6NXpmB22BrMxIBR4HzNGNdEQ_ZGxrZf-8dj4iYipujpJPyR7LEX0abRo_jUoW6t6XXrVKl0oTT4CMyzJDfTYdZpJExiStcEojyhWPKRP1F94N2vpTDINeCR27xSjoYZyQYzxxJgGwJoGeRBcb3uBaDCcrejrefXMcmXWb_5tMJbaWodIDDSuTElaJcw9aV4xnFk9pkBH9bW0ijexpSd4zT6vUttx4LnIVdcQjEA1IaLnxIL9REQdPYhTqYE3RduRu41aiUsWY6JL0Na2Vcl_svtbXm0PG3x5RVFQIHLbCWXy8c8="
  },
- "threads_caption": "겨울 되고 퇴근하면 소파랑 한 몸 된 사람?\n\n추워서 덜 걷고\n어깨는 움츠러들고\n해는 벌써 깜깜하고\n그러다 보니 몸이 뻣뻣해지더라\n\n자기 전 10분만\n종아리 천천히 굴리고\n누워서 등도 위아래로\n숨은 천천히, 아프지 않게\n\n너는 겨울에 어떻게 움직여?\n\n오늘 카드 속 상품 👉 https://link.coupang.com/a/iC70e6DHWK\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 EVA 폼롤러 45cm 바로가기 👉 https://link.coupang.com/a/iC70e6DHWK\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "추워서 안 움직였더니 몸이 뻣뻣한 분들 🙋 30초면 끝나는 겨울 거실 스트레칭이에요.\n\n✔ 겨울에 몸이 굳는 4가지 이유\n✔ 자기 전 10분 종아리·등 풀기\n✔ 천천히, 아프지 않게\n\n📌 저장해 두고 같이 할 가족에게 공유해 주세요\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#홈트 #스트레칭 #폼롤러 #겨울운동 #거실운동 #저녁루틴 #생활건강 #건강정보",
  "old_posts": [
   {
    "threads": true,
@@ -82,5 +72,9 @@
    "insta_id": "18120031729808297",
    "posted_at": "2026-11-13 09:02"
   }
+ ],
+ "product_facts": [
+  "45cm",
+  "EVA 소재"
  ]
 }

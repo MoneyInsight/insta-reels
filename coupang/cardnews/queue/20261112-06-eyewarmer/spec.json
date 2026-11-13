@@ -4,74 +4,74 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "오후 4시의 고민",
-   "title": "모니터 보다 보면\n[눈이 뻑뻑]해지죠?",
+   "tag": "모니터 앞 직장인",
+   "title": "오후만 되면\n[눈이 뻑뻑]?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "오후만 되면 눈이 뻑뻑하죠? 삼십 초만 보세요.",
-   "image": "product.jpg"
+   "narration": "오후만 되면 눈이 뻑뻑하고 무겁죠? 삼십 초만 보세요."
   },
   {
    "type": "text",
    "label": "왜 그럴까",
-   "title": "눈을 지치게 하는\n[4가지 습관]",
+   "title": "모니터 보면\n[깜빡임이 줄어요]",
    "body": [
-    "[화면 집중] 눈 깜빡임이 줄어들어요.",
-    "[난방 바람] 실내 공기가 건조해져요.",
-    "[가까운 화면] 눈이 계속 힘을 줘요.",
-    "[쉬는 시간 없음] 몇 시간째 한곳만 봐요."
+    "[화면 집중] 깜빡이는 횟수가 줄어요.",
+    "[난방 바람] 눈 표면이 더 말라요.",
+    "[가까운 거리] 눈이 쉬지 못해요.",
+    "[쉬는 시간 없음] 피로가 쌓여요."
    ],
-   "narration": "화면에 집중하면 덜 깜빡여요. 건조한 공기, 가까운 화면, 쉬지 않는 습관도 겹치죠."
+   "narration": "화면에 집중하면 눈 깜빡임이 줄고, 난방 바람까지 더해지면 눈이 금방 말라요."
   },
   {
    "type": "text",
-   "label": "오늘 오후 해 보기",
-   "title": "눈에게 주는\n[작은 쉬는 시간]",
+   "label": "오늘부터 해 보기",
+   "title": "눈 쉬는 법\n[20-20-20]",
    "body": [
-    "[20분마다] 6m쯤 먼 곳을 20초 바라봐요.",
-    "[천천히 깜빡이기] 의식해서 열 번 깜빡여요.",
-    "[따뜻하게] 눈을 감고 따뜻한 수건을 얹어요."
+    "[20분마다] 화면에서 눈을 떼요.",
+    "[20초 동안] 6미터 먼 곳을 봐요.",
+    "[크게 깜빡] 열 번 천천히 깜빡여요.",
+    "[점심시간] 눈 감고 따뜻하게 쉬기."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "이십 분마다 먼 곳을 이십 초 보고, 천천히 깜빡여요. 눈 위를 따뜻하게 덮어도 좋아요."
+   "narration": "이십 분마다 이십 초씩 먼 곳을 보세요. 그리고 점심시간엔 눈을 감고 따뜻하게 쉬어 주세요."
   },
   {
    "type": "photo",
-   "narration": "유에스비 온열 안대는 프로필 링크에 있어요. 저장해 두고 오늘 오후에 해 보세요.",
-   "image": "product.jpg",
-   "name": "USB 온열 안대",
-   "cta": "프로필 링크에서 확인",
-   "notes": [
-    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
-    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
-   ]
+   "narration": "온열 안대 하나 두면 책상에서도 십 분 동안 따뜻하게 눈을 쉬게 할 수 있어요. 프로필 링크에 있어요."
   }
  ],
- "status": "ready",
+ "status": "written",
  "topic": "눈이 뻑뻑한 오후",
- "product_label": "USB 온열 안대",
- "product_keyword": "USB 온열 안대 온도조절",
+ "product_label": "온열 안대",
+ "product_keyword": "온열 안대 USB 눈",
  "product_must": "온열",
- "threads_text": "모니터 보다 보면 오후에 눈 뻑뻑해지는 사람?\n\n화면 볼 땐 눈을 덜 깜빡이게 된대\n난방 바람, 가까운 화면, 쉬는 시간 없음까지 겹치고\n\n20분마다 먼 곳 20초 보기\n의식해서 천천히 깜빡이기\n눈 감고 따뜻한 수건 올리기\n\n너는 하루에 화면 몇 시간 봐?",
- "insta_text": "오후만 되면 눈이 뻑뻑한 분들 🙋 30초면 끝나는 눈 쉬는 시간 정리예요.\n\n✔ 눈을 지치게 하는 4가지 습관\n✔ 20분마다 20초 먼 곳 보기\n✔ 따뜻하게 눈 덮어 주기\n\n📌 저장해 두고 화면 보는 동료에게도 공유해 주세요",
+ "threads_text": "오후만 되면 눈이 뻑뻑하고 무겁죠?\n\n모니터 보면 깜빡임이 줄어요\n- 화면 집중 깜빡이는 횟수가 줄어요.\n- 난방 바람 눈 표면이 더 말라요.\n- 가까운 거리 눈이 쉬지 못해요.\n\n눈 쉬는 법 20-20-20\n- 20분마다 화면에서 눈을 떼요.\n- 20초 동안 6미터 먼 곳을 봐요.\n- 크게 깜빡 열 번 천천히 깜빡여요.\n- 점심시간 눈 감고 따뜻하게 쉬기.\n\n온열 안대 하나 두면 책상에서도 십 분 동안 따뜻하게 눈을 쉬게 할 수 있어요.\n\n너는 하루에 화면 몇 시간 봐?",
+ "insta_text": "오후만 되면 눈이 뻑뻑하고 무겁죠? 🙋\n30초 정리예요.\n\n✔ 모니터 보면 깜빡임이 줄어요\n✔ 눈 쉬는 법 20-20-20\n✔ 온열 안대, 이래서 하나 두면 편해요\n\n📌 저장해 두고 오늘부터 해 보세요",
  "hashtags": [
-  "눈피로",
-  "직장인건강",
   "온열안대",
+  "눈피로",
+  "직장인",
   "모니터",
-  "사무실꿀템",
-  "생활건강",
+  "생활꿀팁",
+  "겨울철건강",
   "건강정보",
-  "겨울건강"
+  "오피스템"
  ],
- "product": {
-  "id": "9225338575",
-  "name": "Richday 리치데이 660nm+850nm 적외선 레드 라이트 온열 진동 안마 무릎 팔꿈치 3 in 1 보호대",
-  "link": "https://link.coupang.com/a/iCV4zvInUi",
-  "subId": "h2611130415",
-  "image": "https://ads-partners.coupang.com/image1/M-XhGMRBOa-9W-VDM07fp6NqeFXsVpbromyOUv7s2zxVLu0AdWKTfl5JxFbLcBNQCCUB20LNorKvTXbjCwp2sAs2kCEBNDGxwjqio8vtH_P2PGnplbsO-926h7mrIyurUpz1X6_wKViTaQqSefSYKVo-Wdsv3h3s4fC7rUp4o-i1jP1zEe7hsVd3RUXbxRbFS5y5-DeryCvGmFIoGxGmw23XGHR-LP-dm1_rDlMXOrzb2nSLEaSif7C-OO1EQP_d2ZN3WL2PW76OI85LFlQmIELMKaS_MWiVvNUbPK-ibZvOd1jcYDrQ0RSxB5l09GlpJcQuhXNkYyk6e8LEWdYLdoPoh95Zr5K5wQ2HdPD3kRIg4nWtZTsxwJxBkS72dIZh0PIGUY_lyrwaqDyyrTSlywvDS3M-ecJuPzZqhBw00JibK91Ww0kBxsRt7Rhkdwn6TCdVzs3HQrD-wNvk6qtW-G4uGkAPx-oVzoBWZ9wU7Xz3tz-6YHxoVx6dhdrPJyVDQrEOKWsVfdtJ5zh1NCmEd83u7A87anOFS1rLrIUUrfTFC1JgtgpAFyZf6TLUCQx8N1NF8Bi6U82kvbC6RC9n"
- },
- "threads_caption": "모니터 보다 보면 오후에 눈 뻑뻑해지는 사람?\n\n화면 볼 땐 눈을 덜 깜빡이게 된대\n난방 바람, 가까운 화면, 쉬는 시간 없음까지 겹치고\n\n20분마다 먼 곳 20초 보기\n의식해서 천천히 깜빡이기\n눈 감고 따뜻한 수건 올리기\n\n너는 하루에 화면 몇 시간 봐?\n\n오늘 카드 속 상품 👉 https://link.coupang.com/a/iCV4zvInUi\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 USB 온열 안대 바로가기 👉 https://link.coupang.com/a/iCV4zvInUi\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "오후만 되면 눈이 뻑뻑한 분들 🙋 30초면 끝나는 눈 쉬는 시간 정리예요.\n\n✔ 눈을 지치게 하는 4가지 습관\n✔ 20분마다 20초 먼 곳 보기\n✔ 따뜻하게 눈 덮어 주기\n\n📌 저장해 두고 화면 보는 동료에게도 공유해 주세요\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#눈피로 #직장인건강 #온열안대 #모니터 #사무실꿀템 #생활건강 #건강정보 #겨울건강"
+ "product_require": [
+  "안대"
+ ],
+ "product_require_any": [
+  "온열",
+  "찜질"
+ ],
+ "product_exclude": [
+  "무릎",
+  "보호대",
+  "팔꿈치",
+  "수면 안대 암막"
+ ],
+ "product_facts": [
+  "온열 안대",
+  "책상 위 10분 휴식"
+ ]
 }

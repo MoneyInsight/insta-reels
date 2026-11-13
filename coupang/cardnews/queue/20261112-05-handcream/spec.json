@@ -4,65 +4,58 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "손 씻은 뒤의 고민",
-   "title": "손등이 하얗게 일어나고\n[손끝이 까칠]?",
+   "tag": "손 씻을 때마다 따끔",
+   "title": "겨울만 되면\n[손등이 쩍쩍]?",
    "sub": "30초면 끝나요",
    "swipe": "넘겨서 확인",
-   "narration": "겨울만 되면 손등이 하얗게 일어나죠? 삼십 초만 보세요.",
-   "image": "product.jpg"
+   "narration": "겨울만 되면 손등이 거칠어지고 쩍쩍 갈라지죠? 삼십 초만 보세요."
   },
   {
    "type": "text",
    "label": "왜 그럴까",
-   "title": "손을 더 건조하게 만드는\n[4가지 습관]",
+   "title": "손이 유독\n[더 트는 이유]",
    "body": [
-    "[뜨거운 물] 손의 기름막까지 씻겨 나가요.",
-    "[물기 방치] 마르면서 수분도 같이 날아가요.",
-    "[맨손 설거지] 세제에 오래 닿아요.",
-    "[찬 바람] 장갑 없이 다니면 더 거칠어져요."
+    "[찬 바람] 피부 수분이 빨리 날아가요.",
+    "[잦은 손 씻기] 기름막까지 씻겨 나가요.",
+    "[뜨거운 물] 건조함을 더 키워요.",
+    "[타이밍] 놓치면 금방 다시 말라요."
    ],
-   "narration": "뜨거운 물, 물기 그냥 두기, 맨손 설거지, 찬 바람이 손을 더 건조하게 해요."
+   "narration": "찬 바람에 손까지 자주 씻으면, 손을 보호하던 기름막이 계속 씻겨 나가요."
   },
   {
    "type": "text",
-   "label": "오늘 바로 해 보기",
-   "title": "보습은\n[타이밍]이에요",
+   "label": "핵심은 이것",
+   "title": "씻은 직후\n[바로 바르기]",
    "body": [
-    "[미지근한 물] 손은 미지근한 물로 씻어요.",
-    "[바로 바르기] 물기를 닦고 마르기 전에 발라요.",
-    "[고무장갑] 설거지할 땐 꼭 껴요."
+    "[미지근한 물] 뜨거운 물 대신 써요.",
+    "[물기 톡톡] 문지르지 말고 눌러요.",
+    "[바로 바르기] 촉촉할 때 덮어 줘요.",
+    "[손 닿는 곳] 세면대·책상마다 두기."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "미지근한 물로 씻고, 물기를 닦자마자 크림을 바르세요. 설거지엔 고무장갑을 끼고요."
+   "narration": "그래서 씻고 바로 바르는 게 핵심인데, 크림이 작으면 아껴 쓰다 결국 안 바르게 돼요."
   },
   {
    "type": "photo",
-   "narration": "시어버터 핸드크림은 프로필 링크에 있어요. 저장해 두고 손 씻을 때마다 떠올려 보세요.",
-   "image": "product.jpg",
-   "name": "시어버터 핸드크림",
-   "cta": "프로필 링크에서 확인",
-   "notes": [
-    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
-    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
-   ]
+   "narration": "삼백 그램 대용량 무향 핸드크림이면 세면대에 두고 아낌없이 바를 수 있어요. 프로필 링크에서 확인해 보세요."
   }
  ],
- "status": "ready",
+ "status": "written",
  "topic": "건조한 손",
- "product_label": "시어버터 핸드크림",
+ "product_label": "대용량 무향 핸드크림",
  "product_keyword": "시어버터 핸드크림 대용량",
  "product_must": "핸드크림",
- "threads_text": "겨울만 되면 손등 하얗게 일어나는 사람?\n\n뜨거운 물로 손 씻기\n물기 그냥 두기\n맨손 설거지\n장갑 없이 찬 바람\n이게 손을 더 건조하게 만든대\n\n손은 미지근한 물로\n물기 닦자마자 바로 바르기\n설거지할 땐 고무장갑\n\n저장해두고 손 씻을 때마다 떠올려 봐",
- "insta_text": "겨울만 되면 손등이 하얗게 일어나는 분들 🙋 30초면 끝나는 손 보습 정리예요.\n\n✔ 손을 건조하게 만드는 4가지 습관\n✔ 보습은 타이밍\n✔ 설거지할 때 챙길 것\n\n📌 저장해 두고 손 씻을 때마다 다시 보세요",
+ "threads_text": "겨울만 되면 손등이 거칠어지고 쩍쩍 갈라지죠?\n\n손이 유독 더 트는 이유\n- 찬 바람 피부 수분이 빨리 날아가요.\n- 잦은 손 씻기 기름막까지 씻겨 나가요.\n- 뜨거운 물 건조함을 더 키워요.\n\n씻은 직후 바로 바르기\n- 미지근한 물 뜨거운 물 대신 써요.\n- 물기 톡톡 문지르지 말고 눌러요.\n- 바로 바르기 촉촉할 때 덮어 줘요.\n- 손 닿는 곳 세면대·책상마다 두기.\n\n삼백 그램 대용량 무향 핸드크림이면 세면대에 두고 아낌없이 바를 수 있어요.\n\n너는 손 씻고 바로 발라?",
+ "insta_text": "겨울만 되면 손등이 거칠어지고 쩍쩍 갈라지죠? 🙋\n30초 정리예요.\n\n✔ 손이 유독 더 트는 이유\n✔ 씻은 직후 바로 바르기\n✔ 대용량 무향 핸드크림, 이래서 하나 두면 편해요\n\n📌 저장해 두고 오늘부터 해 보세요",
  "hashtags": [
-  "건조한손",
-  "손보습",
   "핸드크림",
-  "겨울피부",
-  "주부꿀팁",
-  "생활건강",
+  "건조한손",
+  "겨울손관리",
+  "손보습",
+  "생활꿀팁",
+  "겨울철건강",
   "건강정보",
-  "생활꿀팁"
+  "살림템"
  ],
  "product": {
   "id": "9309957630",
@@ -71,7 +64,8 @@
   "subId": "h2611130307",
   "image": "https://ads-partners.coupang.com/image1/6SHzAgHjQ1Dm92vL6bQjY9hMN_zJ1wlcKOubKnVwC5JOfrjKjg5eC1Y9rpIH8EljbubwTatVtqpPT0QjEu4rDpcwpZUJFPwSfgDi7xc1-k_984o4Jg4FgVqVhSB5S6uPrza_QsddLLEnp8I4SNvgYjviJNxHKEWjYM78VrxYxAWT18suOXpiR4PZypEGLd3Mshj6nmBSGU0o9bLKDIsY8FxXXbNfnWrfKj35n4xj83ugVqapvFTNPBDB4rycpRdO9BsyDc9qSiuTHh2nBZef05heaY63Ld0ILiozhHG8Jerjs_4u6V9ZBqy-AM9XInz3ilNP0pfrIJc9Q2FLGANZ7P-r5_QiWPa9eMyMAUtw4VUOo6zpfVx2b2ReGFAZajNwtsJpaANXSvNGFLG0T585hTe6htJ2NstCHt4sXnHubrwahpHTsJDnNcoh0uw4xRYInjxQzxBIy1uK0iCaWG1bPFT_kVXZpVthgQo2DkPwHCrbOwysfqPvzlkLgrkpZjn6VSASApygVSbcdfXZzCtTAXp_Qk4kdaCTvTGzQ0YZGNNkOVHmQqaM-lbxO120KIoNvAbEj637Ypvbai8IMw0Az2Xlin4v5zU9fvIQkPnCjzh4cPg="
  },
- "threads_caption": "겨울만 되면 손등 하얗게 일어나는 사람?\n\n뜨거운 물로 손 씻기\n물기 그냥 두기\n맨손 설거지\n장갑 없이 찬 바람\n이게 손을 더 건조하게 만든대\n\n손은 미지근한 물로\n물기 닦자마자 바로 바르기\n설거지할 땐 고무장갑\n\n저장해두고 손 씻을 때마다 떠올려 봐\n\n오늘 카드 속 상품 👉 https://link.coupang.com/a/iCRfJDEJa0\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 시어버터 핸드크림 바로가기 👉 https://link.coupang.com/a/iCRfJDEJa0\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "겨울만 되면 손등이 하얗게 일어나는 분들 🙋 30초면 끝나는 손 보습 정리예요.\n\n✔ 손을 건조하게 만드는 4가지 습관\n✔ 보습은 타이밍\n✔ 설거지할 때 챙길 것\n\n📌 저장해 두고 손 씻을 때마다 다시 보세요\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#건조한손 #손보습 #핸드크림 #겨울피부 #주부꿀팁 #생활건강 #건강정보 #생활꿀팁"
+ "product_facts": [
+  "300g 대용량",
+  "무향"
+ ]
 }
