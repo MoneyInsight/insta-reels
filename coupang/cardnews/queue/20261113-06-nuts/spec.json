@@ -8,7 +8,8 @@
    "title": "밤 공부하다\n[라면 생각]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "밤에 공부하다 출출해서 라면 생각나는 사람? 열한 시만 되면 그렇지?"
+   "narration": "밤에 공부하다 출출해서 라면 생각나는 사람? 열한 시만 되면 그렇지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 하루견과 준비했어! 한 봉씩 나뉘어 있어서 딱 한 봉만 먹고 다시 공부. 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 하루견과 준비했어! 한 봉씩 나뉘어 있어서 딱 한 봉만 먹고 다시 공부. 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "하루견과",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "한 봉씩 소포장",
+    "책상 서랍에 쏙"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "밤 공부 출출할 때",
  "product_label": "하루견과",
  "product_keyword": "하루견과 30봉 견과류",
@@ -64,5 +76,15 @@
   "한 봉씩 소포장",
   "책상 서랍에 쏙"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "1355894135",
+  "name": "산과들에 순수가온 하루견과류, 20g, 30개",
+  "link": "https://link.coupang.com/a/iEnABdFWsm",
+  "subId": "h2611140106",
+  "image": "https://ads-partners.coupang.com/image1/Tex_cHBW6LscoeqWTeFoTTQK3ncr0Jd_rXuLUu8leOSIUXOHOwK4qMjCR_yQsFYqzZsHP4fKpDHG5UeJKo91gQRvMrY-o-sYDSsgpE1OkbkezrC93QBagwq2oMpGvcvzPa2zlhMqMcLK--vG8E5Jls7VA6VRwn3e-7GQGcglPI69eEsGUYfazAFVWYLFcKiIuBfQs4NnRWtj28StunRnQ93r1ZtCY_UsOhh0fgxHDkebva3IxTr6qPMvGi5tPMY465G0F22gRe_xY6IgzY_LJ48RKxQq03XdPFbs1L3gruZrYVKdXj0neIjmRGNoxPlZEkZXbpNyKwBW0zF6CrQn2cbdSHuccdAT6CS0vXuGnhJDZFeu-SQNTRUf-5txL-7GlkkVt5mpBTI-QeNwzDCoxO6Qey0U5tiRQCk05qAn1HfPd48WzNazU8CoRrYmTHmphflPrqKyKNBffaejj91OfydmUF2YkwUhLaZXcSrdQAyKBWiyN3NMVl4jAAoZVaXmGAjEJeYvYOBeuOzhsBdMcDXi0DHbxIvl4djqDIgY5wNknTuEKaTwxpuQzrlWn35fZ04zP-Di"
+ },
+ "threads_caption": "밤에 공부하다 출출해서 라면 생각나는 사람? 열한 시만 되면 그렇지?\n\n저녁 일찍 먹고 늦게까지 깨어 있으면, 밤엔 당연히 배고파져.\n\n야식은 양을 미리 정하는 게 핵심인데, 큰 봉지 뜯으면 멈출 수가 없잖아.\n\n그래서 하루견과 준비했어! 한 봉씩 나뉘어 있어서 딱 한 봉만 먹고 다시 공부 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEnABdFWsm\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 하루견과 바로가기 👉 https://link.coupang.com/a/iEnABdFWsm\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "밤에 공부하다 출출해서 라면 생각나는 사람? 열한 시만 되면 그렇지? 🙋\n\n저녁 일찍 먹고 늦게까지 깨어 있으면, 밤엔 당연히 배고파져.\n\n야식은 양을 미리 정하는 게 핵심인데, 큰 봉지 뜯으면 멈출 수가 없잖아.\n\n그래서 하루견과 준비했어! 한 봉씩 나뉘어 있어서 딱 한 봉만 먹고 다시 공부 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#하루견과 #야식 #수험생 #공부간식 #견과류 #생활꿀팁 #건강정보 #간식템"
 }
