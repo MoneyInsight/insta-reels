@@ -8,7 +8,8 @@
    "title": "시험 날\n[손이 꽁꽁]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "시험장에서 손 꽁꽁 얼어 본 사람 있어? 펜 잡는데 손이 안 움직이지?"
+   "narration": "시험장에서 손 꽁꽁 얼어 본 사람 있어? 펜 잡는데 손이 안 움직이지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 주머니에 쏙 넣는 손난로 핫팩 준비했어! 꺼내서 쥐고 있으면 돼. 시험 전에 링크 눌러서 챙겨 둬!"
+   "narration": "그래서 주머니에 쏙 넣는 손난로 핫팩 준비했어! 꺼내서 쥐고 있으면 돼. 시험 전에 링크 눌러서 챙겨 둬!",
+   "image": "product.jpg",
+   "name": "손난로 핫팩",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "손난로",
+    "핫팩"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -69,5 +81,12 @@
   "손난로",
   "핫팩"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9050772055",
+  "name": "해피스팀 대용량 손난로 포켓용 핫팩 95g",
+  "link": "https://link.coupang.com/a/iEAZdBUHue",
+  "subId": "h2611140415",
+  "image": "https://ads-partners.coupang.com/image1/hLwYCI8EaVvYJG_0hFiB7a3l6jVPTd4fjRE2Y-Z8_g9Ow8LrFjRAESyZnyQohqmKUuTy5-B5izoWwvyIY85oUbkna_AO5Y2fqRay5W9g-LgNy2acSC599yucltJe03jA8ujLtsZ_Z6yLESLWr7FuHifkJMNmClzEV0rFfEfBQnW1jcOxgsyue9cTyKh14-7ylXYnFdOiB8I2ddeseJ2Xg_xcJYiRshcb79QSNXhYq8r72HoKgy6r7_YGiqgSFfsieUe35oEutfbFaNav11T-ILmKqMceMc2LazkimrTRh3v-XS4upYFnd5PUK2TVORdgBgYvyu5wEOaeTbZmrjkC9ttxJxZGqML_WcKP4CwClxdWOp9NhMaXa_Nh9U9ZviY4Xs3FaGH9DIC4UXzxJzng1uVU9jM0Ua8w9hRIX3FF4dfmSEKT30U_7F3I3bNLAjiQLkczr3m2vsBH-IvuxRr18T2igXrpO363BqoMfZsgOgYeyVJfLKrKNHgZ8F4M-Bytfzpnog9Ogt9j_ivC8MBH_OvlPbweZoYz8rViL5zhIYBx9B1k9DpM0bsrod88fTK96TrBzDDhy4CD3RPwIZoHw3C0IVr-d5z4M7_BujEjYHa38RhL8K1pig7aDKkPzI8ojHpmApg4MvBvLvAMPNvKIfYD"
+ }
 }
