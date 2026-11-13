@@ -27,7 +27,9 @@ jobs:
           echo "task=$T" >> $GITHUB_OUTPUT; echo "할 일: $T"
       - name: 도구 설치
         run: |
-          pip install -q pillow requests yt-dlp
+          pip install -q pillow requests "yt-dlp[default]"
+          curl -fsSL https://deno.land/install.sh | sh -s -- -y >/dev/null 2>&1 || true
+          echo "$HOME/.deno/bin" >> $GITHUB_PATH   # 유튜브 서명 해독용 JS 실행기(yt-dlp EJS)
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk >/dev/null
       - name: 순위 대기열 만들기/보충
         if: contains(steps.t.outputs.task, 'rank')
