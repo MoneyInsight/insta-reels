@@ -8,7 +8,8 @@
    "title": "문고리 잡을 때마다\n[따끔!]",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "문고리 잡을 때마다 따끔! 깜짝 놀라는 사람? 겨울만 되면 무섭지?"
+   "narration": "문고리 잡을 때마다 따끔! 깜짝 놀라는 사람? 겨울만 되면 무섭지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 섬유 정전기 방지 스프레이 가져왔어! 나가기 전에 옷에 칙칙 뿌리면 끝. 링크 걸어 놨으니까 지금 바로 확인해 봐!"
+   "narration": "그래서 섬유 정전기 방지 스프레이 가져왔어! 나가기 전에 옷에 칙칙 뿌리면 끝. 링크 걸어 놨으니까 지금 바로 확인해 봐!",
+   "image": "product.jpg",
+   "name": "섬유 정전기 방지 스프레이",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "섬유용",
+    "뿌리기만 하면 끝"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "따끔한 겨울 정전기",
  "product_label": "섬유 정전기 방지 스프레이",
  "product_keyword": "섬유 정전기 방지 스프레이",
@@ -65,5 +77,15 @@
   "섬유용",
   "뿌리기만 하면 끝"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9777549622",
+  "name": "c_hg2187 피죤 정전기방지 스프레이 리치퍼퓸 섬유탈취제 정전기방지 냄새제거 악취제거탈취제 옷, 1개, 200ml",
+  "link": "https://link.coupang.com/a/iEseMcJBMy",
+  "subId": "h2611140213",
+  "image": "https://ads-partners.coupang.com/image1/s4gTtk317gH4faTWs-oP2NuTsgArMIQgmyW3tIX2i2OSZYvUHi8CVyztqfN9Y9Ww-RfMoqWp1H0GVE6QjdHaaJ4a2bvXMOwBpeP1AWqUllHoD6R3fEBAgPlnDmw8zdPTUdHAm0yec0b6XHzFcyF_Zh7F6Zyuzu20j85WrVvSVJF3RJgpeoU-CXHEQBDwLbLwbpj8lHCvE5pk2uDO9HM6s5GjRB2Omm559U-_jg8mhB6GahbVfoJvmd7XPT61E_38GBf5H7UQJfVHLAar3hwIW1bny1LG5PU2SvP8e4jGVx6u-jE7BFuWOdfevlrQfFchaTCAbbp5sqdhGehvpV3kfOaTTGufcw7Jzb0vEbp30iUFeL4h7SdYybak4mlh56ZP4DH1nwIuXLuq24yuY7gKNXoT13-kn7l0-JJwFUI0vgxRKcvYz6r8dqwUas9dpb0EPeI4GaD2Ky1nH9WVYg9uXxGHghKyVQ8Zlgvg1dirx0mHg69pJHO7WQg4nhg-mvtsyrL1d0xUmh7SAahtPSFt3OLvSCZnaZAOU6DIayqlIPuEGFZwWqTh5YOewCPRWVm4Ez2gwt0RjpZ2kYRixX0="
+ },
+ "threads_caption": "문고리 잡을 때마다 따끔! 깜짝 놀라는 사람? 겨울만 되면 무섭지?\n\n공기는 건조하고 니트랑 패딩이 서로 비벼지면서, 정전기가 계속 쌓여.\n\n습도 올리고 손에 보습하면 좋은데, 니트랑 패딩은 입을 때마다 또 따끔하잖아.\n\n그래서 섬유 정전기 방지 스프레이 가져왔어! 나가기 전에 옷에 칙칙 뿌리면 끝 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEseMcJBMy\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 섬유 정전기 방지 스프레이 바로가기 👉 https://link.coupang.com/a/iEseMcJBMy\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "문고리 잡을 때마다 따끔! 깜짝 놀라는 사람? 겨울만 되면 무섭지? 🙋\n\n공기는 건조하고 니트랑 패딩이 서로 비벼지면서, 정전기가 계속 쌓여.\n\n습도 올리고 손에 보습하면 좋은데, 니트랑 패딩은 입을 때마다 또 따끔하잖아.\n\n그래서 섬유 정전기 방지 스프레이 가져왔어! 나가기 전에 옷에 칙칙 뿌리면 끝 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#정전기 #정전기방지 #겨울니트 #생활꿀팁 #겨울철 #살림팁 #건강정보 #살림템"
 }
