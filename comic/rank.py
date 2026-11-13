@@ -3,8 +3,9 @@
 - 검색 1회 = 100 단위(하루 10,000) → 키워드 40개 × 최대 5쪽까지 돌려도 한 번에 끝난다(이미 있으면 이어서 보충).
 - 실제 라이선스(status.license == creativeCommon)를 영상마다 다시 확인한다.
 """
-import json, os, re, sys, time
+import json, os, re, sys, time, functools
 import requests
+print = functools.partial(print, flush=True)  # 실행 기록에 바로 보이게
 
 KEY = os.environ.get("YT_API_KEY", "").strip()
 if not KEY: print("::error::YT_API_KEY 비밀값이 없습니다"); raise SystemExit(1)
@@ -21,13 +22,26 @@ BAD = re.compile(r"(music video|official video|lyrics|audio|full movie|episode|n
 OK_CAT = {"22", "23", "24", "15", "17", "19"}
 
 
+CALLS = {"n": 0, "fail": 0}
+MAX_SEARCH = int(os.environ.get("RANK_MAX_SEARCH", "60"))  # 검색 60번 = 6,000단위 → 업로드 몫(하루 10,000 중)을 남긴다
+
+
 def get(path, **p):
     p["key"] = KEY
-    for t in range(3):
+    if path == "search":
+        if CALLS["n"] >= MAX_SEARCH: return None
+        CALLS["n"] += 1
+    for t in range(2):
         r = requests.get(f"{API}/{path}", params=p, timeout=30)
-        if r.status_code == 200: return r.json()
-        if r.status_code == 403 and "quota" in r.text: print("::warning::오늘 API 한도 끝 → 지금까지 모은 것으로 저장"); return None
-        time.sleep(3 * (t + 1))
+        if r.status_code == 200: CALLS["fail"] = 0; return r.json()
+        if r.status_code in (400, 401, 403):
+            msg = r.json().get("error", {}).get("message", r.text[:200]) if r.headers.get("content-type", "").startswith("application/json") else r.text[:200]
+            print(f"::error::유튜브 API 오류 {r.status_code}: {msg}")
+            if "quota" in r.text.lower(): print("::warning::오늘 API 한도 끝 → 지금까지 모은 것으로 저장"); return None
+            CALLS["fail"] += 1
+            if CALLS["fail"] >= 3: raise SystemExit("API 키 문제로 중단 (위 오류 확인)")
+            return {}
+        time.sleep(3)
     print("::warning::API 실패", path, r.status_code, r.text[:200]); return {}
 
 
@@ -42,7 +56,7 @@ ids = set()
 stop = False
 for w in WORDS:
     tok = None
-    for _ in range(5):
+    for _ in range(2):
         j = get("search", part="id", q=w, type="video", videoLicense="creativeCommon", order="viewCount",
                 maxResults=50, safeSearch="strict", **({"pageToken": tok} if tok else {}))
         if j is None: stop = True; break

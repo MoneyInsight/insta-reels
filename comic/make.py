@@ -3,9 +3,10 @@
 3) Gemini TTS로 장면별 더빙  4) 1080x1920 세로 화면 + 큰 자막 + 효과음 + 출처 표기  → comic/work/final.mp4, comic/work/meta.json
 사용법: GEMINI_API_KEY=... python comic/make.py      (GitHub Actions에서 실행)
 """
-import base64, json, os, re, subprocess, sys, time
+import base64, json, os, re, subprocess, sys, time, functools
 import requests
 from PIL import Image, ImageDraw, ImageFont
+print = functools.partial(print, flush=True)
 
 Q, WD = "comic/queue.json", "comic/work"
 KEY = os.environ.get("GEMINI_API_KEY", "").strip()
