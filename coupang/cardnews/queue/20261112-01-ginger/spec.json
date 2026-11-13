@@ -47,7 +47,7 @@
    ]
   }
  ],
- "status": "ready",
+ "status": "posted",
  "topic": "손발이 찬 겨울 아침",
  "product_label": "국산 생강차 원액",
  "product_keyword": "국산 생강차 원액",
@@ -82,5 +82,10 @@
    "insta_id": "18134051686691342",
    "posted_at": "2026-11-13 10:32"
   }
- ]
+ ],
+ "threads": true,
+ "posted_at": "2026-11-13 12:07",
+ "threads_id": "18649801237007145",
+ "insta": true,
+ "insta_id": "18151146454486206"
 }
