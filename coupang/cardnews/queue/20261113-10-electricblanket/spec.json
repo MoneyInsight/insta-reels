@@ -8,7 +8,8 @@
    "title": "이불 덮어도\n[등이 시려]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "새벽에 등 시려서 깨는 사람 있어? 이불 덮어도 바닥이 차갑지?"
+   "narration": "새벽에 등 시려서 깨는 사람 있어? 이불 덮어도 바닥이 차갑지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 온도 조절 되는 전기요 골라 왔어! 깔고 켜기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!"
+   "narration": "그래서 온도 조절 되는 전기요 골라 왔어! 깔고 켜기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!",
+   "image": "product.jpg",
+   "name": "온도 조절 전기요",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "온도 조절",
+    "전기요"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "새벽에 등이 시린 밤",
  "product_label": "온도 조절 전기요",
  "product_keyword": "전기요 온도조절",
@@ -68,5 +80,15 @@
   "온도 조절",
   "전기요"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "8472918605",
+  "name": "한일의료기 전기요 전기장판 4P 온도조절기, 1개, 한일의료기 전기요 전기장판 4P",
+  "link": "https://link.coupang.com/a/iEvT2HghTE",
+  "subId": "h2611140304",
+  "image": "https://ads-partners.coupang.com/image1/B3_e7mMbApuUqL0HB85qxtbQReSEm56ouwxg4HUECP7oj1ypH3EISvWSpLIj7ma8VtodVgSofg5OCgDXqTLosUwpgGsRc_P_IRLF8GgdD5LNRN913dFIXr_Fsx3rjo9xkD-TogQAzfdqQmVDrDyfPAOsj_OEThPmbESYIqudMJka-ccGc3uAi70Y6xrvI6hK_e6UWBBBXFwQU_Aa74hq1ZtBBitt1hjCkAhXb-kWrm5ZsPylKqKHhxfpWl7AdQX7nLBRijuAQobLssadLl06N-1qt78d4jfuqSPE2dgiUVaSm7BVZjYec2Eq0S5AKxowOrh8DudiOUAYl52Xmuy2RSrEOGpeL8PvaoxhU1sV0k-BVbkue1fYP_GPkx2tLPG8J4hJFjxyQ-7CpHo2jklaqBIXWX2cSiq2ACFnpgwaF0LMfCH5rbU68Wy2bvLtqH6uSjorkIqZSO8ST1WDV0UjC77Kq0glAnnAn1PzlXEgH_pHk6bkeBqUIi_A07zCBOBEuySQCE6rybmJMMqo2leqhvYx5eRPYEAOHxcmj0z4RABbN9hDY3PNAbef_DODgxuj5E6Gc88sR92F5hRFkGAmJ-FuzZzn1EoIkQ=="
+ },
+ "threads_caption": "새벽에 등 시려서 깨는 사람 있어? 이불 덮어도 바닥이 차갑지?\n\n바닥 냉기가 등으로 올라와서 그래. 그냥 두면 밤새 몸 웅크리고 자게 돼.\n\n자기 전에 잠자리를 데워 두면 좋은데, 매일 밤 보일러 세게 틀긴 부담되잖아.\n\n그래서 온도 조절 되는 전기요 골라 왔어! 깔고 켜기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEvT2HghTE\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 온도 조절 전기요 바로가기 👉 https://link.coupang.com/a/iEvT2HghTE\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "새벽에 등 시려서 깨는 사람 있어? 이불 덮어도 바닥이 차갑지?\n\n바닥 냉기가 등으로 올라와서 그래. 그냥 두면 밤새 몸 웅크리고 자게 돼.\n\n자기 전에 잠자리를 데워 두면 좋은데, 매일 밤 보일러 세게 틀긴 부담되잖아.\n\n그래서 온도 조절 되는 전기요 골라 왔어! 깔고 켜기만 하면 돼. 더 추워지기 전에 링크 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#전기요 #겨울잠자리 #새벽추위 #꿀잠 #겨울살림 #생활꿀팁 #건강정보 #살림템"
 }

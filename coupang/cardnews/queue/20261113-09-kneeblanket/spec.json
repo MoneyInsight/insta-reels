@@ -8,7 +8,8 @@
    "title": "앉아 있으면\n[다리가 서늘]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "앉아만 있으면 다리가 서늘하고 차가운 사람? 난방 켜도 그렇지?"
+   "narration": "앉아만 있으면 다리가 서늘하고 차가운 사람? 난방 켜도 그렇지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 무릎담요 가져왔어! 의자에 걸어 두고 앉자마자 덮으면 끝. 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 무릎담요 가져왔어! 의자에 걸어 두고 앉자마자 덮으면 끝. 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "무릎담요",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "무릎담요",
+    "의자에 걸어 두기"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -64,5 +76,12 @@
   "무릎담요",
   "의자에 걸어 두기"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9795111790",
+  "name": "두꺼운 겨울 극세사 담요 도톰한 무릎담요 대형이불",
+  "link": "https://link.coupang.com/a/iEvTTu2Gdw",
+  "subId": "h2611140304",
+  "image": "https://ads-partners.coupang.com/image1/5fmIsQ-hk0wEbava5ZAI1VtvNbYk7WB-awCDX4xWOZsZPLBCImGNpDiUhAjJRBwIZ6hIMAR2ukfWYYMX3Eg42ksIahpE-fnaSm9xbTKG9ZPoFsHkcEXsWF4aLqe4al8LjbRGR-36-hbUWLcKLsmL3JrB3xuFndb2REB-G5vaBJnFXOZzMFsjadaCgvjT80HqBdK3zAX_D3jbuuEHOHEHMpJzuESLSwaARGj2x9OC75zAByMwBVyIpDmMpdPC7lYYkKZ0rCSKI12ub_bwEODMk2jc25BEZoP7RjQ-mrP1hNNP8w2FRfiKQaBooF8htHV0qoCXv5yS9ruT0kGhKiRjtOcHJwg6-k_erGqZXrqckzBz0cwez-Y7fE18dzkj300pIa8frTNGYnpeN1JN7Ll3VuLKv6U3rqZWHIbdXHu-mIqS7-X-1AopZvSn4vPmuW1t7RRhuwoP6Osvt_Uu50yXcoCRvZH8C52dxkigj411L6Uh_NQzkYYvB1atbtDo6GMPfHJ7eBfZF4I1hZtN0GRp93kRGtTdkaHD0pf0mg67uUlwSIq8u0aFEre-_0bzGXDwKot90WSbsDVnw6OcRrOLB01FcRb_s6IPqn4azfgoc2h9zq2VrJk2v00DlZ1IAIAzrW5nO5HH8aYvdLqfZipFCMfpNg=="
+ }
 }
