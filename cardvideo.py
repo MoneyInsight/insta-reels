@@ -51,15 +51,47 @@ cards = spec["cards"]; wavs = [f"{tmp}/n{i}.wav" for i in range(len(cards))]
 used = "gemini"
 # 자연 음성은 영상 1편에 한 번만 부른다(무료 한도 절약). 카드별 길이는 글자 수 비율로 나눈다.
 full = f"{tmp}/full.wav"
+def silences(p, db=-38, mind=0.25):
+    r = subprocess.run(["ffmpeg", "-i", p, "-af", f"silencedetect=n={db}dB:d={mind}", "-f", "null", "-"], capture_output=True, text=True).stderr
+    st = [float(x.split("silence_start: ")[1].split()[0]) for x in r.splitlines() if "silence_start" in x]
+    en = [float(x.split("silence_end: ")[1].split()[0]) for x in r.splitlines() if "silence_end" in x]
+    if len(st) > len(en): en.append(dur(p))  # 끝까지 무음이면 끝 표시가 없다
+    return list(zip(st, en))
+
+
+def split_at_pauses(full, n, lens):
+    """카드 경계를 문장 사이 쉼(무음) 한가운데에서 자른다 → 말이 중간에 잘리지 않는다"""
+    total = dur(full)
+    for mind in (0.25, 0.12):
+        r = _split(full, n, lens, total, mind)
+        if r: return r
+    return None
+
+
+def _split(full, n, lens, total, mind):
+    sil = [(a, b) for a, b in silences(full, -38, mind) if 0.3 < a and b < total - 0.2]
+    cuts, used_ = [], set(); acc = 0
+    for k in range(n - 1):
+        acc += lens[k]; exp = total * acc / sum(lens)
+        cand = [(abs((a + b) / 2 - exp) - 1.5 * (b - a), j) for j, (a, b) in enumerate(sil) if j not in used_ and abs((a + b) / 2 - exp) < total * 0.22]
+        if not cand: return None
+        j = min(cand)[1]; used_.add(j); cuts.append((sil[j][0] + sil[j][1]) / 2)
+    cuts = sorted(cuts)
+    return [0.0] + cuts + [total]
+
+
+ok_split = False
 if gemini(" ... ".join(c["narration"] for c in cards), full):
-    total = dur(full); lens = [len(c["narration"]) for c in cards]; t0 = 0.0
-    for i, c in enumerate(cards):
-        seg = total * lens[i] / sum(lens)
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", full, "-ss", f"{t0:.3f}", "-t", f"{seg:.3f}", wavs[i]], check=True)
-        t0 += seg
-else:
+    b = split_at_pauses(full, len(cards), [len(c["narration"]) for c in cards])
+    if b:
+        for i in range(len(cards)):
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", full, "-ss", f"{b[i]:.3f}", "-to", f"{b[i + 1]:.3f}",
+                            "-af", "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,apad=pad_dur=0.05", wavs[i]], check=True)
+        ok_split = True
+    else: print("::notice::문장 쉼을 못 찾음 → 카드별 기본 음성")
+if not ok_split:
     used = "edge"
-if used == "edge" and "--gemini-only" in sys.argv:
+if used == "edge" and "--gemini-only" in sys.argv and not os.path.exists(full):
     print("::notice::자연 음성 한도 초과 → 영상 만들지 않음"); sys.exit(2)
 if used == "edge":
     print("::notice::자연 음성 한도 초과 → 전체 기본 음성으로")
@@ -99,7 +131,7 @@ for i, c in enumerate(cards):
     bg = ImageEnhance.Brightness(bg).enhance(0.42)
     ch = chunks(c["narration"]); tot = sum(len(x) for x in ch); acc_t = 0; subs = []
     for x in ch: subs.append((acc_t / tot, x)); acc_t += len(x)
-    segs.append({"states": states, "starts": starts, "bg": bg, "subs": subs, "sec": dur(wavs[i]) + (0.7 if i == 0 else 0.45)})
+    segs.append({"states": states, "starts": starts, "bg": bg, "subs": subs, "sec": dur(wavs[i]) + (0.7 if i == 0 else 0.45) + (1.2 if i == len(cards) - 1 else 0)})
 total_sec = sum(g["sec"] for g in segs)
 
 
@@ -110,10 +142,8 @@ def card_at(g, tl):
     if k > 0:
         a = min(1, (r - g["starts"][k]) * g["sec"] / 0.25)
         if a < 1: im = Image.blend(g["states"][k - 1], im, a)
-    z = 1 + 0.05 * r
-    big = im.resize((int(1080 * z), int(1350 * z)), Image.BILINEAR)
-    ox, oy = (big.width - 1080) // 2, (big.height - 1350) // 2
-    return big.crop((ox, oy, ox + 1080, oy + 1350))
+    z = 1 + 0.045 * (r * r * (3 - 2 * r))  # 부드러운 가속·감속 확대(소수점 단위라 떨림 없음)
+    return im.transform((1080, 1350), Image.AFFINE, (1 / z, 0, 540 - 540 / z, 0, 1 / z, 675 - 675 / z), Image.BICUBIC)
 
 
 def frame(gi, tl, t_all):
@@ -152,7 +182,14 @@ ain, af, t = [], [], 0.0
 for k, g in enumerate(segs):
     st = t + (0.5 if k == 0 else 0.25); ain += ["-i", wavs[k]]
     af.append(f"[{k + 1}:a]adelay={int(st * 1000)}|{int(st * 1000)}[a{k}]"); t += g["sec"]
-af.append("".join(f"[a{k}]" for k in range(len(segs))) + f"amix=inputs={len(segs)}:normalize=0,loudnorm=I=-15:TP=-1.5[a]")
+af.append("".join(f"[a{k}]" for k in range(len(segs))) + f"amix=inputs={len(segs)}:normalize=0,loudnorm=I=-15:TP=-1.5,apad[a]")
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{tmp}/video.mp4", *ain, "-filter_complex", ";".join(af),
-                "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", f"{d}/video.mp4"], check=True)
+                "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-t", f"{t:.3f}", f"{d}/video.mp4"], check=True)
+# 검수: 음성이 끝까지 들어갔는지, 영상 길이·프레임이 맞는지
+need = sum(dur(w) for w in wavs); vd = dur(f"{d}/video.mp4")
+fr = subprocess.run(["ffprobe", "-v", "error", "-count_frames", "-select_streams", "v:0", "-show_entries", "stream=nb_read_frames", "-of", "csv=p=0", f"{d}/video.mp4"], capture_output=True, text=True).stdout.strip()
+tail = silences(f"{d}/video.mp4", -40, 0.3)
+end_silent = bool(tail) and tail[-1][1] >= vd - 0.05
+if vd < need + 0.5 or not end_silent or abs(int(fr or 0) - vd * FPS) > FPS:
+    print(f"::error::영상 검수 실패: 길이 {vd:.1f}s / 음성 {need:.1f}s / 끝 무음 {end_silent} / 프레임 {fr}"); os.remove(f"{d}/video.mp4"); sys.exit(3)
 print(f"완성: {d}/video.mp4 ({dur(f'{d}/video.mp4'):.1f}초, 음성: {used})")
