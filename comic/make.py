@@ -115,7 +115,7 @@ JSON만 반환:
 
 def plan(src, title):
     f = gemini_upload(src)
-    for model in ["gemini-3.8-flash", "gemini-3.1-pro-preview", "gemini-2.5-flash"]:
+    for model in ["gemini-3.8-flash"] * 5 + ["gemini-3.1-pro-preview"]:  # 혼잡(503)이면 잠시 쉬었다 재시도
         r = requests.post(f"{G}/v1beta/models/{model}:generateContent?key={KEY}", timeout=300, json={
             "contents": [{"parts": [{"file_data": {"mime_type": "video/mp4", "file_uri": f["uri"]}}, {"text": PROMPT.format(title=title)}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9}}).json()
@@ -123,7 +123,7 @@ def plan(src, title):
             txt = r["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(re.sub(r"^```json|```$", "", txt.strip()))
         except Exception:
-            print("::notice::대본 생성 실패", model, str(r.get("error", ""))[:200])
+            print("::notice::대본 생성 실패", model, str(r.get("error", ""))[:200]); time.sleep(40)
     return None
 
 
@@ -148,6 +148,15 @@ def tts(text, out, mood):
         except Exception:
             print("::notice::음성 실패", model, str(r.get("error", ""))[:160] if isinstance(r, dict) else "")
             time.sleep(8)
+    try:  # 제미나이 음성이 막히면 무료 edge-tts(남성 음성)로 대체
+        subprocess.run([sys.executable, "-m", "pip", "install", "-q", "edge-tts"], check=False)
+        import asyncio, edge_tts
+        rate = "+5%" if mood == "touching" else "+18%"
+        asyncio.run(edge_tts.Communicate(text, "ko-KR-InJoonNeural", rate=rate, pitch="+0Hz").save(out + ".mp3"))
+        sh("ffmpeg", "-y", "-v", "error", "-i", out + ".mp3", "-ar", "44100", "-ac", "1", out)
+        print("::notice::edge-tts 대체 음성 사용"); return True
+    except Exception as e:
+        print("::warning::대체 음성도 실패", e)
     return False
 
 
@@ -243,6 +252,7 @@ def main():
                 if dl_streak >= 2: print("::error::연속 다운로드 실패 → 쿠키 만료 또는 유튜브 차단 의심, 이번 회차 중단"); raise SystemExit(1)
                 continue
             p = plan(src, it["title"])
+            if p is None: print("::error::제미나이 대본 생성 불가(서버 혼잡·한도) → 다음 회차에 다시"); raise SystemExit(1)
             if not p or p.get("skip") or not p.get("scenes"):
                 it["status"] = "skip"; it["reason"] = (p or {}).get("reason", "대본 실패"); save_q(q); print("건너뜀:", it["reason"]); continue
             secs = render(src, p, it)
