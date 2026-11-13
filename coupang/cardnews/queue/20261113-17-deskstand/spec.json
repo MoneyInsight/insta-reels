@@ -8,7 +8,8 @@
    "title": "책상이\n[침침해 보여]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "해 지면 책상이 침침해서 눈 찡그리는 사람 있어? 손 그림자 때문에 답답하지?"
+   "narration": "해 지면 책상이 침침해서 눈 찡그리는 사람 있어? 손 그림자 때문에 답답하지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 책상에 올려 두는 LED 스탠드 준비했어! 켜기만 하면 바로 환해져. 지금 링크 눌러서 확인해 봐!"
+   "narration": "그래서 책상에 올려 두는 LED 스탠드 준비했어! 켜기만 하면 바로 환해져. 지금 링크 눌러서 확인해 봐!",
+   "image": "product.jpg",
+   "name": "LED 책상 스탠드",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "LED 조명",
+    "책상용 스탠드"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "해 짧아진 공부 책상",
  "product_label": "LED 책상 스탠드",
  "product_keyword": "LED 책상 스탠드",
@@ -69,5 +81,15 @@
   "LED 조명",
   "책상용 스탠드"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "7403552284",
+  "name": "[27년형] NEW 오르홈 LED 스탠드 PRO 폴더블 고급형 무선충전 스마트 접이식 터치식 책상 공부 독서등 시력보호 스텐드, 블랙",
+  "link": "https://link.coupang.com/a/iEUX06QWjc",
+  "subId": "h2611140854",
+  "image": "https://ads-partners.coupang.com/image1/Sh40LWRfyaIOekCnSkkMGPkpvdVEDWwMS8Ya-LKlpuDJXOJVwzItArsIBYIYvGU6AFDaPWja7J_PSt3-20EsFj-i5EpKuh3zAmh8TQK5KzH9lwb64Fi8ZzhEXiYLgsvKhP_wufbKsQDWxQ8hk2-2miSttzVGqQqpgD8FMJidr0fLQGSCDesUjK23xs4s7NShAc3yjMYIpJRce4no2DslHHyha3DXYLK3o-79OsBRNvn-K99SrsuM1AgMUdXQN3T2D6y6SuE5TtmXny0IiTdjFfa-JvwHIerADsZZROTV9Y1eygzB4LBBcYiQxCf-WgmCcOs5floqCzvhxjVrblzvRvSc0TAEmF8_OajzK-LFQxOD44cDztl4SpvPT4IoRdUPipWwaM3pke7BfQwH2AjnS5OVaqutqlj-wncHjY8rDUbTWnT2aSLi97xHo_HFuNA3b2dpQqVMLO7EQb7SOx6bEwbHXc7EbUFAmZ7yAKKCT6Rx6WR3jo4fFyQCJi8mzesbMTi6P7hz-pMBRUa94Pw88pGIONEWkY5S5dD_wdh3AEwi3-tPoJVGVnZd2s7d19_Bn0EmMZkXWTLY0pQObz0="
+ },
+ "threads_caption": "해 지면 책상이 침침해서 눈 찡그리는 사람 있어? 손 그림자 때문에 답답하지?\n\n겨울엔 해가 일찍 져서 천장 불만으론 손 쪽이 어두워서 그래. 그럼 고개를 자꾸 숙이게 돼.\n\n손 가까이 밝혀 주는 게 좋은데, 방 조명 바꾸는 건 혼자 하기 너무 번거롭잖아.\n\n그래서 책상에 올려 두는 LED 스탠드 준비했어! 켜기만 하면 바로 환해져. 지금 링크 눌러서 확인해 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEUX06QWjc\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 LED 책상 스탠드 바로가기 👉 https://link.coupang.com/a/iEUX06QWjc\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "해 지면 책상이 침침해서 눈 찡그리는 사람 있어? 손 그림자 때문에 답답하지?\n\n겨울엔 해가 일찍 져서 천장 불만으론 손 쪽이 어두워서 그래. 그럼 고개를 자꾸 숙이게 돼.\n\n손 가까이 밝혀 주는 게 좋은데, 방 조명 바꾸는 건 혼자 하기 너무 번거롭잖아.\n\n그래서 책상에 올려 두는 LED 스탠드 준비했어! 켜기만 하면 바로 환해져. 지금 링크 눌러서 확인해 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#LED스탠드 #책상조명 #공부스탠드 #수험생 #공부환경 #방꾸미기 #생활꿀팁 #살림템"
 }

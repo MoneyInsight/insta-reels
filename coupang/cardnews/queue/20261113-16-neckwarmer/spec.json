@@ -8,7 +8,8 @@
    "title": "목 움츠리고\n[출근하는 중]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "출근길에 목 움츠리고 걷는 사람 있어? 찬 바람이 목으로 쏙 들어오지?"
+   "narration": "출근길에 목 움츠리고 걷는 사람 있어? 찬 바람이 목으로 쏙 들어오지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 쏙 쓰기만 하면 되는 기모 넥워머 골라 왔어! 매듭 없이 끝이야. 내일 출근 전에 링크 눌러 봐!"
+   "narration": "그래서 쏙 쓰기만 하면 되는 기모 넥워머 골라 왔어! 매듭 없이 끝이야. 내일 출근 전에 링크 눌러 봐!",
+   "image": "product.jpg",
+   "name": "기모 넥워머",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "안쪽 기모",
+    "넥워머"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "출근길 목이 시린 아침",
  "product_label": "기모 넥워머",
  "product_keyword": "기모 넥워머",
@@ -70,5 +82,15 @@
   "안쪽 기모",
   "넥워머"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "8413085956",
+  "name": "[1+1] 에어메쉬로 숨쉬기 편한 우디우디 프리미엄 기모 방한 넥워머",
+  "link": "https://link.coupang.com/a/iEURNuPgiG",
+  "subId": "h2611140854",
+  "image": "https://ads-partners.coupang.com/image1/8KaTbsjcKTpZsBNp8OPxAITbNkRFIF98IYWfEVCASfk5qOe2B4aLlqH4KbwMnEiX-12KpzN-AC9GxHWUpP51DE_Hchk2uE3rEEaIah2zT-ir4BK8X8sExVKDK9FjuhazjlKjocIkHYkAAk3lOFJijQ671Gi9Fff5lbUfj5ZEFf2gkBWK9VcIjxb2iUXpklKBn1knLfE-0Kuj9W4FVVv8D2zR9hNMPirxvjyw9nQ-IJ7nYZx3AY9JidreK1rblW6ytWVW08zsBOo4nyq3U8pIBf-1UDtRHUG1ZUVdWbccYeEeDRbHiZstliQExI4ODo9rpc_UfWi57Rl7xthPaGbjYD8R-q7gROXFUIXthafoq3WpIwvWfZK5wcEbLcTmgDLSmBKeO3TS7wlbOJUwtfso8aHvb-pt0YFPcECJDe_r6mQjPz7XexM3Y7XlmAZnOOkDpYlzEulBj3HWDbNV13IGhIcT9V5gW3IY9P7Vyj56oPU62-8zCQjgEuqYDY3qWR8r2yssLztKpi1JlfZAAB2CfczhrfxeeF9yU8K9pwKfRzbTuOXM0GcE-h7sjUbsBkovyBjH4pR5C0SJkjslMxOK"
+ },
+ "threads_caption": "출근길에 목 움츠리고 걷는 사람 있어? 찬 바람이 목으로 쏙 들어오지?\n\n목이 드러나 있으면 찬 바람이 바로 닿아서 그래. 하루 종일 어깨까지 잔뜩 움츠러들어.\n\n목도리 두르면 되는데, 아침마다 매고 풀다 보면 귀찮아서 결국 안 하게 되잖아.\n\n그래서 쏙 쓰기만 하면 되는 기모 넥워머 골라 왔어! 매듭 없이 끝이야. 내일 출근 전에 링크 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEURNuPgiG\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 기모 넥워머 바로가기 👉 https://link.coupang.com/a/iEURNuPgiG\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "출근길에 목 움츠리고 걷는 사람 있어? 찬 바람이 목으로 쏙 들어오지?\n\n목이 드러나 있으면 찬 바람이 바로 닿아서 그래. 하루 종일 어깨까지 잔뜩 움츠러들어.\n\n목도리 두르면 되는데, 아침마다 매고 풀다 보면 귀찮아서 결국 안 하게 되잖아.\n\n그래서 쏙 쓰기만 하면 되는 기모 넥워머 골라 왔어! 매듭 없이 끝이야. 내일 출근 전에 링크 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#넥워머 #기모넥워머 #출근룩 #겨울출근 #직장인 #겨울필수템 #생활꿀팁 #패션소품"
 }
