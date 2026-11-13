@@ -8,7 +8,8 @@
    "title": "알람 다섯 번 끄고\n[겨우 일어나요]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "알람 다섯 번 끄고 겨우 일어나는 사람? 겨울 아침 진짜 전쟁이지?"
+   "narration": "알람 다섯 번 끄고 겨우 일어나는 사람? 겨울 아침 진짜 전쟁이지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 불빛 켜지는 알람시계 찾아왔어! 머리맡에 두면 시끄러운 소리로만 깨지 않아도 돼. 링크 걸어 놨으니까 바로 확인해 봐!"
+   "narration": "그래서 불빛 켜지는 알람시계 찾아왔어! 머리맡에 두면 시끄러운 소리로만 깨지 않아도 돼. 링크 걸어 놨으니까 바로 확인해 봐!",
+   "image": "product.jpg",
+   "name": "불빛 알람시계",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "불빛 알람",
+    "머리맡에 두기"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -72,5 +84,12 @@
   "불빛 알람",
   "머리맡에 두기"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "1114759000",
+  "name": "멜로우버디 해돋이시계 웨이크업 무드등 조명 알람 시계",
+  "link": "https://link.coupang.com/a/iEcsnO2u1Q",
+  "subId": "h2611132230",
+  "image": "https://ads-partners.coupang.com/image1/L4Vdz0i0BghDhh4WL4ahteqUfoppNydHBgn3I0-F_XUQko79nAx7jngg1AVHKIa-SR_B8AjAymlySnEEQtWllBVgwPGm8c6ZKmcwly-KPP38ztdSVsVIPTnU2ZccKgc0UyC859vNKmr2U-Bl0Y1IdaLdbUPQz2LgORQp2aaKHY5Wa_FBP7sOBNRRqfA0fI3C8uLpMjfhcPMDymmxABhrUnyNlH8IXmRPxoqTK5v1BdzZZ_KlarS3Sjo1sWTreEIZnIUR4WgHTSVOhZqq6XtePXn2F0UaKdb2qB0-jh6yDh9DprYdoCCjl4o5UovyV_YpL3CSyk0YRwPEPP01PbvXQKd20MtxxIgDhHc435hoyh-oYrjhHy9kymK79ni3BdjPGcpsbe-IFb-lmJBp7kNeC40BEzerk87Q3JObL7K38Re61-Umc8SpA6MP3OwT3IcoMeoCkWUL8n4dlpeJqR86IHNRijerLpCOhiGVFxnMz6B6xZrQfu8nxxbyWU5fQyXTBksjP2eKkjOcfGAxi2UH36nQk8h6VMp1Mv_-QtCvsgE0KNayvwjRfp09KhfCOmezJBoeiv2kgo3yOFV_q0VR"
+ }
 }

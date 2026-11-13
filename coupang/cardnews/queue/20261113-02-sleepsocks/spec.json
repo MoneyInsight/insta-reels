@@ -8,7 +8,8 @@
    "title": "발이 시려서\n[잠이 안 와요]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "이불 속에서도 발 시려서 잠 못 드는 사람? 뒤척이다 새벽 되지?"
+   "narration": "이불 속에서도 발 시려서 잠 못 드는 사람? 뒤척이다 새벽 되지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 수면양말 준비했어! 신고 바로 이불 속으로 쏙. 이번 겨울 내내 신게 링크 걸어 놨어, 지금 눌러 봐!"
+   "narration": "그래서 수면양말 준비했어! 신고 바로 이불 속으로 쏙. 이번 겨울 내내 신게 링크 걸어 놨어, 지금 눌러 봐!",
+   "image": "product.jpg",
+   "name": "수면양말",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "수면양말",
+    "자기 전에 신기"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "발이 시려 잠 못 드는 밤",
  "product_label": "수면양말",
  "product_keyword": "극세사 도톰한 수면양말",
@@ -64,5 +76,15 @@
   "수면양말",
   "자기 전에 신기"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9794197151",
+  "name": "꽃소담 1+1 여성 겨울 강아지 캐릭터 극세사 수면양말 무압박 뽀글이 도톰한 보온 방한 실내양말 귀여운 털양말 홈웨어 HZHF26DW370",
+  "link": "https://link.coupang.com/a/iEcj08M4OG",
+  "subId": "h2611132230",
+  "image": "https://ads-partners.coupang.com/image1/mn3iXatVXatifGvumlZh7L-AqG6t7vV3_8jIJsuTrx-qEpNljwzGSLW4O9TuAJ2HsPmoAyjpenelFpetWgFRN09UFC8BRyKcI-CAu9VgN3g51rRuwJ90LnRsrugqD-NIhNB0fYUw73CBarNoLkMnj4qdPLgblc5NI8VJRf_rWDwqvTJUQVAEwNGYfXebErvZ79vLk5dRfziCzuOjjfdNoyytv0Vdk-v3vzTg5dYOzjgu54qINJ43NOJ1tgBnk1Pb9bSeUQETnfLOZdCxAzKOkRpcZoMJgtTN_n3oqK-3Djmy9xAPWGgxAFffJpE6W4lzx1-HTfLL4aBKaO3v57S6zOinfZgXt0YnXX0vTs3-CXJBtKJ6PC8eev0vv1_sV77uthiBCM9PrHG5jCWoE-q00i2EF9VpezQsvYLCz5rW8WWOFxMMp8B--PY0QdkyL02GQdH687YnAFB1tr4V4oXLvNxCb1WXWhG9eQRxsoh6VrmFmXYCek9PEAHOMePfCsLLIgfg2ofH5k4gi4_LgAE7MJye56CkbyZZWDGL50-KEXqX5QVbVSFwrROw2Fv3kiD6gC_ehG5Lm1Hg5nAhBNMbGTz1j7HCX5_k7ITpjdG9GSwFwi95_Dh2RmxAH2gTfWBKitPqJxzVsiXRB30ozAU9QraDxJFrOQ=="
+ },
+ "threads_caption": "이불 속에서도 발 시려서 잠 못 드는 사람? 뒤척이다 새벽 되지?\n\n맨발로 찬 바닥 다니고 씻은 발 덜 말린 채 누우면, 발끝이 계속 차가워.\n\n자기 전엔 발부터 따뜻하게 해야 하는데, 일반 양말은 조여서 자다가 결국 벗게 돼.\n\n그래서 수면양말 준비했어! 신고 바로 이불 속으로 쏙 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iEcj08M4OG\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 수면양말 바로가기 👉 https://link.coupang.com/a/iEcj08M4OG\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "이불 속에서도 발 시려서 잠 못 드는 사람? 뒤척이다 새벽 되지? 🙋\n\n맨발로 찬 바닥 다니고 씻은 발 덜 말린 채 누우면, 발끝이 계속 차가워.\n\n자기 전엔 발부터 따뜻하게 해야 하는데, 일반 양말은 조여서 자다가 결국 벗게 돼.\n\n그래서 수면양말 준비했어! 신고 바로 이불 속으로 쏙 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#수면양말 #발시림 #꿀잠 #겨울밤 #생활꿀팁 #겨울철건강 #건강정보 #겨울템"
 }
