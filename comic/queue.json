@@ -104,8 +104,69 @@
 "sec": 64,
 "views": 0,
 "score": 112.9,
-"status": "todo",
-"rank": 3
+"status": "posted",
+"rank": 3,
+"made_at": "2026-11-14 02:54",
+"plan": {
+"top1": "물 만난 아기 코끼리",
+"top2": "텐션 폭발 현장 ㅋㅋㅋ",
+"yt_title": "물웅덩이 보고 흥분 폭발한 아기 코끼리 🐘",
+"hashtags": [
+"#코끼리",
+"#아기코끼리",
+"#귀여운동물",
+"#힐링영상",
+"#동물영상",
+"#shorts"
+],
+"mood": "funny",
+"sns_text": "물웅덩이 하나로 세상 다 가진 아기 코끼리 텐션 실화냐 ㅋㅋㅋ\n진짜 온몸으로 흙탕물 튀기면서 노는 거 짱귀엽네.\n물놀이 가면 꼭 이렇게 온몸 던지는 애들 있잖아.\n목욕할 때 신나게 놀 수 있는 목욕 장난감 추천!",
+"product_keyword": "아기 목욕 장난감",
+"product_must": "목욕",
+"product_label": "아기 목욕 장난감",
+"scenes": [
+{
+"start": 11.5,
+"end": 16.5,
+"narration": "야 물 만난 아기 코끼리 텐션 좀 봐 ㅋㅋㅋ",
+"caption": "물 만나서 신난\n아기 코끼리 텐션 폭발",
+"highlight": "텐션 폭발"
+},
+{
+"start": 42.5,
+"end": 49.0,
+"narration": "흙먼지 샤워까지 제대로 말아먹는 중이잖아",
+"caption": "온몸으로 즐기는\n흙먼지 샤워 중",
+"highlight": "흙먼지 샤워"
+},
+{
+"start": 26.5,
+"end": 34.5,
+"narration": "진흙 웅덩이만 보면 그냥 지나치질 못해 아주",
+"caption": "진흙탕만 보면\n자동으로 직진함",
+"highlight": "자동으로 직진"
+},
+{
+"start": 55.0,
+"end": 62.0,
+"narration": "너도 물놀이만 가면 이러는 친구 있지? 태그해!",
+"caption": "물놀이 가면\n이러는 친구 꼭 있음",
+"highlight": "친구 꼭 있음"
+}
+]
+},
+"yt": "2KuFXt5XuT4",
+"product": {
+"id": "8847081393",
+"name": "베비몽 말랑 물총 목욕놀이 실리콘 장난감 4종 세트, 혼합색상, 1세트",
+"link": "https://link.coupang.com/a/iE7JHfTL3s",
+"subId": "h2611141154",
+"image": "https://ads-partners.coupang.com/image1/5Viepzvze3_ya-Ra5QST5UeOCksLKXPJSeUykt_cee_f9VtRISAAOQfSyq9Ay0HCVGqziqe_3u6ucllKNGKnvZ-D-kWhzdP56XfiRhlwzpfF750JK__dzDy5QuKHs7SVTI-4zH1TeHSQI2IxTE1yDVnnL44SM-dZZXGZt3oDzRluYbxL-f9XGicmE-HB0M_SMojCrXTlxvf6GuK4VXM6HBNNSh0Va0prCGkNFQx-NulmKGl08oL_bHRiizHr9nWQiRw546UqnTUcXQhKy8G53V1mqTUws4CfgjhUmhbsm8E71_ajo8xjlBpBICdjAzByx9RfcAv5rbRFNA2qdpYQU_6pWOTOxl-DEMf2_ggMYgVwVr0O4EAIpGpoKAIaI1eCfnOLJBOwBHFepQNOF2YPF1cdFWfGo0M2gllQ65NfUxEDfeNuyP9ZMNmn1tkSo_Xe95DkGE65ER0BPnvUW1BPKvvykJHUQiTg_bBKcCkSUJf4IcawHAce33ICGIGYPFoQyXM4CSux0AlLPna5zJ5cT6-Wp15mqefk5HQWTgpbVr0KzYUOUTD0"
+},
+"sns": {
+"threads": "18122708822058187",
+"insta": "18175394338485424"
+}
 },
 {
 "id": "c71388961",
