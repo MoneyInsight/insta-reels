@@ -57,8 +57,17 @@ JSON만 출력(코드블록 없이):
 
 def plan(cands, used):
     txt = "\n".join(f"- [{c['from']}] {c['kw']} (관심도 {c['traffic']}) {' / '.join(c['news'])}" for c in cands[:40])
-    tries = [("gemini-3.8-flash", True), ("gemini-3.8-flash", False), ("gemini-3.8-flash-lite", False),
-             ("gemini-3.8-flash", False), ("gemini-3.1-flash", False), ("gemini-3.1-pro-preview", False), ("gemini-3.8-flash", False)]
+    try:
+        ms = requests.get(f"{m.G}/v1beta/models?key={m.KEY}&pageSize=200", timeout=30).json().get("models", [])
+        names = [x["name"].split("/")[-1] for x in ms if "generateContent" in x.get("supportedGenerationMethods", [])
+                 and not re.search(r"tts|image|live|audio|embed|vision|robotics|computer|learnlm|gemma", x["name"])]
+    except Exception: names = []
+    flash = [n for n in names if "flash" in n]
+    flash.sort(key=lambda n: ("lite" in n, "preview" in n or "exp" in n))
+    print("사용 가능 모델:", flash[:8])
+    order = (["gemini-3.8-flash"] + flash[:5]) or ["gemini-3.8-flash"]
+    order = list(dict.fromkeys(order))
+    tries = [(x, False) for x in order] * 3
     for model, ground in tries:
         r = {}
         try:
@@ -71,7 +80,7 @@ def plan(cands, used):
             if p.get("scenes"): return p
         except Exception:
             e = r.get("error", {}) if isinstance(r, dict) else {}
-            print("::notice::대본 실패", model, "검색" if ground else "", str(e.get("message", e))[:400]); time.sleep(20)
+            print("::notice::대본 실패", model, "검색" if ground else "", str(e.get("message", e))[:400]); time.sleep(45 if "demand" in str(e) else 5)
     return None
 
 
