@@ -10,7 +10,7 @@ DIS = health.DISCLOSURE
 vid = sys.argv[1]; W = "comic/work"
 q = json.load(open("comic/queue.json", encoding="utf-8"))
 it = next(x for x in q["items"] if x["id"] == vid); p = it.get("plan", {})
-credit = f"🎬 원본: {it['channel']} (" + ("Wikimedia Commons" if it.get("src") == "commons" else "YouTube") + ", " + it.get("license", "CC BY") + ")"
+credit = "🎬 화면: Pixabay 무료 영상" if it.get("src") == "trend" else f"🎬 원본: {it['channel']} (" + ("Wikimedia Commons" if it.get("src") == "commons" else "YouTube") + ", " + it.get("license", "CC BY") + ")"
 prod = None
 if p.get("product_keyword"):
     try: prod = health.find_product({"product_keyword": p["product_keyword"], "product_must": p.get("product_must", "")}, W)
