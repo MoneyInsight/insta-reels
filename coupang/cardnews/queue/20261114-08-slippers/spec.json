@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "차가운 거실 바닥 맨발",
  "product_label": "털 실내화",
  "product_keyword": "겨울 털 실내화",
@@ -81,5 +81,6 @@
   "털 실내화",
   "실내용"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
