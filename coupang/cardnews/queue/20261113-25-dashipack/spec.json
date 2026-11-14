@@ -8,7 +8,8 @@
    "title": "국물 먹고 싶은데\n[육수 내기 귀찮아]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "따끈한 국물 먹고 싶은데 육수 내기 귀찮은 사람 있어? 결국 라면 끓이지?"
+   "narration": "따끈한 국물 먹고 싶은데 육수 내기 귀찮은 사람 있어? 결국 라면 끓이지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 멸치 다시팩 골라 왔어! 퐁당 넣고 끓였다 건지면 끝. 또 라면 끓이기 전에 링크 눌러서 지금 바로 확인해 봐!"
+   "narration": "그래서 멸치 다시팩 골라 왔어! 퐁당 넣고 끓였다 건지면 끝. 또 라면 끓이기 전에 링크 눌러서 지금 바로 확인해 봐!",
+   "image": "product.jpg",
+   "name": "멸치 다시팩",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "멸치 들어간 다시팩",
+    "넣고 끓였다 건지기"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "추운 날 국물 끓이기 귀찮은 저녁",
  "product_label": "멸치 다시팩",
  "product_keyword": "국물용 멸치 다시팩",
@@ -72,5 +84,15 @@
   "멸치 들어간 다시팩",
   "넣고 끓였다 건지기"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9551325864",
+  "name": "굿픽샵 코스트코 국산 국물용 다시팩 30팩 멸치 표고버섯 다시마 육수팩 고급사탕증정, 1개, 510g",
+  "link": "https://link.coupang.com/a/iFlXXV3gqW",
+  "subId": "h2611141513",
+  "image": "https://ads-partners.coupang.com/image1/HLuyTcLSYbQGD8MaHGp8rjatL5JkPnJLmByg5VrW9qkLgUKe3OYd1jlGjKkRBBNLznYEtPDVdQGQEnWkvE_wwqgu4deYZoIa85cIUgEn2GsNxroY5ZBC7eBZvPKGaWCuin3YRPC_cwn4eRj_Gi-nA3XJN3xbEQ9geLlRRoVH49mksMyhW6ppFqJLvnp2bamSjyx54tzD1jgbcYjxcPoOcGt6ORh80_JAqdIM8a-bH2YXEQB1hFL154ww8a3bxHLgcyQt2coT5SpK4ioRwGAowHTrNaTN8MF_vXZIhNHxueq_ZS2ie1FLy4X6QCAHtcRo1r5LrA9Gwzzt4wROfajMFq3MJKX3Jq-0Gl7KRe3iuMSGziw2dRZZCzdLzhCTxlgVfi0tie1ZEzvFGI_naglVQutvqzivquDoLBJbkpQHsPhcYRQz29IATbzyIgvOl0xmy_aXTZZ6a-8GtRLRKFoti-VQggWQf03VxmJoZ67vExj2CZXV1tsoSVBT4SP_SFChen6ts0FBC6UdAtrQ17_o93yS5dm7BJb9wVXJnKwv943jnYJayWbV5GwdJZ2P777R0dPZIh5Z7Q=="
+ },
+ "threads_caption": "따끈한 국물 먹고 싶은데 육수 내기 귀찮은 사람 있어? 결국 라면 끓이지?\n\n멸치 손질하고 오래 우리는 게 번거로워서 그래. 미루다 보면 저녁마다 인스턴트야.\n\n육수만 있으면 국 하나 금방인데, 퇴근하고 멸치 손질할 힘은 없잖아.\n\n그래서 멸치 다시팩 골라 왔어! 퐁당 넣고 끓였다 건지면 끝. 또 라면 끓이기 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iFlXXV3gqW\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 멸치 다시팩 바로가기 👉 https://link.coupang.com/a/iFlXXV3gqW\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "따끈한 국물 먹고 싶은데 육수 내기 귀찮은 사람 있어? 결국 라면 끓이지? 🙋\n\n멸치 손질하고 오래 우리는 게 번거로워서 그래. 미루다 보면 저녁마다 인스턴트야.\n\n육수만 있으면 국 하나 금방인데, 퇴근하고 멸치 손질할 힘은 없잖아.\n\n그래서 멸치 다시팩 골라 왔어! 퐁당 넣고 끓였다 건지면 끝. 또 라면 끓이기 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#다시팩 #멸치다시팩 #육수 #국물요리 #집밥 #겨울요리 #주부꿀팁 #주방템"
 }
