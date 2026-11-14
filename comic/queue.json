@@ -239,8 +239,62 @@
 "sec": 79,
 "views": 0,
 "score": 98.3,
-"status": "todo",
-"rank": 8
+"status": "posted",
+"rank": 8,
+"made_at": "2026-11-14 08:50",
+"plan": {
+"top1": "비밀 연애 들킴",
+"top2": "계단 위를 봐봐",
+"yt_title": "입막음 돈 줬는데 최종 보스 등장 ㅋㅋㅋ",
+"hashtags": [
+"개그",
+"웃긴영상",
+"현실반응",
+"반전",
+"웃짤",
+"코미디"
+],
+"mood": "funny",
+"sns_text": "남동생한테 입막음 돈 주고 겨우 안심했더니만 ㅋㅋㅋ\n계단 위에 최종 보스가 떡하니 버티고 있네 아 망했다 ㅠㅠ\n표정 굳어가는 거 진짜 찐반응 아니냐고 ㅋㅋㅋ\n비상금 숨길 땐 주머니 넉넉한 크로스백이 필수임!",
+"product_keyword": "여성 크로스백",
+"product_must": "크로스백",
+"product_label": "수납력 크로스백",
+"scenes": [
+{
+"start": 57.0,
+"end": 63.0,
+"narration": "잠깐만 위를 봐 표정 굳었어",
+"caption": "계단 위에\n최종 보스 등장",
+"highlight": "최종 보스"
+},
+{
+"start": 48.0,
+"end": 56.5,
+"narration": "동생 입막음하려고 돈 줬더니 신나서 춤추네",
+"caption": "동생한테\n입막음 성공?",
+"highlight": "입막음"
+},
+{
+"start": 63.0,
+"end": 70.5,
+"narration": "내 몫은 어딨냐는 눈빛 봐 ㅋㅋㅋ 너도 이런 적 있지?",
+"caption": "내 몫은\n어디 갔냐고",
+"highlight": "내 몫"
+}
+]
+},
+"yt": "KNlE0r1m70U",
+"product": {
+"id": "9466055433",
+"name": "허블리 가벼운 반달백 크로스백 크로와상 가방",
+"link": "https://link.coupang.com/a/iFxcWYANHw",
+"subId": "h2611141750",
+"image": "https://ads-partners.coupang.com/image1/T9dPjy2CnwrwiOnuT4pz33LWHeAals7Y3-dkPA3b12J3uU_v4llWLXwdhOMe-_pNqW2l3ZcjFAHWqZ6zpd0pXv8lWXPYCWR9F67xWB4_2OMktjXrjnGoukED5iX_CwGJzMrJ-rHQUtDa-fV6xkWY7oS4XqoZQN5IiDkBdAiFwQKj3_3d5MUpGIXKxgfL_ZcHdsaQ0rIYzJ8wEM4oG1bnScNlNBMIBeIwh04nkvQLQuyRxdFJqX6sojmC-c3fVAjKpNGFilpCqeP1tXBYJoOifXOMjTjiDKvfX-mUoAHmSTpqDb3nbwq0DpGF4gDrLLZRi6yw1mfXiV5QfjY2xbU30rpxs4D1l2j6K2WJBYRaSg7lJW4zkIMeFKvR9I_PAvYH106OToYlhQwMxTi1BwE9R7U8ul2s3Iyjb6ycRd6ARjZPQPf-dsCF1RBtLp4KZZDUaVdNfR7rszJkKbXydqa7UfWLOp726KR36RYD1icVt7NFmW3Zdh4SjVEkaMNLftjkgjuSX02-YMLC2wb64oZjcazsh75TQvMw6_iHl2h5Ppi1rlHdj05MquR7_neVJl9rEp6Rvop9FNJNV5mt1cl6"
+},
+"sns": {
+"threads": "18132780304753406",
+"insta": "18031609679914492"
+}
 },
 {
 "id": "c104171792",
