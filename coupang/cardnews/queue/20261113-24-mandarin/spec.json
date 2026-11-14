@@ -8,7 +8,8 @@
    "title": "밤마다\n[과자 봉지 뜯기]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "퇴근하고 소파에 앉으면 과자 봉지부터 뜯는 사람 있어? 다 먹고 나면 후회하지?"
+   "narration": "퇴근하고 소파에 앉으면 과자 봉지부터 뜯는 사람 있어? 다 먹고 나면 후회하지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,22 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 제주 감귤 준비했어! 손으로 쓱 까서 먹으면 끝! 과자 또 뜯기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 제주 감귤 준비했어! 손으로 쓱 까서 먹으면 끝! 과자 또 뜯기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "제주 감귤",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "제주산",
+    "감귤"
+   ],
+   "notes": [
+    "농산물 특성상 크기·맛에 차이가 있을 수 있어요.",
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "퇴근 후 과자 손이 가는 밤",
  "product_label": "제주 감귤",
  "product_keyword": "제주 감귤",
@@ -79,5 +92,15 @@
   "제주산",
   "감귤"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "153770361",
+  "name": "[귤담원] 귤담원 제주 제철 감귤, 14.감귤 10kg 대과, 1박스",
+  "link": "https://link.coupang.com/a/iFhxIyADKK",
+  "subId": "h2611141409",
+  "image": "https://ads-partners.coupang.com/image1/V0BM6Oqte7eb4UM7V6kRzNJOQtp2MIG0oPg6oHcKMoYDFwB0OSZ-W731BFtzEBTWjaUNj5jQFRnAdUIH5kv6kmlcoDsNZiN_zDfteAXtMQq6rpUzx7krS5kgcQdfwliRduSuVmMhVUlRnwva2Kx89q-w8sc6oFnjR3ZJGd6bHKGYM_l94EDsSUHSri7ZA_tuqn41PEez-BEmMzBDu6J1M5LC9G8Pmz3cBgYJhINWd2HXuFsNb3_E9rOQTJ5ZBh2Mi-Gg4JEwmlCv-UM2VS_COufrOpAgfaxPJ7fNqs1kM7EvNtc_KSKJRnnMvodCKLeYR1zkux5GIcsIA-B2vVh8qZ1HmWDorP84lQ-_kf110IByc8Il0-fXHwcFP1Y0xQ7rsnkPqCC0fkNoPtGVObYuMgh_kfuSrEPFfRj9SBV0YqrhEn6X0Ca8Ob5_ZaCUXYoS8YyPSMcSM3s2OVBCJ_p_ZcdAbLungA6_xHrvp67Wxo1FaBkpw-RfBJic3lEz687--gdr0rJ6QMQPLvNHcflQoQay_6Hpseu23F-2amHWo0IpYITZ-ylUHujyg3h8Ye79EWVVywr-az3K4wjJ"
+ },
+ "threads_caption": "퇴근하고 소파에 앉으면 과자 봉지부터 뜯는 사람 있어? 다 먹고 나면 후회하지?\n\n배고프고 지친 상태라 손 닿는 데 있는 걸 집어서 그래. 습관 되면 밤마다 더 당겨.\n\n과일로 바꾸면 좋은데, 씻고 깎기 귀찮아서 결국 또 과자 뜯잖아.\n\n그래서 제주 감귤 준비했어! 손으로 쓱 까서 먹으면 끝! 과자 또 뜯기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iFhxIyADKK\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 제주 감귤 바로가기 👉 https://link.coupang.com/a/iFhxIyADKK\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "퇴근하고 소파에 앉으면 과자 봉지부터 뜯는 사람 있어? 다 먹고 나면 후회하지? 🙋\n\n배고프고 지친 상태라 손 닿는 데 있는 걸 집어서 그래. 습관 되면 밤마다 더 당겨.\n\n과일로 바꾸면 좋은데, 씻고 깎기 귀찮아서 결국 또 과자 뜯잖아.\n\n그래서 제주 감귤 준비했어! 손으로 쓱 까서 먹으면 끝! 과자 또 뜯기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#제주감귤 #감귤 #귤 #제철과일 #겨울과일 #야식대신 #생활꿀팁 #건강정보"
 }
