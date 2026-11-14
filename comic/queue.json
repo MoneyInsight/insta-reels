@@ -2449,6 +2449,46 @@
 "threads": "18253867591309803",
 "insta": "18020114930957292"
 }
+},
+{
+"id": "trend202611142345",
+"src": "trend",
+"title": "삼성 구자욱 메이저리그(MLB) 도전 선언",
+"channel": "Pixabay",
+"license": "무료 라이선스",
+"status": "posted",
+"rank": 0,
+"made_at": "2026-11-14 23:45",
+"kind": "trend",
+"plan": {
+"top1": "구자욱 MLB 도전",
+"top2": "제2의 이정후 될까",
+"hashtags": [
+"#구자욱",
+"#MLB",
+"#야구",
+"#메이저리그",
+"#삼성라이온즈",
+"#KBO"
+],
+"product_keyword": "야구 글러브",
+"product_must": "야구",
+"product_label": "인기 야구 용품 추천",
+"sns_text": "삼성 간판타자 구자욱이 드디어 메이저리그(MLB) 도전을 선언했습니다!\n미국 전문 에이전트까지 선임하고 본격적으로 빅리그 문을 두드린다는데요.\n과연 이정후의 뒤를 이어 대박을 터뜨릴 수 있을까요?\n야구 직관이나 캐치볼 즐길 때 필수인 야구 용품도 확인해 보세요!",
+"yt_title": "삼성 구자욱 메이저리그 전격 도전?! 이정후 뒤 잇나 ㄷㄷ"
+},
+"yt": "lgcr4MOcl-I",
+"product": {
+"id": "7614987695",
+"name": "프로모릭스 풀카운트 야구글러브+야구공 세트, +야구공1개, 1세트",
+"link": "https://link.coupang.com/a/iGy8y1m3DU",
+"subId": "h2611150845",
+"image": "https://ads-partners.coupang.com/image1/yjYhoif1Sz_KAwRVyj41tpkde7nCcFwu4JCOayNfrepHp_PewI5Ox6MloPrUty9J0Sy-R7i7o8bNdXar73pRw2j_zjAlCtcSi2suHlzprBY29irxkTiAVSKcuy9iPHYzLo8E76XykIsuAdMD6iZlxZfonTlIwugdbGhRhlY9JhneuZeMJagn7_dxcjIoU1nKD4EP76gPlyCx_Y0U2z2lp_eSJIYVjlleDtrmBSkGMnWmw4qJoKiuae-AgVYOxJ-XvvKKr_OqZSPcQXoehwMOWQp46d-b2nbcCHMBjU8Xk5T0-Ky0Hc7IjogysFzhCfrbeuYlPr5Pf0tIfpLVJHMu_uRQS7itK0JJ4qCPuPFjJf522O0GGaaMWRhL0QEAiv-wczFS9T7cxaQouhYICXF3ZF1l3VfFU9Nkd4zaRbOHeR-S31Fj_B3x7Tectym3gY7KhNvdp9ZlE9lDU1EuH2CRu3RswW66jc_vUYs8RoZGiH21C8dkWWdGOJMRKtO-9fJ-qZIgSHSQxngCdsHV8jt2aWXAXokOp3pJsjWUc7r8rerDaTzlfdmuW5krZWdH_PQWqtc1DZs="
+},
+"sns": {
+"threads": "18025396001948271",
+"insta": "18097227326166901"
+}
 }
 ],
 "source": "commons"
