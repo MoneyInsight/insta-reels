@@ -179,8 +179,9 @@
 "sec": 131,
 "views": 0,
 "score": 109.9,
-"status": "todo",
-"rank": 4
+"status": "fail",
+"rank": 4,
+"reason": "HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=300)"
 },
 {
 "id": "c190295739",
@@ -193,8 +194,9 @@
 "sec": 189,
 "views": 0,
 "score": 106.3,
-"status": "todo",
-"rank": 5
+"status": "fail",
+"rank": 5,
+"reason": "HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=300)"
 },
 {
 "id": "c73542416",
@@ -207,8 +209,9 @@
 "sec": 89,
 "views": 0,
 "score": 105,
-"status": "todo",
-"rank": 6
+"status": "fail",
+"rank": 6,
+"reason": "HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=300)"
 },
 {
 "id": "c151749829",
@@ -221,8 +224,9 @@
 "sec": 233,
 "views": 0,
 "score": 105,
-"status": "todo",
-"rank": 7
+"status": "fail",
+"rank": 7,
+"reason": "HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=300)"
 },
 {
 "id": "c104171676",
