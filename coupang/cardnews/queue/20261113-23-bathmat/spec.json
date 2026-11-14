@@ -8,7 +8,8 @@
    "title": "샤워하다가\n[휘청한 적]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "부모님 댁 욕실 바닥 얼마나 미끄러운지 알아? 샤워하다 휘청했다고 하시지?"
+   "narration": "부모님 댁 욕실 바닥 얼마나 미끄러운지 알아? 샤워하다 휘청했다고 하시지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,7 +38,18 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 욕실 미끄럼방지 매트 골라 왔어! 깔아만 두면 끝이야. 휘청하시기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 욕실 미끄럼방지 매트 골라 왔어! 깔아만 두면 끝이야. 휘청하시기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "욕실 미끄럼방지 매트",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "욕실용",
+    "미끄럼방지 매트"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
  "status": "written",
@@ -73,5 +85,12 @@
   "욕실용",
   "미끄럼방지 매트"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "8127083225",
+  "name": "누메로 친환경 미끄럼방지 다용도 욕실 발매트, 화이트",
+  "link": "https://link.coupang.com/a/iFdlXqTGSG",
+  "subId": "h2611141310",
+  "image": "https://ads-partners.coupang.com/image1/oOS-k5Y3CUob2LryoJ4JgR7B8xYzSiBQYiXpKygD1LfKiOVO0-4P-40dWeta8wXLjLU0BbBeVf1TGYlr24xHMfkWTj84UGP_llSUTaadtrXd7esD8b5X1e60qQ93Zj3OQ5Bwwh3n9tremFLgjtj9-_lsECKORiU8n_yGfSqbTCyAQnJJnWcAhDSj0BYZ6RdfDuNteIR_oVFmoAquDDZ2tuW9yAG-NUOYzUSQqGlLTGpYCpgEWUSNU3qtiyoLxcKRaxOkO6O0OxY3m9oCKy4WhPEux_ndfVqbXbwbaMA8MJbmRnSvFoQoj7Yq9aL8VQ6LyTEHFreZcHY3na5RbWQkDr3TRfesGopD5u48ygKs0axo5McgnKXKuZUhaTNX-vmQOhA0jTr3DYg94C6q6U_iYuLHZx9io3Zkv36oKlE4n5I9iTPNxwF4mK-7_8yFV1TnIrTuz52KRvqHWOc_SnxV-paHL3n_MqYHzrZ5wXEXOPiFaApaFg6vWVEO3P1lyU3R78LQp_CCXDu265cf4nEBXcy894J1xs3VJd8rjjpj43IRVaTGdUPzF5TH_eZrH2mR6OlrbfuIrketkFAkHUc="
+ }
 }

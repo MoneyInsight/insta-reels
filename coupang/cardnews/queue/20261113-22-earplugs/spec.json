@@ -8,7 +8,8 @@
    "title": "작은 소리에도\n[집중이 뚝]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "공부하려고 앉았는데 작은 소리에도 신경 쓰이는 사람 있어? 한 줄 읽고 또 멍하지?"
+   "narration": "공부하려고 앉았는데 작은 소리에도 신경 쓰이는 사람 있어? 한 줄 읽고 또 멍하지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 폼 귀마개 준비했어! 돌돌 말아 귀에 쏙 넣으면 끝. 시험 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 폼 귀마개 준비했어! 돌돌 말아 귀에 쏙 넣으면 끝. 시험 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "폼 귀마개",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "폼 귀마개",
+    "말랑한 폼 소재"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "시끄러워 집중 안 되는 공부방",
  "product_label": "폼 귀마개",
  "product_keyword": "폼 귀마개 소음방지",
@@ -73,5 +85,15 @@
   "폼 귀마개",
   "말랑한 폼 소재"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9815420756",
+  "name": "시드상회 폼 타입 귀마개 1100 사무실귀마개",
+  "link": "https://link.coupang.com/a/iFdc9cLAfk",
+  "subId": "h2611141310",
+  "image": "https://ads-partners.coupang.com/image1/axaydyaxoR6W8gSma-2L7HQyLfwAj45D6mDuf_S8FJow7yOgAehWL9f6U_O5AfZ10Six_Y_RS9I65UubRfCxgTmEu2ZKK8gR4idC5f6_zT12POHjUSa8BT-vB__j2zSI8hIVOw27pecwT_bGIB6gy-dryUVF5S5Iy7bWf8Ng5H49wm7ybln1FS8CCLqqIs8_X75omjlA4u4GXrrV0oDDV187ckxqpi5k4P0RxQOgPWyLpyqWkiu2b2TonkLc1boa25h9AYnyUPLQMaYmg-sPRsw6YtcQftdQEsO_e_gjtOhKPHgRtRmih1X7BTENfVybJP_iSnyPWmshIA9KlIhE5Ui3RQ_6X_nztyYRSGbKPu8A_jvStjf8ryPHZKxpbOsLI3t8Pg1-mMyxRlH70dj3E9sZEAT7I1yEnf3mfX8Zvs0IErrr6jhCT1ztUWOza6JFZAjF8Hi2CJI3ELExdN9fmI3lTDB75UzlGRR5UoCD0s-q4BWfPoZcjIZdV1YYOmygxFCzVSNzJjt-l2pvkVxwRrOks9UrZYGfzuoo3_LzzKYcBlUurMbaLgzAMacg-usuHrlk_qQ7MJ0u5IvpHMQWmz51LDJz3_kCtJfVCyg6RvaHrajpUApsaruIXNTzrNUytg4QMI0ynzHjq58="
+ },
+ "threads_caption": "공부하려고 앉았는데 작은 소리에도 신경 쓰이는 사람 있어? 한 줄 읽고 또 멍하지?\n\n시험 다가오면 예민해져서 발소리 하나에도 집중이 끊겨. 끊길수록 공부 시간만 길어져.\n\n조용한 데가 제일인데, 독서실은 매일 못 가고 집에선 결국 다 들리잖아.\n\n그래서 폼 귀마개 준비했어! 돌돌 말아 귀에 쏙 넣으면 끝. 시험 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iFdc9cLAfk\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 폼 귀마개 바로가기 👉 https://link.coupang.com/a/iFdc9cLAfk\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "공부하려고 앉았는데 작은 소리에도 신경 쓰이는 사람 있어? 한 줄 읽고 또 멍하지? 🙋\n\n시험 다가오면 예민해져서 발소리 하나에도 집중이 끊겨. 끊길수록 공부 시간만 길어져.\n\n조용한 데가 제일인데, 독서실은 매일 못 가고 집에선 결국 다 들리잖아.\n\n그래서 폼 귀마개 준비했어! 돌돌 말아 귀에 쏙 넣으면 끝. 시험 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#귀마개 #폼귀마개 #수험생 #공부집중 #시험기간 #수능 #생활꿀팁 #공부템"
 }
