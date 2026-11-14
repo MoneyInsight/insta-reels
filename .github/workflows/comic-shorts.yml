@@ -1,11 +1,10 @@
-name: 코믹 쇼츠 자동 (CC-BY 조회수 순위 1~1000위, 하루 5편)
+name: 트렌드 쇼츠 자동 (실시간 인기 주제, 하루 5편)
 on:
   schedule:
     - cron: "7 23,2,5,8,11 * * *"   # 한국시간 08:07 · 11:07 · 14:07 · 17:07 · 20:07
-    - cron: "37 15 * * 0"           # 매주 월요일 00:37(한국) 순위 대기열 보충
   workflow_dispatch:
     inputs:
-      task: { description: "make(만들고 올리기) / rank(순위 대기열 만들기) / test(만들기만)", required: false, default: "make" }
+      task: { description: "make(만들고 올리기) / test(만들기만)", required: false, default: "make" }
 permissions: { contents: write, issues: write, pages: write, id-token: write }
 concurrency: { group: daily-reel, cancel-in-progress: false }  # 건강 숏폼과 같은 공개 주소(Pages)를 쓰므로 순서대로
 jobs:
@@ -22,8 +21,6 @@ jobs:
         id: t
         run: |
           T="${{ inputs.task }}"; [ -z "$T" ] && T=make
-          [ "${{ github.event.schedule }}" = "37 15 * * 0" ] && T=rank
-          [ -f comic/queue.json ] || T=rank-$T
           echo "task=$T" >> $GITHUB_OUTPUT; echo "할 일: $T"
       - name: 도구 설치
         run: |
@@ -31,24 +28,18 @@ jobs:
           curl -fsSL https://deno.land/install.sh | sh -s -- -y >/dev/null 2>&1 || true
           echo "$HOME/.deno/bin" >> $GITHUB_PATH   # 유튜브 서명 해독용 JS 실행기(yt-dlp EJS)
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-cjk >/dev/null
-      - name: 순위 대기열 만들기/보충
-        if: contains(steps.t.outputs.task, 'rank')
-        env: { YT_API_KEY: "${{ secrets.YT_API_KEY }}" }
-        run: python comic/rank.py
       - name: 쇼츠 만들기
         id: make
         if: contains(steps.t.outputs.task, 'make') || contains(steps.t.outputs.task, 'test')
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          YT_COOKIES: ${{ secrets.YT_COOKIES }}
-        run: |
-          [ -n "$YT_COOKIES" ] && printf '%s\n' "$YT_COOKIES" > cookies.txt
-          python comic/make.py
-          rm -f cookies.txt
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: python comic/trend_make.py
       - name: 완성 영상 보관 (7일)
         if: steps.make.outputs.vid != ''
         uses: actions/upload-artifact@v4
-        with: { name: "comic-${{ steps.make.outputs.vid }}", path: "comic/work/final.mp4", retention-days: 7 }
+        with: { name: "trend-${{ steps.make.outputs.vid }}", path: "comic/work/final.mp4", retention-days: 7 }
       - name: 유튜브 업로드 (쿠팡 링크 없음)
         if: steps.make.outputs.vid != '' && !contains(steps.t.outputs.task, 'test')
         continue-on-error: true
@@ -116,11 +107,11 @@ jobs:
         if: always()
         run: |
           git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
-          git add comic/queue.json; [ -f comic/youtube_log.json ] && git add comic/youtube_log.json; git commit -qm "코믹 쇼츠: ${{ steps.t.outputs.task }} ${{ steps.make.outputs.vid }}" || exit 0
+          git add comic/queue.json; [ -f comic/youtube_log.json ] && git add comic/youtube_log.json; [ -f comic/trends_log.json ] && git add comic/trends_log.json; git commit -qm "트렌드 쇼츠: ${{ steps.t.outputs.task }} ${{ steps.make.outputs.vid }}" || exit 0
           for i in 1 2 3 4 5; do (git pull -q --rebase -X theirs origin main || git rebase --abort) && git push -q origin main && break; sleep 7; done
       - name: 문제 알림
         if: failure()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          T="코믹 쇼츠 실패"; [ -f tok.flag ] && T="⚠️ 토큰 만료: YTC_REFRESH_TOKEN 다시 발급 필요"
+          T="트렌드 쇼츠 실패"; [ -f tok.flag ] && T="⚠️ 토큰 만료: YTC_REFRESH_TOKEN 다시 발급 필요"
           gh issue list --state open --search "$T" --json number -q '.[0].number' | grep -q . || gh issue create --title "$T" --body "실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
