@@ -4,16 +4,16 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "오늘 저녁 뭐 먹지",
-   "title": "매일 똑같은\n[흰쌀밥만]?",
-   "sub": "끝까지 보면 해결돼",
+   "tag": "이거 알아?",
+   "title": "밥이 질릴 땐\n[서리태 한 줌]",
+   "sub": "끝까지 보면 링크 있어",
    "swipe": "넘겨 봐",
-   "narration": "매일 흰쌀밥만 먹어서 밥이 질리는 사람 있어? 맨날 똑같지?",
+   "narration": "이거 알아? 흰쌀밥에 서리태 한 줌만 섞어도 밥맛이 확 고소해져!",
    "image": "product.jpg"
   },
   {
    "type": "text",
-   "label": "왜 그럴까",
+   "label": "이럴 때 필요해",
    "title": "밥이\n[질리는 이유]",
    "body": [
     "[흰쌀밥만] 맛이 늘 같아요.",
@@ -21,11 +21,11 @@
     "[반찬 돌려막기] 메뉴가 비슷해요.",
     "[대충 한 끼] 입맛 없으면 거르게 돼요."
    ],
-   "narration": "추우면 집밥은 느는데 밥이 늘 같으니까 입맛이 없어. 그러다 끼니를 대충 때워."
+   "narration": "추우면 집밥은 느는데 밥이 늘 똑같으니까 질려서 끼니를 대충 때우잖아."
   },
   {
    "type": "text",
-   "label": "오늘 밤 해 보기",
+   "label": "이렇게 쓰면 끝",
    "title": "밥에\n[콩 한 줌 섞기]",
    "body": [
     "[전날 밤] 물에 담가 불려요.",
@@ -34,11 +34,11 @@
     "[소분 냉동] 불린 콩은 얼려 둬요."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "콩 한 줌만 섞어도 고소함이 확 달라지는데, 어떤 콩 살지 몰라서 결국 미루잖아."
+   "narration": "전날 밤에 불려서 쌀 위에 올리고 밥만 하면 끝이야. 따로 할 일이 없어."
   },
   {
    "type": "photo",
-   "narration": "그래서 국산 서리태 골라 왔어! 불려서 쌀 위에 올리기만 하면 끝. 오늘 밥상 바꾸게 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "narration": "국산 서리태, 링크 걸어 놨어! 오늘 밥상 바꾸게 지금 바로 눌러 봐!",
    "image": "product.jpg",
    "name": "국산 서리태",
    "cta": "프로필 링크에서 확인",
@@ -53,13 +53,13 @@
    ]
   }
  ],
- "status": "ready",
+ "status": "written",
  "topic": "늘 똑같은 흰쌀밥 밥상",
  "product_label": "국산 서리태",
  "product_keyword": "국산 서리태",
  "product_must": "서리태",
- "threads_text": "매일 흰쌀밥만 먹어서 밥이 질리는 사람 있어? 맨날 똑같지?\n\n추우면 집밥은 느는데 밥이 늘 같으니까 입맛이 없어. 그러다 끼니를 대충 때워.\n\n콩 한 줌만 섞어도 고소함이 확 달라지는데, 어떤 콩 살지 몰라서 결국 미루잖아.\n\n그래서 국산 서리태 골라 왔어! 불려서 쌀 위에 올리기만 하면 끝. 오늘 밥상 바꾸게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
- "insta_text": "매일 흰쌀밥만 먹어서 밥이 질리는 사람 있어? 맨날 똑같지? 🙋\n\n추우면 집밥은 느는데 밥이 늘 같으니까 입맛이 없어. 그러다 끼니를 대충 때워.\n\n콩 한 줌만 섞어도 고소함이 확 달라지는데, 어떤 콩 살지 몰라서 결국 미루잖아.\n\n그래서 국산 서리태 골라 왔어! 불려서 쌀 위에 올리기만 하면 끝. 오늘 밥상 바꾸게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
+ "threads_text": "이거 알아? 흰쌀밥에 서리태 한 줌만 섞어도 밥맛이 확 고소해져!\n\n추우면 집밥은 느는데 밥이 늘 똑같으니까 질려서 끼니를 대충 때우잖아.\n\n전날 밤에 불려서 쌀 위에 올리고 밥만 하면 끝이야. 따로 할 일이 없어.\n\n국산 서리태 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
+ "insta_text": "이거 알아? 흰쌀밥에 서리태 한 줌만 섞어도 밥맛이 확 고소해져! 🙋\n\n추우면 집밥은 느는데 밥이 늘 똑같으니까 질려서 끼니를 대충 때우잖아.\n\n전날 밤에 불려서 쌀 위에 올리고 밥만 하면 끝이야. 따로 할 일이 없어.\n\n국산 서리태 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
  "hashtags": [
   "서리태",
   "국산서리태",
@@ -94,8 +94,5 @@
   "link": "https://link.coupang.com/a/iFCg1sTStE",
   "subId": "h2611141901",
   "image": "https://ads-partners.coupang.com/image1/paoa2NYeL3Z7FhFJpWRF85iuRevMxqkzrJSnCot6jO-_EcvOu6fjQ0QPRebejrjLuehf1NnWhzWl9DUUno1gczNWzVrrwJUrUHl-eG65ymHE8ZjYPHTi61SfQ9znJsnVbN4kJJ5UZ-UWFjeUp56T4yHy9uGIcdSa-yKW_Vnfh9UgEiV3hfr8ZbfEfNUt_3A14g1nxJLKjRetIRmEvy6RA1mIwr90jDNNWnS-frMEp_Z384qV3VUVWMQjG_6NhWdocsRqU1oZTMlujjehSGxX61B7umbJNoU2zZYtgcLFBP52i555i3fQrxTRy7bczSpGIlb9jAMWVr6Hl6XN8iXWdpSKJAusv6jr5lJz59jYq8r_6AcyE1bfUCUNiDwArBwMfOtM-q--PIdWVGnCgC1hBEesJ3ataY3YbnveVOW_k1H1xvAIVcrCVA1aNEtnEizxG7tyqdhOeNbClb9dFhRE5_MHObkDgzB64NZfutvpnqIyj8wCoeukVuHmbwyCu9lsVAEl5ndgzhH2m-vPW5Ev-WxH9WYTYp-BGHLAh9gBFK3MtFsDcFtwKROyAiVpEdBAQ5kjdyMay1IthFiZw6Rsz8A="
- },
- "threads_caption": "매일 흰쌀밥만 먹어서 밥이 질리는 사람 있어? 맨날 똑같지?\n\n추우면 집밥은 느는데 밥이 늘 같으니까 입맛이 없어. 그러다 끼니를 대충 때워.\n\n콩 한 줌만 섞어도 고소함이 확 달라지는데, 어떤 콩 살지 몰라서 결국 미루잖아.\n\n그래서 국산 서리태 골라 왔어! 불려서 쌀 위에 올리기만 하면 끝. 오늘 밥상 바꾸게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iFCg1sTStE\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 국산 서리태 바로가기 👉 https://link.coupang.com/a/iFCg1sTStE\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "매일 흰쌀밥만 먹어서 밥이 질리는 사람 있어? 맨날 똑같지? 🙋\n\n추우면 집밥은 느는데 밥이 늘 같으니까 입맛이 없어. 그러다 끼니를 대충 때워.\n\n콩 한 줌만 섞어도 고소함이 확 달라지는데, 어떤 콩 살지 몰라서 결국 미루잖아.\n\n그래서 국산 서리태 골라 왔어! 불려서 쌀 위에 올리기만 하면 끝. 오늘 밥상 바꾸게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#서리태 #국산서리태 #콩밥 #잡곡밥 #집밥 #밥상 #생활꿀팁 #주방템"
+ }
 }

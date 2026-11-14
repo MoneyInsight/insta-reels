@@ -4,16 +4,16 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "부모님 댁 밤 9시 이후",
-   "title": "부모님 밤길\n[깜깜한 복도]?",
-   "sub": "끝까지 보면 해결돼",
+   "tag": "이거 알아?",
+   "title": "부모님 밤길엔\n[LED 센서등]",
+   "sub": "끝까지 보면 링크 있어",
    "swipe": "넘겨 봐",
-   "narration": "부모님 밤에 화장실 가실 때 불 안 켜고 더듬더듬 가시는 거 알아?",
+   "narration": "이거 알아? 엘이디 센서등 달아 드리면 부모님 밤에 화장실 가실 때 불이 저절로 켜져!",
    "image": "product.jpg"
   },
   {
    "type": "text",
-   "label": "왜 그럴까",
+   "label": "이럴 때 필요해",
    "title": "밤길이\n[위험한 이유]",
    "body": [
     "[긴 겨울밤] 어두운 시간이 길어요.",
@@ -21,11 +21,11 @@
     "[문턱·물건] 발에 걸리기 쉬워요.",
     "[잠결] 몸이 덜 깬 상태예요."
    ],
-   "narration": "겨울밤은 길고 깜깜해서 문턱에 걸리기 쉬워. 그냥 두면 매일 밤이 불안해."
+   "narration": "겨울밤은 길고 깜깜해서 스위치 찾다가 문턱에 걸리기 쉽잖아. 매일 밤이 불안해."
   },
   {
    "type": "text",
-   "label": "오늘 바로 해 보기",
+   "label": "이렇게 쓰면 끝",
    "title": "가는 길에\n[불 하나 켜 두기]",
    "body": [
     "[동선 정리] 바닥 물건 치우기.",
@@ -34,11 +34,11 @@
     "[천천히] 일어나 잠깐 앉았다 가기."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "가는 길에 불만 있어도 안심인데, 켜 두면 눈부셔서 결국 끄고 주무시잖아."
+   "narration": "켜 두면 눈부셔서 끄고 주무시는데, 센서등은 지나갈 때만 켜지니까 그럴 일이 없어."
   },
   {
    "type": "photo",
-   "narration": "그래서 엘이디 센서등 준비했어! 센서로 켜지니까 스위치 찾을 필요 없어. 부모님 댁에 놔 드리게 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "narration": "엘이디 센서등 여섯 개입, 링크 걸어 놨어! 부모님 댁에 놔 드리게 지금 바로 눌러 봐!",
    "image": "product.jpg",
    "name": "LED 센서등",
    "cta": "프로필 링크에서 확인",
@@ -52,13 +52,13 @@
    ]
   }
  ],
- "status": "ready",
+ "status": "written",
  "topic": "밤중에 화장실 가는 부모님",
  "product_label": "LED 센서등",
  "product_keyword": "LED 동작감지 센서등",
  "product_must": "센서",
- "threads_text": "부모님 밤에 화장실 가실 때 불 안 켜고 더듬더듬 가시는 거 알아?\n\n겨울밤은 길고 깜깜해서 문턱에 걸리기 쉬워. 그냥 두면 매일 밤이 불안해.\n\n가는 길에 불만 있어도 안심인데, 켜 두면 눈부셔서 결국 끄고 주무시잖아.\n\n그래서 엘이디 센서등 준비했어! 센서로 켜지니까 스위치 찾을 필요 없어. 부모님 댁에 놔 드리게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
- "insta_text": "부모님 밤에 화장실 가실 때 불 안 켜고 더듬더듬 가시는 거 알아? 🙋\n\n겨울밤은 길고 깜깜해서 문턱에 걸리기 쉬워. 그냥 두면 매일 밤이 불안해.\n\n가는 길에 불만 있어도 안심인데, 켜 두면 눈부셔서 결국 끄고 주무시잖아.\n\n그래서 엘이디 센서등 준비했어! 센서로 켜지니까 스위치 찾을 필요 없어. 부모님 댁에 놔 드리게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
+ "threads_text": "이거 알아? 엘이디 센서등 달아 드리면 부모님 밤에 화장실 가실 때 불이 저절로 켜져!\n\n겨울밤은 길고 깜깜해서 스위치 찾다가 문턱에 걸리기 쉽잖아. 매일 밤이 불안해.\n\n켜 두면 눈부셔서 끄고 주무시는데, 센서등은 지나갈 때만 켜지니까 그럴 일이 없어.\n\n엘이디 센서등 여섯 개입 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
+ "insta_text": "이거 알아? 엘이디 센서등 달아 드리면 부모님 밤에 화장실 가실 때 불이 저절로 켜져! 🙋\n\n겨울밤은 길고 깜깜해서 스위치 찾다가 문턱에 걸리기 쉽잖아. 매일 밤이 불안해.\n\n켜 두면 눈부셔서 끄고 주무시는데, 센서등은 지나갈 때만 켜지니까 그럴 일이 없어.\n\n엘이디 센서등 여섯 개입 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
  "hashtags": [
   "센서등",
   "LED센서등",
@@ -88,8 +88,5 @@
   "link": "https://link.coupang.com/a/iFyk7ihmZo",
   "subId": "h2611141805",
   "image": "https://ads-partners.coupang.com/image1/M3VLPODWiwAZErItM19ri3jmqdWUL7xtEpZi2HOP-22ZUTTj4FH5yDsYQPZJTzgks2MWHb5Vyz27NYiaTZqxuQKAOilIc5-P3p6baiDSrFSa25iBie_kV-XdO85ewOlGhTOLWCXNjmxA7B25sQbw5QoN01jqke3_DIThS8Pjp1SIKFlM6DG6J-uuosDaWTYhjNNHhL9MEtHZNkYoMz3mG6_vUlvEnZN7XDY8m6Eyqfcgh2AurQ6-mfM2L5zuFDiEA551uXupRQycSwiy7aQlv4QaYsYL4_fh_7PjUGK_AEaHmdzWzRirTFXPs6oBOGRXcI2hKKV_7HEiiiVN9pOoVDGF6gbXx3YL3LhwYY9xAkokPTOOd9KhWvVXzYX9b8Tkucoqwq-nU74Qgwss68P5oHTx8hQabsEjTvMvpDG5CbHNSb-7jQ515DOhGGoLqv6lRFLFaZIksBH2JyJtQ0od0pm46nyWv1qoprL9SEPBMAObqQD3DKMJsZ22rnpRB97lYM_6YTThEdr5aXDoweNIINzElbynY917jBaRE7KlT-w79WVFrZaCE3mcCcp2ETevUqY5fA=="
- },
- "threads_caption": "부모님 밤에 화장실 가실 때 불 안 켜고 더듬더듬 가시는 거 알아?\n\n겨울밤은 길고 깜깜해서 문턱에 걸리기 쉬워. 그냥 두면 매일 밤이 불안해.\n\n가는 길에 불만 있어도 안심인데, 켜 두면 눈부셔서 결국 끄고 주무시잖아.\n\n그래서 엘이디 센서등 준비했어! 센서로 켜지니까 스위치 찾을 필요 없어. 부모님 댁에 놔 드리게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iFyk7ihmZo\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 LED 센서등 바로가기 👉 https://link.coupang.com/a/iFyk7ihmZo\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "부모님 밤에 화장실 가실 때 불 안 켜고 더듬더듬 가시는 거 알아? 🙋\n\n겨울밤은 길고 깜깜해서 문턱에 걸리기 쉬워. 그냥 두면 매일 밤이 불안해.\n\n가는 길에 불만 있어도 안심인데, 켜 두면 눈부셔서 결국 끄고 주무시잖아.\n\n그래서 엘이디 센서등 준비했어! 센서로 켜지니까 스위치 찾을 필요 없어. 부모님 댁에 놔 드리게 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#센서등 #LED센서등 #부모님선물 #효도템 #밤길조명 #생활꿀팁 #살림템 #집안안전"
+ }
 }

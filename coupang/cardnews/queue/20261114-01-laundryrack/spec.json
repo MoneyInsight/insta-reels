@@ -4,16 +4,16 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "빨래 널 때마다 한숨",
-   "title": "겨울 빨래가\n[하루 종일 축축]?",
-   "sub": "끝까지 보면 해결돼",
+   "tag": "이거 알아?",
+   "title": "겨울 빨래 꿉꿉하면\n[건조대 하나 더]",
+   "sub": "끝까지 보면 링크 있어",
    "swipe": "넘겨 봐",
-   "narration": "빨래가 하루 지나도 축축한 사람? 냄새까지 꿉꿉하지?",
+   "narration": "이거 알아? 겨울 빨래 냄새, 건조대 하나 더 놓고 띄워 널기만 해도 확 줄어!",
    "image": "product.jpg"
   },
   {
    "type": "text",
-   "label": "왜 그럴까",
+   "label": "이럴 때 필요해",
    "title": "빨래가\n[안 마르는 이유]",
    "body": [
     "[닫힌 창문] 바람이 잘 안 통해요.",
@@ -21,11 +21,11 @@
     "[겹쳐 널기] 사이사이 습기가 갇혀요.",
     "[짧은 해] 햇볕 드는 시간이 짧아요."
    ],
-   "narration": "창문 꽁꽁 닫아 둬서 바람이 안 통해서 그래. 그냥 두면 냄새가 옷에 그대로 배어."
+   "narration": "창문 꽁꽁 닫아 두니까 바람이 안 통해서 하루 지나도 축축하잖아. 냄새까지 배고."
   },
   {
    "type": "text",
-   "label": "핵심은 이것",
+   "label": "이렇게 쓰면 끝",
    "title": "빨래 사이\n[주먹 하나 띄우기]",
    "body": [
     "[간격] 주먹 하나씩 띄워 널어요.",
@@ -34,11 +34,11 @@
     "[바람] 선풍기를 약하게 쐬어 줘요."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "띄워 너는 게 핵심인데, 건조대가 모자라면 결국 다닥다닥 겹쳐 널잖아."
+   "narration": "건조대가 모자라서 다닥다닥 겹쳐 널면 안 말라. 이단 대형이면 넉넉하게 띄워 널 수 있어."
   },
   {
    "type": "photo",
-   "narration": "그래서 스테인리스 빨래건조대 골라 왔어! 하나 더 두면 띄워 널기 딱이야. 또 꿉꿉해지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "narration": "스테인리스 이단 빨래건조대, 링크 걸어 놨어! 또 꿉꿉해지기 전에 지금 바로 눌러 봐!",
    "image": "product.jpg",
    "name": "스테인리스 빨래건조대",
    "cta": "프로필 링크에서 확인",
@@ -52,13 +52,13 @@
    ]
   }
  ],
- "status": "ready",
+ "status": "written",
  "topic": "겨울 빨래 안 마름",
  "product_label": "스테인리스 빨래건조대",
  "product_keyword": "스테인리스 빨래건조대",
  "product_must": "건조대",
- "threads_text": "빨래가 하루 지나도 축축한 사람? 냄새까지 꿉꿉하지?\n\n창문 꽁꽁 닫아 둬서 바람이 안 통해서 그래. 그냥 두면 냄새가 옷에 그대로 배어.\n\n띄워 너는 게 핵심인데, 건조대가 모자라면 결국 다닥다닥 겹쳐 널잖아.\n\n그래서 스테인리스 빨래건조대 골라 왔어! 하나 더 두면 띄워 널기 딱이야. 또 꿉꿉해지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
- "insta_text": "빨래가 하루 지나도 축축한 사람? 냄새까지 꿉꿉하지? 🙋\n\n창문 꽁꽁 닫아 둬서 바람이 안 통해서 그래. 그냥 두면 냄새가 옷에 그대로 배어.\n\n띄워 너는 게 핵심인데, 건조대가 모자라면 결국 다닥다닥 겹쳐 널잖아.\n\n그래서 스테인리스 빨래건조대 골라 왔어! 하나 더 두면 띄워 널기 딱이야. 또 꿉꿉해지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
+ "threads_text": "이거 알아? 겨울 빨래 냄새, 건조대 하나 더 놓고 띄워 널기만 해도 확 줄어!\n\n창문 꽁꽁 닫아 두니까 바람이 안 통해서 하루 지나도 축축하잖아. 냄새까지 배고.\n\n건조대가 모자라서 다닥다닥 겹쳐 널면 안 말라. 이단 대형이면 넉넉하게 띄워 널 수 있어.\n\n스테인리스 이단 빨래건조대 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
+ "insta_text": "이거 알아? 겨울 빨래 냄새, 건조대 하나 더 놓고 띄워 널기만 해도 확 줄어! 🙋\n\n창문 꽁꽁 닫아 두니까 바람이 안 통해서 하루 지나도 축축하잖아. 냄새까지 배고.\n\n건조대가 모자라서 다닥다닥 겹쳐 널면 안 말라. 이단 대형이면 넉넉하게 띄워 널 수 있어.\n\n스테인리스 이단 빨래건조대 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
  "hashtags": [
   "빨래건조대",
   "겨울빨래",
@@ -88,8 +88,5 @@
   "link": "https://link.coupang.com/a/iFl5T8uOiW",
   "subId": "h2611141513",
   "image": "https://ads-partners.coupang.com/image1/NdXIXhcY7dU5gzehNY5uNE9QGxE5vSrrKe3_xuCiJXJWHz5pswG73AkQPYqOcBtgcrJpmGSX82UXRgrgd4f0icN_7uViUzV_6qHrt4s1pCGfoBIZU1ZPot_VBBkEBNxPGmy_NBq3fLBvBUr3wDnovD7NORjzWOWpOxgZDT5-wAxkKCXL3iocCans4OOUSOD-sfJ5Kvw3usH1cydyJANP2az_BcUTodqIOY5WKghhoxmxXhPMntjUA7Huo8VA2wcSyHEnoG39JWMoPxOvpyqdoKc027FBJmwQS6BBbIiRhgJQ1ot3vOk1ondnwNFmzGw_TGPkhpMAMsip_XvCfOrNiBmiX9QKhtW4kyfURuUYhrnmrnnt0qYmex7yKtm8Z1S97dZ6xCeKkTq0iGRs0h1awRzui9iW2YSMYnkF0lQ3OnKb-KvdqG7Wbtk4jabmqEdWufg8PJSbfP2djZFrENLmWp1G13yMV9OlWXMn7kx9DIc7eNnp20P0hqQ26PDvcIcVIeLTOcaWVfg9l66zTgaWyy7ywGbFIW9sBKlYbbe5OVLUQDZocIahzHqqsUqw83-bgSNewZk-Fw=="
- },
- "threads_caption": "빨래가 하루 지나도 축축한 사람? 냄새까지 꿉꿉하지?\n\n창문 꽁꽁 닫아 둬서 바람이 안 통해서 그래. 그냥 두면 냄새가 옷에 그대로 배어.\n\n띄워 너는 게 핵심인데, 건조대가 모자라면 결국 다닥다닥 겹쳐 널잖아.\n\n그래서 스테인리스 빨래건조대 골라 왔어! 하나 더 두면 띄워 널기 딱이야. 또 꿉꿉해지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iFl5T8uOiW\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 스테인리스 빨래건조대 바로가기 👉 https://link.coupang.com/a/iFl5T8uOiW\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "빨래가 하루 지나도 축축한 사람? 냄새까지 꿉꿉하지? 🙋\n\n창문 꽁꽁 닫아 둬서 바람이 안 통해서 그래. 그냥 두면 냄새가 옷에 그대로 배어.\n\n띄워 너는 게 핵심인데, 건조대가 모자라면 결국 다닥다닥 겹쳐 널잖아.\n\n그래서 스테인리스 빨래건조대 골라 왔어! 하나 더 두면 띄워 널기 딱이야. 또 꿉꿉해지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#빨래건조대 #겨울빨래 #실내건조 #빨래꿀팁 #살림꿀팁 #생활꿀팁 #살림템 #자취템"
+ }
 }

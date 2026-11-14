@@ -4,16 +4,16 @@
  "cards": [
   {
    "type": "hook",
-   "tag": "김장 끝나고 나면",
-   "title": "김장하고 나면\n[허리가 안 펴져]?",
-   "sub": "끝까지 보면 해결돼",
+   "tag": "이거 알아?",
+   "title": "김장매트 하나면\n[서서 편하게 김장]",
+   "sub": "끝까지 보면 링크 있어",
    "swipe": "넘겨 봐",
-   "narration": "김장하고 나면 허리 못 펴는 사람 있어? 다음 날까지 끙끙 앓지?",
+   "narration": "이거 알아? 대형 김장매트만 있으면 김장을 식탁에서 서서 할 수 있어!",
    "image": "product.jpg"
   },
   {
    "type": "text",
-   "label": "왜 그럴까",
+   "label": "이럴 때 필요해",
    "title": "허리가 유독\n[뻐근한 이유]",
    "body": [
     "[쪼그린 자세] 허리를 계속 굽혀요.",
@@ -21,11 +21,11 @@
     "[긴 작업] 몇 시간씩 이어져요.",
     "[찬 바닥] 몸이 더 굳어요."
    ],
-   "narration": "좁은 대야에 쪼그려서 몇 시간씩 버무리니까 그래. 자세 못 바꾸면 갈수록 더 뻐근해져."
+   "narration": "좁은 대야에 쪼그려서 몇 시간씩 버무리면 다음 날 허리를 못 펴잖아. 신문지는 다 새고."
   },
   {
    "type": "text",
-   "label": "김장 날 해 보기",
+   "label": "이렇게 쓰면 끝",
    "title": "바닥 말고\n[식탁 위에서]",
    "body": [
     "[넓은 매트] 식탁에 펴고 버무려요.",
@@ -34,11 +34,11 @@
     "[나눠서] 양을 나눠 버무려요."
    ],
    "source": "일반 생활 정보 · 효능을 보장하지 않습니다",
-   "narration": "식탁에 넓게 펴고 서서 하면 편한데, 신문지 깔면 다 새서 결국 바닥에 쪼그리잖아."
+   "narration": "식탁에 쫙 펴고 서서 버무리면 끝. 다 하고 나면 헹궈서 접어 두면 돼."
   },
   {
    "type": "photo",
-   "narration": "그래서 대형 김장매트 골라 왔어! 식탁에 쫙 펴고 서서 버무리면 돼. 김장 전에 링크 눌러서 지금 바로 확인해 봐!",
+   "narration": "토토비즈 대형 김장매트, 링크 걸어 놨어! 김장 전에 지금 바로 눌러 봐!",
    "image": "product.jpg",
    "name": "김장매트",
    "cta": "프로필 링크에서 확인",
@@ -52,13 +52,13 @@
    ]
   }
  ],
- "status": "ready",
+ "status": "written",
  "topic": "김장철 쪼그려 앉기",
  "product_label": "김장매트",
  "product_keyword": "김장매트 대형",
  "product_must": "김장매트",
- "threads_text": "김장하고 나면 허리 못 펴는 사람 있어? 다음 날까지 끙끙 앓지?\n\n좁은 대야에 쪼그려서 몇 시간씩 버무리니까 그래. 자세 못 바꾸면 갈수록 더 뻐근해져.\n\n식탁에 넓게 펴고 서서 하면 편한데, 신문지 깔면 다 새서 결국 바닥에 쪼그리잖아.\n\n그래서 대형 김장매트 골라 왔어! 식탁에 쫙 펴고 서서 버무리면 돼. 김장 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
- "insta_text": "김장하고 나면 허리 못 펴는 사람 있어? 다음 날까지 끙끙 앓지? 🙋\n\n좁은 대야에 쪼그려서 몇 시간씩 버무리니까 그래. 자세 못 바꾸면 갈수록 더 뻐근해져.\n\n식탁에 넓게 펴고 서서 하면 편한데, 신문지 깔면 다 새서 결국 바닥에 쪼그리잖아.\n\n그래서 대형 김장매트 골라 왔어! 식탁에 쫙 펴고 서서 버무리면 돼. 김장 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
+ "threads_text": "이거 알아? 대형 김장매트만 있으면 김장을 식탁에서 서서 할 수 있어!\n\n좁은 대야에 쪼그려서 몇 시간씩 버무리면 다음 날 허리를 못 펴잖아. 신문지는 다 새고.\n\n식탁에 쫙 펴고 서서 버무리면 끝. 다 하고 나면 헹궈서 접어 두면 돼.\n\n토토비즈 대형 김장매트 🔥\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐",
+ "insta_text": "이거 알아? 대형 김장매트만 있으면 김장을 식탁에서 서서 할 수 있어! 🙋\n\n좁은 대야에 쪼그려서 몇 시간씩 버무리면 다음 날 허리를 못 펴잖아. 신문지는 다 새고.\n\n식탁에 쫙 펴고 서서 버무리면 끝. 다 하고 나면 헹궈서 접어 두면 돼.\n\n토토비즈 대형 김장매트 🔥\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘",
  "hashtags": [
   "김장매트",
   "김장",
@@ -93,8 +93,5 @@
   "link": "https://link.coupang.com/a/iE1kAt26ua",
   "subId": "h2611141024",
   "image": "https://ads-partners.coupang.com/image1/cjF4E3Wg0wf2WHdrclgDuuLtk1k4l--ka-pUcchCPZ9NDZBrPAzRV4tCuwHRR8Adwfkfmu4EvQo4F4Oghmo2XR5NSjSAWfZ1Up9V5M1zPaq0V5WEyy5Ikp5sM400L3N-Sshg-oPcf_wC_88NjBBnLFolCf41eiT-sUpDJkiwMIUjIbcMyQBVMMTAOTUxiiOLm5k58liK_QFbdl6Om5YgBh1ijhT_DEJ-lUnKByo7M-Gxzjt_Qd-wUHY2b49lo7Abil6GDk25Ekr0roP7J1ikCkOj6nMDfbT3jE290JnHAJo18kGs0E-ZSlaYYjlVsmX4PZioIO8KtIl4ASJNU8vjZj92q7A0KX02Ezj5ioTZmMCoweimZHTT2rUD2-VaDtMiTWblEvfrfaLMy8q0rM0jrfd4KVIgNgevqiKvhQAxdzZwoPuxCt3YgLA7ma0sNEamTKrrkW1TzOB6dKz15pZnYxpl-YSkpDfGkYsGG4PzxY_DAFZqluiQXMyKjk7UDH9nJcWJXyy9ZTw-DYchAw_ahSVMYXAFh7oXWBGuLctdLW9MKjfcfvFH1-AmVcLUHvJ6Oj4="
- },
- "threads_caption": "김장하고 나면 허리 못 펴는 사람 있어? 다음 날까지 끙끙 앓지?\n\n좁은 대야에 쪼그려서 몇 시간씩 버무리니까 그래. 자세 못 바꾸면 갈수록 더 뻐근해져.\n\n식탁에 넓게 펴고 서서 하면 편한데, 신문지 깔면 다 새서 결국 바닥에 쪼그리잖아.\n\n그래서 대형 김장매트 골라 왔어! 식탁에 쫙 펴고 서서 버무리면 돼. 김장 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iE1kAt26ua\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "threads_reply": "📌 김장매트 바로가기 👉 https://link.coupang.com/a/iE1kAt26ua\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
- "insta_caption": "김장하고 나면 허리 못 펴는 사람 있어? 다음 날까지 끙끙 앓지? 🙋\n\n좁은 대야에 쪼그려서 몇 시간씩 버무리니까 그래. 자세 못 바꾸면 갈수록 더 뻐근해져.\n\n식탁에 넓게 펴고 서서 하면 편한데, 신문지 깔면 다 새서 결국 바닥에 쪼그리잖아.\n\n그래서 대형 김장매트 골라 왔어! 식탁에 쫙 펴고 서서 버무리면 돼. 김장 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#김장매트 #김장 #김장철 #김장준비 #주부꿀팁 #살림템 #생활꿀팁 #주방템"
+ }
 }

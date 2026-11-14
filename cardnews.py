@@ -81,8 +81,8 @@ def card(c, i, n, spec, base_dir):
         img = cover(im, W, H).filter(ImageFilter.GaussianBlur(1))
         shade = Image.new("RGBA", (W, H), (0, 0, 0, 0)); sd = ImageDraw.Draw(shade)
         for y in range(H):  # 아래로 갈수록 어둡게
-            a = int(40 + 190 * max(0, (y - H * 0.25) / (H * 0.75)))
-            sd.line([(0, y), (W, y)], fill=(15, 10, 8, min(a, 225)))
+            a = int(30 + 235 * min(1, max(0, (y - H * 0.30) / (H * 0.30))))
+            sd.line([(0, y), (W, y)], fill=(15, 10, 8, min(a, 235)))
         img = Image.alpha_composite(img.convert("RGBA"), shade).convert("RGB"); d = ImageDraw.Draw(img)
         brand(d, handle, (255, 255, 255)); page_no(d, i, n, (230, 230, 230))
         if c.get("tag"):
