@@ -8,7 +8,8 @@
    "title": "요즘 출근길\n[공기가 텁텁]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "출근길 공기 텁텁해서 숨 쉬기 찝찝한 사람 있어? 요즘 하늘 뿌옇지?"
+   "narration": "출근길 공기 텁텁해서 숨 쉬기 찝찝한 사람 있어? 요즘 하늘 뿌옇지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 KF94 마스크 골라 왔어! 현관이랑 가방에 하나씩 두면 끝. 더 뿌예지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!"
+   "narration": "그래서 KF94 마스크 골라 왔어! 현관이랑 가방에 하나씩 두면 끝. 더 뿌예지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!",
+   "image": "product.jpg",
+   "name": "KF94 마스크",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "KF94 등급",
+    "보건용 마스크"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "미세먼지 낀 겨울 출근길",
  "product_label": "KF94 마스크",
  "product_keyword": "KF94 마스크 대형",
@@ -72,5 +84,15 @@
   "KF94 등급",
   "보건용 마스크"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9531491728",
+  "name": "마스크오버 엠에프 황사 방역 마스크 고리형 KF94, 50개입, 10개, 블랙",
+  "link": "https://link.coupang.com/a/iE8wK9WKHI",
+  "subId": "h2611141205",
+  "image": "https://ads-partners.coupang.com/image1/pwvlmaIus5fQxhRCpx4KmTPqdVY2Aj_AdQRIMz8GWm3USFbqwRVDwUg6fxm-PNYMpvLM81iNFLo93ZNMtiZ2aMfjIA24Z2hPB--3I6yrs5iVq8DUTCFGKK71cfJ5UsxXOTFP519WfBHnomJxknulhMQT1bFjKBmaP76z7R_EifkI1NCwUxhUeQQDM_YmCvFlybIA84pglJto2tIJHMkhdI97sAybmrZmOXs1leyKDqw_HBEUT4SePIlgwTFvdVAbrDWOyI21qKGtTftD-iOwygf2wsliYtHhKm8RQUBakln2N7RP0vp9Hp8h3F9qUc8wtIGluP7mPF9xZrXeWzv1mrB6gylWC9uCr6aQnQXt50aGCsLmEJ8tKA_1Dv0bFk0LUY8bmVqMwV93sOO_JyNOlwIxmbl06ResCiI3DMIMr3rAsSOPYLse0Wgfu8FTNhiAM8K00k7AZ14i5xBt1u5gNA0NyMj4OK1n-COYc4G4FiKAhVq_qQaNDZdiAgWEOXqNIEMaAM3hPHeDPk9D47vnrBwKXVnaEvagjUvT-5Bg1m_su6PmraveBphbye3LpFpW4P3Kw_QtZcgyK7iqELWK4V0uyWADpK9j7g96QKF0TL3RlkF-Taw="
+ },
+ "threads_caption": "출근길 공기 텁텁해서 숨 쉬기 찝찝한 사람 있어? 요즘 하늘 뿌옇지?\n\n겨울엔 바람 없는 날이 많아서 먼지가 오래 머물러. 그냥 다니면 종일 찝찝해.\n\n먼지 나쁜 날엔 KF 마스크가 기본인데, 한 장씩 사면 꼭 급할 때 없잖아.\n\n그래서 KF94 마스크 골라 왔어! 현관이랑 가방에 하나씩 두면 끝. 더 뿌예지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iE8wK9WKHI\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 KF94 마스크 바로가기 👉 https://link.coupang.com/a/iE8wK9WKHI\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "출근길 공기 텁텁해서 숨 쉬기 찝찝한 사람 있어? 요즘 하늘 뿌옇지? 🙋\n\n겨울엔 바람 없는 날이 많아서 먼지가 오래 머물러. 그냥 다니면 종일 찝찝해.\n\n먼지 나쁜 날엔 KF 마스크가 기본인데, 한 장씩 사면 꼭 급할 때 없잖아.\n\n그래서 KF94 마스크 골라 왔어! 현관이랑 가방에 하나씩 두면 끝. 더 뿌예지기 전에 링크 걸어 놨으니까 지금 바로 눌러 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#KF94 #KF94마스크 #미세먼지 #출근길 #겨울미세먼지 #생활꿀팁 #건강정보 #생활필수품"
 }

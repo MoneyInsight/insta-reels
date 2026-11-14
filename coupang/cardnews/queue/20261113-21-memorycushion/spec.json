@@ -8,7 +8,8 @@
    "title": "일어날 때마다\n[엉덩이가 저릿]?",
    "sub": "끝까지 보면 해결돼",
    "swipe": "넘겨 봐",
-   "narration": "종일 앉아 있다가 일어나면 엉덩이 저린 사람 있어? 허리까지 뻐근하지?"
+   "narration": "종일 앉아 있다가 일어나면 엉덩이 저린 사람 있어? 허리까지 뻐근하지?",
+   "image": "product.jpg"
   },
   {
    "type": "text",
@@ -37,10 +38,21 @@
   },
   {
    "type": "photo",
-   "narration": "그래서 메모리폼 방석 골라 왔어! 의자에 깔기만 하면 푹신하게 받쳐 줘. 더 배기기 전에 링크 눌러서 지금 바로 확인해 봐!"
+   "narration": "그래서 메모리폼 방석 골라 왔어! 의자에 깔기만 하면 푹신하게 받쳐 줘. 더 배기기 전에 링크 눌러서 지금 바로 확인해 봐!",
+   "image": "product.jpg",
+   "name": "메모리폼 방석",
+   "cta": "프로필 링크에서 확인",
+   "facts": [
+    "메모리폼",
+    "의자용 방석"
+   ],
+   "notes": [
+    "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
+    "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+   ]
   }
  ],
- "status": "written",
+ "status": "ready",
  "topic": "오래 앉아 엉덩이 배기는 날",
  "product_label": "메모리폼 방석",
  "product_keyword": "메모리폼 방석 의자",
@@ -72,5 +84,15 @@
   "메모리폼",
   "의자용 방석"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "8801442579",
+  "name": "일상담다 하루종일 편한 체중분산 메모리폼 방석, 그레이",
+  "link": "https://link.coupang.com/a/iE8B7ozHPy",
+  "subId": "h2611141205",
+  "image": "https://ads-partners.coupang.com/image1/wKZOt5hd1JS1CHcUwL4CIKmMBgQmo8FrizQb-hgyobQXAfRDgpYn5oX9j7cNbxDVdPA81CPO6ne-1vGgIOcJ8uoqcWyZjKltLK6Pbezz6z_sc_R6fa3ckkdAwVXbzVpfHXgA4XRuOXX-8m55Jy9dX_K79teOljUZrHKVrX3PvAiaUpWlsLAv12U32YFE-rdToYpdnj_a49bk__EOS7j3AHU9Ol0s1weudSUmOJeCXZb3drHM93Fg-xaBfzM2ubsSG33j55W6WfZMjjdT1EG8Ll1pZwwkqu2R8-CQPeSNftvcKYobrLi0V58rIsFMe6kQixTJbyhqPXf9DMeD85GjTp9HZUC49bbvADn936efdW3CXV7az9DOqYdoGb8R21zg4rSZmBRy0SijAVLZhz3siOIiP-YYuQdDHc14WW-LNuLlodb9ekqmZwGUPLwd0X2qefibZtP8C76WWpARmRhFTlyuSi_QGEIUZbGtZNlB6n7uyUpbHFvq1wEiAVsuIDb5EwHXj20o4iQu7UPMUS7UN5DD0EORw3Y2YFSXfZW-rxBc39V85gFh74F1WqEOKimThMSMnPg6rf99R2LLTB1NVlW_JasXrn6Eo0kteGQWtB-geq-VuNN7i2Ea0JirRUXcYHLG"
+ },
+ "threads_caption": "종일 앉아 있다가 일어나면 엉덩이 저린 사람 있어? 허리까지 뻐근하지?\n\n딱딱한 의자에 오래 앉으면 무게가 한 곳에 쏠려서 그래. 그냥 두면 갈수록 더 배겨.\n\n한 시간마다 일어나 걷는 게 제일인데, 일하다 보면 결국 못 일어나잖아.\n\n그래서 메모리폼 방석 골라 왔어! 의자에 깔기만 하면 푹신하게 받쳐 줘. 더 배기기 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👇 링크 걸어 둘게! 지금 바로 확인해 봐\n\n👉 바로가기: https://link.coupang.com/a/iE8B7ozHPy\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "threads_reply": "📌 메모리폼 방석 바로가기 👉 https://link.coupang.com/a/iE8B7ozHPy\n저장해 두면 필요할 때 다시 보기 편해요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+ "insta_caption": "종일 앉아 있다가 일어나면 엉덩이 저린 사람 있어? 허리까지 뻐근하지? 🙋\n\n딱딱한 의자에 오래 앉으면 무게가 한 곳에 쏠려서 그래. 그냥 두면 갈수록 더 배겨.\n\n한 시간마다 일어나 걷는 게 제일인데, 일하다 보면 결국 못 일어나잖아.\n\n그래서 메모리폼 방석 골라 왔어! 의자에 깔기만 하면 푹신하게 받쳐 줘. 더 배기기 전에 링크 눌러서 지금 바로 확인해 봐!\n\n👉 프로필 링크 눌러서 지금 바로 확인해 봐!\n📌 저장해 두고 친구한테도 공유해 줘\n\n소개한 상품은 프로필 링크에서 볼 수 있어요.\n\n질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.\n이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n\n#메모리폼방석 #방석 #의자방석 #직장인 #재택근무 #수험생 #생활꿀팁 #살림템"
 }
