@@ -57,16 +57,21 @@ JSON만 출력(코드블록 없이):
 
 def plan(cands, used):
     txt = "\n".join(f"- [{c['from']}] {c['kw']} (관심도 {c['traffic']}) {' / '.join(c['news'])}" for c in cands[:40])
-    for model in ["gemini-3.8-flash"] * 4 + ["gemini-3.1-pro-preview"]:
+    tries = [("gemini-3.8-flash", True), ("gemini-3.8-flash", False), ("gemini-3.8-flash-lite", False),
+             ("gemini-3.8-flash", False), ("gemini-3.1-flash", False), ("gemini-3.1-pro-preview", False), ("gemini-3.8-flash", False)]
+    for model, ground in tries:
+        r = {}
         try:
-            r = requests.post(f"{m.G}/v1beta/models/{model}:generateContent?key={m.KEY}", timeout=240, json={
-                "contents": [{"parts": [{"text": PROMPT.format(cands=txt, used=", ".join(used[-30:]) or "없음")}]}],
-                "tools": [{"google_search": {}}], "generationConfig": {"temperature": 0.9}}).json()
+            body = {"contents": [{"parts": [{"text": PROMPT.format(cands=txt, used=", ".join(used[-30:]) or "없음")}]}],
+                    "generationConfig": {"temperature": 0.9}}
+            if ground: body["tools"] = [{"google_search": {}}]
+            r = requests.post(f"{m.G}/v1beta/models/{model}:generateContent?key={m.KEY}", timeout=240, json=body).json()
             t = "".join(p.get("text", "") for p in r["candidates"][0]["content"]["parts"])
             p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
             if p.get("scenes"): return p
         except Exception:
-            print("::notice::대본 실패", model, str(r.get("error", "") if isinstance(r, dict) else "")[:160]); time.sleep(30)
+            e = r.get("error", {}) if isinstance(r, dict) else {}
+            print("::notice::대본 실패", model, "검색" if ground else "", str(e.get("message", e))[:400]); time.sleep(20)
     return None
 
 
