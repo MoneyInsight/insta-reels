@@ -101,15 +101,22 @@ def gpt_plan(parts, n):
     for x in parts:
         if "text" in x: content.append({"type": "text", "text": x["text"]})
         else: content.append({"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + x["inline_data"]["data"], "detail": "low"}})
-    eps = [("https://models.github.ai/inference/chat/completions", ["openai/gpt-4.1", "openai/gpt-4o", "openai/gpt-4.1-mini"]),
-           ("https://models.inference.ai.azure.com/chat/completions", ["gpt-4o", "gpt-4o-mini"])]
-    for rnd in range(2):
+    eps = [("https://models.github.ai/inference/chat/completions", ["openai/gpt-4.1", "openai/gpt-4o", "openai/gpt-4.1-mini"])]
+    for hd in ({"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}, {}):
+        for body in ({"model": "openai/gpt-4.1-mini", "messages": [{"role": "user", "content": "say hi"}]},
+                     {"model": "openai/gpt-4.1-mini", "messages": [{"role": "user", "content": content[:2]}]}):
+            try:
+                rr = requests.post(eps[0][0], timeout=60, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json", **hd}, json=body)
+                print("::notice::GPT 진단", list(hd), type(body["messages"][0]["content"]).__name__, rr.status_code,
+                      rr.headers.get("content-type"), len(rr.content), rr.text[:200].replace("\n", " "))
+            except Exception as e: print("::notice::GPT 진단 오류", e)
+    for rnd in range(1):
         for url, models in eps:
             for model in models:
                 txt = ""
                 try:
                     rr = requests.post(url, timeout=180, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json",
-                                                                  "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"},
+                                                                  "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"},
                                        json={"model": model, "temperature": 0.9, "messages": [{"role": "user", "content": content}]})
                     txt = f"{rr.status_code} {rr.text[:250]}"
                     t = rr.json()["choices"][0]["message"]["content"]
