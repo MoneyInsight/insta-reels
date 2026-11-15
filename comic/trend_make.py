@@ -1,7 +1,7 @@
-"""실시간 트렌드 쇼츠 1편 — 지금 한국에서 뜨는 주제를 골라 최신 정보로 30초 정리 영상을 만든다.
-1) 구글 트렌드(한국) + 유튜브 한국 인기 영상 제목 → 후보  2) 제미나이(구글 검색 연동)가 안전한 주제 선택·사실 확인·대본
-3) Pixabay 무료 영상으로 화면 구성  4) 더빙·자막·효과음 → comic/work/final.mp4, meta.json (+ 대기열에 게시용 항목)
-사용법: GEMINI_API_KEY=... PIXABAY_API_KEY=... [YT_API_KEY=...] python comic/trend_make.py
+"""인기 영상 쇼츠 1편 — Pixabay 인기 영상을 고르고, 제미나이가 실제 화면을 보고 화면에 딱 맞는 나레이션·자막을 쓴다.
+1) Pixabay 인기순(order=popular) 영상 중 같은 테마 4개 선택  2) 각 영상 장면 사진을 제미나이에 보여주고 대본 작성
+3) 더빙·자막·효과음 → comic/work/final.mp4, meta.json (+ 대기열에 게시용 항목)
+사용법: GEMINI_API_KEY=... PIXABAY_API_KEY=... python comic/trend_make.py
 """
 import html, json, os, random, re, subprocess, sys, time, functools
 import xml.etree.ElementTree as ET
@@ -37,74 +37,93 @@ def youtube_popular():
     except Exception as e: print("::warning::유튜브 인기 실패", e); return []
 
 
-PROMPT = """너는 조회수 수백만 한국 유튜브 쇼츠 기획자야. 아래는 '지금 이 순간' 한국에서 뜨는 검색어·인기 영상 목록이야.
-{cands}
+PROMPT = """너는 조회수 수백만 한국 유튜브 쇼츠 작가야. 아래 사진들은 Pixabay 인기 영상 {n}개에서 뽑은 장면이야(영상마다 3장, 순서대로).
+{clips}
+이 영상들을 순서대로 이어 붙여 30초 안팎 쇼츠 1편을 만든다. 규칙:
+1) 나레이션·자막은 반드시 **그 영상 화면에 실제로 보이는 것**을 말해. 화면에 없는 사람·사건·장소를 지어내지 마.
+2) 친구한테 말하듯 신나는 반말. 첫 장면은 강한 후킹("잠깐, 이거 진짜야?", "끝까지 보면 소름"), 장면마다 웃긴 드립이나 신기한 사실 하나.
+3) 장면 i의 narration은 (그 영상 길이 × 5)자 이내, 최대 40자. caption 2줄 이내(줄당 14자, 줄바꿈 \\n), highlight는 caption 속 핵심 단어.
+4) 마지막 장면은 "너는 어떤 게 제일 좋아? 댓글로!" 같은 참여 유도.
+5) 이 테마와 자연스럽게 이어지는 쿠팡 상품 검색어 하나.
 최근 다룬 주제(겹치면 안 됨): {used}
-
-1) 이 중 **쇼츠로 만들면 가장 클릭될 주제 하나**를 골라. 단, 정치·선거·범죄·사건사고·사망·재난·특정인 비방·선정적·연예인 사생활 루머 주제는 절대 고르지 마.
-   좋은 예: 새 제품·IT 이슈, 스포츠 경기 결과, 여행지·축제, 생활 꿀팁, 화제의 음식·유행, 날씨·계절 이슈.
-2) 구글 검색으로 그 주제의 **오늘 기준 최신 사실**을 확인하고, 확인된 사실만 써.
-3) 25~35초 쇼츠 대본: 친구한테 말하듯 신난 반말. 첫 장면은 강한 후킹("이거 모르면 손해야", "요즘 난리 난 ○○ 알아?").
-   장면 5~6개, 장면당 narration 25자 이내, caption 2줄 이내(줄당 14자, 줄바꿈 \\n), highlight는 caption 속 핵심 단어,
-   broll은 그 장면에 깔 무료 영상 검색어(영어 1~3단어, 사람 얼굴·로고 없는 일반 장면. 예: "smartphone closeup", "soccer stadium", "autumn leaves").
-   마지막 장면은 "너는 어떻게 생각해? 댓글로!"처럼 참여 유도.
-4) 이 주제와 자연스럽게 이어지는 쿠팡 상품 검색어 하나.
-JSON만 출력(코드블록 없이):
-{{"topic": "...", "why": "고른 이유 한 줄", "facts": ["확인한 사실1", "사실2"], "top1": "상단 제목 12자 이내", "top2": "노란 부제 12자 이내",
- "yt_title": "후킹 제목 40자 이내", "hashtags": ["6개"], "scenes": [{{"narration": "...", "caption": "...", "highlight": "...", "broll": "..."}}],
+JSON만 출력(코드블록 없이), scenes는 정확히 {n}개, 영상 순서대로:
+{{"topic": "한 줄 주제", "facts": ["영상 속 재미 포인트1", "포인트2"], "top1": "상단 제목 12자 이내", "top2": "노란 부제 12자 이내",
+ "yt_title": "후킹 제목 40자 이내", "hashtags": ["6개"], "scenes": [{{"narration": "...", "caption": "...", "highlight": "..."}}],
  "product_keyword": "...", "product_must": "상품명에 꼭 들어갈 단어", "product_label": "12자 이내", "sns_text": "스레드·인스타 본문 3~4줄, 마지막 줄은 상품과 자연스럽게 연결"}}"""
 
+CATS = ["animals", "animals", "people", "food", "sports", "nature", "travel", "feelings", "science", "places"]
 
-def plan(cands, used):
-    txt = "\n".join(f"- [{c['from']}] {c['kw']} (관심도 {c['traffic']}) {' / '.join(c['news'])}" for c in cands[:40])
+
+def px(params):
+    try:
+        return requests.get("https://pixabay.com/api/videos/", params={"key": PIX, "safesearch": "true", **params}, timeout=30).json().get("hits", [])
+    except Exception as e:
+        print("::warning::Pixabay 실패", e); return []
+
+
+def pick_clips(used_ids, n=4):
+    ok = lambda h: h["id"] not in used_ids and 5 <= h.get("duration", 0) <= 40
+    for _ in range(6):
+        cat = random.choice(CATS)
+        pool = [h for h in px({"category": cat, "order": "popular", "per_page": 50, "page": random.randint(1, 6)}) if ok(h)]
+        if not pool: continue
+        seed = random.choice(pool[:15]); tag = seed.get("tags", "").split(",")[0].strip()
+        rel = [h for h in px({"q": tag, "order": "popular", "per_page": 30}) if ok(h) and h["id"] != seed["id"]] if tag else []
+        rel += [h for h in pool if h["id"] != seed["id"] and h not in rel]
+        clips = [seed] + rel[:n - 1]
+        if len(clips) >= n - 1: print("테마:", cat, tag, [h["id"] for h in clips]); return clips
+    return []
+
+
+def fetch(h, i):
+    v = h["videos"].get("medium") or h["videos"].get("small") or h["videos"].get("large")
+    out = f"{m.WD}/b{i}.mp4"
+    with requests.get(v["url"], stream=True, timeout=120, headers=UA) as rr:
+        rr.raise_for_status()
+        with open(out, "wb") as f:
+            for ch in rr.iter_content(1 << 20): f.write(ch)
+    frames = []
+    d = m.dur(out)
+    for k, fr in enumerate((0.15, 0.5, 0.85)):
+        jp = f"{m.WD}/f{i}_{k}.jpg"
+        m.sh("ffmpeg", "-v", "error", "-y", "-ss", f"{d*fr:.2f}", "-i", out, "-frames:v", "1", "-vf", "scale=384:-2", "-q:v", "5", jp)
+        frames.append(jp)
+    return out, frames
+
+
+def plan(clips, used):
+    import base64
+    desc = "\n".join(f"- 영상{i+1}: {c['dur']:.0f}초, 태그: {c['tags']}" for i, c in enumerate(clips))
+    parts = [{"text": PROMPT.format(n=len(clips), clips=desc, used=", ".join(used[-30:]) or "없음")}]
+    for i, c in enumerate(clips):
+        parts.append({"text": f"[영상{i+1}]"})
+        for f in c["frames"]:
+            parts.append({"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(open(f, "rb").read()).decode()}})
     try:
         ms = requests.get(f"{m.G}/v1beta/models?key={m.KEY}&pageSize=200", timeout=30).json().get("models", [])
         names = [x["name"].split("/")[-1] for x in ms if "generateContent" in x.get("supportedGenerationMethods", [])
-                 and not re.search(r"tts|image|live|audio|embed|vision|robotics|computer|learnlm|gemma", x["name"])]
+                 and not re.search(r"tts|image|live|audio|embed|robotics|computer|learnlm|gemma", x["name"])]
     except Exception: names = []
-    flash = [n for n in names if "flash" in n]
-    flash.sort(key=lambda n: ("lite" in n, "preview" in n or "exp" in n))
-    print("사용 가능 모델:", flash[:8])
-    order = (["gemini-3.8-flash"] + flash[:5]) or ["gemini-3.8-flash"]
-    order = list(dict.fromkeys(order))
-    tries = [(x, False) for x in order] * 3
-    for model, ground in tries:
+    flash = sorted([n for n in names if "flash" in n], key=lambda n: ("lite" in n, "preview" in n or "exp" in n))
+    order = list(dict.fromkeys(["gemini-3.8-flash"] + flash[:4]))
+    print("모델 후보:", order)
+    for model in order * 3:
         r = {}
         try:
-            body = {"contents": [{"parts": [{"text": PROMPT.format(cands=txt, used=", ".join(used[-30:]) or "없음")}]}],
-                    "generationConfig": {"temperature": 0.9}}
-            if ground: body["tools"] = [{"google_search": {}}]
-            r = requests.post(f"{m.G}/v1beta/models/{model}:generateContent?key={m.KEY}", timeout=240, json=body).json()
+            r = requests.post(f"{m.G}/v1beta/models/{model}:generateContent?key={m.KEY}", timeout=240,
+                              json={"contents": [{"parts": parts}], "generationConfig": {"temperature": 0.9}}).json()
             t = "".join(p.get("text", "") for p in r["candidates"][0]["content"]["parts"])
             p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
-            if p.get("scenes"): return p
+            if len(p.get("scenes", [])) >= len(clips) - 1: return p
         except Exception:
             e = r.get("error", {}) if isinstance(r, dict) else {}
-            print("::notice::대본 실패", model, "검색" if ground else "", str(e.get("message", e))[:400]); time.sleep(45 if "demand" in str(e) else 5)
+            print("::notice::대본 실패", model, str(e.get("message", e))[:300]); time.sleep(45 if "demand" in str(e) else 5)
     return None
-
-
-def broll(q, i, used_ids):
-    for qq in [q, " ".join(q.split()[:1]), "city life"]:
-        try:
-            j = requests.get("https://pixabay.com/api/videos/", params={"key": PIX, "q": qq, "safesearch": "true", "per_page": 12, "video_type": "film"}, timeout=30).json()
-        except Exception: continue
-        hits = [h for h in j.get("hits", []) if h["id"] not in used_ids and h.get("duration", 0) >= 4]
-        if not hits: continue
-        h = random.choice(hits[:6]); used_ids.add(h["id"])
-        v = h["videos"].get("medium") or h["videos"].get("small") or h["videos"].get("large")
-        out = f"{m.WD}/b{i}.mp4"
-        with requests.get(v["url"], stream=True, timeout=120, headers=UA) as rr:
-            rr.raise_for_status()
-            with open(out, "wb") as f:
-                for ch in rr.iter_content(1 << 20): f.write(ch)
-        return out, h.get("user", "Pixabay"), h.get("pageURL", "")
-    return None, None, None
 
 
 def seg(src, d, ov, aud, out, tempo):
     total = m.dur(src); loop = ["-stream_loop", "-1"] if total < d + 0.2 else []
-    st = 0.0 if loop else max(0.0, min(total - d, (total - d) / 3))
+    st = 0.0
     vf = (f"[0:v]fps=30,scale=1080:1150:force_original_aspect_ratio=increase,crop=1080:1150,setsar=1,"
           f"zoompan=z='min(1+on/600,1.08)':d=1:s=1080x1150:fps=30[v];color=black:s={m.W}x{m.H}:r=30[bg];[bg][v]overlay=0:{m.TOP}:shortest=1[b];"
           f"[b][1:v]overlay=0:0,format=yuv420p[vo];[2:a]atempo={tempo:.3f},apad,aformat=sample_rates=44100:channel_layouts=mono,volume=1.25[ao]")
@@ -119,23 +138,29 @@ def main():
     os.makedirs(m.WD, exist_ok=True)
     for f in os.listdir(m.WD): os.remove(os.path.join(m.WD, f))
     log = json.load(open(LOG, encoding="utf-8")) if os.path.exists(LOG) else []
-    cands = google_trends() + youtube_popular()
-    print("트렌드 후보", len(cands))
-    if not cands: raise SystemExit("트렌드를 못 가져옴")
-    p = plan(cands, [x["topic"] for x in log])
+    used_ids = {i for x in log for i in x.get("pix", [])}
+    hits = pick_clips(used_ids)
+    if not hits: raise SystemExit("Pixabay 인기 영상을 못 가져옴")
+    clips = []
+    for i, h in enumerate(hits):
+        try:
+            src, frames = fetch(h, i)
+            clips.append({"src": src, "frames": frames, "dur": m.dur(src), "tags": h.get("tags", ""), "id": h["id"],
+                          "owner": h.get("user", "Pixabay"), "page": h.get("pageURL", "")})
+        except Exception as e: print("::warning::영상 받기 실패", h["id"], e)
+    if len(clips) < 3: raise SystemExit("영상이 부족함")
+    p = plan(clips, [x["topic"] for x in log])
     if not p: print("::error::제미나이 대본 생성 불가 → 다음 회차에"); raise SystemExit(1)
-    print("주제:", p["topic"], "|", p.get("why", ""))
-    credit = "영상: Pixabay 무료 라이선스 · 정보: 최신 보도 종합"
-    parts, cuts, t, used_ids, owners = [], [], 0.0, set(), []
-    for i, s in enumerate(p["scenes"][:6]):
+    print("주제:", p["topic"])
+    credit = "영상: Pixabay 인기 영상 · 무료 라이선스"
+    parts, cuts, t, owners = [], [], 0.0, []
+    for i, (s, c) in enumerate(zip(p["scenes"], clips)):
         a = f"{m.WD}/n{i}.wav"
         if not m.tts(s["narration"], a, "funny"): raise SystemExit("음성 실패")
-        src, owner, page = broll(s.get("broll") or p["topic"], i, used_ids)
-        if not src: raise SystemExit("화면 영상을 못 찾음")
-        owners.append(f"{owner} {page}")
-        ad = m.dur(a); d = max(2.8, ad + 0.35); tempo = 1.0
+        owners.append(c["owner"])
+        ad = m.dur(a); d = max(4.0, ad + 0.4); tempo = 1.0
         ov = m.overlay(i, p.get("top1", "")[:14], p.get("top2", "")[:14], s.get("caption", ""), s.get("highlight", ""), credit)
-        out = f"{m.WD}/s{i}.mp4"; seg(src, d, ov, a, out, tempo); parts.append(out); t += d; cuts.append(t)
+        out = f"{m.WD}/s{i}.mp4"; seg(c["src"], d, ov, a, out, tempo); parts.append(out); t += d; cuts.append(t)
     open(f"{m.WD}/list.txt", "w").write("".join(f"file '{os.path.basename(x)}'\n" for x in parts))
     m.sh("ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"{m.WD}/list.txt", "-c", "copy", f"{m.WD}/joined.mp4")
     cuts = cuts[:-1]
@@ -146,10 +171,10 @@ def main():
     if not m.qa(f"{m.WD}/final.mp4"): raise SystemExit("검수 실패")
     tags = [h.lstrip("#") for h in p.get("hashtags", [])][:8]
     meta = {"yt_title": (p.get("yt_title") or p["topic"])[:85] + " #Shorts",
-            "yt_description": (f"{p.get('top1','')} {p.get('top2','')}\n\n📌 핵심 정리\n" + "\n".join("· " + f for f in p.get("facts", [])[:5]) +
+            "yt_description": (f"{p.get('top1','')} {p.get('top2','')}\n\n📌 재미 포인트\n" + "\n".join("· " + f for f in p.get("facts", [])[:5]) +
                                "\n\n너는 어떻게 생각해? 댓글로 알려줘!\n\n🎬 화면 영상: Pixabay(무료 라이선스) — " + ", ".join(o.split(" ")[0] for o in owners) +
-                               "\n\n" + " ".join("#" + h for h in tags + ["쇼츠", "이슈", "Shorts"])),
-            "yt_tags": tags + ["쇼츠", "이슈", "트렌드", "Shorts"], "yt_category": "24"}
+                               "\n\n" + " ".join("#" + h for h in tags + ["쇼츠", "인기영상", "Shorts"])),
+            "yt_tags": tags + ["쇼츠", "인기영상", "웃긴영상", "Shorts"], "yt_category": "24"}
     json.dump(meta, open(f"{m.WD}/meta.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     rid = "trend" + time.strftime("%Y%m%d%H%M")
     q = json.load(open(m.Q, encoding="utf-8")) if os.path.exists(m.Q) else {"items": []}
@@ -157,7 +182,7 @@ def main():
                        "made_at": time.strftime("%Y-%m-%d %H:%M"), "kind": "trend", "plan": {k: p.get(k) for k in
                        ("top1", "top2", "hashtags", "product_keyword", "product_must", "product_label", "sns_text", "yt_title")}})
     m.save_q(q)
-    log.append({"topic": p["topic"], "time": time.strftime("%Y-%m-%d %H:%M"), "id": rid})
+    log.append({"topic": p["topic"], "time": time.strftime("%Y-%m-%d %H:%M"), "id": rid, "pix": [c["id"] for c in clips]})
     json.dump(log[-300:], open(LOG, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as o: o.write(f"vid={rid}\n")
     print(f"완성: {t:.1f}초 → {meta['yt_title']}")
