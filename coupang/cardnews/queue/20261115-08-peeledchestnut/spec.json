@@ -53,7 +53,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "껍질 까기 귀찮은 겨울 밤",
  "product_label": "국산 깐밤",
  "product_keyword": "국산 깐밤",
@@ -88,5 +88,6 @@
   "국산",
   "깐밤"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
