@@ -91,6 +91,41 @@ def fetch(h, i):
     return out, frames
 
 
+GHT = os.environ.get("GITHUB_TOKEN", "").strip()
+
+
+def gpt_plan(parts, n):
+    """GitHub Models(무료, GITHUB_TOKEN)로 OpenAI GPT가 장면 사진을 보고 대본 작성"""
+    if not GHT: print("::notice::GITHUB_TOKEN 없음 → GPT 건너뜀"); return None
+    content = []
+    for x in parts:
+        if "text" in x: content.append({"type": "text", "text": x["text"]})
+        else: content.append({"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + x["inline_data"]["data"], "detail": "low"}})
+    for model in ["openai/gpt-4.1", "openai/gpt-4o", "openai/gpt-4.1-mini", "openai/gpt-4o-mini"] * 2:
+        r = {}
+        try:
+            r = requests.post("https://models.github.ai/inference/chat/completions", timeout=180,
+                              headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json"},
+                              json={"model": model, "temperature": 0.9, "messages": [{"role": "user", "content": content}]}).json()
+            t = r["choices"][0]["message"]["content"]
+            p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
+            if len(p.get("scenes", [])) >= n - 1: print("대본 작성:", model); return p
+        except Exception:
+            print("::notice::GPT 실패", model, str(r.get("error", r) if isinstance(r, dict) else r)[:300]); time.sleep(10)
+    return None
+
+
+def voice(text, out):
+    """마이크로소프트 음성(edge-tts)으로 바로 더빙"""
+    try:
+        import asyncio, edge_tts
+        asyncio.run(edge_tts.Communicate(text, "ko-KR-InJoonNeural", rate="+15%", pitch="+0Hz").save(out + ".mp3"))
+        m.sh("ffmpeg", "-y", "-v", "error", "-i", out + ".mp3", "-ar", "44100", "-ac", "1", out)
+        return True
+    except Exception as e:
+        print("::warning::edge-tts 실패 → 기존 방식", e); return m.tts(text, out, "funny")
+
+
 def plan(clips, used):
     import base64
     desc = "\n".join(f"- 영상{i+1}: {c['dur']:.0f}초, 태그: {c['tags']}" for i, c in enumerate(clips))
@@ -99,6 +134,9 @@ def plan(clips, used):
         parts.append({"text": f"[영상{i+1}]"})
         for f in c["frames"]:
             parts.append({"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(open(f, "rb").read()).decode()}})
+    p = gpt_plan(parts, len(clips))
+    if p: return p
+    print("::notice::GPT 실패 → 제미나이로 대체")
     try:
         ms = requests.get(f"{m.G}/v1beta/models?key={m.KEY}&pageSize=200", timeout=30).json().get("models", [])
         names = [x["name"].split("/")[-1] for x in ms if "generateContent" in x.get("supportedGenerationMethods", [])
@@ -134,7 +172,8 @@ def seg(src, d, ov, aud, out, tempo):
 
 
 def main():
-    if not (m.KEY and PIX): print("::error::GEMINI_API_KEY / PIXABAY_API_KEY 필요"); raise SystemExit(1)
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "edge-tts"], check=False)
+    if not PIX: print("::error::PIXABAY_API_KEY 필요"); raise SystemExit(1)
     os.makedirs(m.WD, exist_ok=True)
     for f in os.listdir(m.WD): os.remove(os.path.join(m.WD, f))
     log = json.load(open(LOG, encoding="utf-8")) if os.path.exists(LOG) else []
@@ -156,7 +195,7 @@ def main():
     parts, cuts, t, owners = [], [], 0.0, []
     for i, (s, c) in enumerate(zip(p["scenes"], clips)):
         a = f"{m.WD}/n{i}.wav"
-        if not m.tts(s["narration"], a, "funny"): raise SystemExit("음성 실패")
+        if not voice(s["narration"], a): raise SystemExit("음성 실패")
         owners.append(c["owner"])
         ad = m.dur(a); d = max(4.0, ad + 0.4); tempo = 1.0
         ov = m.overlay(i, p.get("top1", "")[:14], p.get("top2", "")[:14], s.get("caption", ""), s.get("highlight", ""), credit)
