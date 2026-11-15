@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "뜨끈한 국이 당기는 겨울 저녁",
  "product_label": "국산 시래기",
  "product_keyword": "국산 시래기",
@@ -83,5 +83,6 @@
   "국산",
   "시래기"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
