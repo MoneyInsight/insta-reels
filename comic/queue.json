@@ -2565,6 +2565,46 @@
 "threads": "18417864928086130",
 "insta": "18114496451238712"
 }
+},
+{
+"id": "trend202611150852",
+"src": "trend",
+"title": "삼성 AI 스마트 안경 출시",
+"channel": "Pixabay",
+"license": "무료 라이선스",
+"status": "posted",
+"rank": 0,
+"made_at": "2026-11-15 08:52",
+"kind": "trend",
+"plan": {
+"top1": "스마트폰 끝났다?",
+"top2": "삼성 AI 안경 유출",
+"hashtags": [
+"삼성전자",
+"스마트안경",
+"AI안경",
+"신제품",
+"IT트렌드",
+"얼리어답터"
+],
+"product_keyword": "블루투스 스마트 안경",
+"product_must": "스마트 안경",
+"product_label": "스마트 오디오 안경",
+"sns_text": "드디어 스마트폰 대체할 삼성 AI 안경 출시 윤곽이 떴습니다!\n일반 뿔테처럼 가벼운데 눈앞 실시간 번역부터 AI 비서까지 탑재된다고 하네요.\n출시 전 가성비 스마트 안경의 편리함을 미리 경험해보세요.",
+"yt_title": "스마트폰 진짜 버려도 되나? 삼성 AI 안경 드디어 떴다ㄷㄷ"
+},
+"yt": "EB4lKcuEBcM",
+"product": {
+"id": "9781898865",
+"name": "남성 및 여성을 위한 스피커를 가진 Tersanhong 스마트 안경,AI 음성 보조사를 가진 AI 블루투스 선글라스,운전을 위한 운운전화,여행,",
+"link": "https://link.coupang.com/a/iHcfRYjQo8",
+"subId": "h2611151752",
+"image": "https://ads-partners.coupang.com/image1/3o02802CW3q_Xre63ipCbcwfgJy0grSC74jLHJCd2O83LgP8z7V_aZkvoWFDZGgHxoRbZ8hA16Ict6F9yYtRQGVQRA-2dcAxn2Xq-x44bz0HcURqfQdpicOZk5uWBWhwu1ZLvrQD4w6t_o60hzaPa9ZyjUvK0dqWAQ9dwdklTiPr0Bgatt-2yNrcaMogs58hklFmX0m5S9WZmt65HoYPNW6BW7I3UOQT0dKGzmBgRV_2LmEq6JVObQAvMssozmidKHPDy4JNBRFuUyljzu-VX_c6CG3kuvDwh5V60jCiPHtjhiXed1AVuKKUCevWkpwMW4SaEOU5wkjWmLqhU6WWHgPaa-TKAt4SN4UdOwbWvpux_-j9rwLWPM5zzChlIZNcCg9WRlkRR5pL25yCpQR-XDFWabjxp38usJC0axQ0w3DsmkKds1KQHjYGn8OiSjXsodAJUQQxpU89HntsEu1xeM6KXVR_A4RTEPb41bBH1ASlepwmVDxt4lFaYxPD88Ty1uOGn6ydjBCGfbQ52Cw1g6fBkckIPxuPwXd_rGC6TGw8ynnU_z3XteMfoDUQymGxBVWphz0KSAjz7lc_PS_BrrFbgAckzLrAMvCFusJ7D2BWv0r82uz5T4k_ZnUJAXZj5c9n1ApteHZk-8M="
+},
+"sns": {
+"threads": "18116107556179176",
+"insta": "18193016518410193"
+}
 }
 ],
 "source": "commons"
