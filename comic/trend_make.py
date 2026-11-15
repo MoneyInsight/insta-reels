@@ -101,17 +101,22 @@ def gpt_plan(parts, n):
     for x in parts:
         if "text" in x: content.append({"type": "text", "text": x["text"]})
         else: content.append({"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + x["inline_data"]["data"], "detail": "low"}})
-    for model in ["openai/gpt-4.1", "openai/gpt-4o", "openai/gpt-4.1-mini", "openai/gpt-4o-mini"] * 2:
-        r = {}
-        try:
-            r = requests.post("https://models.github.ai/inference/chat/completions", timeout=180,
-                              headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json"},
-                              json={"model": model, "temperature": 0.9, "messages": [{"role": "user", "content": content}]}).json()
-            t = r["choices"][0]["message"]["content"]
-            p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
-            if len(p.get("scenes", [])) >= n - 1: print("대본 작성:", model); return p
-        except Exception:
-            print("::notice::GPT 실패", model, str(r.get("error", r) if isinstance(r, dict) else r)[:300]); time.sleep(10)
+    eps = [("https://models.github.ai/inference/chat/completions", ["openai/gpt-4.1", "openai/gpt-4o", "openai/gpt-4.1-mini"]),
+           ("https://models.inference.ai.azure.com/chat/completions", ["gpt-4o", "gpt-4o-mini"])]
+    for rnd in range(2):
+        for url, models in eps:
+            for model in models:
+                txt = ""
+                try:
+                    rr = requests.post(url, timeout=180, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json",
+                                                                  "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"},
+                                       json={"model": model, "temperature": 0.9, "messages": [{"role": "user", "content": content}]})
+                    txt = f"{rr.status_code} {rr.text[:250]}"
+                    t = rr.json()["choices"][0]["message"]["content"]
+                    p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
+                    if len(p.get("scenes", [])) >= n - 1: print("대본 작성:", model); return p
+                except Exception as e:
+                    print("::notice::GPT 실패", model, txt or e); time.sleep(5)
     return None
 
 
