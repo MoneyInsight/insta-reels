@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "아침마다 언 차 앞유리",
  "product_label": "성에 제거 스크래퍼",
  "product_keyword": "차량용 성에제거 스크래퍼",
@@ -81,5 +81,6 @@
   "성에 제거용",
   "스크래퍼"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
