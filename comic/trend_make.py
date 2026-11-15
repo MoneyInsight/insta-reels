@@ -37,7 +37,7 @@ def youtube_popular():
     except Exception as e: print("::warning::유튜브 인기 실패", e); return []
 
 
-PROMPT = """너는 조회수 수백만 한국 유튜브 쇼츠 작가야. 아래 사진들은 Pixabay 인기 영상 {n}개에서 뽑은 장면이야(영상마다 3장, 순서대로).
+PROMPT = """너는 조회수 수백만 한국 유튜브 쇼츠 작가야. 아래 사진들은 Pixabay 인기 영상 {n}개에서 뽑은 장면이야(영상마다 사진 1장 = 초반·중간·끝 장면 3컷을 가로로 붙임, 순서대로).
 {clips}
 이 영상들을 순서대로 이어 붙여 30초 안팎 쇼츠 1편을 만든다. 규칙:
 1) 나레이션·자막은 반드시 **그 영상 화면에 실제로 보이는 것**을 말해. 화면에 없는 사람·사건·장소를 지어내지 마.
@@ -88,44 +88,43 @@ def fetch(h, i):
         jp = f"{m.WD}/f{i}_{k}.jpg"
         m.sh("ffmpeg", "-v", "error", "-y", "-ss", f"{d*fr:.2f}", "-i", out, "-frames:v", "1", "-vf", "scale=384:-2", "-q:v", "5", jp)
         frames.append(jp)
-    return out, frames
+    strip = f"{m.WD}/strip{i}.jpg"  # 장면 3장을 가로로 붙인 한 장 (Groq는 요청당 사진 5장 제한)
+    m.sh("ffmpeg", "-v", "error", "-y", *sum([["-i", f] for f in frames], []), "-filter_complex",
+         "[0:v]scale=-2:384[a];[1:v]scale=-2:384[b];[2:v]scale=-2:384[c];[a][b][c]hstack=inputs=3", "-q:v", "5", strip)
+    return out, [strip]
 
 
-GHT = os.environ.get("GITHUB_TOKEN", "").strip()
+GROQ = os.environ.get("GROQ_API_KEY", "").strip()
 
 
-def gpt_plan(parts, n):
-    """GitHub Models(무료, GITHUB_TOKEN)로 OpenAI GPT가 장면 사진을 보고 대본 작성"""
-    if not GHT: print("::notice::GITHUB_TOKEN 없음 → GPT 건너뜀"); return None
-    content = []
+def groq_plan(parts, n):
+    """Groq(무료)의 이미지 인식 모델이 장면 사진을 보고 대본 작성"""
+    if not GROQ: print("::notice::GROQ_API_KEY 없음 → Groq 건너뜀"); return None
+    H = {"Authorization": f"Bearer {GROQ}", "Content-Type": "application/json"}
+    try:
+        ids = [x["id"] for x in requests.get("https://api.groq.com/openai/v1/models", headers=H, timeout=30).json().get("data", [])]
+    except Exception as e: ids = []; print("::notice::Groq 모델 목록 실패", e)
+    vis = [i for i in ids if re.search(r"llama-4|vision|scout|maverick|vl", i, re.I)]
+    vis.sort(key=lambda i: ("maverick" not in i, "scout" not in i))
+    txtm = [i for i in ids if re.search(r"gpt-oss-120b|llama-3\.3-70b|qwen|kimi", i, re.I)]
+    print("Groq 모델:", vis[:3], txtm[:2])
+    img_content = []
     for x in parts:
-        if "text" in x: content.append({"type": "text", "text": x["text"]})
-        else: content.append({"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + x["inline_data"]["data"], "detail": "low"}})
-    eps = [("https://models.github.ai/inference/chat/completions", ["openai/gpt-4.1", "openai/gpt-4o", "openai/gpt-4.1-mini"])]
-    for hd in ({"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}, {}):
-        for body in ({"model": "openai/gpt-4.1-mini", "messages": [{"role": "user", "content": "say hi"}]},
-                     {"model": "openai/gpt-4.1-mini", "messages": [{"role": "user", "content": content[:2]}]}):
-            try:
-                rr = requests.post(eps[0][0], timeout=60, allow_redirects=False, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json", **hd}, json=body)
-                import socket
-                print("::notice::GPT 진단", list(hd), type(body["messages"][0]["content"]).__name__, rr.status_code, rr.headers.get("location"),
-                      dict(list(rr.headers.items())[:8]), socket.gethostbyname("models.github.ai"), len(GHT), GHT[:4], rr.text[:120].replace("\n", " "))
-                break
-            except Exception as e: print("::notice::GPT 진단 오류", e)
-    for rnd in range(1):
-        for url, models in eps:
-            for model in models:
-                txt = ""
-                try:
-                    rr = requests.post(url, timeout=180, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json",
-                                                                  "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"},
-                                       json={"model": model, "temperature": 0.9, "messages": [{"role": "user", "content": content}]})
-                    txt = f"{rr.status_code} {rr.text[:250]}"
-                    t = rr.json()["choices"][0]["message"]["content"]
-                    p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
-                    if len(p.get("scenes", [])) >= n - 1: print("대본 작성:", model); return p
-                except Exception as e:
-                    print("::notice::GPT 실패", model, txt or e); time.sleep(5)
+        if "text" in x: img_content.append({"type": "text", "text": x["text"]})
+        else: img_content.append({"type": "image_url", "image_url": {"url": "data:image/jpeg;base64," + x["inline_data"]["data"]}})
+    txt_only = "\n".join(x["text"] for x in parts if "text" in x)
+    tries = [(mdl, img_content) for mdl in vis[:3]] + [(mdl, txt_only) for mdl in txtm[:2]]
+    for mdl, content in tries * 2:
+        info = ""
+        try:
+            rr = requests.post("https://api.groq.com/openai/v1/chat/completions", timeout=120, headers=H,
+                               json={"model": mdl, "temperature": 0.9, "max_tokens": 2000, "messages": [{"role": "user", "content": content}]})
+            info = f"{rr.status_code} {rr.text[:250]}"
+            t = rr.json()["choices"][0]["message"]["content"]
+            p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
+            if len(p.get("scenes", [])) >= n - 1: print("대본 작성: Groq", mdl, "(사진 보고)" if content is img_content else "(태그만 보고)"); return p
+        except Exception as e:
+            print("::notice::Groq 실패", mdl, info or e); time.sleep(8)
     return None
 
 
@@ -148,9 +147,9 @@ def plan(clips, used):
         parts.append({"text": f"[영상{i+1}]"})
         for f in c["frames"]:
             parts.append({"inline_data": {"mime_type": "image/jpeg", "data": base64.b64encode(open(f, "rb").read()).decode()}})
-    p = gpt_plan(parts, len(clips))
+    p = groq_plan(parts, len(clips))
     if p: return p
-    print("::notice::GPT 실패 → 제미나이로 대체")
+    print("::notice::Groq 실패 → 제미나이로 대체")
     try:
         ms = requests.get(f"{m.G}/v1beta/models?key={m.KEY}&pageSize=200", timeout=30).json().get("models", [])
         names = [x["name"].split("/")[-1] for x in ms if "generateContent" in x.get("supportedGenerationMethods", [])
