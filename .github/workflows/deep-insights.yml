@@ -1,0 +1,17 @@
+name: 클릭 진단 (수동)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          pip install -q requests
+          python deep_insights.py
+          git config user.name "reel-bot"; git config user.email "reel-bot@users.noreply.github.com"
+          git add coupang/deep_insights.json; git commit -qm "클릭 진단" || exit 0
+          for i in 1 2 3; do git pull -q --rebase -X theirs origin main && git push -q origin main && break; sleep 5; done
