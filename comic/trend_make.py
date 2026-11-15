@@ -107,7 +107,7 @@ def groq_plan(parts, n):
     vis = [i for i in ids if re.search(r"llama-4|vision|scout|maverick|vl", i, re.I)]
     vis.sort(key=lambda i: ("maverick" not in i, "scout" not in i))
     txtm = [i for i in ids if re.search(r"gpt-oss-120b|llama-3\.3-70b|qwen|kimi", i, re.I)]
-    print("Groq 모델:", vis[:3], txtm[:2])
+    print("::notice::Groq 모델 목록:", ", ".join(ids)[:900])
     img_content = []
     for x in parts:
         if "text" in x: img_content.append({"type": "text", "text": x["text"]})
@@ -118,11 +118,11 @@ def groq_plan(parts, n):
         info = ""
         try:
             rr = requests.post("https://api.groq.com/openai/v1/chat/completions", timeout=120, headers=H,
-                               json={"model": mdl, "temperature": 0.9, "max_tokens": 2000, "messages": [{"role": "user", "content": content}]})
+                               json={"model": mdl, "temperature": 0.9, "max_tokens": 8000 if "gpt-oss" in mdl else 1000, **({"reasoning_effort": "low"} if "gpt-oss" in mdl else {}), "messages": [{"role": "user", "content": content}]})
             info = f"{rr.status_code} {rr.text[:250]}"
             t = rr.json()["choices"][0]["message"]["content"]
             p = json.loads(re.search(r"\{.*\}", t, re.S).group(0))
-            if len(p.get("scenes", [])) >= n - 1: print("대본 작성: Groq", mdl, "(사진 보고)" if content is img_content else "(태그만 보고)"); return p
+            if len(p.get("scenes", [])) >= n - 1: print("::notice::대본 작성: Groq", mdl, "(사진 보고)" if content is img_content else "(태그만 보고)"); return p
         except Exception as e:
             print("::notice::Groq 실패", mdl, info or e); time.sleep(8)
     return None
