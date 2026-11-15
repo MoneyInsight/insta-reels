@@ -2489,6 +2489,42 @@
 "threads": "18025396001948271",
 "insta": "18097227326166901"
 }
+},
+{
+"id": "trend202611150300",
+"src": "trend",
+"title": "한국 해군, F-35B 수직이착륙기 대신 무인기 20대 탑재 270m 대형 항공모함 전격 추진",
+"channel": "Pixabay",
+"license": "무료 라이선스",
+"status": "posted",
+"rank": 0,
+"made_at": "2026-11-15 03:00",
+"kind": "trend",
+"plan": {
+"top1": "한국 해군 대반전",
+"top2": "F-35B 접고 드론항모",
+"hashtags": [
+"#한국해군",
+"#항공모함",
+"#드론항모",
+"#K방산",
+"#밀리터리",
+"#이슈쇼츠"
+],
+"product_keyword": "입문용 드론",
+"product_must": "드론",
+"product_label": "입문용 드론추천",
+"sns_text": "한국 해군이 F-35B 대신 무인기 20대를 싣는 270m 대형 드론 항모로 전환한다는 대박 소식!🔥\n미래전은 이제 완벽하게 무인기 드론 시대가 된 것 같아요 🚁\n요즘 드론 조종 재미에 빠진 분들 많던데, 취미용으로 날려보기 좋은 입문용 드론 하나 구경해보세요!",
+"yt_title": "한국 해군이 F-35B 버리고 270m 무인기 항모 택한 진짜 이유ㄷㄷ"
+},
+"yt": "vZlUlATR1Y4",
+"product": {
+"id": "8601086193",
+"name": "HHSSL 4K 고성능 초보용 비행시간 30분 듀얼 카메라 브러시리스 모터 드론 + 한글 설명서 세트, 블랙(드론), 1세트",
+"link": "https://link.coupang.com/a/iGM5nWgCLQ",
+"subId": "h2611151200",
+"image": "https://ads-partners.coupang.com/image1/uDCX0AZjjWP9zMieuALFtD77Xbj38zwkFnHDILgeh3Kc1L741m26ap8qj_xeLCX_a5WqiIEhIgFZDar3oAgRqbZFLhOr5sFFv8Z9Aga6vIwyCKHGq1G2-6sS_Yx_XRYtoXtC57CMavnTCXK2j0NoXC2xGrEFZDpLESzBB0Py3vFNu9hSyJFP8Tym9_CFGbxZppj5wOcbOYyj2VQthFL7AIFapA5Ezro1rzMFTdTaWpzqxBXCrz09pL2gj00Xlbzm0Fu03QyT2GYeq_Z3-H3fhhRZ0L7Zy0ALSKvKC_uHVVdb7NbgsVgxTIZdJ-VqVi3kOrAOOU6XAoQFd1GWkdR-7_TujRcN9ifMOfIQp2AipwQt9QBHswOV0s5b0wIxZSABpNw2T5biLXTc_kB-d169UwkMfORsYkNaRp6SXsLXRZSgpQzbqw9jlYwDOdZx-p0vGpnrS0RQHKdKWKZ842gns41tycthBXVaWIZG_OJmtyyGNH-ho1yXmbIkE225iXcvlDsMpumt1DQ-OC7HLIBcIFanvQ5NoItiSonnapideT65s4N2f0T4t-BvDdZekg=="
+}
 }
 ],
 "source": "commons"
