@@ -106,9 +106,11 @@ def gpt_plan(parts, n):
         for body in ({"model": "openai/gpt-4.1-mini", "messages": [{"role": "user", "content": "say hi"}]},
                      {"model": "openai/gpt-4.1-mini", "messages": [{"role": "user", "content": content[:2]}]}):
             try:
-                rr = requests.post(eps[0][0], timeout=60, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json", **hd}, json=body)
-                print("::notice::GPT 진단", list(hd), type(body["messages"][0]["content"]).__name__, rr.status_code,
-                      rr.headers.get("content-type"), len(rr.content), rr.text[:200].replace("\n", " "))
+                rr = requests.post(eps[0][0], timeout=60, allow_redirects=False, headers={"Authorization": f"Bearer {GHT}", "Content-Type": "application/json", **hd}, json=body)
+                import socket
+                print("::notice::GPT 진단", list(hd), type(body["messages"][0]["content"]).__name__, rr.status_code, rr.headers.get("location"),
+                      dict(list(rr.headers.items())[:8]), socket.gethostbyname("models.github.ai"), len(GHT), GHT[:4], rr.text[:120].replace("\n", " "))
+                break
             except Exception as e: print("::notice::GPT 진단 오류", e)
     for rnd in range(1):
         for url, models in eps:
