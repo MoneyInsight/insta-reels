@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "출출한 겨울 오후 간식",
  "product_label": "국산 곶감",
  "product_keyword": "국산 곶감",
@@ -82,5 +82,6 @@
   "국산",
   "곶감"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
