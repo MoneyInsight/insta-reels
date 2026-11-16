@@ -2954,6 +2954,46 @@
 "threads": "18119888341810736",
 "insta": "17983326756131316"
 }
+},
+{
+"id": "trend202611161016",
+"src": "trend",
+"title": "다양한 댄스 매력",
+"channel": "Pixabay",
+"license": "무료 라이선스",
+"status": "posted",
+"rank": 0,
+"made_at": "2026-11-16 10:16",
+"kind": "trend",
+"plan": {
+"top1": "댄스 매직",
+"top2": "리듬에 빠져",
+"hashtags": [
+"#댄스",
+"#퍼포먼스",
+"#힐링",
+"#클럽",
+"#실루엣",
+"#쇼츠"
+],
+"product_keyword": "무선 블루투스 이어폰",
+"product_must": "이어폰",
+"product_label": "댄스용 이어폰",
+"sns_text": "💃✨ 댄스 쇼츠 4컷을 한 번에! 첫 장면부터 눈이 휘둥그레지는 싱크, 클럽 비트, 거리 실루엣 배틀, 그리고 행복한 마무리까지! 🎶\n각각의 장면에 숨은 재미 포인트도 놓치지 마세요. \n어떤 댄스가 제일 마음에 들어? 댓글 달아줘! \n그리고 리듬에 맞춰 최고의 사운드를 원한다면 무선 블루투스 이어폰을 확인해봐. 🎧",
+"yt_title": "잠깐, 이 춤들 진짜 미쳤다! 30초에 압축된 댄스 파워"
+},
+"yt": "uIoYG4RSdaw",
+"product": {
+"id": "9668306645",
+"name": "Seravon 무선 블루투스 이어폰 블루투스5.4 칩 통근 운동 러닝 스 포츠 고음질 이어폰",
+"link": "https://link.coupang.com/a/iIW8txEhhs",
+"subId": "h2611161916",
+"image": "https://ads-partners.coupang.com/image1/IdRWddDD_6ep9ZGzIY5uwO6TPYCKmrFLwc3yBcpUh2zzpJcUxYGJwDRLp3ZksqESWvDtwDXuAXRZXEE9bQHn1_J4eAEAc43GJP7mVLfNCS_32IqP2lkYQzUaBfC63HPuVWs3ROcyUcXbLwJlFUcnjaHGN961urJ4OigV3mD6ELQ6m59ip-7dZbPgbPcAW4sAlBRubrkOHau7lk3JiO2g8fzefduY00ww2lPa3ZEtcrKrsMJepNR3HBVmxXac0bPgS20DPTs_VHpb65vGfjMi-GDmXlZcXot-lpyCST09yF-6BJCCc6sYLsU9PgEgX09PW1ufzUrp-_hRGZ_TPIx8M9G7hK5tG9VJEGu14Cz2f82W9cFX4ROYaMuDq94wH1ldEEgBfsZcQ5wSpY5fZkEgYiCPYCVg-cDN2lySjVp2BfVJ6bYi-nuZ9EMLSMbitkBaU3_SaCL9RNIv6IHcDGV5q2L7UjZCIRQJU905eN3Y7BPsz8Lv_iix6sz7fTNabsOd0ew7qOZRIvnSfTOiD85Um2P-XlgvxQ69iQ1VgLP1Ypy8FH26RPT9O1onjtNfEEMPLFbpt9AMG4CCCa8Pkov0wSJN2Ks7-re-Dg=="
+},
+"sns": {
+"threads": "18110390747218534",
+"insta": "17943318498391727"
+}
 }
 ],
 "source": "commons"
