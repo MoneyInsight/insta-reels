@@ -1,11 +1,92 @@
 {
- "t": "2026-11-16 10:54",
+ "t": "2026-11-16 10:56",
  "ig_followers": 0,
  "th_followers": 4,
- "yt_channel": null,
- "yt_subs": 0,
- "yt_views": 0,
- "yt_videos": 0,
- "yt_recent": [],
- "yt_daily": "Request had insufficient authentication scopes."
+ "yt_recent": [
+  {
+   "id": "g3ArLwXmeBk",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-15 23:45",
+   "title": "잠깐, 이거 진짜야? AI가 그린 신기함 4선 #Shorts",
+   "views": 0,
+   "likes": 0
+  },
+  {
+   "id": "vToJUCojAFk",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-15 11:45",
+   "title": "잠깐, 이거 진짜야? 보고만 있어도 힐링되는 나무 풍경 4가지! #Sho",
+   "views": 0,
+   "likes": 0
+  },
+  {
+   "id": "EB4lKcuEBcM",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-15 08:53",
+   "title": "스마트폰 진짜 버려도 되나? 삼성 AI 안경 드디어 떴다ㄷㄷ #Short",
+   "views": 1151,
+   "likes": 3
+  },
+  {
+   "id": "APYHjynU2rg",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-15 05:56",
+   "title": "절대 켜지 마세요! 눈뜨면 아침 되는 미친 중독성 게임 #Shorts",
+   "views": 935,
+   "likes": 2
+  },
+  {
+   "id": "vZlUlATR1Y4",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-15 03:01",
+   "title": "한국 해군이 F-35B 버리고 270m 무인기 항모 택한 진짜 이유ㄷㄷ ",
+   "views": 1282,
+   "likes": 14
+  },
+  {
+   "id": "lgcr4MOcl-I",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-14 23:45",
+   "title": "삼성 구자욱 메이저리그 전격 도전?! 이정후 뒤 잇나 ㄷㄷ #Shorts",
+   "views": 17,
+   "likes": 1
+  },
+  {
+   "id": "cXBA58bktl0",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-14 11:47",
+   "title": "게임에서 맞으면 진짜 아프다? 미친 성능의 VR 촉각 슈트 등장! #Sh",
+   "views": 1221,
+   "likes": 0
+  },
+  {
+   "id": "KNlE0r1m70U",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-14 08:50",
+   "title": "입막음 돈 줬는데 최종 보스 등장 ㅋㅋㅋ #Shorts",
+   "views": 1244,
+   "likes": 1
+  },
+  {
+   "id": "2KuFXt5XuT4",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-14 02:54",
+   "title": "물웅덩이 보고 흥분 폭발한 아기 코끼리 🐘 #Shorts",
+   "views": 1218,
+   "likes": 3
+  },
+  {
+   "id": "iBnlhb3tVHI",
+   "ch": "UC-6SuvLQrOKHVZXfUjB3g3w",
+   "t": "11-13 23:44",
+   "title": "친구 혼자 숨 넘어가게 웃을 때 옆 사람 반응 ㅋㅋㅋ 🤣 #Shorts",
+   "views": 1311,
+   "likes": 9
+  }
+ ],
+ "yt_tracked": 10,
+ "yt_channel": "웃어보셔",
+ "yt_subs": 4,
+ "yt_views": 4806,
+ "yt_videos": 10
 }
