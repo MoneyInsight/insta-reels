@@ -47,6 +47,7 @@
     "국·찌개 그릇"
    ],
    "notes": [
+    "직화·전자레인지 사용 여부는 상품 상세 페이지를 확인하세요.",
     "질환이 있거나 약을 드시는 분은 섭취·사용 전 전문가와 상담하세요.",
     "이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
    ]
@@ -85,5 +86,12 @@
   "뚝배기",
   "국·찌개 그릇"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "product": {
+  "id": "9513666757",
+  "name": "귀월미 가정용 뚝배기 냄비 전골 찌개 국물요리용 양손 냄비, 1개, 블랙(소), 20.5cm",
+  "link": "https://link.coupang.com/a/iIVFVEbk0i",
+  "subId": "h2611161855",
+  "image": "https://ads-partners.coupang.com/image1/Q_UO_xOJURgTlKsJQzHwUVawKoUVsb16Aq46hCllT1bGgwNlScPQaG5v3e4CGJCH0cbe_yPpkjeD4slIX6W9ZCXIhQxFXlPteb-wkIugoOBC5ggLsKh9kH-RZ0L0PNVwkmLNvI5TybE-KG1h98F8k1k7FP0v0L56Y2AhhIZnXMF_Otdmcey5b9PxhxmsDs4XYZYaEHSP_YtScxcdUd2TrQpG2NDcQIFgA_V2qbIziUYUjjZsksSV9mNKu0xj1VwRhm4O4YpRILY0sySV2RE65fMCzbJ-LssKmjCxWC0fYqpndHhv24yiIfcnbj58QkdkDlrgiGJGgWV-gyb4P-PMAuNdrZTjsjeNgAlCnb-Q23rsdE8lYNZT8oxxw0F8-uqtFaD7GDG6ppqIKwPE8PagtPpeGbDlWmKKltebgb3_s0jj4RUxBTgXD4adIHc_Dlbw6kzByFi0tJO7l5ZcwphB5k9YntSLOTz1Y5r4eg4rrlcdPYPgeTEjE092i-fFg93PuKBUkYpMu3HgvXmHZuIeIHTonh8d2buscOSptSuwNKe9mdFVtxT9ouXNPp-aqkpr4HJOknJjZjC2EIkm"
+ }
 }
