@@ -14,6 +14,7 @@ jobs:
           YTC_CLIENT_ID: ${{ secrets.YTC_CLIENT_ID }}
           YTC_CLIENT_SECRET: ${{ secrets.YTC_CLIENT_SECRET }}
           YTC_REFRESH_TOKEN: ${{ secrets.YTC_REFRESH_TOKEN }}
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
         run: |
           pip install -q requests
           python stats_report.py

@@ -9,27 +9,27 @@ r["ig_followers"] = requests.get("https://graph.instagram.com/v21.0/me", params=
 d = requests.get("https://graph.threads.net/v1.0/me/threads_insights", params={"metric": "followers_count", "access_token": TH}).json()
 try: r["th_followers"] = d["data"][0]["total_value"]["value"]
 except Exception: r["th_followers"] = None
-tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": os.environ["YTC_CLIENT_ID"], "client_secret": os.environ["YTC_CLIENT_SECRET"],
-                    "refresh_token": os.environ["YTC_REFRESH_TOKEN"], "grant_type": "refresh_token"}).json().get("access_token")
-A = {"Authorization": f"Bearer {tok}"}
-ch = requests.get("https://www.googleapis.com/youtube/v3/channels", params={"part": "snippet,statistics,contentDetails", "mine": "true"}, headers=A).json()
-it = ch.get("items", [{}])[0]; st = it.get("statistics", {})
-r["yt_channel"] = it.get("snippet", {}).get("title"); r["yt_subs"] = int(st.get("subscriberCount", 0)); r["yt_views"] = int(st.get("viewCount", 0)); r["yt_videos"] = int(st.get("videoCount", 0))
-up = it.get("contentDetails", {}).get("relatedPlaylists", {}).get("uploads")
+K = os.environ["YT_API_KEY"]; Y = "https://www.googleapis.com/youtube/v3"
+ids = []
+for f in ("comic/youtube_log.json", "coupang/youtube_log.json"):
+    if os.path.exists(f):
+        for x in json.load(open(f, encoding="utf-8")):
+            v = x.get("id") or x.get("video_id") or x.get("yt_id")
+            if v and v not in ids: ids.append(v)
 vids = []
-if up:
-    pl = requests.get("https://www.googleapis.com/youtube/v3/playlistItems", params={"part": "contentDetails", "playlistId": up, "maxResults": 30}, headers=A).json()
-    ids = ",".join(x["contentDetails"]["videoId"] for x in pl.get("items", []))
-    if ids:
-        vs = requests.get("https://www.googleapis.com/youtube/v3/videos", params={"part": "snippet,statistics", "id": ids}, headers=A).json()
-        for v in vs.get("items", []):
-            vids.append({"t": v["snippet"]["publishedAt"][5:16].replace("T", " "), "title": v["snippet"]["title"][:40], "views": int(v["statistics"].get("viewCount", 0)), "likes": int(v["statistics"].get("likeCount", 0))})
-r["yt_recent"] = vids
-# 유튜브 애널리틱스(일별 구독자 증감·평균 시청) — 권한 없으면 건너뜀
-end = datetime.date.today(); start = end - datetime.timedelta(days=7)
-an = requests.get("https://youtubeanalytics.googleapis.com/v2/reports", params={"ids": "channel==MINE", "startDate": str(start), "endDate": str(end),
-                  "metrics": "views,subscribersGained,subscribersLost,averageViewDuration,averageViewPercentage", "dimensions": "day"}, headers=A).json()
-r["yt_daily"] = an.get("rows") or an.get("error", {}).get("message", "")[:120]
+for i in range(0, len(ids), 50):
+    vs = requests.get(f"{Y}/videos", params={"part": "snippet,statistics", "id": ",".join(ids[i:i + 50]), "key": K}).json()
+    for v in vs.get("items", []):
+        vids.append({"id": v["id"], "ch": v["snippet"]["channelId"], "t": v["snippet"]["publishedAt"][5:16].replace("T", " "), "title": v["snippet"]["title"][:40],
+                     "views": int(v["statistics"].get("viewCount", 0)), "likes": int(v["statistics"].get("likeCount", 0))})
+vids.sort(key=lambda x: x["t"], reverse=True)
+r["yt_recent"] = vids; r["yt_tracked"] = len(ids)
+if vids:
+    c = requests.get(f"{Y}/channels", params={"part": "snippet,statistics", "id": vids[0]["ch"], "key": K}).json()["items"][0]
+    st = c["statistics"]; r["yt_channel"] = c["snippet"]["title"]
+    r["yt_subs"] = int(st.get("subscriberCount", 0)); r["yt_views"] = int(st.get("viewCount", 0)); r["yt_videos"] = int(st.get("videoCount", 0))
+else:
+    r["yt_channel"] = None; r["yt_subs"] = r["yt_views"] = r["yt_videos"] = None
 hist.append({k: r[k] for k in ("t", "ig_followers", "th_followers", "yt_subs", "yt_views", "yt_videos")})
 json.dump(hist, open(H, "w"), ensure_ascii=False, indent=1)
 json.dump(r, open("coupang/stats_now.json", "w"), ensure_ascii=False, indent=1)
