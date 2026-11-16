@@ -2874,6 +2874,46 @@
 "threads": "18097091609677075",
 "insta": "18103955708550959"
 }
+},
+{
+"id": "trend202611160254",
+"src": "trend",
+"title": "귀여운 강아지들의 해변·훈련 플레이",
+"channel": "Pixabay",
+"license": "무료 라이선스",
+"status": "posted",
+"rank": 0,
+"made_at": "2026-11-16 02:54",
+"kind": "trend",
+"plan": {
+"top1": "귀요미 해변 놀음",
+"top2": "하이파이브 훈련",
+"hashtags": [
+"#강아지",
+"#puppy",
+"#해변",
+"#하이파이브",
+"#귀여움",
+"#펫"
+],
+"product_keyword": "강아지 해변 놀이용품",
+"product_must": "해변",
+"product_label": "해변 강아지용품",
+"sns_text": "해변에서 신나게 뛰노는 강아지 보셨나요? 🐾\n모래 위에서 꼬리 흔들고, 훈련 중엔 하이파이브까지! 🐶\n귀여움이 폭발하는 순간을 놓치지 마세요!\n함께 즐길 수 있는 해변 강아지용품, 지금 바로 확인해보세요!",
+"yt_title": "잠깐! 해변에서 하이파이브하는 강아지 실화?"
+},
+"yt": "ndhfQX82Mb4",
+"product": {
+"id": "9803667302",
+"name": "소프트 플라잉 디스크 체육교구 원반던지기 캠핑놀이 야외 해변 학교 스포츠용품 부메랑 강아지 캐치볼 rkr485Ss",
+"link": "https://link.coupang.com/a/iIrz0CUmIe",
+"subId": "h2611161154",
+"image": "https://ads-partners.coupang.com/image1/jBiaN7wSNlvppDb-jGWGbEJo76jz5WpWg3bylJAmVZTo4H1lTBUpagquZEieByjhbmiM0aMr9jtVhoAU4qGRDmrMAjqQXqdBLq_daojq92wecFmi4tEksLO33U9h3oKRDB_zGUxwWqyIsoQxvnRiQzCKzKbNRblyiuG35y6C2sf6wmTRMZXjs_vb-YfITykeuGmfFOJtteghgIBlGn41UqxBqlreKJvR42eXRM_rKsLOlobQzQ5F2XZYSFZqI6sCdWL_FOv8837AuYITCY2BX-byGW8MXOaiK4IWOTV8J7eUy4IpLL89pr9IUG2-rdVRJISvLWhpjPVdDJo3FIWh3iecMbCU1LATVs7mKuGsUmyOY9NqnO9jWC0VyeQOVuPaiMoVcTC_ZKQob7U02_ll63Vu37q0v_1WLPSMH7Sbxs7TQzh0O4_5ZktphbU9QA0F8K-WgNS9XlXGxGw6wODlY-KxuN9DWDKhTKG0iwXTPEvClIlY8DSbjNLG7i_midyH4caYmDR6pH4lDBBEbiIuz4FJopukYmmECO5i93-ElY_ZD2xBhE6g5UgS01fNLJT9_sg_47vEkHd-6R8XgteC"
+},
+"sns": {
+"threads": "18039834002895842",
+"insta": "18126789445715480"
+}
 }
 ],
 "source": "commons"
