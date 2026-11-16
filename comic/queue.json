@@ -2994,6 +2994,39 @@
 "threads": "18110390747218534",
 "insta": "17943318498391727"
 }
+},
+{
+"id": "trend202611161205",
+"src": "trend",
+"title": "라이트닝 PC 작업 환경에서 디테일한 키보드 타건과 PCB 회로의 미학",
+"channel": "Pixabay",
+"license": "무료 라이선스",
+"status": "made",
+"rank": 0,
+"made_at": "2026-11-16 12:05",
+"kind": "trend",
+"plan": {
+"top1": "이 PC 디테일 소름",
+"top2": "작업 환경의 정점",
+"hashtags": [
+"pcsetup",
+"coding",
+"tech",
+"desksetup",
+"hacking",
+"worklife"
+],
+"product_keyword": "메카닉 키보드",
+"product_must": "메카닉 키보드",
+"product_label": "작업 효율 높이는 키보드",
+"sns_text": "작업할 때 딱 이런 디테일 보고 소름 돋지 않아? \n마더보드 회로부터 키보드 타건까지, \n이런 환경에서 일하면 생산성이 2배로 올라가는 듯. \n집에서도 가성비 좋은 메카닉 키보드 하나 장만해볼까?",
+"yt_title": "잠깐, 이거 진짜야? 4단계 PC 작업환경과 회로의 미학"
+},
+"yt": "",
+"sns": {
+"threads": "18149601865601834",
+"insta": "18193062844409429"
+}
 }
 ],
 "source": "commons"
