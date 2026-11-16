@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "매일 반찬 뭐 하지 고민",
  "product_label": "국산 무말랭이",
  "product_keyword": "국산 무말랭이",
@@ -83,5 +83,6 @@
   "국산",
   "무말랭이"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
