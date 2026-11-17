@@ -53,7 +53,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "아침마다 국 고민되는 겨울",
  "product_label": "국산 미역",
  "product_keyword": "국산 자른미역",
@@ -89,5 +89,6 @@
  "extra_notes": [
   "농산물·수산물 특성상 크기·맛에 차이가 있을 수 있어요."
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
