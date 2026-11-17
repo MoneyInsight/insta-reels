@@ -53,7 +53,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "매일 도시락 반찬 고민",
  "product_label": "국산 우엉",
  "product_keyword": "국산 우엉",
@@ -84,5 +84,6 @@
   "국산",
   "우엉"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
