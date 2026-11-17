@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "치마 출근길 다리가 시린 아침",
  "product_label": "기모 스타킹",
  "product_keyword": "기모 스타킹",
@@ -83,5 +83,6 @@
   "기모",
   "스타킹"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
