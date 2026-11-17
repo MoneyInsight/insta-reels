@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "지우개 가루 쌓이는 기말 공부 책상",
  "product_label": "책상 미니 청소기",
  "product_keyword": "책상 미니 청소기",
@@ -86,5 +86,6 @@
   "미니 청소기",
   "책상·탁상용"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }

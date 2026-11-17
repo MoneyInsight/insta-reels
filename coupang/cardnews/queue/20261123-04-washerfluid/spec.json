@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "추운 아침 안 나오는 워셔액",
  "product_label": "겨울용 워셔액",
  "product_keyword": "겨울용 워셔액",
@@ -82,5 +82,6 @@
   "겨울용",
   "워셔액"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
