@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "찢어져 털 삐져나오는 패딩",
  "product_label": "패딩 수선 패치",
  "product_keyword": "패딩 수선 패치 스티커",
@@ -87,5 +87,6 @@
   "패딩 수선용",
   "붙이는 패치"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
