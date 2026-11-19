@@ -52,7 +52,7 @@
    ]
   }
  ],
- "status": "written",
+ "status": "failed",
  "topic": "퇴근 후 춥고 배고픈 연말 저녁",
  "product_label": "국산 떡국떡",
  "product_keyword": "국산 떡국떡",
@@ -88,5 +88,6 @@
   "국산",
   "떡국용 떡"
  ],
- "voice_style": "promo"
+ "voice_style": "promo",
+ "error": "맞는 상품 없음"
 }
